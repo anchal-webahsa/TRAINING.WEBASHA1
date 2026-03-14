@@ -1,0 +1,31 @@
+{% extends "webashaApp/base_auth.html" %}
+
+{% block title %}Sign in - Academy Admin{% endblock %}
+
+{% block content %}
+<div class="auth-header">
+  <h2>Sign in</h2>
+</div>
+<form method="post" action="{% url 'login' %}" class="auth-form">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+  <div class="errorlist">{{ form.non_field_errors }}</div>
+  {% endif %}
+  <div>
+    {{ form.username.label_tag }}
+    {{ form.username }}
+  </div>
+  <div>
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    {% if form.password.errors %}
+    <div class="errorlist">{{ form.password.errors }}</div>
+    {% endif %}
+  </div>
+  <button type="submit" class="auth-btn">Login</button>
+</form>
+<div class="auth-footer">
+  <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+  <p style="font-size:12px;margin-top:8px">If you don't have an account, create one in the admin panel.</p>
+</div>
+{% endblock %}

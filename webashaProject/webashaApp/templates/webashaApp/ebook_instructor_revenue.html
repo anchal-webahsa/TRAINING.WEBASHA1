@@ -1,0 +1,157 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Instructor Revenue{% endblock %}
+
+{% block content %}
+<!-- Include DateRangePicker CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<div class="revenue-dashboard" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="margin-bottom: 24px;">
+        <h2
+            style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 10px; margin: 0;">
+            <i class="fas fa-university" style="color: #64748b;"></i>
+            Instructor Revenue
+        </h2>
+    </div>
+
+    <!-- Filter and Export Section -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 16px;">
+        <button class="export-btn"
+            style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; color: #64748b; font-size: 14px; cursor: pointer; transition: all 0.2s;">
+            Export <i class="fas fa-external-link-alt" style="font-size: 12px;"></i>
+        </button>
+
+        <form method="GET" style="display: flex; align-items: center; gap: 12px; flex: 1; max-width: 600px;">
+            <div style="position: relative; flex: 1;">
+                <input type="text" name="date_range" id="date_range" value="{{ date_range|default:'' }}"
+                    placeholder="03/01/2026 - 03/31/2026"
+                    style="width: 100%; padding: 10px 16px; border: 1px solid #3b82f6; border-radius: 8px; font-size: 14px; outline: none; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);">
+            </div>
+            <button type="submit"
+                style="padding: 10px 32px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s;">
+                Filter
+            </button>
+        </form>
+    </div>
+
+    <div style="margin-bottom: 12px; font-size: 14px; color: #64748b;">
+        Showing {{ purchases|length }} data
+    </div>
+
+    <div class="table-container"
+        style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background: white; border-bottom: 1px solid #f1f5f9;">
+                    <th style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a; width: 50px;">#
+                    </th>
+                    <th style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a;">Enrolled Course
+                    </th>
+                    <th
+                        style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a; text-align: right;">
+                        Total amount</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a; text-align: right;">
+                        Instructor Revenue</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a; text-align: center;">
+                        Enrolled</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 13px; font-weight: 700; color: #0f172a; text-align: center;">
+                        Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.2s;">
+                    <td style="padding: 16px 24px; font-size: 14px; color: #1e293b; font-weight: 500;">{{ forloop.counter }}</td>
+                    <td style="padding: 16px 24px;">
+                        <div style="font-size: 14px; color: #0f172a; font-weight: 600; margin-bottom: 4px;">{{ purchase.ebook.title }}</div>
+                        <div style="font-size: 12px; color: #64748b;">Enrolled: {{ purchase.created_at|date:"d-M-Y" }}
+                        </div>
+                    </td>
+                    <td
+                        style="padding: 16px 24px; font-size: 14px; color: #0f172a; font-weight: 600; text-align: right;">
+                        {{ purchase.price }} ₹</td>
+                    <td
+                        style="padding: 16px 24px; font-size: 14px; color: #0f172a; font-weight: 600; text-align: right;">
+                        {{ purchase.author_revenue }} ₹</td>
+                    <td style="padding: 16px 24px; font-size: 14px; color: #1e293b; text-align: center;">{{ purchase.created_at|date:"d-M-Y" }}</td>
+                    <td style="padding: 16px 24px; text-align: center;">
+                        <button
+                            style="border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="padding: 48px; text-align: center; color: #64748b;">
+                        No revenue data found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% if purchases %}
+            <tfoot>
+                <tr style="background: #fafafb; font-weight: 700;">
+                    <td colspan="2" style="padding: 16px 24px; text-align: right; color: #0f172a;">Total: {{ total_amount }} ₹</td>
+                    <td style="padding: 16px 24px; text-align: right; color: #0f172a;">Total: {{ total_instructor_revenue }} ₹</td>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
+            {% endif %}
+        </table>
+    </div>
+
+    <div
+        style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #64748b;">
+        <div>Showing {{ purchases|length }} data</div>
+        <div style="display: flex; gap: 8px;">
+            <button
+                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer; color: #cbd5e1;">‹</button>
+            <button
+                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #3b82f6; background: #3b82f6; color: white; border-radius: 6px; cursor: pointer;">1</button>
+            <button
+                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer; color: #64748b;">2</button>
+            <button
+                style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer; color: #64748b;">›</button>
+        </div>
+    </div>
+</div>
+
+<!-- Include jQuery and DateRangePicker JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+    $(function () {
+        $('input[name="date_range"]').daterangepicker({
+            opens: 'left',
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear',
+                format: 'MM/DD/YYYY'
+            }
+        });
+
+        $('input[name="date_range"]').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+
+        $('input[name="date_range"]').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+</script>
+
+<style>
+    .export-btn:hover {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+    }
+</style>
+{% endblock %}

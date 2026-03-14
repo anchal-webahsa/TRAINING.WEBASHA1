@@ -1,0 +1,480 @@
+.fab.fa-whatsapp.fa-envelope {
+  font-size: 54px !important; /* Adjust size as needed */
+}
+
+/* FORCE GLOBAL FONT (React-safe) */
+html,
+body {
+  font-family: "Poppins", "Be Vietnam Pro", "Epilogue", sans-serif !important;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+  margin: 0px 0;
+  color: #5d646d;
+  font-weight: 400;
+  line-height: 1.975rem;
+}
+li i {
+	/* color: #E50914; Adjust icon color */
+	margin-right: 8px; /* Space between icon and text */
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Limit to 1 line */
+  line-clamp: 1;
+  overflow: hidden;
+}
+/* View More container Button */
+.contentcard {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  padding: 20px;
+  margin: 20px 0px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.contentcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.1);
+  background-color: #FFFF;
+}
+
+
+
+  .content-container {
+    max-height: 600px; /* Limit initial text height */
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    position: relative;
+  }
+
+  .content-container.expanded {
+    max-height: none;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(to top, #fff, rgba(255, 230, 230, 0));
+    transition: opacity 0.5s ease;
+  }
+
+  .content-container.expanded .gradient-overlay {
+    opacity: 0;
+  }
+
+  .toggle-button {
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #cccbcb52;
+    color: #484848;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-button:hover {
+    background-color: #e60000;
+	color: white;
+  }
+
+
+
+#button {
+  display: inline-block;
+  background-color: #E5091478;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 200px;
+  right: 15px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  text-decoration: none !important;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#button:hover {
+  cursor: pointer;
+  background-color: #E50914;
+}
+#button:active {
+  background-color: #555;
+}
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styles for the content section */
+
+
+@media (min-width: 500px) {
+
+  #button {
+    margin: 10px;
+  }
+}
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.video-background-holder {
+  position: relative;
+  background-color: black;
+  height: calc(100vh - 72px);
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-background-holder video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.video-background-content {
+  position: relative;
+  z-index: 2;
+}
+
+.video-background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Footer (refactor)
+| – same classes/behavior, cleaner + safer
+|--------------------------------------------------------------------------
+*/
+/* Inline code chip */
+code {
+  padding: 0 0.15rem;
+  background: #f5f5f5;
+  border-radius: .2rem;
+}
+
+/* Hide mobile footer on md+ viewports */
+@media (min-width: 768px) {
+  .footer-fixed { display: none !important; }
+}
+
+/* Design tokens */
+:root{
+  --wa-green: #25D366;
+  --footer-bg: #fff;
+  --footer-radius: 30px;
+  --mf-z: 2200;
+  --mf-height: 96px; /* visual height incl. CTA; JS will override if present */
+}
+
+/* Optional: reserve space so content never hides behind the bar.
+   Add 'has-mobile-footer' to <body> (or use the JS helper provided earlier) */
+body.has-mobile-footer{
+  padding-bottom: calc(var(--mf-height) + max(env(safe-area-inset-bottom), 16px));
+}
+
+/* Make footer fixed and keep above content */
+.footer-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--mf-z);
+  box-sizing: border-box;
+}
+
+/* Bar container */
+.mobile-footer{
+  border-top-left-radius: var(--footer-radius);
+  border-top-right-radius: var(--footer-radius);
+  background: var(--footer-bg);
+  /* start off-canvas if you want the slide behavior; mobile-footer.visible will show */
+  transform: translateY(100%);
+  transition: transform 420ms cubic-bezier(.16,.84,.24,1),
+              opacity 300ms ease;
+  will-change: transform;
+  padding: 8px 12px;
+  padding-bottom: max(env(safe-area-inset-bottom), 8px);
+  box-shadow: 0 -6px 18px rgba(0,0,0,0.06);
+  min-height: var(--mf-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: -20px; */
+}
+
+/* Visible / hidden states keep slide behaviour but footer remains fixed */
+.mobile-footer.visible{ transform: translateY(0); }
+.mobile-footer.hidden { transform: translateY(110%); }
+
+/* Nav: allow horizontal scroll to avoid squishing and overlaps */
+.mob-footer-nav{
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  width: 100%;
+  overflow-x: unset;              /* allow horizontal scroll instead of overlap */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* nav items: prefer auto width so the whatsapp CTA can sit centered */
+.mob-footer-nav li{
+  flex: 0 0 auto;
+  padding: 0 8px;
+  text-align: center;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* fallback when you want equal columns: use .mob-footer-nav .equal > li { flex: 1; } */
+
+/* link styling */
+.mob-footer-nav a{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  color: #111;
+  text-decoration: none;
+}
+.mob-footer-nav i{ line-height: 1; }
+.mob-footer-nav .mobile-menu a span{ display:block; padding-top:6px; }
+
+/* WhatsApp CTA slot */
+.whatsapp-floating{
+  flex: 0 0 96px; /* keeps CTA from shrinking too much */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* WhatsApp circle (central CTA bubble) */
+.whatsapp-circle{
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);   /* tiny entrance offset */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--footer-bg);
+  border: 4px solid var(--footer-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: calc(var(--mf-z) + 100);
+  box-shadow: 0 8px 26px rgba(0,0,0,.10);
+  transition: transform 360ms cubic-bezier(.2,.9,.26,1),
+              box-shadow 240ms ease;
+  will-change: transform, box-shadow;
+}
+
+/* Entrance bounce (trigger by adding .entrance) */
+.whatsapp-circle.entrance{
+  animation: waEntrance 560ms cubic-bezier(.2,.9,.26,1) both;
+}
+@keyframes waEntrance{
+  0%   { transform: translateX(-50%) translateY(28px) scale(.95); opacity:0; }
+  60%  { transform: translateX(-50%) translateY(-6px) scale(1.06); opacity:1; }
+  100% { transform: translateX(-50%) translateY(0)   scale(1);    opacity:1; }
+}
+
+/* Pulse rings */
+.whatsapp-circle::before,
+.whatsapp-circle::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:80px; height:80px;
+  border-radius:50%;
+  background: rgba(37,211,102,.09);
+  z-index:-1;
+  transform: scale(1);
+  opacity:0;
+  pointer-events:none;
+}
+.whatsapp-circle::before{ animation: waPulse 2200ms infinite ease-out; }
+.whatsapp-circle::after { animation: waPulse 2200ms infinite ease-out 1100ms; }
+
+@keyframes waPulse{
+  0%   { transform: scale(1);   opacity:.85; }
+  45%  { transform: scale(1.7); opacity:.26; }
+  100% { transform: scale(2.6); opacity:0; }
+}
+
+/* Gentle wiggle (add .wiggle to enable) */
+.whatsapp-circle.wiggle{ animation: waWiggle 4200ms infinite ease-in-out 1200ms; }
+@keyframes waWiggle{
+  0%   { transform: translateX(-50%) translateY(0) rotate(0); }
+  8%   { transform: translateX(-50%) translateY(-2px) rotate(-2deg); }
+  16%  { transform: translateX(-50%) translateY(0) rotate(2deg); }
+  24%  { transform: translateX(-50%) translateY(-1px) rotate(-1deg); }
+  32%  { transform: translateX(-50%) translateY(0) rotate(0); }
+  100% { transform: translateX(-50%) translateY(0) rotate(0); }
+}
+
+/* Hover / focus micro-interaction */
+.whatsapp-circle:focus,
+.whatsapp-circle:hover,
+.whatsapp-circle:active{
+  transform: translateX(-50%) translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(37,211,102,.18);
+  outline: none;
+}
+.whatsapp-circle svg{ transition: transform 200ms ease; }
+.whatsapp-circle:focus svg,
+.whatsapp-circle:hover svg{ transform: scale(1.06); }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .mobile-footer,
+  .whatsapp-circle,
+  .whatsapp-circle::before,
+  .whatsapp-circle::after{
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 420px) {
+  .whatsapp-circle { width: 64px; height: 64px; }
+  .mobile-footer { min-height: 84px; padding-bottom: calc(max(env(safe-area-inset-bottom), 8px)); }
+}
+
+/* Small polish: rounded content (keeps original look) */
+.mobile-footer { border-top-left-radius: var(--footer-radius); border-top-right-radius: var(--footer-radius); }
+
+.slider-arrows-cs {
+  padding: 0 40px;
+}
+
+/* Slick Slider Custom Arrows */
+.slider-arrows-cs .slick-prev,
+.slider-arrows-cs .slick-next {
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.slider-arrows-cs .slick-prev {
+    left: -30px;
+}
+
+.slider-arrows-cs .slick-next {
+    right: -30px;
+}
+
+.slider-arrows-cs .slick-prev::before,
+.slider-arrows-cs .slick-next::before {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900;
+    font-size: 40px;
+    color: #333;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.slider-arrows-cs .slick-prev::before {
+    content: "\f104" !important; /* fa-chevron-left */
+}
+
+.slider-arrows-cs .slick-next::before {
+    content: "\f105" !important; /* fa-chevron-right */
+}
+
+.slider-arrows-cs .slick-prev:hover::before,
+.slider-arrows-cs .slick-next:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 1200px) {
+    .slider-arrows-cs .slick-prev { left: -10px; }
+    .slider-arrows-cs .slick-next { right: -10px; }
+}
+
+@media (max-width: 992px) {
+    .slider-arrows-cs .slick-prev,
+    .slider-arrows-cs .slick-next {
+        display: none !important; /* Hide on small screens to avoid overflow */
+    }
+}
+
+/* VideoReviews Center Mode */
+.course-recent-reviews-slider .slick-slide {
+  transform: scale(0.85);
+  opacity: 0.6;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  filter: brightness(0.7);
+}
+
+.course-recent-reviews-slider .slick-center {
+  transform: scale(1.15);
+  opacity: 1;
+  z-index: 10;
+  position: relative;
+  filter: brightness(1);
+}
+
+.course-recent-reviews-slider .slick-list {
+  padding: 50px 0 !important;
+}
+
+

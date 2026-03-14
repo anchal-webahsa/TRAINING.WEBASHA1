@@ -1,0 +1,711 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<style>
+    .messaging-container {
+        display: flex;
+        height: calc(100vh - 70px);
+        background: #f8fafc;
+    }
+
+    .chat-list-sidebar {
+        width: 350px;
+        background: white;
+        border-right: 1px solid #f1f5f9;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-header {
+        padding: 24px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .add-chat-btn {
+        width: 32px;
+        height: 32px;
+        background: #eff6ff;
+        border: none;
+        border-radius: 8px;
+        color: #3b82f6;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-container {
+        padding: 16px;
+    }
+
+    .search-wrapper {
+        position: relative;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        color: #94a3b8;
+        font-size: 14px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 10px 12px 10px 36px;
+        background: #f1f5f9;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .users-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .user-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 24px;
+        text-decoration: none;
+        transition: background 0.2s;
+        border-right: 3px solid transparent;
+    }
+
+    .user-item.active {
+        background: #eff6ff;
+        border-right-color: #3b82f6;
+    }
+
+    .avatar-wrapper {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        background: #f1f5f9;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .user-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .user-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+    }
+
+    .user-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #0f172a;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .last-seen {
+        font-size: 11px;
+        color: #94a3b8;
+    }
+
+    .last-msg {
+        font-size: 12px;
+        color: #64748b;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .typing {
+        color: #3b82f6;
+    }
+
+    .conversation-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-header {
+        padding: 16px 24px;
+        background: white;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .chat-header-avatar {
+        width: 40px;
+        height: 40px;
+        background: #f1f5f9;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat-header-info div:first-child {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .chat-header-info div:last-child {
+        font-size: 12px;
+        color: #94a3b8;
+    }
+
+    .messages-window {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .message-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .message-row.sent {
+        align-items: flex-end;
+    }
+
+    .message-row.received {
+        align-items: flex-start;
+    }
+
+    .msg-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .sent .msg-meta {
+        flex-direction: row-reverse;
+    }
+
+    .msg-avatar {
+        width: 24px;
+        height: 24px;
+        background: #f1f5f9;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .msg-sender {
+        font-size: 12px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .msg-time {
+        font-size: 11px;
+        color: #94a3b8;
+    }
+
+    .msg-bubble {
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 14px;
+        max-width: 80%;
+    }
+
+    .sent .msg-bubble {
+        background: #3b82f6;
+        color: white;
+        border-top-right-radius: 4px;
+    }
+
+    .received .msg-bubble {
+        background: white;
+        border: 1px solid #f1f5f9;
+        color: #475569;
+        border-top-left-radius: 4px;
+    }
+
+    .input-area {
+        padding: 24px;
+        background: #fafbfc;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .message-form {
+        display: flex;
+        gap: 12px;
+        background: white;
+        padding: 8px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .message-input {
+        flex: 1;
+        border: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        outline: none;
+        background: transparent;
+    }
+
+    .send-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    .empty-state {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        opacity: 0.5;
+    }
+
+    /* Modal Styles - FIXED FOR FULL SCREEN */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: white;
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        z-index: 10001;
+    }
+
+    .modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .modal-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+    }
+
+    .close-modal-btn {
+        background: none;
+        border: none;
+        color: #91a3b8;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .modal-btn-next {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .modal-btn-close {
+        background: #64748b;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .user-select-container {
+        margin-top: 12px;
+        position: relative;
+    }
+
+    .user-select-field {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #334155;
+        outline: none;
+        cursor: pointer;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        z-index: 10;
+        max-height: 200px;
+        overflow-y: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .user-dropdown-item {
+        padding: 12px 16px;
+        font-size: 14px;
+        color: #475569;
+        cursor: pointer;
+    }
+
+    .user-dropdown-item:hover {
+        background: #f8fafc;
+    }
+
+    .user-dropdown-search {
+        padding: 8px 16px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .user-dropdown-search input {
+        width: 100%;
+        border: 1px solid #f1f5f9;
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 13px;
+        outline: none;
+    }
+</style>
+
+<!-- New Thread Modal - MOVED TO TOP FOR BETTER LAYERING -->
+<div class="modal-overlay" id="new-thread-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Create a new thread</h3>
+            <button class="close-modal-btn" id="modal-x-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div style="font-weight: 700; font-size: 18px; color: #0f172a; margin-bottom: 24px;">Create a new
+                conversation with a new user</div>
+            <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 8px;">Select a new user</div>
+
+            <div class="user-select-container">
+                <div class="user-select-field" id="user-select-trigger">
+                    <span id="selected-user-text">Select a user</span>
+                    <i class="fas fa-chevron-down" style="font-size: 12px; color: #94a3b8;"></i>
+                </div>
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="user-dropdown-search">
+                        <input type="text" id="user-search-input" placeholder="Search user...">
+                    </div>
+                    <div id="user-options-list">
+                        {% for user in users %}
+                        <div class="user-dropdown-item" data-id="{{ user.id }}"
+                            data-name="{{ user.get_full_name|default:user.username }}">
+                            {{ user.get_full_name|default:user.username }} ({{ user.email }})
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <button class="modal-btn-next" id="modal-next-btn">Next</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn-close" id="modal-footer-close">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="messaging-container">
+    <!-- Chat List Sidebar -->
+    <div class="chat-list-sidebar">
+        <div class="sidebar-header">
+            <h2 style="font-size: 18px; font-weight: 600; color: #0f172a; margin: 0;">Chat List</h2>
+            <button class="add-chat-btn" id="open-new-thread">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search here" class="search-input">
+            </div>
+        </div>
+
+        <div class="users-list">
+            {% for user in users %}
+            <a href="{% url 'messages_view_with_user' user.id %}"
+                class="user-item {% if selected_user.id  ==  user.id %}active{% endif %}">
+                <div class="avatar-wrapper">
+                    {% if user.profile.image %}
+                    <img src="{{ user.profile.image.url }}" class="avatar-img">
+                    {% else %}
+                    <i class="fas fa-user" style="color: #cbd5e1;"></i>
+                    {% endif %}
+                </div>
+                <div class="user-info">
+                    <div class="user-info-header">
+                        <div class="user-name">
+                            {{ user.get_full_name|default:user.username }}
+                        </div>
+                        <div class="last-seen">12 hours ago</div>
+                    </div>
+                    {% if selected_user.id == user.id %}
+                    <div class="last-msg typing">Typing...</div>
+                    {% else %}
+                    <div class="last-msg">Hey, thanks for your kind words...</div>
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Active Conversation -->
+    <div class="conversation-area">
+        {% if selected_user %}
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="chat-header-avatar">
+                {% if selected_user.profile.image %}
+                <img src="{{ selected_user.profile.image.url }}" class="avatar-img">
+                {% else %}
+                <i class="fas fa-user" style="color: #cbd5e1;"></i>
+                {% endif %}
+            </div>
+            <div class="chat-header-info">
+                <div>{{ selected_user.get_full_name|default:selected_user.username }}</div>
+                <div>{{ selected_user.email }}</div>
+            </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="messages-window" class="messages-window">
+            {% for message in messages %}
+            <div class="message-row {% if message.sender  ==  request.user %}sent{% else %}received{% endif %}">
+                <div class="msg-meta">
+                    <div class="msg-avatar">
+                        {% if message.sender.profile.image %}
+                        <img src="{{ message.sender.profile.image.url }}" class="avatar-img">
+                        {% else %}
+                        <i class="fas fa-user" style="color: #cbd5e1; font-size: 10px;"></i>
+                        {% endif %}
+                    </div>
+                    <div class="msg-sender">{{ message.sender.get_full_name|default:message.sender.username }}</div>
+                    <div class="msg-time">{{ message.timestamp|date:"H:i" }}</div>
+                </div>
+                <div class="msg-bubble">
+                    {{ message.content }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Message Input -->
+        <div class="input-area">
+            <form id="message-form" class="message-form">
+                {% csrf_token %}
+                <input type="hidden" name="receiver_id" value="{{ selected_user.id }}">
+                <input type="text" name="content" id="message-input" class="message-input"
+                    placeholder="Type your message here..." required>
+                <button type="submit" class="send-btn">
+                    Send <i class="fas fa-paper-plane" style="font-size: 12px;"></i>
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-comments empty-icon"></i>
+            <p style="font-size: 16px;">Select a user to start chatting</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const msgWindow = document.getElementById('messages-window');
+        if (msgWindow) msgWindow.scrollTop = msgWindow.scrollHeight;
+
+        // Modal logic - APPEND TO BODY FOR ABSOLUTE POSITIONING
+        const modal = $('#new-thread-modal');
+        $('body').append(modal);
+
+        $('#open-new-thread').on('click', function () {
+            modal.css('display', 'flex');
+        });
+
+        const closeModal = () => {
+            modal.hide();
+            $('#user-dropdown').hide();
+        };
+
+        $('#modal-x-close, #modal-footer-close').on('click', closeModal);
+        $(window).on('click', function (e) {
+            if ($(e.target).is(modal)) closeModal();
+        });
+
+        // Custom dropdown logic
+        const trigger = $('#user-select-trigger');
+        const dropdown = $('#user-dropdown');
+        let selectedUserId = null;
+
+        trigger.on('click', function (e) {
+            e.stopPropagation();
+            dropdown.toggle();
+        });
+
+        $(document).on('click', function () {
+            dropdown.hide();
+        });
+
+        dropdown.on('click', function (e) {
+            e.stopPropagation();
+        });
+
+        $('#user-options-list').on('click', '.user-dropdown-item', function () {
+            selectedUserId = $(this).data('id');
+            const name = $(this).data('name');
+            $('#selected-user-text').text(name);
+            dropdown.hide();
+            trigger.css('border-color', '#3b82f6');
+        });
+
+        // Search logic for dropdown
+        $('#user-search-input').on('keyup', function () {
+            const val = $(this).val().toLowerCase();
+            $('#user-options-list .user-dropdown-item').each(function () {
+                const text = $(this).text().toLowerCase();
+                $(this).toggle(text.indexOf(val) > -1);
+            });
+        });
+
+        $('#modal-next-btn').on('click', function () {
+            if (selectedUserId) {
+                window.location.href = `/messages/${selectedUserId}/`;
+            } else {
+                trigger.css('border-color', 'red');
+            }
+        });
+
+        $('#message-form').on('submit', function (e) {
+            e.preventDefault();
+            const input = $('#message-input');
+            const content = input.val();
+            const receiverId = $('input[name="receiver_id"]').val();
+
+            if (!content.trim()) return;
+
+            $.ajax({
+                url: '{% url "send_message" %}',
+                method: 'POST',
+                data: {
+                    'receiver_id': receiverId,
+                    'content': content,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    input.val('');
+                    const html = `
+                    <div class="message-row sent">
+                        <div class="msg-meta">
+                            <div class="msg-avatar">
+                                <i class="fas fa-user" style="color: #cbd5e1; font-size: 10px;"></i>
+                            </div>
+                            <div class="msg-sender">${data.sender}</div>
+                            <div class="msg-time">${data.timestamp}</div>
+                        </div>
+                        <div class="msg-bubble">
+                            ${data.content}
+                        </div>
+                    </div>
+                `;
+                    $('#messages-window').append(html);
+                    if (msgWindow) msgWindow.scrollTop = msgWindow.scrollHeight;
+                },
+                error: function () {
+                    alert('Error sending message');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

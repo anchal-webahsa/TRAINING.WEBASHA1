@@ -1,0 +1,142 @@
+/* ─────────────────────────────────────────
+   OurChoose Section — Infinite CSS Scroll
+───────────────────────────────────────── */
+
+/* ── Keyframes ── */
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Wrapper: hides overflow & adds fade edges ── */
+.our-choose-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 12px 0;
+  /* Fade out left & right edges — same as live site */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* ── Scrolling track ── */
+.our-choose-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  /* Pause on hover */
+}
+
+.our-choose-track-wrapper:hover .our-choose-track {
+  animation-play-state: paused;
+}
+
+/* ── Direction variants ── */
+.scroll-left {
+  animation: scrollLeft 30s linear infinite;
+}
+
+.scroll-right {
+  animation: scrollRight 30s linear infinite;
+}
+
+/* ── Individual card ── */
+.our-choose-card {
+  flex-shrink: 0;
+  min-width: 220px;
+}
+
+.our-choose-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.our-choose-card-inner:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Icon circle ── */
+.oc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(229, 9, 20, 0.08);
+  flex-shrink: 0;
+}
+
+.oc-icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* ── Text ── */
+.oc-content h5 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+/* ── Explore link ── */
+.oc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e50914;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.oc-link:hover {
+  gap: 8px;
+  color: #c0392b;
+}
+
+.oc-link img {
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+}
+
+/* ── Responsive: slow down on mobile ── */
+@media (max-width: 768px) {
+  .scroll-left  { animation-duration: 20s; }
+  .scroll-right { animation-duration: 20s; }
+  .our-choose-card { min-width: 180px; }
+  .our-choose-card-inner { padding: 12px 14px; gap: 10px; }
+  .oc-icon { width: 44px; height: 44px; }
+  .oc-icon img { width: 28px; height: 28px; }
+  .oc-content h5 { font-size: 13px; }
+}

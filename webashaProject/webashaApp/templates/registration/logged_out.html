@@ -1,0 +1,8 @@
+{% extends "webashaApp/base.html" %}
+
+{% block content %}
+  <div style="max-width:540px;margin:40px auto;padding:24px;background:#ffffff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06)">
+    <h3>Signed out</h3>
+    <p style="color:#64748b">You have been signed out. <a href="{% url 'login' %}">Sign in again</a></p>
+  </div>
+{% endblock %}

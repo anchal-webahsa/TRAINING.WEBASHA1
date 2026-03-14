@@ -1,0 +1,50 @@
+<div class="instructor-tabs">
+    <a href="{% url 'manage_instructors' %}"
+        class="inst-tab {% if request.resolver_match.url_name == 'manage_instructors' %}active{% endif %}">
+        Manage Instructors
+    </a>
+    <a href="{% url 'add_instructor' %}"
+        class="inst-tab {% if request.resolver_match.url_name == 'add_instructor' %}active{% endif %}">
+        Add new Instructor
+    </a>
+    <a href="{% url 'instructor_payout' %}"
+        class="inst-tab {% if request.resolver_match.url_name == 'instructor_payout' %}active{% endif %}">
+        Instructor Payout
+    </a>
+    <a href="{% url 'instructor_settings' %}"
+        class="inst-tab {% if request.resolver_match.url_name == 'instructor_settings' %}active{% endif %}">
+        Instructor Setting
+    </a>
+    <a href="{% url 'instructor_applications' %}"
+        class="inst-tab {% if request.resolver_match.url_name == 'instructor_applications' %}active{% endif %}">
+        Application
+    </a>
+</div>
+
+<style>
+    .instructor-tabs {
+        margin-bottom: 24px;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        gap: 32px;
+    }
+
+    .inst-tab {
+        padding: 12px 4px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        color: #64748b;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .inst-tab:hover {
+        color: #3b82f6 !important;
+    }
+
+    .inst-tab.active {
+        color: #3b82f6;
+        border-bottom-color: #3b82f6;
+    }
+</style>

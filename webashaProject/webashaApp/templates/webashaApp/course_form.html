@@ -1,0 +1,21 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<h2>{% if edit %}Edit Course{% else %}Add New Course{% endif %}</h2>
+
+{% if success %}
+<div style="padding:8px;background:#ecfeff;border:1px solid #c7f9f9;margin-bottom:12px">Saved.</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <div style="max-width:720px">
+        <div style="margin-bottom:8px">{{ form.title.label_tag }}<br>{{ form.title }}</div>
+        <div style="margin-bottom:8px">{{ form.short_description.label_tag }}<br>{{ form.short_description }}</div>
+        <div style="margin-bottom:8px">{{ form.description.label_tag }}<br>{{ form.description }}</div>
+        <div style="margin-bottom:8px">{{ form.status.label_tag }}<br>{{ form.status }}</div>
+        <div style="margin-bottom:8px">{{ form.price.label_tag }}<br>{{ form.price }}</div>
+        <div><button type="submit">Save</button></div>
+    </div>
+</form>
+{% endblock %}

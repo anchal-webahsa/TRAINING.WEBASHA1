@@ -1,0 +1,1121 @@
+from django.db import models
+from django.db.models import Count
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.text import slugify
+from django.http import JsonResponse
+from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import Course, CourseBundle, Bootcamp, BootcampCategory, BootcampPurchase, Coupon, TutorCategory, TutorSubject, EbookCategory, Ebook, EbookPurchase, Profile, Contact, Ticket, FAQ
+from .forms import CouponForm
+from django.contrib import messages
+
+def dashboard(request):
+    courses = Course.objects.all()
+    bootcamps = Bootcamp.objects.all()
+    bundles = CourseBundle.objects.all()
+    
+    # Calculate unique instructors
+    instructor_ids = set()
+    instructor_ids.update(bootcamps.values_list('owner_id', flat=True))
+    instructor_ids.update(bundles.values_list('owner_id', flat=True))
+    num_instructors = len([i for i in instructor_ids if i is not None])
+    
+    # Calculate unique students and total enrollments
+    bootcamp_purchases = BootcampPurchase.objects.all()
+    ebook_purchases = EbookPurchase.objects.all()
+    
+    student_ids = set()
+    student_ids.update(bootcamp_purchases.values_list('user_id', flat=True))
+    student_ids.update(ebook_purchases.values_list('user_id', flat=True))
+    
+    num_students = len(student_ids)
+    num_enrollments = bootcamp_purchases.count() + ebook_purchases.count()
+    
+    # Real data calculation
+    stats = {
+        'num_courses': courses.count(),
+        'num_lessons': 605, # Placeholder for now
+        'num_enrollments': num_enrollments,
+        'num_students': num_students,
+        'num_instructors': num_instructors,
+        'num_bootcamps': bootcamps.count(),
+        'num_bundles': bundles.count(),
+    }
+    
+    # Revenue mock data: peak in March (index 2)
+    revenue_data = [20, 40, 1334, 100, 50, 60, 45, 60, 55, 60, 50, 40]
+    
+    # Status mock data (Active, Upcoming, Pending, Private, Draft, Inactive)
+    # Total should be around courses.count() or just fixed values for the demo
+    status_data = [courses.count(), 2, 1, 0, 0, 0]
+    
+    context = {
+        "title": "Dashboard Overview",
+        "courses": courses,
+        "stats": stats,
+        "revenue_data": revenue_data,
+        "status_data": status_data,
+    }
+    return render(request, "webashaApp/dashboard.html", context)
+
+
+@login_required
+def add_course(request):
+    if request.method == "POST":
+        # allow simple AJAX create with only a title (use defaults for other fields)
+        title = request.POST.get('title')
+        if title:
+            course = Course.objects.create(title=title)
+            data = list(Course.objects.order_by('-created_at').values('id', 'title'))
+            return JsonResponse({"courses": data})
+        # fall back to form validation when more fields provided
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            data = list(Course.objects.order_by('-created_at').values('id', 'title'))
+            return JsonResponse({"courses": data})
+        return JsonResponse({"errors": form.errors}, status=400)
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+@login_required
+def update_course(request):
+    if request.method == "POST":
+        try:
+            cid = int(request.POST.get('id', -1))
+        except (ValueError, TypeError):
+            return JsonResponse({"error": "Invalid id"}, status=400)
+        course = get_object_or_404(Course, pk=cid)
+        # allow title-only updates via AJAX
+        title = request.POST.get('title')
+        if title:
+            course.title = title
+            course.save()
+            data = list(Course.objects.order_by('-created_at').values('id', 'title'))
+            return JsonResponse({"courses": data})
+        # fall back to form-based full updates
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            data = list(Course.objects.order_by('-created_at').values('id', 'title'))
+            return JsonResponse({"courses": data})
+        return JsonResponse({"errors": form.errors}, status=400)
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+@login_required
+def delete_course(request):
+    if request.method == "POST":
+        try:
+            cid = int(request.POST.get('id', -1))
+        except (ValueError, TypeError):
+            return JsonResponse({"error": "Invalid id"}, status=400)
+        course = get_object_or_404(Course, pk=cid)
+        course.delete()
+        data = list(Course.objects.order_by('-created_at').values('id', 'title'))
+        return JsonResponse({"courses": data})
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+@login_required
+def manage_courses(request):
+    qs = Course.objects.order_by('-created_at')
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(title__icontains=q)
+    # pagination
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 10)
+    try:
+        courses = paginator.page(page)
+    except PageNotAnInteger:
+        courses = paginator.page(1)
+    except EmptyPage:
+        courses = paginator.page(paginator.num_pages)
+    return render(request, 'webashaApp/manage_courses.html', {'courses': courses, 'q': q, 'paginator': paginator})
+
+
+def courses_by_category(request, slug):
+    from django.shortcuts import render
+    from .models import CourseCategory
+    from .models import Coupon
+    # best-effort: try to find the category; if present, attempt to show courses
+    # special-case: if the category slug is 'coupons', show coupon management
+    if slug.lower() == 'coupons':
+        # show simple coupons list (admin-only in templates/actions if needed)
+        coupons = Coupon.objects.order_by('-created_at')
+        success = request.GET.get('added') == '1'
+        return render(request, 'webashaApp/coupons.html', {'coupons': coupons, 'success': success})
+
+    category = CourseCategory.objects.filter(slug=slug).first()
+    if category:
+        # without an explicit FK relationship (may be added via migration),
+        # fall back to matching titles that contain the category name
+        qs = Course.objects.filter(title__icontains=category.name).order_by('-created_at')
+    else:
+        qs = Course.objects.none()
+    # reuse pagination
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 10)
+    try:
+        courses = paginator.page(page)
+    except PageNotAnInteger:
+        courses = paginator.page(1)
+    except EmptyPage:
+        courses = paginator.page(paginator.num_pages)
+    return render(request, 'webashaApp/manage_courses.html', {'courses': courses, 'category_slug': slug, 'paginator': paginator})
+
+
+@login_required
+def course_create(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'webashaApp/course_form.html', {'form': CourseForm(), 'success': True})
+    else:
+        form = CourseForm()
+    return render(request, 'webashaApp/course_form.html', {'form': form})
+
+
+@login_required
+def coupon_create(request):
+    """Simple view for adding a coupon."""
+    if request.method == 'POST':
+        form = CouponForm(request.POST)
+        if form.is_valid():
+            form.save()
+            from django.urls import reverse
+            url = reverse('courses_by_category', args=['coupons'])
+            return redirect(f"{url}?added=1")
+    else:
+        form = CouponForm()
+    return render(request, 'webashaApp/coupon_form.html', {'form': form})
+
+
+@login_required
+def coupon_edit(request, pk):
+    coupon = get_object_or_404(Coupon, pk=pk)
+    if request.method == 'POST':
+        form = CouponForm(request.POST, instance=coupon)
+        if form.is_valid():
+            form.save()
+            from django.urls import reverse
+            url = reverse('courses_by_category', args=['coupons'])
+            return redirect(f"{url}?updated=1")
+    else:
+        form = CouponForm(instance=coupon)
+    return render(request, 'webashaApp/coupon_form.html', {'form': form, 'edit': True})
+
+
+@login_required
+def coupon_delete(request, pk):
+    coupon = get_object_or_404(Coupon, pk=pk)
+    if request.method == 'POST':
+        coupon.delete()
+        from django.urls import reverse
+        url = reverse('courses_by_category', args=['coupons'])
+        return redirect(f"{url}?deleted=1")
+    return render(request, 'webashaApp/coupon_confirm_delete.html', {'coupon': coupon})
+
+
+@login_required
+def coupon_toggle(request, pk):
+    coupon = get_object_or_404(Coupon, pk=pk)
+    coupon.active = not coupon.active
+    coupon.save()
+    from django.urls import reverse
+    url = reverse('courses_by_category', args=['coupons'])
+    # pass flag to indicate activation change
+    return redirect(f"{url}?toggled=1")
+
+# optional edit/delete could be added later if needed
+
+
+@login_required
+def course_edit(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            return render(request, 'webashaApp/course_form.html', {'form': form, 'success': True, 'edit': True})
+    else:
+        form = CourseForm(instance=course)
+    return render(request, 'webashaApp/course_form.html', {'form': form, 'edit': True})
+
+
+def course_detail(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'webashaApp/course_detail.html', {'course': course})
+
+
+def register(request):
+    """Simple user registration view using Django's UserCreationForm.
+    On success the new user is automatically logged in and redirected to the site root.
+    """
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def course_delete(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == 'POST':
+        course.delete()
+        return render(request, 'webashaApp/manage_courses.html', {'courses': Course.objects.order_by('-created_at'), 'deleted': True})
+    return render(request, 'webashaApp/course_detail.html', {'course': course})
+
+
+@login_required
+def manage_bundles(request):
+    bundles = CourseBundle.objects.all().order_by('-created_at')
+    return render(request, 'webashaApp/manage_bundles.html', {'bundles': bundles})
+
+
+@login_required
+def add_bundle(request):
+    """View to render the Add Course Bundle page and handle creation."""
+    if request.method == "POST":
+        title = request.POST.get('title')
+        price = request.POST.get('price')
+        subscription_days = request.POST.get('subscription_days', 365)
+        thumbnail = request.FILES.get('thumbnail')
+        details = request.POST.get('details')
+        course_ids_str = request.POST.get('course_ids', '')
+        
+        bundle = CourseBundle.objects.create(
+            title=title,
+            owner=request.user,
+            price=price if price else 0,
+            subscription_limit_days=subscription_days if subscription_days else 365,
+            thumbnail=thumbnail,
+            details=details
+        )
+        
+        if course_ids_str:
+            course_ids = [int(id) for id in course_ids_str.split(',') if id.strip()]
+            courses_to_add = Course.objects.filter(id__in=course_ids)
+            bundle.courses.set(courses_to_add)
+            
+        messages.success(request, f"Course bundle '{title}' created successfully!")
+        return redirect('manage_bundles')
+
+    courses = Course.objects.all().order_by('title')
+    return render(request, 'webashaApp/add_bundle.html', {'courses': courses})
+
+@login_required
+def manage_bootcamps(request):
+    """View for Manage Bootcamp page with real data."""
+    bootcamps = Bootcamp.objects.all().order_by('-created_at')
+    return render(request, 'webashaApp/manage_bootcamps.html', {'bootcamps': bootcamps})
+
+
+@login_required
+def add_bootcamp(request):
+    """View to render the Add New Bootcamp page and handle creation."""
+    if request.method == "POST":
+        title = request.POST.get('title')
+        category_id = request.POST.get('category')
+        short_description = request.POST.get('short_description')
+        description = request.POST.get('description')
+        pricing_type = request.POST.get('pricing_type')
+        price = request.POST.get('price', 0)
+        has_discount = request.POST.get('has_discount') == 'on'
+        discounted_price = request.POST.get('discounted_price', 0)
+        thumbnail = request.FILES.get('thumbnail')
+        publish_date = request.POST.get('publish_date')
+
+        category = get_object_or_404(BootcampCategory, id=category_id) if category_id else None
+        
+        Bootcamp.objects.create(
+            title=title,
+            owner=request.user,
+            category=category,
+            short_description=short_description,
+            description=description,
+            is_free=(pricing_type == 'free'),
+            price=price if price else 0,
+            has_discount=has_discount,
+            discounted_price=discounted_price if discounted_price else 0,
+            thumbnail=thumbnail,
+            publish_date=publish_date if publish_date else None
+        )
+        
+        messages.success(request, f"Bootcamp '{title}' created successfully!")
+        return redirect('manage_bootcamps')
+        
+    categories = BootcampCategory.objects.all().order_by('name')
+    return render(request, 'webashaApp/add_bootcamp.html', {'categories': categories})
+
+
+@login_required
+def purchase_history(request):
+    """View for Bootcamp Purchase History page."""
+    purchases = BootcampPurchase.objects.all().select_related('user', 'bootcamp').order_by('-created_at')
+    
+    date_range = request.GET.get('date_range')
+    if date_range:
+        try:
+            start_str, end_str = date_range.split(' - ')
+            from datetime import datetime
+            start_date = datetime.strptime(start_str, '%m/%d/%Y')
+            end_date = datetime.strptime(end_str, '%m/%d/%Y').replace(hour=23, minute=59, second=59)
+            purchases = purchases.filter(created_at__range=(start_date, end_date))
+        except (ValueError, IndexError):
+            pass
+
+    # Calculate totals
+    total_paid = sum(p.price for p in purchases)
+    
+    return render(request, 'webashaApp/purchase_history.html', {
+        'purchases': purchases,
+        'date_range': date_range,
+        'total_paid': total_paid
+    })
+
+
+@login_required
+def bootcamp_categories(request):
+    """View to list all bootcamp categories and handle creation."""
+    if request.method == "POST":
+        name = request.POST.get('name')
+        if name:
+            slug = slugify(name)
+            # Handle duplicate slugs
+            base_slug = slug
+            counter = 1
+            while BootcampCategory.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            
+            BootcampCategory.objects.create(name=name, slug=slug)
+            messages.success(request, f"Category '{name}' created successfully!")
+        return redirect('bootcamp_categories')
+
+    categories = BootcampCategory.objects.all().annotate(
+        bootcamp_count=Count('bootcamps')
+    ).order_by('name')
+    return render(request, 'webashaApp/bootcamp_categories.html', {'categories': categories})
+@login_required
+def bootcamp_category_edit(request, pk):
+    """View to edit an existing bootcamp category."""
+    category = get_object_or_404(BootcampCategory, pk=pk)
+    if request.method == "POST":
+        name = request.POST.get('name')
+        if name:
+            category.name = name
+            # Update slug if name changed significantly, or keep it
+            # For simplicity, we'll just update the name
+            category.save()
+            messages.success(request, f"Category updated to '{name}' successfully!")
+        return redirect('bootcamp_categories')
+    return redirect('bootcamp_categories')
+
+@login_required
+def bootcamp_category_delete(request, pk):
+    """View to delete a bootcamp category."""
+    category = get_object_or_404(BootcampCategory, pk=pk)
+    name = category.name
+    category.delete()
+    messages.success(request, f"Category '{name}' deleted successfully!")
+    return redirect('bootcamp_categories')
+
+@login_required
+def tutor_subjects(request):
+    """View to list all tutor subjects and handle addition."""
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            TutorSubject.objects.create(name=name, status='active')
+            messages.success(request, f"Subject '{name}' added successfully!")
+            return redirect('tutor_subjects')
+            
+    subjects = TutorSubject.objects.all().order_by('-created_at')
+    return render(request, 'webashaApp/tutor_subjects.html', {'subjects': subjects})
+
+@login_required
+def tutor_subject_edit(request, pk):
+    """View to edit a tutor subject."""
+    subject = get_object_or_404(TutorSubject, pk=pk)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            subject.name = name
+            subject.save()
+            messages.success(request, f"Subject '{name}' updated successfully!")
+            return redirect('tutor_subjects')
+    return redirect('tutor_subjects')
+
+@login_required
+def tutor_subject_delete(request, pk):
+    """View to delete a tutor subject."""
+    subject = get_object_or_404(TutorSubject, pk=pk)
+    name = subject.name
+    subject.delete()
+    messages.success(request, f"Subject '{name}' deleted successfully!")
+    return redirect('tutor_subjects')
+
+@login_required
+def tutor_categories(request):
+    """View to list all tutor categories and handle addition."""
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            TutorCategory.objects.create(name=name, status='active')
+            messages.success(request, f"Category '{name}' added successfully!")
+            return redirect('tutor_categories')
+            
+    categories = TutorCategory.objects.all().order_by('-created_at')
+    return render(request, 'webashaApp/tutor_categories.html', {'categories': categories})
+
+@login_required
+def tutor_category_edit(request, pk):
+    """View to edit a tutor category."""
+    category = get_object_or_404(TutorCategory, pk=pk)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            category.name = name
+            category.save()
+            messages.success(request, f"Category '{name}' updated successfully!")
+            return redirect('tutor_categories')
+    return redirect('tutor_categories')
+
+@login_required
+def tutor_category_delete(request, pk):
+    """View to delete a tutor category."""
+    category = get_object_or_404(TutorCategory, pk=pk)
+    name = category.name
+    category.delete()
+    messages.success(request, f"Category '{name}' deleted successfully!")
+    return redirect('tutor_categories')
+
+@login_required
+def manage_ebooks(request):
+    """View to list all ebooks."""
+    ebooks = Ebook.objects.select_related('category').all().order_by('-created_at')
+    return render(request, 'webashaApp/manage_ebooks.html', {'ebooks': ebooks})
+
+@login_required
+def add_ebook(request):
+    """View to add or edit an ebook."""
+    categories = EbookCategory.objects.all()
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author_name = request.POST.get('author_name')
+        author_email = request.POST.get('author_email')
+        category_id = request.POST.get('category')
+        language = request.POST.get('language')
+        description = request.POST.get('description')
+        summary = request.POST.get('summary')
+        publication = request.POST.get('publication')
+        edition = request.POST.get('edition')
+        pricing_type = request.POST.get('pricing_type')
+        price = request.POST.get('price', 0)
+        has_discount = request.POST.get('has_discount') == 'on'
+        discounted_price = request.POST.get('discounted_price', 0)
+        publish_date = request.POST.get('publish_date')
+        status = request.POST.get('status', 'active')
+        
+        category = get_object_or_404(EbookCategory, id=category_id)
+        
+        Ebook.objects.create(
+            title=title,
+            author_name=author_name,
+            author_email=author_email,
+            category=category,
+            language=language,
+            description=description,
+            summary=summary,
+            publication=publication,
+            edition=edition,
+            is_free=(pricing_type == 'free'),
+            price=price if price else 0,
+            has_discount=has_discount,
+            discounted_price=discounted_price if discounted_price else 0,
+            publish_date=publish_date if publish_date else None,
+            status=status,
+            cover_image=request.FILES.get('cover_image'),
+            preview_file=request.FILES.get('preview_file'),
+            ebook_file=request.FILES.get('ebook_file')
+        )
+        messages.success(request, f"Ebook '{title}' added successfully!")
+        return redirect('manage_ebooks')
+        
+    return render(request, 'webashaApp/add_ebook.html', {'categories': categories})
+
+@login_required
+def edit_ebook(request, pk):
+    """View to edit an ebook."""
+    ebook = get_object_or_404(Ebook, pk=pk)
+    categories = EbookCategory.objects.all()
+    if request.method == 'POST':
+        ebook.title = request.POST.get('title')
+        ebook.author_name = request.POST.get('author_name')
+        ebook.author_email = request.POST.get('author_email')
+        category_id = request.POST.get('category')
+        ebook.category = get_object_or_404(EbookCategory, id=category_id)
+        ebook.language = request.POST.get('language')
+        ebook.description = request.POST.get('description')
+        ebook.summary = request.POST.get('summary')
+        ebook.publication = request.POST.get('publication')
+        ebook.edition = request.POST.get('edition')
+        pricing_type = request.POST.get('pricing_type')
+        ebook.is_free = (pricing_type == 'free')
+        ebook.price = request.POST.get('price', 0)
+        ebook.has_discount = request.POST.get('has_discount') == 'on'
+        ebook.discounted_price = request.POST.get('discounted_price', 0)
+        publish_date = request.POST.get('publish_date')
+        ebook.publish_date = publish_date if publish_date else None
+        ebook.status = request.POST.get('status', 'active')
+        
+        if 'cover_image' in request.FILES:
+            ebook.cover_image = request.FILES['cover_image']
+        if 'preview_file' in request.FILES:
+            ebook.preview_file = request.FILES['preview_file']
+        if 'ebook_file' in request.FILES:
+            ebook.ebook_file = request.FILES['ebook_file']
+            
+        ebook.save()
+        messages.success(request, f"Ebook '{ebook.title}' updated successfully!")
+        return redirect('manage_ebooks')
+        
+    return render(request, 'webashaApp/add_ebook.html', {'ebook': ebook, 'categories': categories})
+
+@login_required
+def delete_ebook(request, pk):
+    """View to delete an ebook."""
+    ebook = get_object_or_404(Ebook, pk=pk)
+    title = ebook.title
+    ebook.delete()
+    messages.success(request, f"Ebook '{title}' deleted successfully!")
+    return redirect('manage_ebooks')
+
+@login_required
+def ebook_categories(request):
+    """View to list all ebook categories and handle addition."""
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            EbookCategory.objects.create(name=name, status='active')
+            messages.success(request, f"Category '{name}' added successfully!")
+            return redirect('ebook_categories')
+            
+    categories = EbookCategory.objects.all().order_by('-created_at')
+    return render(request, 'webashaApp/ebook_categories.html', {'categories': categories})
+
+@login_required
+def ebook_category_edit(request, pk):
+    """View to edit an ebook category."""
+    category = get_object_or_404(EbookCategory, pk=pk)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            category.name = name
+            category.save()
+            messages.success(request, f"Category '{name}' updated successfully!")
+            return redirect('ebook_categories')
+    return redirect('ebook_categories')
+
+@login_required
+def ebook_category_delete(request, pk):
+    """View to delete an ebook category."""
+    category = get_object_or_404(EbookCategory, pk=pk)
+    category.delete()
+    messages.success(request, "Category deleted successfully!")
+    return redirect('ebook_categories')
+
+@login_required
+def ebook_admin_revenue(request):
+    """View to display ebook admin revenue."""
+    purchases = EbookPurchase.objects.select_related('ebook', 'user').all().order_by('-created_at')
+    
+    date_range = request.GET.get('date_range')
+    if date_range:
+        try:
+            start_str, end_str = date_range.split(' - ')
+            from datetime import datetime
+            start_date = datetime.strptime(start_str, '%m/%d/%Y')
+            end_date = datetime.strptime(end_str, '%m/%d/%Y').replace(hour=23, minute=59, second=59)
+            purchases = purchases.filter(created_at__range=(start_date, end_date))
+        except (ValueError, IndexError):
+            pass
+
+    # Calculate totals
+    total_price = sum(p.price for p in purchases)
+    total_revenue = sum(p.admin_revenue for p in purchases)
+    
+    return render(request, 'webashaApp/ebook_admin_revenue.html', {
+        'purchases': purchases,
+        'date_range': date_range,
+        'total_price': total_price,
+        'total_revenue': total_revenue
+    })
+
+@login_required
+def ebook_instructor_revenue(request):
+    """View to display ebook instructor revenue."""
+    purchases = EbookPurchase.objects.select_related('ebook', 'user').all().order_by('-created_at')
+    
+    date_range = request.GET.get('date_range')
+    if date_range:
+        try:
+            start_str, end_str = date_range.split(' - ')
+            from datetime import datetime
+            start_date = datetime.strptime(start_str, '%m/%d/%Y')
+            end_date = datetime.strptime(end_str, '%m/%d/%Y').replace(hour=23, minute=59, second=59)
+            purchases = purchases.filter(created_at__range=(start_date, end_date))
+        except (ValueError, IndexError):
+            pass
+
+    # Calculate totals
+    total_amount = sum(p.price for p in purchases)
+    total_instructor_revenue = sum(p.author_revenue for p in purchases)
+    
+    return render(request, 'webashaApp/ebook_instructor_revenue.html', {
+        'purchases': purchases,
+        'date_range': date_range,
+        'total_amount': total_amount,
+        'total_instructor_revenue': total_instructor_revenue
+    })
+
+@login_required
+def offline_payments(request):
+    """View to display offline payments."""
+    category = request.GET.get('category', 'All')
+    # Returning empty list to show "No data found" UI as per request
+    return render(request, 'webashaApp/offline_payments.html', {
+        'category': category,
+        'payments': []
+    })
+
+@login_required
+def manage_admins(request):
+    """View to list all administrators."""
+    from django.contrib.auth.models import User
+    from django.db.models import Count
+    
+    admins = User.objects.filter(is_staff=True).annotate(
+        course_count=Count('owned_bundles') + Count('owned_bootcamps')
+    ).order_by('username')
+    
+    return render(request, 'webashaApp/manage_admins.html', {'admins': admins})
+
+@login_required
+def add_admin(request):
+    """View to add a new administrator and their profile."""
+    from django.contrib.auth.models import User
+    from django.contrib import messages
+    from .models import Profile
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        biography = request.POST.get('biography')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        image = request.FILES.get('image')
+        
+        # Simple split for first/last name
+        name_parts = name.split(' ', 1)
+        first_name = name_parts[0]
+        last_name = name_parts[1] if len(name_parts) > 1 else ''
+        
+        if not email and address and '@' in address:
+            email = address
+            
+        if not email or not password:
+            messages.error(request, "Email and Password are required.")
+        else:
+            try:
+                # Create user
+                user = User.objects.create_user(
+                    username=email, # Use email as username for simplicity
+                    email=email,
+                    password=password,
+                    first_name=first_name,
+                    last_name=last_name,
+                    is_staff=True # Mark as admin
+                )
+                
+                # Create Profile
+                profile = Profile.objects.create(
+                    user=user,
+                    role='admin',
+                    biography=biography,
+                    phone=phone,
+                    address=address,
+                    image=image
+                )
+                
+                messages.success(request, f"Admin '{name}' created successfully!")
+                return redirect('manage_admins')
+            except Exception as e:
+                messages.error(request, f"Error creating admin: {e}")
+                
+    return render(request, 'webashaApp/add_admin.html')
+
+@login_required
+def manage_instructors(request):
+    instructors = User.objects.filter(profile__role='instructor').annotate(
+        course_count=Count('owned_bootcamps')
+    ).select_related('profile')
+    return render(request, 'webashaApp/manage_instructors.html', {'instructors': instructors})
+
+@login_required
+def add_instructor(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        biography = request.POST.get('biography', '')
+        phone = request.POST.get('phone', '')
+        address = request.POST.get('address', '')
+        email = request.POST.get('email', '')
+        password = request.POST.get('password', '')
+        image = request.FILES.get('image')
+        
+        # Social links
+        facebook_link = request.POST.get('facebook_link', '')
+        twitter_link = request.POST.get('twitter_link', '')
+        linkedin_link = request.POST.get('linkedin_link', '')
+
+        # Basic split for first/last name
+        name_parts = name.split(' ', 1)
+        first_name = name_parts[0]
+        last_name = name_parts[1] if len(name_parts) > 1 else ''
+        
+        if not email and address and '@' in address:
+            email = address
+            
+        if not email or not password:
+            messages.error(request, "Email and Password are required.")
+        else:
+            try:
+                # Create User
+                user = User.objects.create_user(
+                    username=email,
+                    email=email,
+                    password=password,
+                    first_name=first_name,
+                    last_name=last_name
+                )
+                user.is_staff = True  # Instructors are usually staff in LMS
+                user.save()
+
+                # Create Profile
+                Profile.objects.create(
+                    user=user,
+                    role='instructor',
+                    biography=biography,
+                    phone=phone,
+                    address=address,
+                    image=image,
+                    facebook_link=facebook_link,
+                    twitter_link=twitter_link,
+                    linkedin_link=linkedin_link
+                )
+                messages.success(request, f"Instructor '{name}' created successfully.")
+                return redirect('manage_instructors')
+            except Exception as e:
+                messages.error(request, f"Error creating instructor: {str(e)}")
+
+    return render(request, 'webashaApp/add_instructor.html')
+
+@login_required
+def faq_view(request):
+    """View to list all FAQs."""
+    faqs = FAQ.objects.all().order_by('-created_at')
+    q = request.GET.get('q', '').strip()
+    if q:
+        faqs = faqs.filter(question__icontains=q)
+    return render(request, 'webashaApp/faq.html', {'faqs': faqs, 'q': q})
+
+@login_required
+def add_faq(request):
+    """View to add a new FAQ."""
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        answer = request.POST.get('answer')
+        if question and answer:
+            FAQ.objects.create(question=question, answer=answer)
+            messages.success(request, "FAQ added successfully!")
+            return redirect('faq_view')
+    return redirect('faq_view')
+
+@login_required
+def edit_faq(request, pk):
+    """View to edit an existing FAQ."""
+    faq = get_object_or_404(FAQ, pk=pk)
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        answer = request.POST.get('answer')
+        if question and answer:
+            faq.question = question
+            faq.answer = answer
+            faq.save()
+            messages.success(request, "FAQ updated successfully!")
+    return redirect('faq_view')
+
+@login_required
+def delete_faq(request, pk):
+    """View to delete an FAQ."""
+    faq = get_object_or_404(FAQ, pk=pk)
+    faq.delete()
+    messages.success(request, "FAQ deleted successfully!")
+    return redirect('faq_view')
+
+@login_required
+def instructor_payout(request):
+    return render(request, 'webashaApp/instructor_payout.html')
+
+@login_required
+def manage_students(request):
+    students = User.objects.filter(profile__role='student').annotate(
+        course_count=Count('bootcamp_purchases')
+    ).select_related('profile')
+    return render(request, 'webashaApp/manage_students.html', {'students': students})
+
+@login_required
+def add_student(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        biography = request.POST.get('biography')
+        image = request.FILES.get('image')
+        
+        facebook = request.POST.get('facebook_link')
+        twitter = request.POST.get('twitter_link')
+        linkedin = request.POST.get('linkedin_link')
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'Email already exists.')
+            return render(request, 'webashaApp/add_student.html')
+
+        user = User.objects.create_user(username=email, email=email, password=password)
+        names = name.split(' ', 1)
+        user.first_name = names[0]
+        if len(names) > 1:
+            user.last_name = names[1]
+        user.save()
+
+        Profile.objects.create(
+            user=user,
+            role='student',
+            phone=phone,
+            address=address,
+            biography=biography,
+            image=image,
+            facebook_link=facebook,
+            twitter_link=twitter,
+            linkedin_link=linkedin
+        )
+        
+        messages.success(request, f"Student '{name}' created successfully.")
+        return redirect('manage_students')
+        
+    return render(request, 'webashaApp/add_student.html')
+
+@login_required
+def instructor_settings(request):
+    return render(request, 'webashaApp/instructor_settings.html')
+
+@login_required
+def instructor_applications(request):
+    return render(request, 'webashaApp/instructor_applications.html')
+
+@login_required
+def manage_newsletters(request):
+    # Dummy newsletters data based on screenshot
+    newsletters = [
+        {'id': 1, 'title': 'Listing New Product'},
+        {'id': 2, 'title': 'Unlock Your Potential with 50% Off on Our UI/UX course'},
+        {'id': 3, 'title': 'Startup Spotlight: Innovation and Entrepreneurship'},
+        {'id': 4, 'title': 'Academy News: The Future of Learning'},
+    ]
+    return render(request, 'webashaApp/manage_newsletters.html', {'newsletters': newsletters})
+
+@login_required
+def subscribed_users(request):
+    # This would typically filter users who are subscribed to newsletter
+    subscribers = User.objects.all() # Placeholder logic
+    return render(request, 'webashaApp/subscribed_users.html', {'subscribers': subscribers})
+
+@login_required
+def enrollment_history(request):
+    return render(request, 'webashaApp/enrollment_history.html')
+
+@login_required
+def enroll_student(request):
+    return render(request, 'webashaApp/enroll_student.html')
+@login_required
+def messages_view(request, user_id=None):
+    """View to display the messaging interface."""
+    # Simple chat list - all users except the current one (could be improved to only active conversations)
+    users = User.objects.exclude(id=request.user.id).select_related('profile')
+    
+    # Get initial conversation if user_id is provided
+    selected_user = None
+    messages = []
+    if user_id:
+        selected_user = get_object_or_404(User, id=user_id)
+        from django.db.models import Q
+        messages = Message.objects.filter(
+            (Q(sender=request.user) & Q(receiver=selected_user)) |
+            (Q(sender=selected_user) & Q(receiver=request.user))
+        ).order_by('timestamp')
+        # Mark as read
+        messages.filter(receiver=request.user, is_read=False).update(is_read=True)
+    elif users.exists():
+        # Default to first user if none selected
+        # selected_user = users.first()
+        # messages = Message.objects.filter(
+        #     (Q(sender=request.user) & Q(receiver=selected_user)) |
+        #     (Q(sender=selected_user) & Q(receiver=request.user))
+        # ).order_by('timestamp')
+        pass
+
+    return render(request, 'webashaApp/messages.html', {
+        'users': users,
+        'selected_user': selected_user,
+        'messages': messages,
+    })
+
+@login_required
+def send_message(request):
+    """AJAX view to send a message."""
+    if request.method == "POST":
+        receiver_id = request.POST.get('receiver_id')
+        content = request.POST.get('content')
+        if receiver_id and content:
+            receiver = get_object_or_404(User, id=receiver_id)
+            message = Message.objects.create(
+                sender=request.user,
+                receiver=receiver,
+                content=content
+            )
+            return JsonResponse({
+                'id': message.id,
+                'content': message.content,
+                'timestamp': message.timestamp.strftime('%H:%M'),
+                'sender': message.sender.username
+            })
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@login_required
+def contacts_view(request):
+    contacts = Contact.objects.all()
+    context = {
+        'contacts': contacts,
+        'title': 'Contacts'
+    }
+    return render(request, 'webashaApp/contacts.html', context)
+
+@login_required
+def delete_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == "POST":
+        contact.delete()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+@login_required
+def reply_contact(request):
+    if request.method == "POST":
+        contact_id = request.POST.get('contact_id')
+        message = request.POST.get('message')
+        # In a real app, you'd send an email here.
+        # For now, we'll just mock it.
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+@login_required
+def tickets_view(request):
+    tickets = Ticket.objects.all()
+    users = User.objects.all()
+    context = {
+        'tickets': tickets,
+        'users': users,
+        'title': 'Tickets'
+    }
+    return render(request, 'webashaApp/tickets.html', context)
+
+@login_required
+def add_ticket_view(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        category = request.POST.get('category')
+        user_id = request.POST.get('user_id')
+        status = request.POST.get('status')
+        priority = request.POST.get('priority')
+        message = request.POST.get('message')
+        uploaded_file = request.FILES.get('file')
+
+        try:
+            target_user = User.objects.get(id=user_id)
+            Ticket.objects.create(
+                subject=subject,
+                category=category,
+                user=target_user,
+                status=status,
+                priority=priority,
+                message=message,
+                file=uploaded_file
+            )
+            messages.success(request, 'Ticket created successfully!')
+            return redirect('tickets_view')
+        except Exception as e:
+            messages.error(request, f'Error creating ticket: {str(e)}')
+
+    users = User.objects.all()
+    context = {
+        'users': users,
+        'title': 'Add New Ticket'
+    }
+    return render(request, 'webashaApp/add_ticket.html', context)
+
+@login_required
+def update_ticket(request, pk):
+    if request.method == 'POST':
+        ticket = get_object_or_404(Ticket, pk=pk)
+        ticket.subject = request.POST.get('subject')
+        ticket.category = request.POST.get('category')
+        user_id = request.POST.get('user_id')
+        ticket.status = request.POST.get('status')
+        ticket.priority = request.POST.get('priority')
+        
+        try:
+            target_user = User.objects.get(id=user_id)
+            ticket.user = target_user
+            ticket.save()
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+@login_required
+def delete_ticket(request, pk):
+    if request.method == 'POST':
+        ticket = get_object_or_404(Ticket, pk=pk)
+        ticket.delete()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)

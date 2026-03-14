@@ -1,0 +1,119 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Offline Payments{% endblock %}
+
+{% block content %}
+<div class="offline-payments-dashboard" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="margin-bottom: 24px;">
+        <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <svg style="width: 20px; height: 20px; color: #64748b;" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                </path>
+            </svg>
+            Offline payments
+        </h2>
+    </div>
+
+    <!-- Action Bar -->
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <button class="export-btn"
+            style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #f1f5f9; border: none; border-radius: 8px; color: #64748b; font-size: 14px; cursor: pointer; transition: all 0.2s;">
+            Export <i class="fas fa-external-link-alt" style="font-size: 12px;"></i>
+        </button>
+
+        <div style="position: relative;">
+            <button id="filterBtn" onclick="toggleFilterDropdown()"
+                style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #f1f5f9; border: none; border-radius: 8px; color: #64748b; font-size: 14px; cursor: pointer; transition: all 0.2s;">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+
+            <!-- Category Filter Dropdown -->
+            <div id="filterDropdown" class="filter-dropdown"
+                style="display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 240px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #f1f5f9; padding: 20px; z-index: 100;">
+                <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #0f172a;">Category</h4>
+                <div style="position: relative; margin-bottom: 20px;">
+                    <select id="categorySelect"
+                        style="width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; color: #334155; appearance: none; cursor: pointer; background: white;">
+                        <option value="All" {% if category  ==  'All' %}selected{% endif %}>All</option>
+                        <option value="Pending" {% if category  ==  'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="Approved" {% if category  ==  'Approved' %}selected{% endif %}>Approved</option>
+                        <option value="Suspended" {% if category  ==  'Suspended' %}selected{% endif %}>Suspended</option>
+                    </select>
+                    <i class="fas fa-chevron-down"
+                        style="position: absolute; right: 12px; top: 14px; font-size: 10px; color: #64748b; pointer-events: none;"></i>
+                </div>
+                <button onclick="applyFilter()"
+                    style="width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State UI -->
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 0;">
+        <div
+            style="position: relative; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; background: #eef2ff; border-radius: 50%; margin-bottom: 24px;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                    stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 7H17" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 12H17" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 17H13" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div
+                style="position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 4px solid white;">
+                <i class="fas fa-search" style="color: white; font-size: 14px;"></i>
+            </div>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 600; color: #1e293b; margin: 0;">No data found</h3>
+    </div>
+</div>
+
+<script>
+    function toggleFilterDropdown() {
+        const dropdown = document.getElementById('filterDropdown');
+        const btn = document.getElementById('filterBtn');
+        if (dropdown.style.display === 'none') {
+            dropdown.style.display = 'block';
+            btn.style.background = '#e2e8f0';
+        } else {
+            dropdown.style.display = 'none';
+            btn.style.background = '#f1f5f9';
+        }
+    }
+
+    function applyFilter() {
+        const category = document.getElementById('categorySelect').value;
+        window.location.href = `?category=${category}`;
+    }
+
+    // Close dropdown when clicking outside
+    window.onclick = function (event) {
+        if (!event.target.closest('#filterBtn') && !event.target.closest('#filterDropdown')) {
+            const dropdown = document.getElementById('filterDropdown');
+            if (dropdown) {
+                dropdown.style.display = 'none';
+                document.getElementById('filterBtn').style.background = '#f1f5f9';
+            }
+        }
+    }
+</script>
+
+<style>
+    .export-btn:hover,
+    #filterBtn:hover {
+        background: #e2e8f0 !important;
+    }
+
+    #categorySelect:focus {
+        border-color: #3b82f6 !important;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+</style>
+{% endblock %}

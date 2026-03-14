@@ -1,0 +1,44 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Instructor Applications | Academy{% endblock %}
+
+{% block topbar_title %}Instructor Applications{% endblock %}
+
+{% block content %}
+<div class="user-dashboard" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="margin-bottom: 24px;">
+        <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-file-signature" style="color: #64748b;"></i>
+            Instructor Applications
+        </h2>
+    </div>
+
+    {% include 'webashaApp/instructor_tabs.html' %}
+
+    <div class="table-container"
+        style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                    <th style="padding: 16px 24px; font-size: 12px; font-weight: 700; color: #0f172a; width: 50px;">#
+                    </th>
+                    <th style="padding: 16px 24px; font-size: 12px; font-weight: 700; color: #0f172a;">Applicant</th>
+                    <th style="padding: 16px 24px; font-size: 12px; font-weight: 700; color: #0f172a;">Application Date
+                    </th>
+                    <th style="padding: 16px 24px; font-size: 12px; font-weight: 700; color: #0f172a;">Status</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 700; color: #0f172a; text-align: right;">
+                        Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="padding: 48px; text-align: center; color: #64748b;">No instructor
+                        applications found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

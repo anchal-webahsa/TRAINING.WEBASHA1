@@ -1,0 +1,153 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Newsletter | Academy{% endblock %}
+
+{% block topbar_title %}Newsletter{% endblock %}
+
+{% block content %}
+<div class="newsletter-dashboard">
+    <div class="page-header">
+        <h2>
+            <i class="fas fa-paper-plane"></i>
+            Newsletter
+        </h2>
+        <a href="#" class="add-btn">
+            <i class="fas fa-plus"></i> Add Newsletter
+        </a>
+    </div>
+
+    {% include 'webashaApp/newsletter_tabs.html' %}
+
+    <div class="newsletter-list">
+        {% for newsletter in newsletters %}
+        <div class="newsletter-item">
+            <div class="item-content">
+                <span class="item-number">{{ forloop.counter }}.</span>
+                <span class="item-title">{{ newsletter.title }}</span>
+            </div>
+            <div class="item-actions">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">No newsletters found.</div>
+        {% endfor %}
+        <div class="list-footer">
+            Showing {{ newsletters|length }} of {{ newsletters|length }} data
+        </div>
+    </div>
+</div>
+
+<style>
+    .newsletter-dashboard {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .page-header h2 i {
+        color: #64748b;
+        font-size: 16px;
+    }
+
+    .add-btn {
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #1e293b;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+    }
+
+    .add-btn:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+    }
+
+    .newsletter-list {
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .newsletter-item {
+        background: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    .newsletter-item:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+    }
+
+    .item-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .item-number {
+        font-size: 14px;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .item-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1e293b;
+    }
+
+    .item-actions {
+        color: #94a3b8;
+        font-size: 12px;
+    }
+
+    .list-footer {
+        padding: 12px 4px;
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 8px;
+    }
+
+    .empty-state {
+        padding: 40px;
+        text-align: center;
+        color: #64748b;
+        background: white;
+        border-radius: 12px;
+        border: 1px dashed #e2e8f0;
+    }
+</style>
+{% endblock %}

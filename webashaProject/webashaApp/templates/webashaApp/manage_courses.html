@@ -1,0 +1,55 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<h2>Manage Courses</h2>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;margin-bottom:12px">
+    <a href="{% url 'course_create' %}">Add New Course</a>
+    <form method="get" style="display:flex;gap:8px;align-items:center">
+        <input name="q" placeholder="Search title" value="{{ q }}" style="padding:6px;border-radius:6px;border:1px solid #e6eef4">
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+<table style="width:100%;border-collapse:collapse">
+    <thead>
+        <tr style="text-align:left;border-bottom:1px solid #e6eef4">
+            <th style="width:36px">#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Lesson & Section</th>
+            <th>Enrolled Student</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th style="width:120px">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td style="min-width:260px"><a href="{% url 'course_detail' course.id %}">{{ course.title }}</a>
+                <div style="color:#64748b;font-size:12px">Instructor: John Doe<br>Email: admin@example.com</div>
+            </td>
+            <td>{{ course.category_name }}</td>
+            <td style="color:#64748b;font-size:13px">lesson: 0<br>Section: 0</td>
+            <td style="color:#64748b;font-size:13px">0 Students</td>
+            <td><span style="padding:4px 8px;border-radius:12px;background:#ecfdf5;color:#065f46;font-weight:600">{{ course.get_status_display }}</span></td>
+            <td>{{ course.price }} ₹</td>
+            <td>
+                <a href="{% url 'course_edit' course.id %}">Edit</a>
+                <form action="{% url 'course_delete' course.id %}" method="post" style="display:inline">{% csrf_token %}<button style="background:none;border:none;color:#6b7280;cursor:pointer;margin-left:8px">Delete</button></form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">No courses yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if paginator.num_pages > 1 %}
+<div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+    {% if courses.has_previous %}<a href="?q={{ q }}&page={{ courses.previous_page_number }}">Prev</a>{% endif %}
+    <span>Page {{ courses.number }} of {{ paginator.num_pages }}</span>
+    {% if courses.has_next %}<a href="?q={{ q }}&page={{ courses.next_page_number }}">Next</a>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

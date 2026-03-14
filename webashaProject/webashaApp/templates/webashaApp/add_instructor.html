@@ -1,0 +1,298 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Create Instructor | Academy{% endblock %}
+
+{% block topbar_title %}Create Instructor{% endblock %}
+
+{% block content %}
+<div class="add-admin-container" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <!-- Header with Back Button -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-plus-circle" style="color: #64748b;"></i>
+            Create Instructor
+        </h2>
+    </div>
+
+    {% include 'webashaApp/instructor_tabs.html' %}
+
+    <form method="POST" enctype="multipart/form-data" id="admin-form">
+        {% csrf_token %}
+        <div
+            style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+            <div style="padding: 20px 24px; border-bottom: 1px solid #f1f5f9; background: #fff;">
+                <h3 style="font-size: 16px; font-weight: 600; color: #1e293b; margin: 0;">Instructor Info</h3>
+            </div>
+
+            <div style="display: flex; min-height: 500px;">
+                <!-- Vertical Tabs (Sidebar) -->
+                <div style="width: 260px; border-right: 1px solid #f1f5f9; background: #fff; padding: 16px 0;">
+                    <div class="tab-item active" onclick="switchTab(this, 'basic-tab')">
+                        <i class="fas fa-user-circle"></i> Basic
+                    </div>
+                    <div class="tab-item" onclick="switchTab(this, 'login-tab')">
+                        <i class="fas fa-key"></i> Login Credentials
+                    </div>
+                    <div class="tab-item" onclick="switchTab(this, 'payment-tab')">
+                        <i class="fas fa-wallet"></i> Payment Information
+                    </div>
+                    <div class="tab-item" onclick="switchTab(this, 'social-tab')">
+                        <i class="fas fa-share-alt"></i> Social Links
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div style="flex: 1; padding: 40px; background: #fff;">
+                    <!-- Basic Info Tab -->
+                    <div id="basic-tab" class="tab-pane active">
+                        <div class="form-group">
+                            <label class="form-label">Name <span style="color: #ef4444;">*</span></label>
+                            <input type="text" name="name" placeholder="Enter instructor's full name"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Biography</label>
+                            <textarea name="biography" placeholder="Enter biography" class="form-control"
+                                style="height: 120px; resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="text" name="phone" placeholder="Enter phone number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <input type="text" name="address" placeholder="Enter address" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">User image</label>
+                            <div class="file-input-wrapper">
+                                <button type="button" class="file-btn">Choose File</button>
+                                <span class="file-name">No file chosen</span>
+                                <input type="file" name="image" class="file-hidden" onchange="updateFilename(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Login Credentials Tab -->
+                    <div id="login-tab" class="tab-pane">
+                        <div class="form-group">
+                            <label class="form-label">Email <span style="color: #ef4444;">*</span></label>
+                            <input type="email" name="email" id="id_email" placeholder="Enter email address"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password <span style="color: #ef4444;">*</span></label>
+                            <input type="password" name="password" id="id_password" placeholder="Enter password"
+                                class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Payment Info Tab -->
+                    <div id="payment-tab" class="tab-pane">
+                        <p style="color: #64748b; font-size: 14px;">Setup payment information for this instructor.</p>
+                        <div class="form-group">
+                            <label class="form-label">Bank Name</label>
+                            <input type="text" placeholder="Enter bank name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Account Number</label>
+                            <input type="text" placeholder="Enter account number" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Social Links Tab -->
+                    <div id="social-tab" class="tab-pane">
+                        <p style="color: #64748b; font-size: 14px;">Manage social media profiles.</p>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fab fa-facebook"
+                                    style="color: #1877f2; margin-right: 8px;"></i> Facebook Link</label>
+                            <input type="url" name="facebook_link" placeholder="https://facebook.com/username"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fab fa-twitter"
+                                    style="color: #1da1f2; margin-right: 8px;"></i> Twitter Link</label>
+                            <input type="url" name="twitter_link" placeholder="https://twitter.com/username"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fab fa-linkedin"
+                                    style="color: #0a66c2; margin-right: 8px;"></i> Linkedin Link</label>
+                            <input type="url" name="linkedin_link" placeholder="https://linkedin.com/in/username"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div style="margin-top: 40px;">
+                        <button type="submit" class="submit-btn" style="background: #3b82f6;">Create Instructor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .tab-item {
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #64748b;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+    }
+
+    .tab-item:hover {
+        background: #f8fafc;
+        color: #1e293b;
+    }
+
+    .tab-item.active {
+        background: #eff6ff;
+        color: #3b82f6;
+        border-left-color: #3b82f6;
+    }
+
+    .tab-item i {
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+    }
+
+    .tab-pane {
+        display: none;
+    }
+
+    .tab-pane.active {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+        max-width: 800px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1e293b;
+        outline: none;
+        transition: all 0.2s;
+        background: #fff;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .file-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+    }
+
+    .file-btn {
+        padding: 8px 16px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #475569;
+        cursor: pointer;
+    }
+
+    .file-name {
+        font-size: 13px;
+        color: #94a3b8;
+    }
+
+    .file-hidden {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        width: 120px;
+        cursor: pointer;
+    }
+
+    .submit-btn {
+        color: white;
+        padding: 12px 32px;
+        border-radius: 8px;
+        border: none;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+    }
+
+    .submit-btn:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
+    }
+</style>
+
+<script>
+    function switchTab(element, tabId) {
+        document.querySelectorAll('.tab-item').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+    function updateFilename(input) {
+        const filename = input.files[0] ? input.files[0].name : 'No file chosen';
+        const span = input.previousElementSibling;
+        span.textContent = filename;
+        span.style.color = '#1e293b';
+    }
+    document.getElementById('admin-form').addEventListener('submit', function (e) {
+        const form = this;
+        const requiredFields = form.querySelectorAll('[required]');
+        let firstErrorTab = null;
+        for (let field of requiredFields) {
+            if (!field.value.trim()) {
+                const tabPane = field.closest('.tab-pane');
+                if (tabPane) { firstErrorTab = tabPane.id; break; }
+            }
+        }
+        if (firstErrorTab) {
+            const tabItem = document.querySelector(`[onclick*="${firstErrorTab}"]`);
+            if (tabItem) { switchTab(tabItem, firstErrorTab); return true; }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Manage Course Bundle{% endblock %}
+
+{% block content %}
+<style>
+    /* Scoped styles for the Manage Bundle page based on the design */
+    .bundle-container {
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        margin-bottom: 24px;
+    }
+
+    .bundle-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .bundle-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .add-bundle-btn {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        color: #475569;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .add-bundle-btn:hover {
+        background-color: #f8fafc;
+    }
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+        display: flex;
+        gap: 12px;
+    }
+
+    .tool-btn {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .search-input {
+        border: 1px solid #e2e8f0;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        width: 250px;
+        outline: none;
+    }
+
+    .search-input:focus {
+        border-color: #3b82f6;
+    }
+
+    .search-btn {
+        background-color: #3b82f6;
+        color: #ffffff;
+        border: none;
+        padding: 8px 24px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .search-btn:hover {
+        background-color: #2563eb;
+    }
+
+    .bundle-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    .bundle-table th {
+        text-align: left;
+        padding: 12px 16px;
+        color: #0f172a;
+        font-weight: 600;
+        border-bottom: 2px solid #f1f5f9;
+    }
+
+    .bundle-table td {
+        padding: 16px;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: top;
+        color: #475569;
+    }
+
+    .bundle-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .bundle-owner {
+        color: #64748b;
+        font-size: 12px;
+    }
+
+    .bundle-name {
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .course-list-item {
+        margin-bottom: 4px;
+        color: #475569;
+    }
+
+    .status-badge {
+        background-color: #dcfce7;
+        color: #16a34a;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .options-btn {
+        color: #94a3b8;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .pagination-info {
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 20px;
+    }
+
+    /* Alert styles */
+    .alert {
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        border: 1px solid transparent;
+    }
+
+    .alert-success {
+        background: #dcfce7;
+        color: #16a34a;
+        border-color: #bbf7d0;
+    }
+
+    .alert-error {
+        background: #fee2e2;
+        color: #dc2626;
+        border-color: #fecaca;
+    }
+</style>
+
+<div class="bundle-container">
+    <div class="bundle-header">
+        <div class="bundle-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            Manage Course Bundle
+        </div>
+        <a href="{% url 'add_bundle' %}" class="add-bundle-btn" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add New Bundle
+        </a>
+    </div>
+
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <button class="tool-btn">
+                Export
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+            <button class="tool-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                Filter
+            </button>
+        </div>
+        <div class="toolbar-right">
+            <input type="text" class="search-input" placeholder="Search title or bundle owner">
+            <button class="search-btn">Search</button>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div style="margin-bottom: 20px;">
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-error{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <table class="bundle-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th style="width: 25%">Bundle Info</th>
+                <th style="width: 35%">Courses</th>
+                <th>Subscription limit</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bundle in bundles %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <div class="bundle-info">
+                        <span class="bundle-owner">Bundle Owner : {{ bundle.owner.get_full_name|default:bundle.owner.username }}</span>
+                        <span class="bundle-name">{{ bundle.title }}</span>
+                    </div>
+                </td>
+                <td>
+                    {% for course in bundle.courses.all %}
+                    <div class="course-list-item">{{ course.title }}</div>
+                    {% empty %}
+                    <div class="course-list-item muted">No courses</div>
+                    {% endfor %}
+                </td>
+                <td>{{ bundle.subscription_limit_days }} days</td>
+                <td>{{ bundle.price }} ₹</td>
+                <td><span class="status-badge">{{ bundle.status|title }}</span></td>
+                <td><button class="options-btn">⋮</button></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px; color: #64748b;">
+                    No course bundles found. <a href="{% url 'add_bundle' %}" style="color: #3b82f6;">Create your first
+                        bundle</a>.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination-info">
+        Showing {{ bundles.count }} of {{ bundles.count }} data
+    </div>
+</div>
+{% endblock %}

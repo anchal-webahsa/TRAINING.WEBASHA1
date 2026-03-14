@@ -1,0 +1,211 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Manage Ebook{% endblock %}
+
+{% block content %}
+<div class="ebook-dashboard" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <svg style="width: 20px; height: 20px; color: #64748b;" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332 0.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332 0.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332 0.477-4.5 1.253">
+                </path>
+            </svg>
+            Manage Ebook
+        </h2>
+        <a href="{% url 'add_ebook' %}" class="add-btn"
+            style="background: white; border: 1px solid #e2e8f0; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #1e293b; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.2s; text-decoration: none;">
+            <span style="font-size: 18px; line-height: 1;">+</span> Add New Ebook
+        </a>
+    </div>
+
+    <div class="table-controls"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 16px;">
+        <div class="export-btn"
+            style="background: white; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 8px; font-size: 14px; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+            Export <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+        </div>
+        <div class="search-container" style="flex: 1; max-width: 400px; position: relative;">
+            <input type="text" placeholder="Search Title"
+                style="width: 100%; padding: 8px 12px; padding-right: 80px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none;">
+            <button
+                style="position: absolute; right: 4px; top: 4px; bottom: 4px; background: #3b82f6; color: white; border: none; padding: 0 16px; border-radius: 6px; font-size: 14px; cursor: pointer;">Search</button>
+        </div>
+    </div>
+
+    <div class="table-container"
+        style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; width: 50px;">
+                        #</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Title</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Category</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Publication</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Purchase User</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Price</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase;">
+                        Status</th>
+                    <th
+                        style="padding: 16px 24px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; text-align: right;">
+                        Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ebook in ebooks %}
+                <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.2s;">
+                    <td style="padding: 16px 24px; font-size: 14px; color: #1e293b; font-weight: 500;">{{ forloop.counter }}</td>
+                    <td style="padding: 16px 24px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div
+                                style="width: 40px; height: 40px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                {% if ebook.cover_image %}
+                                <img src="{{ ebook.cover_image.url }}" alt=""
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                {% else %}
+                                <svg style="width: 20px; height: 20px; color: #94a3b8;" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332 0.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332 0.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332 0.477-4.5 1.253">
+                                    </path>
+                                </svg>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div style="font-size: 14px; font-weight: 600; color: #1e293b;">{{ ebook.title }}</div> <div style="font-size: 11px; color: #64748b;">admin: {{ ebook.author_name }}</div>
+                                <div style="font-size: 11px; color: #94a3b8;">Email: {{ ebook.author_email }}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding: 16px 24px; font-size: 14px; color: #64748b;">{{ ebook.category.name }}</td>
+                    <td style="padding: 16px 24px; font-size: 14px; color: #64748b;">
+                        {{ ebook.publication }}<br>
+                        <span style="font-size: 11px;">1.0</span>
+                    </td>
+                    <td style="padding: 16px 24px; font-size: 14px; color: #1e293b;">{{ ebook.purchases.count }}</td>
+                    <td style="padding: 16px 24px; font-size: 14px; color: #1e293b; font-weight: 600;">${{ ebook.price }}</td>
+                    <td style="padding: 16px 24px;">
+                        <span
+                            class="status-badge {% if ebook.status == 'active' %}status-active{% else %}status-inactive{% endif %}">
+                            {{ ebook.status|capfirst }}
+                        </span>
+                    </td>
+                    <td style="padding: 16px 24px; text-align: right;">
+                        <div class="options-trigger" onclick="toggleDropdown(event, '{{ ebook.id }}')"
+                            style="color: #94a3b8; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; transition: background 0.2s;">
+                            <svg style="width: 16px; height: 16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div id="dropdown-{{ ebook.id }}" class="ebook-dropdown"
+                            style="display: none; position: absolute; top: 40px; right: 24px; background: white; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; z-index: 100; min-width: 140px; overflow: hidden; text-align: left;">
+                            <a href="{% url 'edit_ebook' ebook.id %}" class="dropdown-item"
+                                style="display: block; padding: 12px 16px; font-size: 14px; font-weight: 500; color: #1e293b; text-decoration: none; transition: background 0.2s;">Edit</a>
+                            <a href="javascript:void(0)" class="dropdown-item delete-item"
+                                style="display: block; padding: 12px 16px; font-size: 14px; font-weight: 500; color: #ef4444; text-decoration: none; border-top: 1px solid #f1f5f9; transition: background 0.2s;"
+                                onclick="confirmDelete('{{ ebook.id }}', '{{ ebook.title|escapejs }}')">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" style="padding: 48px; text-align: center; color: #64748b;">
+                        No ebooks found. Add your first ebook to get started.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if ebooks %}
+        <div style="padding: 16px 24px; border-top: 1px solid #f1f5f9; font-size: 13px; color: #64748b;">
+            Showing {{ ebooks|length }} of {{ ebooks|length }} data
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .add-btn:hover {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+    }
+
+    tbody tr:hover {
+        background: #fcfdfe;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-active {
+        background: #f0fdf4;
+        color: #16a34a;
+    }
+
+    .status-inactive {
+        background: #fef2f2;
+        color: #ef4444;
+    }
+
+    .dropdown-item:hover {
+        background: #f8fafc;
+        color: #3b82f6 !important;
+    }
+
+    .dropdown-item.delete-item:hover {
+        background: #fef2f2;
+        color: #ef4444 !important;
+    }
+</style>
+
+<script>
+    function toggleDropdown(e, id) {
+        e.stopPropagation();
+        const allDropdowns = document.querySelectorAll('.ebook-dropdown');
+        const currentDropdown = document.getElementById('dropdown-' + id);
+        allDropdowns.forEach(d => {
+            if (d !== currentDropdown) d.style.display = 'none';
+        });
+        currentDropdown.style.display = currentDropdown.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function confirmDelete(id, title) {
+        if (confirm(`Are you sure you want to delete the ebook "${title}"?`)) {
+            window.location.href = `/ebooks/${id}/delete/`;
+        }
+    }
+
+    window.onclick = function (event) {
+        if (!event.target.closest('.options-trigger')) {
+            document.querySelectorAll('.ebook-dropdown').forEach(d => d.style.display = 'none');
+        }
+    }
+</script>
+{% endblock %}
+

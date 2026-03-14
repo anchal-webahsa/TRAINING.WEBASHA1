@@ -1,0 +1,97 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block title %}Coupons{% endblock %}
+
+{% block content %}
+<div style="padding:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h2>Coupon</h2>
+        <a href="{% url 'coupon_create' %}" style="padding:8px 12px;border:1px solid #e6edf3;border-radius:8px;background:white;text-decoration:none">+ Add Coupon</a>
+    </div>
+    {% if request.GET.added == '1' %}
+        <div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:6px;margin-bottom:12px">Coupon added successfully.</div>
+    {% elif request.GET.updated == '1' %}
+        <div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:6px;margin-bottom:12px">Coupon updated successfully.</div>
+    {% elif request.GET.deleted == '1' %}
+        <div style="background:#fee2e2;color:#991b1b;padding:8px 12px;border-radius:6px;margin-bottom:12px">Coupon deleted.</div>
+    {% elif request.GET.toggled == '1' %}
+        <div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:6px;margin-bottom:12px">Coupon status changed.</div>
+    {% endif %}
+
+    <div style="background:white;padding:12px;border-radius:8px;border:1px solid #eef2f7">
+        <table style="width:100%;border-collapse:collapse">
+            <thead>
+                <tr style="text-align:left;color:#0f1724;font-weight:600;border-bottom:1px solid #eef2f7">
+                    <th style="width:40px">#</th>
+                    <th>Coupon code</th>
+                    <th style="width:120px">Discount</th>
+                    <th style="width:140px">Expiry</th>
+                    <th style="width:130px">Status</th>
+                    <th style="width:80px">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in coupons %}
+                <tr style="border-bottom:1px solid #f3f6f9">
+                    <td style="padding:10px">{{ forloop.counter }}</td>
+                    <td style="padding:10px">{{ c.code }}</td>
+                    <td style="padding:10px">{{ c.discount_percent }} %</td>
+                    <td style="padding:10px">{% if c.expiry %}{{ c.expiry|date:"d-M-Y" }}{% else %}-{% endif %}</td>
+                    <td style="padding:10px">
+                        {% if c.active %}
+                            <span style="background:#bbf7d0;color:#065f46;padding:4px 8px;border-radius:6px;font-size:12px">Active</span>
+                        {% else %}
+                            <span style="background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:6px;font-size:12px">Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding:10px;position:relative">
+                    <div class="options-wrapper">
+                        <button class="options-btn" aria-label="Options">⋮</button>
+                        <div class="options-menu" style="display:none;position:absolute;right:0;top:100%;background:white;border:1px solid #ccc;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.1);z-index:100">
+                            {% if c.active %}
+                            <form method="post" action="{% url 'coupon_toggle' c.pk %}">{% csrf_token %}
+                                <button type="submit" class="options-item">Deactivate</button>
+                            </form>
+                            {% else %}
+                            <form method="post" action="{% url 'coupon_toggle' c.pk %}">{% csrf_token %}
+                                <button type="submit" class="options-item">Activate</button>
+                            </form>
+                            {% endif %}
+                            <a class="options-item" href="{% url 'coupon_edit' c.pk %}">Edit</a>
+                            <form method="post" action="{% url 'coupon_delete' c.pk %}" onsubmit="return confirm('Delete this coupon?');">{% csrf_token %}
+                                <button type="submit" class="options-item">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6" style="padding:18px;color:#6b7280">No coupons found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+// options dropdown toggling for coupons list
+(function(){
+    document.addEventListener('click', function(e){
+        // close any open menus when clicking outside
+        if(!e.target.closest('.options-wrapper')){
+            document.querySelectorAll('.options-menu').forEach(menu=> menu.style.display='none');
+        }
+    });
+    document.querySelectorAll('.options-btn').forEach(btn=>{
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            const menu = this.nextElementSibling;
+            if(menu){
+                menu.style.display = (menu.style.display==='block') ? 'none' : 'block';
+            }
+        });
+    });
+})();
+</script>
+{% endblock %}

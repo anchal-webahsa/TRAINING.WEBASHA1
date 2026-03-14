@@ -1,0 +1,339 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}{% if ebook %}Edit Ebook{% else %}Add New Ebook{% endif %}{% endblock %}
+
+{% block content %}
+<style>
+    .ebook-form-container {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+        font-family: "Inter", sans-serif;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .form-column {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+    }
+
+    .select-control {
+        background: white;
+        cursor: pointer;
+    }
+
+    .rich-editor {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .editor-toolbar {
+        background: #f8fafc;
+        padding: 8px;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        color: #64748b;
+    }
+
+    .editor-toolbar span {
+        cursor: pointer;
+    }
+
+    .editor-content {
+        width: 100%;
+        height: 150px;
+        padding: 12px;
+        border: none;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .radio-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .checkbox-item {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #64748b;
+    }
+
+    .file-input-wrapper {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .current-file-info {
+        font-size: 12px;
+        color: #64748b;
+        margin-top: 4px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 24px;
+        margin-top: 32px;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .btn-secondary {
+        background: #f1f5f9;
+        color: #475569;
+        border: none;
+    }
+
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: #2563eb;
+    }
+</style>
+
+<div class='ebook-form-container'>
+    <div class='page-header'>
+        <h2>
+            <svg style='width: 20px; height: 20px;' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4v16m8-8H4'></path>
+            </svg>
+            {% if ebook %}Edit Ebook{% else %}Add new book{% endif %}
+        </h2>
+    </div>
+
+    <form method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-column">
+                <div class='form-group'>
+                    <label>Title *</label>
+                    <input type='text' name='title' class="form-control" required value='{{ ebook.title|default:"" }}'
+                        placeholder='Enter title'>
+                </div>
+
+                <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 24px;'>
+                    <div class='form-group'>
+                        <label>Author Name *</label>
+                        <input type='text' name='author_name' class="form-control" required
+                            value='{{ ebook.author_name|default:"" }}' placeholder='Author name'>
+                    </div>
+                    <div class='form-group'>
+                        <label>Author Email *</label>
+                        <input type='email' name='author_email' class="form-control" required
+                            value='{{ ebook.author_email|default:"" }}' placeholder='Author email'>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label>Category *</label>
+                    <select name='category' class="form-control select-control" required>
+                        <option value=''>Select a category</option>
+                        {% for cat in categories %}
+                        <option value='{{ cat.id }}' {% if ebook.category_id == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class='form-group'>
+                    <label>Language *</label>
+                    <select name='language' class="form-control select-control" required>
+                        <option value=''>Select a language</option>
+                        <option value='English' {% if ebook.language == 'English' or not ebook %}selected{% endif %}>
+                            English</option>
+                        <option value='Hindi' {% if ebook.language == 'Hindi' %}selected{% endif %}>Hindi</option>
+                        <option value='Spanish' {% if ebook.language == 'Spanish' %}selected{% endif %}>Spanish</option>
+                        <option value='French' {% if ebook.language == 'French' %}selected{% endif %}>French</option>
+                    </select>
+                </div>
+
+                <div class='form-group'>
+                    <label>Description</label>
+                    <div class="rich-editor">
+                        <div class="editor-toolbar">
+                            <span style="font-weight: 600;">B</span> <span style="font-style: italic;">I</span> <span
+                                style="text-decoration: underline;">U</span> <span>🔗</span> <span>📷</span>
+                            <span>🎥</span>
+                        </div>
+                        <textarea name='description' class="editor-content"
+                            placeholder='Enter description'>{{ ebook.description|default:"" }}</textarea>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label>Summary</label>
+                    <textarea name='summary' class="form-control" style="height: 100px;"
+                        placeholder='Enter Summary'>{{ ebook.summary|default:"" }}</textarea>
+                </div>
+
+                <div class='form-group'>
+                    <label>Publication name</label>
+                    <input type='text' name='publication' class="form-control" required
+                        value='{{ ebook.publication|default:"" }}' placeholder='Enter Publication name'>
+                </div>
+
+                <div class='form-group'>
+                    <label>Edition</label>
+                    <input type='text' name='edition' class="form-control" value='{{ ebook.edition|default:"" }}'
+                        placeholder='Enter Edition'>
+                </div>
+            </div>
+
+            <div class="form-column">
+                <div class='form-group'>
+                    <label>Pricing type *</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="pricing_type" value="paid" {% if not ebook.is_free %}checked{% endif %}> Paid
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="pricing_type" value="free" {% if ebook.is_free %}checked{% endif %}> Free
+                        </label>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label>Price (₹) *</label>
+                    <input type='number' step='0.01' name='price' class="form-control" required
+                        value='{{ ebook.price|default:0 }}' placeholder='Enter your ebook price (₹)'>
+                    <div class="checkbox-item">
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="has_discount" {% if ebook.has_discount %}checked{% endif %}>
+                            Check if this ebook has discount
+                        </label>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label>Discounted price</label>
+                    <input type='number' step='0.01' name='discounted_price' class="form-control"
+                        value='{{ ebook.discounted_price|default:0 }}' placeholder='Enter your discount price (₹)'>
+                </div>
+
+                <div class='form-group'>
+                    <label>Published Date</label>
+                    <input type='date' name='publish_date' class="form-control"
+                        value='{{ ebook.publish_date|date:"Y-m-d" }}'>
+                </div>
+
+                <div class='form-group'>
+                    <label>Thumbnail *</label>
+                    <div class="file-input-wrapper">
+                        <input type='file' name='cover_image' accept='image/*'>
+                    </div>
+                    {% if ebook.cover_image %}
+                    <div class="current-file-info">Current: {{ ebook.cover_image.name }}</div>
+                    {% endif %}
+                </div>
+
+                <div class='form-group'>
+                    <label>Ebook preview file *</label>
+                    <div class="file-input-wrapper">
+                        <input type='file' name='preview_file'>
+                    </div>
+                    {% if ebook.preview_file %}
+                    <div class="current-file-info">Current: {{ ebook.preview_file.name }}</div>
+                    {% endif %}
+                </div>
+
+                <div class='form-group'>
+                    <label>Ebook complete file *</label>
+                    <div class="file-input-wrapper">
+                        <input type='file' name='ebook_file'>
+                    </div>
+                    {% if ebook.ebook_file %}
+                    <div class="current-file-info">Current: {{ ebook.ebook_file.name }}</div>
+                    {% endif %}
+                </div>
+
+                <div class='form-group'>
+                    <label>Status</label>
+                    <select name='status' class="form-control select-control">
+                        <option value='active' {% if ebook.status == 'active' %}selected{% endif %}>Active</option>
+                        <option value='inactive' {% if ebook.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class='form-actions'>
+            <a href="{% url 'manage_ebooks' %}" class="btn btn-secondary">Cancel</a>
+            <button type='submit' class="btn btn-primary">
+                {% if ebook %}Update Ebook{% else %}Add Ebook{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

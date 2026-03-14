@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Course Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'webashaApp/css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <svg style="display:none">
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path d="M3 10.5L12 4l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z" />
+        </symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24">
+            <path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z" />
+        </symbol>
+        <symbol id="icon-graduation" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zm0 7.5L5 7.1v3.4L12 15l7-4.5V7.1L12 9.5zM6 18v2h12v-2l-6 3-6-3z" />
+        </symbol>
+        <symbol id="icon-bootcamp" viewBox="0 0 24 24">
+            <path d="M3 7h18v10H3zM7 3h10v4H7z" />
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+            <path d="M7 10h10v8H7zM7 4h10v2H7zM5 2h2v2H5zM17 2h2v2h-2z" />
+        </symbol>
+        <symbol id="icon-book" viewBox="0 0 24 24">
+            <path d="M4 5v14a1 1 0 0 0 1 1h13V5H5z" />
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <path d="M16 11a4 4 0 1 0-8 0m12 7v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1" />
+        </symbol>
+        <symbol id="icon-payment" viewBox="0 0 24 24">
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            <path d="M2 10h20" />
+        </symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </symbol>
+        <symbol id="icon-news" viewBox="0 0 24 24">
+            <path d="M3 5h18v14H3zM7 9h10M7 13h8" />
+        </symbol>
+        <symbol id="icon-contacts" viewBox="0 0 24 24">
+            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 20a8 8 0 0 1 16 0" />
+        </symbol>
+        <symbol id="icon-headset" viewBox="0 0 24 24">
+            <path d="M4 12v2a6 6 0 0 0 6 6h0v-8H4zM20 12v2a6 6 0 0 1-6 6h0v-8h6z" />
+        </symbol>
+        <symbol id="icon-blogs" viewBox="0 0 24 24">
+            <path d="M4 6h16v12H4zM8 10h8M8 14h6" />
+        </symbol>
+        <symbol id="icon-knowledge" viewBox="0 0 24 24">
+            <path d="M12 3l7 4v10l-7 4-7-4V7z" />
+        </symbol>
+        <symbol id="icon-cog" viewBox="0 0 24 24">
+            <path
+                d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06A2 2 0 0 1 2.28 18.1l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.27-.4 1.51-1a1.65 1.65 0 0 0-.33-1.82L3.53 6.1A2 2 0 0 1 6.36 3.27l.06.06c.5.5 1.18.76 1.82.33.5-.32 1.18-.32 1.68 0l.06.06A1.65 1.65 0 0 0 12 3c.56 0 1.09.23 1.45.6l.06.06c.5.5 1.18.76 1.82.33.5-.32 1.18-.32 1.68 0l.06.06A2 2 0 0 1 20.47 6.1l-.06.06c-.32.5-.32 1.18 0 1.68.43.64.17 1.32-.33 1.82l-.06.06c-.37.37-.6.89-.6 1.45z" />
+        </symbol>
+        <symbol id="icon-user-circle" viewBox="0 0 24 24">
+            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-5 0-9 2.5-9 5v1h18v-1c0-2.5-4-5-9-5z" />
+        </symbol>
+    </svg>
+    <style>
+        .nested-submenu.show {
+            display: block;
+        }
+
+        .alert-styled {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #dcfce7;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fee2e2;
+        }
+
+        .alert-info,
+        .alert-warning {
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        .logout-form {
+            display: none;
+        }
+
+        .logout-link-style {
+            background: #ef4444;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: 6px;
+        }
+
+        .username-text {
+            font-size: 13px;
+            color: #0f1724;
+        }
+
+        .header-user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-link-style {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nested-submenu-item-indent {
+            padding-left: 20px;
+        }
+
+        .nav-group-top-margin {
+            margin-top: 14px;
+        }
+
+        .messages-container-padding {
+            padding: 0 24px;
+        }
+
+        /* Newsletter Sidebar Styles */
+        .newsletter-nav-active {
+            background: #e9f2ff !important;
+            color: #3b82f6 !important;
+            border-radius: 8px !important;
+        }
+
+        .newsletter-nav-active .nav-icon svg {
+            color: #3b82f6 !important;
+            fill: #3b82f6;
+        }
+
+        .newsletter-nav-active .fa-chevron-down {
+            color: #3b82f6 !important;
+        }
+
+        .newsletter-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .newsletter-sub-active {
+            color: #3b82f6 !important;
+        }
+
+        .newsletter-sub-active .newsletter-dot {
+            background: #3b82f6 !important;
+        }
+
+        .newsletter-sub-inactive {
+            color: #94a3b8 !important;
+        }
+
+        .newsletter-sub-inactive .newsletter-dot {
+            background: #94a3b8 !important;
+        }
+
+        /* Enrollment Sidebar Styles (reuse newsletter patterns for consistency) */
+        .enroll-nav-active {
+            background: #e9f2ff !important;
+            color: #3b82f6 !important;
+            border-radius: 8px !important;
+        }
+
+        .enroll-nav-active .nav-icon svg {
+            color: #3b82f6 !important;
+            fill: #3b82f6;
+        }
+
+        .enroll-nav-active .fa-chevron-down {
+            color: #3b82f6 !important;
+        }
+
+        .enroll-sub-active {
+            color: #3b82f6 !important;
+        }
+
+        .enroll-sub-active .newsletter-dot {
+            background: #3b82f6 !important;
+        }
+
+        .enroll-sub-inactive {
+            color: #94a3b8 !important;
+        }
+
+        .enroll-sub-inactive .newsletter-dot {
+            background: #94a3b8 !important;
+        }
+
+        /* Payment Sidebar Styles */
+        .payment-nav-active {
+            background: #e9f2ff !important;
+            color: #3b82f6 !important;
+            border-radius: 8px !important;
+        }
+
+        .payment-nav-active .nav-icon svg {
+            color: #3b82f6 !important;
+            fill: #3b82f6;
+        }
+
+        .payment-nav-active .fa-chevron-down {
+            color: #3b82f6 !important;
+        }
+
+        .payment-sub-active {
+            color: #3b82f6 !important;
+        }
+
+        .payment-sub-active .newsletter-dot {
+            background: #3b82f6 !important;
+        }
+
+        .payment-sub-inactive {
+            color: #94a3b8 !important;
+        }
+
+        .payment-sub-inactive .newsletter-dot {
+            background: #94a3b8 !important;
+        }
+
+        /* Support Sidebar Styles */
+        .support-nav-active {
+            background: #e9f2ff !important;
+            color: #3b82f6 !important;
+            border-radius: 8px !important;
+        }
+
+        .support-nav-active .nav-icon svg {
+            color: #3b82f6 !important;
+            fill: #3b82f6;
+        }
+
+        .support-nav-active .fa-chevron-down {
+            color: #3b82f6 !important;
+        }
+
+        .support-sub-active {
+            color: #3b82f6 !important;
+            font-weight: 600 !important;
+        }
+
+        .support-sub-active .newsletter-dot {
+            background: #3b82f6 !important;
+        }
+
+        .support-sub-inactive {
+            color: #475569 !important;
+        }
+
+        .support-sub-inactive .newsletter-dot {
+            background: #94a3b8 !important;
+        }
+
+        .nested-submenu-item {
+            padding-left: 20px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .nested-submenu-item.show {
+            display: block;
+        }
+    </style>
+
+    <div class="site-wrapper">
+        <aside class="sidebar">
+            <h3>Academy</h3>
+            <nav>
+                <div class="nav-group">
+                    <div class="nav-group-title">MAIN MENU</div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'dashboard' %}active{% endif %}"
+                        href="{% url 'dashboard' %}"><span class="nav-icon"><svg>
+                                <use href="#icon-home"></use>
+                            </svg></span>Dashboard</a>
+                    <a class="nav-link" href="#"><span class="nav-icon"><svg>
+                                <use href="#icon-grid"></use>
+                            </svg></span>Category</a>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'manage_courses' or request.resolver_match.url_name == 'courses_by_category' or request.resolver_match.url_name == 'course_create' or request.resolver_match.url_name == 'manage_bundles' %}active open{% endif %}"
+                        href="{% url 'manage_courses' %}" data-toggle="submenu"><span class="nav-icon"><svg>
+                                <use href="#icon-graduation"></use>
+                            </svg></span>Course <span class="chevron">›</span></a>
+                    <div class="submenu">
+                        <a class="submenu-item" href="{% url 'manage_courses' %}">Manage Courses</a>
+                        <a class="submenu-item" href="{% url 'course_create' %}">Add New Course</a>
+                        <a class="submenu-item" href="{% url 'courses_by_category' 'coupons' %}">Coupons</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_bundles' or request.resolver_match.url_name == 'add_bundle' %}open{% endif %}"
+                            href="#" data-toggle="nested-submenu">Course Bundle <span class="chevron">›</span></a>
+                        <div class="nested-submenu">
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_bundles' %}active{% endif %}"
+                                href="{% url 'manage_bundles' %}">• Manage Bundle</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'add_bundle' %}active{% endif %}"
+                                href="{% url 'add_bundle' %}">• Add New Bundle</a>
+                            <a class="submenu-item" href="#">• Admin Revenue</a>
+                            <a class="submenu-item" href="#">• Instructor Revenue</a>
+                            <a class="submenu-item" href="#">• Subscription Report</a>
+                        </div>
+                        {% for cat in course_categories %}
+                        <a class="submenu-item" href="{% url 'courses_by_category' cat.slug %}">• {{ cat.name }}</a>
+                        {% empty %}
+                        <div class="submenu-item muted">No categories</div>
+                        {% endfor %}
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'manage_bootcamps' or request.resolver_match.url_name == 'add_bootcamp' or request.resolver_match.url_name == 'purchase_history' or request.resolver_match.url_name == 'bootcamp_categories' %}active open{% endif %}"
+                        href="#" data-toggle="submenu">
+                        <span class="nav-icon"><svg>
+                                <use href="#icon-users"></use>
+                            </svg></span>Bootcamp <span class="chevron">›</span>
+                    </a>
+                    <div class="submenu">
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_bootcamps' %}active{% endif %}"
+                            href="{% url 'manage_bootcamps' %}">Manage Bootcamps</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'add_bootcamp' %}active{% endif %}"
+                            href="{% url 'add_bootcamp' %}">Add New Bootcamp</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'purchase_history' %}active{% endif %}"
+                            href="{% url 'purchase_history' %}">Purchase History</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'bootcamp_categories' %}active{% endif %}"
+                            href="{% url 'bootcamp_categories' %}">Category</a>
+                        <a class="submenu-item" href="#">Subcategory</a>
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'tutor_subjects' or request.resolver_match.url_name == 'tutor_categories' %}active open{% endif %}"
+                        href="#" data-toggle="submenu">
+                        <span class="nav-icon"><svg>
+                                <use href="#icon-graduation"></use>
+                            </svg></span>Tutor Booking <span class="chevron">›</span>
+                    </a>
+                    <div class="submenu">
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'tutor_subjects' %}active{% endif %}"
+                            href="{% url 'tutor_subjects' %}">Subjects</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'tutor_categories' %}active{% endif %}"
+                            href="{% url 'tutor_categories' %}">Subject Category</a>
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'manage_ebooks' or request.resolver_match.url_name == 'add_ebook' or request.resolver_match.url_name == 'ebook_admin_revenue' or request.resolver_match.url_name == 'ebook_instructor_revenue' or request.resolver_match.url_name == 'ebook_categories' %}active open{% endif %}"
+                        href="#" data-toggle="submenu">
+                        <span class="nav-icon"><svg>
+                                <use href="#icon-book"></use>
+                            </svg></span>Ebook <span class="chevron">›</span>
+                    </a>
+                    <div class="submenu">
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_ebooks' %}active{% endif %}"
+                            href="{% url 'manage_ebooks' %}">Manage Ebooks</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'add_ebook' %}active{% endif %}"
+                            href="{% url 'add_ebook' %}">Add New Ebook</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'ebook_admin_revenue' %}active{% endif %}"
+                            href="{% url 'ebook_admin_revenue' %}">Admin Revenue</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'ebook_instructor_revenue' %}active{% endif %}"
+                            href="{% url 'ebook_instructor_revenue' %}">Instructor Revenue</a>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'ebook_categories' %}active{% endif %}"
+                            href="{% url 'ebook_categories' %}">Category</a>
+                    </div>
+                    <div class="submenu-item-container">
+                        <div class="nav-link {% if 'enrollment/' in request.path %}enroll-nav-active open{% endif %}"
+                            onclick="toggleNestedSubmenu(this)"
+                            style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="nav-icon">
+                                    <svg>
+                                        <use href="#icon-graduation"></use>
+                                    </svg>
+                                </span>
+                                <span style="font-weight: 500;">Student enrollment</span>
+                            </div>
+                            <i class="fas fa-chevron-down" style="font-size: 10px; margin-right: 8px;"></i>
+                        </div>
+                        <div class="nested-submenu {% if 'enrollment/' in request.path %}show{% endif %}"
+                            style="padding-left: 45px; margin-top: 8px;">
+                            <a href="{% url 'enrollment_history' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'enrollment_history' %}enroll-sub-active{% else %}enroll-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Enrollment History
+                            </a>
+                            <a href="{% url 'enroll_student' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'enroll_student' %}enroll-sub-active{% else %}enroll-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Enroll student
+                            </a>
+                        </div>
+                    </div>
+                    <div class="submenu-item-container">
+                        <div class="nav-link {% if request.resolver_match.url_name  ==  'ebook_admin_revenue' or request.resolver_match.url_name == 'ebook_instructor_revenue' or request.resolver_match.url_name == 'purchase_history' %}payment-nav-active open{% endif %}"
+                            onclick="toggleNestedSubmenu(this)"
+                            style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="nav-icon">
+                                    <svg>
+                                        <use href="#icon-payment"></use>
+                                    </svg>
+                                </span>
+                                <span style="font-weight: 500;">Payment Report</span>
+                            </div>
+                            <i class="fas fa-chevron-down" style="font-size: 10px; margin-right: 8px;"></i>
+                        </div>
+                        <div class="nested-submenu {% if request.resolver_match.url_name  ==  'ebook_admin_revenue' or request.resolver_match.url_name == 'ebook_instructor_revenue' or request.resolver_match.url_name == 'purchase_history' or request.resolver_match.url_name == 'offline_payments' %}show{% endif %}"
+                            style="padding-left: 45px; margin-top: 8px;">
+                            <a href="{% url 'offline_payments' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'offline_payments' %}payment-sub-active{% else %}payment-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Offline payments
+                            </a>
+                            <a href="{% url 'ebook_admin_revenue' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'ebook_admin_revenue' %}payment-sub-active{% else %}payment-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Admin Revenue
+                            </a>
+                            <a href="{% url 'ebook_instructor_revenue' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'ebook_instructor_revenue' %}payment-sub-active{% else %}payment-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Instructor Revenue
+                            </a>
+                            <a href="{% url 'purchase_history' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'purchase_history' %}payment-sub-active{% else %}payment-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Payment History
+                            </a>
+                        </div>
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'manage_admins' or request.resolver_match.url_name == 'add_admin' or request.resolver_match.url_name == 'manage_instructors' or request.resolver_match.url_name == 'manage_students' %}active open{% endif %}"
+                        href="#" data-toggle="submenu">
+                        <span class="nav-icon"><svg>
+                                <use href="#icon-users"></use>
+                            </svg></span>Users <span class="chevron">›</span>
+                    </a>
+                    <div class="submenu">
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_admins' or request.resolver_match.url_name == 'add_admin' %}open{% endif %}"
+                            href="#" data-toggle="nested-submenu">Admin <span class="chevron">›</span></a>
+                        <div class="nested-submenu">
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_admins' %}active{% endif %}"
+                                href="{% url 'manage_admins' %}">• Manage Admin</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'add_admin' %}active{% endif %}"
+                                href="{% url 'add_admin' %}">• Add New Admin</a>
+                        </div>
+                        <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_instructors' or request.resolver_match.url_name == 'add_instructor' or request.resolver_match.url_name == 'instructor_payout' or request.resolver_match.url_name == 'instructor_settings' or request.resolver_match.url_name == 'instructor_applications' %}open{% endif %}"
+                            href="#" data-toggle="nested-submenu">Instructor <span class="chevron">›</span></a>
+                        <div class="nested-submenu">
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'manage_instructors' %}active{% endif %}"
+                                href="{% url 'manage_instructors' %}">• Manage Instructors</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'add_instructor' %}active{% endif %}"
+                                href="{% url 'add_instructor' %}">• Add new Instructor</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'instructor_payout' %}active{% endif %}"
+                                href="{% url 'instructor_payout' %}">• Instructor Payout</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'instructor_settings' %}active{% endif %}"
+                                href="{% url 'instructor_settings' %}">• Instructor Setting</a>
+                            <a class="submenu-item {% if request.resolver_match.url_name  ==  'instructor_applications' %}active{% endif %}"
+                                href="{% url 'instructor_applications' %}">• Application</a>
+                        </div>
+                        <div class="submenu-item-container">
+                            <div class="submenu-item {% if 'users/students/' in request.path %}open{% endif %}"
+                                onclick="toggleNestedSubmenu(this)">
+                                Student
+                                <i class="fas fa-chevron-right chevron"></i>
+                            </div>
+                            <div class="nested-submenu {% if 'users/students/' in request.path %}show{% endif %}">
+                                <a href="{% url 'manage_students' %}"
+                                    class="submenu-item {% if request.resolver_match.url_name  ==  'manage_students' %}active{% endif %}"
+                                    style="padding-left: 20px;">Manage Students</a>
+                                <a href="{% url 'add_student' %}"
+                                    class="submenu-item {% if request.resolver_match.url_name  ==  'add_student' %}active{% endif %}"
+                                    style="padding-left: 20px;">Add new Student</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name  ==  'messages_view' or request.resolver_match.url_name == 'messages_view_with_user' %}active{% endif %}"
+                        href="{% url 'messages_view' %}">
+                        <span class="nav-icon"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></span>Message</a>
+                    <div class="submenu-item-container">
+                        <div class="nav-link {% if 'newsletter/' in request.path %}newsletter-nav-active open{% endif %}"
+                            onclick="toggleNestedSubmenu(this)"
+                            style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="nav-icon">
+                                    <svg>
+                                        <use href="#icon-news"></use>
+                                    </svg>
+                                </span>
+                                <span style="font-weight: 500;">Newsletter</span>
+                            </div>
+                            <i class="fas fa-chevron-down" style="font-size: 10px; margin-right: 8px;"></i>
+                        </div>
+                        <div class="nested-submenu {% if 'newsletter/' in request.path %}show{% endif %}"
+                            style="padding-left: 45px; margin-top: 8px;">
+                            <a href="{% url 'manage_newsletters' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'manage_newsletters' %}newsletter-sub-active{% else %}newsletter-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Manage Newsletters
+                            </a>
+                            <a href="{% url 'subscribed_users' %}"
+                                class="submenu-item {% if request.resolver_match.url_name  ==  'subscribed_users' %}newsletter-sub-active{% else %}newsletter-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span>
+                                Subscribed user
+                            </a>
+                        </div>
+                    </div>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'contacts_view' %}active{% endif %}"
+                        href="{% url 'contacts_view' %}"><span class="nav-icon"><svg>
+                                <use href="#icon-contacts"></use>
+                            </svg></span>Contacts</a>
+                    <div class="submenu-item-container">
+                        <div class="nav-link {% if 'support/' in request.path %}support-nav-active open{% endif %}"
+                            onclick="toggleNestedSubmenu(this)"
+                            style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="nav-icon">
+                                    <svg>
+                                        <use href="#icon-headset"></use>
+                                    </svg>
+                                </span>
+                                <span style="font-weight: 500;">Customer support</span>
+                            </div>
+                            <i class="fas fa-chevron-down" style="font-size: 10px; margin-right: 8px;"></i>
+                        </div>
+                        <div class="nested-submenu {% if 'support/' in request.path %}show{% endif %}"
+                            style="padding-left: 45px; margin-top: 8px;">
+                            <a href="{% url 'tickets_view' %}"
+                                class="submenu-item {% if request.resolver_match.url_name == 'tickets_view' %}support-sub-active{% else %}support-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span> Tickets
+                            </a>
+                            <a href="{% url 'add_ticket_view' %}"
+                                class="submenu-item {% if request.resolver_match.url_name == 'add_ticket_view' %}support-sub-active{% else %}support-sub-inactive{% endif %}"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span> Add New Ticket
+                            </a>
+                            <a href="#" class="submenu-item support-sub-inactive"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span> FAQ
+                            </a>
+                            <a href="#" class="submenu-item support-sub-inactive"
+                                style="display: flex; align-items: center; gap: 10px; padding: 8px 0; text-decoration: none; font-size: 15px; font-weight: 500;">
+                                <span class="newsletter-dot"></span> Reports
+                            </a>
+
+                            <!-- Nested Settings -->
+                            <div class="submenu-item-container">
+                                <div class="submenu-item support-sub-inactive" onclick="toggleNestedSubmenu(this)"
+                                    style="display: flex; align-items: center; justify-content: space-between; padding: 8px 0; cursor: pointer; font-size: 15px; font-weight: 500; color: #3b82f6;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span class="newsletter-dot" style="background: #3b82f6;"></span> Settings
+                                    </div>
+                                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-right: 8px;"></i>
+                                </div>
+                                <div class="nested-submenu" style="padding-left: 20px;">
+                                    <a href="#" class="submenu-item support-sub-inactive"
+                                        style="display: flex; align-items: center; gap: 10px; padding: 6px 0; text-decoration: none; font-size: 14px; color: #64748b;">
+                                        <span class="newsletter-dot"></span> Ticket Macros
+                                    </a>
+                                    <a href="#" class="submenu-item support-sub-inactive"
+                                        style="display: flex; align-items: center; gap: 10px; padding: 6px 0; text-decoration: none; font-size: 14px; color: #64748b;">
+                                        <span class="newsletter-dot"></span> Ticket Categories
+                                    </a>
+                                    <a href="#" class="submenu-item support-sub-inactive"
+                                        style="display: flex; align-items: center; gap: 10px; padding: 6px 0; text-decoration: none; font-size: 14px; color: #64748b;">
+                                        <span class="newsletter-dot"></span> Ticket Priorities
+                                    </a>
+                                    <a href="#" class="submenu-item support-sub-inactive"
+                                        style="display: flex; align-items: center; gap: 10px; padding: 6px 0; text-decoration: none; font-size: 14px; color: #64748b;">
+                                        <span class="newsletter-dot"></span> Ticket Status
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-link" href="#"><span class="nav-icon"><svg>
+                                <use href="#icon-blogs"></use>
+                            </svg></span>Blogs <span class="chevron">›</span></a>
+                    <a class="nav-link" href="#"><span class="nav-icon"><svg>
+                                <use href="#icon-knowledge"></use>
+                            </svg></span>Knowledge Base</a>
+                </div>
+
+                <div class="nav-group" style="margin-top:14px">
+                    <div class="nav-group-title">SETTINGS</div>
+                    <a class="nav-link" href="#"><span class="nav-icon"><svg>
+                                <use href="#icon-cog"></use>
+                            </svg></span>System Settings <span class="chevron">›</span></a>
+                    <a class="nav-link" href="#"><span class="nav-icon"><svg>
+                                <use href="#icon-user-circle"></use>
+                            </svg></span>Manage Profile</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <div class="headerbar">
+                <div class="header-inner">
+                    <div class="brand">📚 <strong>Academy Learning Club</strong> <span class="muted">Admin Panel</span>
+                    </div>
+                    <div class="header-actions">
+                        <a class="view-site" href="/" target="_blank">View site</a>
+                        <div style="display:flex;align-items:center;gap:8px">
+                            {% if request.user.is_authenticated %}
+                            <span style="font-size:13px;color:#0f1724">{{ request.user.username }}</span>
+                            <form method="post" action="{% url 'logout' %}" style="display:none" class="logout-form">
+                                {% csrf_token %}
+                            </form>
+                            <a href="#" class="logout-link"
+                                style="background:#ef4444;color:white;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:13px;margin-left:6px">Logout</a>
+                            {% else %}
+                            <a href="{% url 'login' %}" style="color:var(--accent);text-decoration:none">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="topbar">
+                <div class="title">{% block topbar_title %}{{ title|default:"Dashboard" }}{% endblock %}</div>
+                <div class="actions">Welcome</div>
+            </div>
+
+            <div class="messages-container" style="padding: 0 24px;">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-styled">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            {% block content %}{% endblock %}
+
+            <footer style="margin-top:18px;color:#667085;font-size:13px">© 2026 Advanced Django Dashboard</footer>
+        </main>
+    </div>
+
+</body>
+<script>
+    // Sidebar interactivity: toggle submenus and allow keyboard activation
+    (function () {
+        document.querySelectorAll('[data-toggle="submenu"], [data-toggle="nested-submenu"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.classList.toggle('open');
+                e.stopPropagation();
+            });
+            link.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); this.classList.toggle('open'); e.stopPropagation(); } });
+        });
+        // Ensure the server-side active state is visible; also add aria-current
+        const active = document.querySelector('.nav-link.active');
+        if (active) active.setAttribute('aria-current', 'page');
+        // Logout link handler: submit the nearby logout form for convenient UX
+        document.querySelectorAll('.logout-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const form = document.querySelector('.logout-form');
+                if (form) form.submit();
+            });
+        });
+    })();
+
+    function toggleNestedSubmenu(el) {
+        el.classList.toggle('open');
+        const submenu = el.nextElementSibling;
+        if (submenu && submenu.classList.contains('nested-submenu')) {
+            submenu.classList.toggle('show');
+        }
+    }
+</script>
+
+</html>

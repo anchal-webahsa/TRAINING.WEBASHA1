@@ -1,0 +1,19 @@
+/* Default hidden state */
+.lazy-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+/* Fade in when visible */
+.lazy-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SEO fallback when JS disabled */
+noscript .lazy-section {
+  opacity: 1 !important;
+  transform: none !important;
+}

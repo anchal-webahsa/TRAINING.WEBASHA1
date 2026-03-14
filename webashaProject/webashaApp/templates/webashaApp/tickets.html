@@ -1,0 +1,757 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Tickets{% endblock %}
+
+{% block content %}
+<style>
+    .tickets-container {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .page-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+    }
+
+    .add-new-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        color: #0f172a;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .add-new-btn:hover {
+        background: #f8fafc;
+    }
+
+    .content-card {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 20px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .export-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .export-btn:hover {
+        background: #e2e8f0;
+    }
+
+    .search-wrapper {
+        position: relative;
+        width: 300px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 8px 12px 8px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+        border-color: #3b82f6;
+    }
+
+    .search-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 32px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .tickets-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .tickets-table th {
+        padding: 16px 24px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+        color: #0f172a;
+        background: #f8fafc;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .tickets-table td {
+        padding: 16px 24px;
+        font-size: 14px;
+        color: #475569;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .status-new {
+        background: #e9f2ff;
+        color: #3b82f6;
+    }
+
+    .status-solved {
+        background: #f1f5f9;
+        color: #94a3b8;
+    }
+
+    .status-pending {
+        background: #fee2e2;
+        color: #ef4444;
+    }
+
+    .options-btn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3b82f6;
+        cursor: pointer;
+        border: none;
+        background: #eef2ff;
+        font-size: 16px;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .options-btn:hover {
+        background: #dbeafe;
+        color: #2563eb;
+    }
+
+    .options-item:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+    }
+
+    /* Quick Actions Sidebar */
+    .quick-actions-sidebar {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border-radius: 12px 0 0 12px;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        padding: 16px 8px;
+        gap: 20px;
+        z-index: 1000;
+        border: 1px solid #f1f5f9;
+        border-right: none;
+    }
+
+    .quick-action-item {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #0f172a;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+    .quick-action-item:hover {
+        background: #f1f5f9;
+        color: #3b82f6;
+        transform: translateX(-2px);
+    }
+
+    .quick-action-item i {
+        font-size: 20px;
+    }
+
+    .options-container {
+        position: relative;
+    }
+
+    .options-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: 140px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        border: 1px solid #f1f5f9;
+        padding: 4px 0;
+    }
+
+    .options-menu.show {
+        display: block;
+    }
+
+    .options-item {
+        padding: 10px 16px;
+        font-size: 14px;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .options-item:hover {
+        background: #f8fafc;
+        color: #0f172a;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: white;
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .modal-close {
+        font-size: 20px;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+        color: #475569;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        background: #f8fafc;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+    }
+
+    /* Alert Modal (Delete) */
+    .alert-modal {
+        width: 400px;
+        text-align: center;
+        padding: 40px 24px;
+    }
+
+    .alert-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid #3b82f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: #3b82f6;
+        font-size: 24px;
+    }
+
+    .alert-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+
+    .alert-subtitle {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 30px;
+    }
+
+    .alert-btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+    }
+
+    .btn-cancel {
+        background: #64748b;
+        color: white;
+    }
+
+    .btn-confirm {
+        background: #10b981;
+        color: white;
+    }
+
+    .btn-update {
+        background: #3b82f6;
+        color: white;
+    }
+
+    .btn-close-modal {
+        background: #64748b;
+        color: white;
+    }
+
+    .pagination-info {
+        padding: 16px 24px;
+        font-size: 14px;
+        color: #64748b;
+    }
+</style>
+
+<div class="tickets-container">
+    <div class="page-header">
+        <div class="header-left">
+            <i class="fas fa-list-ul" style="color: #64748b;"></i>
+            <h1 class="page-title">Tickets</h1>
+        </div>
+        <a href="{% url 'add_ticket_view' %}" class="add-new-btn"><i class="fas fa-plus"></i> Add New Ticket</a>
+    </div>
+
+    <div class="content-card">
+        <div class="card-header">
+            <a href="#" class="export-btn">
+                Export <i class="fas fa-external-link-alt" style="font-size: 12px;"></i>
+            </a>
+            <div class="header-actions">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" placeholder="Search Subject">
+                </div>
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="tickets-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">#</th>
+                        <th>Subject</th>
+                        <th>User Name</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Category</th>
+                        <th style="width: 80px; text-align: center;">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in tickets %}
+                    <tr id="ticket-row-{{ ticket.id }}">
+                        <td>{{ forloop.counter }}</td>
+                        <td class="ticket-subject" style="font-weight: 500;">{{ ticket.subject }}</td>
+                        <td class="ticket-user" data-user-id="{{ ticket.user.id }}">{{ ticket.user.username }}</td>
+                        <td>
+                            <span class="status-badge status-{{ ticket.status }}">
+                                {{ ticket.status }}
+                            </span>
+                        </td>
+                        <td class="ticket-priority">{{ ticket.priority }}</td>
+                        <td class="ticket-category">{{ ticket.category }}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="options-container"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                <button class="options-btn" data-id="{{ ticket.id }}"
+                                    onclick="toggleOptionsMenu(this, event)">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="options-menu" id="options-menu-{{ ticket.id }}">
+                                    <div class="options-item" data-id="{{ ticket.id }}"
+                                        data-subject="{{ ticket.subject|escapejs }}"
+                                        data-message="{{ ticket.message|escapejs }}"
+                                        data-file-url="{% if ticket.file %}{{ ticket.file.url|escapejs }}{% endif %}"
+                                        onclick="openViewModal(this)">
+                                        View Ticket
+                                    </div>
+                                    <div class="options-item" data-id="{{ ticket.id }}"
+                                        data-subject="{{ ticket.subject|escapejs }}"
+                                        data-category="{{ ticket.category|escapejs }}"
+                                        data-user-id="{{ ticket.user.id }}" data-status="{{ ticket.status }}"
+                                        data-priority="{{ ticket.priority }}" onclick="openEditModal(this)">
+                                        Edit
+                                    </div>
+                                    <div class="options-item" data-id="{{ ticket.id }}" onclick="openDeleteModal(this)">
+                                        Delete
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 40px; color: #94a3b8;">
+                            No support tickets found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-info">
+            Showing {{ tickets.count }} of {{ tickets.count }} data
+        </div>
+        <div class="quick-actions-sidebar">
+            <a href="#" class="quick-action-item" title="Tickets">
+                <i class="fa-solid fa-file-lines"></i>
+            </a>
+            <a href="#" class="quick-action-item" title="Help Video">
+                <i class="fa-solid fa-circle-play"></i>
+            </a>
+            <a href="#" class="quick-action-item" title="Technical Support">
+                <i class="fa-solid fa-headset"></i>
+            </a>
+            <a href="#" class="quick-action-item" title="Live Chat">
+                <i class="fa-solid fa-comment-dots"></i>
+            </a>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    {% block modals %}
+    <!-- Edit Ticket Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit ticket</h3>
+                <span class="modal-close" onclick="closeModal('editModal')">&times;</span>
+            </div>
+            <form id="editForm">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-ticket-id">
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input type="text" id="edit-subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select Category</label>
+                        <select id="edit-category" class="form-control" required>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="General Query">General Query</option>
+                            <option value="Billing">Billing</option>
+                            <option value="Feedback">Feedback</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select User</label>
+                        <select id="edit-user" class="form-control" required>
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select Status</label>
+                        <select id="edit-status" class="form-control" required>
+                            <option value="new">New</option>
+                            <option value="solved">Solved</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select Priority</label>
+                        <select id="edit-priority" class="form-control" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="alert-btn btn-update" style="width: 100px;">Update</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="alert-btn btn-close-modal"
+                        onclick="closeModal('editModal')">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-content alert-modal">
+            <div class="alert-icon">!</div>
+            <h2 class="alert-title">Are you sure?</h2>
+            <p class="alert-subtitle">You can't bring it back!</p>
+            <div style="display: flex; justify-content: center; gap: 16px;">
+                <button class="alert-btn btn-cancel" onclick="closeModal('deleteModal')">Cancel</button>
+                <button class="alert-btn btn-confirm" id="confirmDelete">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Ticket Modal -->
+    <div class="modal-overlay" id="viewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="view-title">View Ticket</h3>
+                <span class="modal-close" onclick="closeModal('viewModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <div id="view-message"
+                        style="padding: 12px; background: #f8fafc; border-radius: 8px; font-size: 14px; color: #475569; min-height: 100px;">
+                    </div>
+                </div>
+                <div id="view-file-container" class="form-group" style="display: none;">
+                    <label class="form-label">Attached File</label>
+                    <a id="view-file-link" href="#" target="_blank" class="export-btn" style="width: fit-content;">
+                        View File <i class="fas fa-download" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="alert-btn btn-close-modal" onclick="closeModal('viewModal')">Close</button>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block extra_js %}
+    <script>
+        function toggleOptionsMenu(el, event) {
+            const id = el.dataset.id;
+            event.stopPropagation();
+            const menu = document.getElementById(`options-menu-${id}`);
+            const allMenus = document.querySelectorAll('.options-menu');
+
+            allMenus.forEach(m => {
+                if (m.id !== `options-menu-${id}`) m.classList.remove('show');
+            });
+
+            menu.classList.toggle('show');
+        }
+
+        // Close menus on click outside
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show'));
+        });
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function openViewModal(el) {
+            const id = el.dataset.id;
+            const subject = el.dataset.subject;
+            const message = el.dataset.message;
+            const fileUrl = el.dataset.fileUrl;
+
+            document.getElementById('view-title').innerText = subject;
+            document.getElementById('view-message').innerText = message;
+            const fileContainer = document.getElementById('view-file-container');
+            if (fileUrl) {
+                fileContainer.style.display = 'block';
+                document.getElementById('view-file-link').href = fileUrl;
+            } else {
+                fileContainer.style.display = 'none';
+            }
+            openModal('viewModal');
+        }
+
+        function openEditModal(el) {
+            const id = el.dataset.id;
+            const subject = el.dataset.subject;
+            const category = el.dataset.category;
+            const userId = el.dataset.userId;
+            const status = el.dataset.status;
+            const priority = el.dataset.priority;
+
+            document.getElementById('edit-ticket-id').value = id;
+            document.getElementById('edit-subject').value = subject;
+            document.getElementById('edit-category').value = category;
+            document.getElementById('edit-user').value = userId;
+            document.getElementById('edit-status').value = status;
+            document.getElementById('edit-priority').value = priority;
+            openModal('editModal');
+        }
+
+        let ticketToDelete = null;
+        function openDeleteModal(el) {
+            ticketToDelete = el.dataset.id;
+            openModal('deleteModal');
+        }
+
+        // Handle Edit Submit
+        document.getElementById('editForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-ticket-id').value;
+            const formData = new FormData();
+            formData.append('subject', document.getElementById('edit-subject').value);
+            formData.append('category', document.getElementById('edit-category').value);
+            formData.append('user_id', document.getElementById('edit-user').value);
+            formData.append('status', document.getElementById('edit-status').value);
+            formData.append('priority', document.getElementById('edit-priority').value);
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+            fetch(`/support/tickets/${id}/update/`, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        location.reload(); // Refresh to show changes
+                    } else {
+                        alert('Error: ' + (data.message || 'Unknown error'));
+                    }
+                });
+        });
+
+        // Handle Delete Confirm
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (!ticketToDelete) return;
+
+            const formData = new FormData();
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+            fetch(`/support/tickets/${ticketToDelete}/delete/`, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById(`ticket-row-${ticketToDelete}`).remove();
+                        closeModal('deleteModal');
+                        ticketToDelete = null;
+                    } else {
+                        alert('Error deleting ticket');
+                    }
+                });
+        });
+    </script>
+    {% endblock %}

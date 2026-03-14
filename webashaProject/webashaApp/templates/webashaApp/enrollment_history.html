@@ -1,0 +1,155 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Enroll History | Academy{% endblock %}
+
+{% block topbar_title %}Enroll History{% endblock %}
+
+{% block content %}
+<div class="enrollment-dashboard">
+    <div class="page-header">
+        <h2>
+            <i class="fas fa-history"></i>
+            Enroll History
+        </h2>
+        <a href="{% url 'enroll_student' %}" class="add-btn">
+            <i class="fas fa-plus"></i> Add new enrollment
+        </a>
+    </div>
+
+    {% include 'webashaApp/enrollment_tabs.html' %}
+
+    <div class="filter-section">
+        <div class="date-picker-wrapper">
+            <input type="text" class="date-range-input" value="03/01/2026 - 03/31/2026" readonly>
+        </div>
+        <button class="filter-btn">Filter</button>
+    </div>
+
+    <div class="empty-state-container">
+        <div class="empty-content">
+            <div class="search-illustration">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="50" fill="#E0F2FE" />
+                    <circle cx="60" cy="60" r="40" fill="white" />
+                    <path d="M50 45H70M50 55H65M50 65H60" stroke="#BAE6FD" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="68" cy="72" r="12" fill="white" stroke="#3B82F6" stroke-width="3" />
+                    <line x1="77" y1="81" x2="85" y2="89" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+                    <path d="M64 68L72 76M72 68L64 76" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
+            <h3>No data found</h3>
+        </div>
+    </div>
+</div>
+
+<style>
+    .enrollment-dashboard {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .page-header h2 i {
+        color: #64748b;
+        font-size: 16px;
+    }
+
+    .add-btn {
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #1e293b;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+    }
+
+    .add-btn:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+    }
+
+    .filter-section {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .date-range-input {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 13px;
+        color: #64748b;
+        width: 300px;
+    }
+
+    .filter-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 10px 32px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .filter-btn:hover {
+        background: #2563eb;
+    }
+
+    .empty-state-container {
+        background: white;
+        border-radius: 12px;
+        padding: 100px 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #f1f5f9;
+    }
+
+    .empty-content {
+        text-align: center;
+    }
+
+    .search-illustration {
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .empty-content h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+    }
+</style>
+{% endblock %}

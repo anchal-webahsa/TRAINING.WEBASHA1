@@ -1,0 +1,520 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Ticket FAQ{% endblock %}
+
+{% block content %}
+<style>
+    .faq-container {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .page-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+    }
+
+    .add-new-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        color: #0f172a;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .add-new-btn:hover {
+        background: #f8fafc;
+    }
+
+    .content-card {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 20px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .export-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .export-btn:hover {
+        background: #e2e8f0;
+    }
+
+    .search-wrapper {
+        position: relative;
+        width: 300px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+        border-color: #3b82f6;
+    }
+
+    .search-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 32px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .faq-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .faq-table th {
+        padding: 16px 24px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 700;
+        color: #0f172a;
+        background: #f8fafc;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .faq-table td {
+        padding: 16px 24px;
+        font-size: 14px;
+        color: #475569;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+    }
+
+    .options-btn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3b82f6;
+        cursor: pointer;
+        border: none;
+        background: #eef2ff;
+        font-size: 16px;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .options-btn:hover {
+        background: #dbeafe;
+        color: #2563eb;
+    }
+
+    .options-container {
+        position: relative;
+    }
+
+    .options-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: 140px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        border: 1px solid #f1f5f9;
+        padding: 4px 0;
+    }
+
+    .options-menu.show {
+        display: block;
+    }
+
+    .options-item {
+        padding: 10px 16px;
+        font-size: 14px;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .options-item:hover {
+        background: #f8fafc;
+        color: #0f172a;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: white;
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0f172a;
+    }
+
+    .modal-close {
+        font-size: 20px;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+        color: #475569;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+    .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        background: #f8fafc;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+    }
+
+    .alert-btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+    }
+
+    .btn-cancel {
+        background: #64748b;
+        color: white;
+    }
+
+    .btn-confirm {
+        background: #10b981;
+        color: white;
+    }
+
+    .btn-update {
+        background: #3b82f6;
+        color: white;
+    }
+
+    .btn-close-modal {
+        background: #64748b;
+        color: white;
+    }
+</style>
+
+<div class="faq-container">
+    <div class="page-header">
+        <div class="header-left">
+            <i class="fas fa-question-circle" style="color: #64748b;"></i>
+            <h1 class="page-title">Ticket FAQ</h1>
+        </div>
+        <button onclick="openModal('addFaqModal')" class="add-new-btn"><i class="fas fa-plus"></i> Add new faq</button>
+    </div>
+
+    <div class="content-card">
+        <div class="card-header">
+            <a href="#" class="export-btn">
+                Export <i class="fas fa-external-link-alt" style="font-size: 12px;"></i>
+            </a>
+            <div class="header-actions">
+                <form method="GET" style="display: flex; gap: 16px;">
+                    <div class="search-wrapper">
+                        <input type="text" name="q" class="search-input" placeholder="Search FAQ"
+                            value="{{ q|default:'' }}">
+                    </div>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="faq-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">#</th>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th style="width: 80px; text-align: center;">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faq in faqs %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td style="font-weight: 500;">{{ faq.question }}</td>
+                        <td>{{ faq.answer }}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="options-container"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                <button class="options-btn" data-id="{{ faq.id }}"
+                                    onclick="toggleOptionsMenu(this, event)">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="options-menu" id="options-menu-{{ faq.id }}">
+                                    <div class="options-item" data-id="{{ faq.id }}"
+                                        data-question="{{ faq.question|escapejs }}"
+                                        data-answer="{{ faq.answer|escapejs }}" onclick="openEditModal(this)">
+                                        Edit
+                                    </div>
+                                    <div class="options-item" data-id="{{ faq.id }}" onclick="openDeleteModal(this)">
+                                        Delete
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 40px; color: #94a3b8;">
+                            No FAQs found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="padding: 16px 24px; font-size: 14px; color: #64748b;">
+            Showing {{ faqs.count }} of {{ faqs.count }} data
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<!-- Add FAQ Modal -->
+<div class="modal-overlay" id="addFaqModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Add New FAQ</h3>
+            <span class="modal-close" onclick="closeModal('addFaqModal')">&times;</span>
+        </div>
+        <form action="{% url 'add_faq' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Question</label>
+                    <textarea name="question" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Answer</label>
+                    <textarea name="answer" class="form-control" rows="5" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="alert-btn btn-close-modal"
+                    onclick="closeModal('addFaqModal')">Close</button>
+                <button type="submit" class="alert-btn btn-update">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit FAQ Modal -->
+<div class="modal-overlay" id="editFaqModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit FAQ</h3>
+            <span class="modal-close" onclick="closeModal('editFaqModal')">&times;</span>
+        </div>
+        <form id="editFaqForm" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Question</label>
+                    <textarea id="edit-question" name="question" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Answer</label>
+                    <textarea id="edit-answer" name="answer" class="form-control" rows="5" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="alert-btn btn-close-modal"
+                    onclick="closeModal('editFaqModal')">Close</button>
+                <button type="submit" class="alert-btn btn-update">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="deleteFaqModal">
+    <div class="modal-content" style="width: 400px; text-align: center; padding: 40px 24px;">
+        <div
+            style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #ef4444; font-size: 24px;">
+            !</div>
+        <h2 style="font-size: 20px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Are you sure?</h2>
+        <p style="font-size: 14px; color: #64748b; margin-bottom: 30px;">You can't bring it back!</p>
+        <div style="display: flex; justify-content: center; gap: 16px;">
+            <button class="alert-btn btn-cancel" onclick="closeModal('deleteFaqModal')">Cancel</button>
+            <form id="deleteFaqForm" method="POST" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="alert-btn btn-confirm" style="background: #ef4444;">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleOptionsMenu(el, event) {
+        const id = el.dataset.id;
+        event.stopPropagation();
+        const menu = document.getElementById(`options-menu-${id}`);
+        const allMenus = document.querySelectorAll('.options-menu');
+
+        allMenus.forEach(m => {
+            if (m.id !== `options-menu-${id}`) m.classList.remove('show');
+        });
+
+        menu.classList.toggle('show');
+    }
+
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show'));
+    });
+
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+    function openEditModal(el) {
+        const id = el.dataset.id;
+        const question = el.dataset.question;
+        const answer = el.dataset.answer;
+
+        document.getElementById('edit-question').value = question;
+        document.getElementById('edit-answer').value = answer;
+        document.getElementById('editFaqForm').action = `/support/faq/${id}/edit/`;
+        openModal('editFaqModal');
+    }
+
+    function openDeleteModal(el) {
+        const id = el.dataset.id;
+        document.getElementById('deleteFaqForm').action = `/support/faq/${id}/delete/`;
+        openModal('deleteFaqModal');
+    }
+</script>
+{% endblock %}

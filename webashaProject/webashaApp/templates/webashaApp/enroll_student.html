@@ -1,0 +1,186 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Enroll student | Academy{% endblock %}
+
+{% block topbar_title %}Enroll student{% endblock %}
+
+{% block content %}
+<div class="enrollment-dashboard">
+    <div class="page-header">
+        <h2>
+            <i class="fas fa-user-plus"></i>
+            Enroll student
+        </h2>
+    </div>
+
+    {% include 'webashaApp/enrollment_tabs.html' %}
+
+    <div class="form-container">
+        <form class="enroll-form">
+            <div class="form-section">
+                <h3>Enrollment Details</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Select Student</label>
+                        <select class="form-control">
+                            <option value="">Select a student...</option>
+                            {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.get_full_name|default:student.username }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Course</label>
+                        <select class="form-control">
+                            <option value="">Select a course...</option>
+                            {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.course_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Enrollment Date</label>
+                        <input type="date" class="form-control" value="{{ today }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry Date (Optional)</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="submit" class="submit-btn">Enroll Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .enrollment-dashboard {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .page-header h2 i {
+        color: #64748b;
+        font-size: 16px;
+    }
+
+    .form-container {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .form-section {
+        margin-bottom: 32px;
+    }
+
+    .form-section h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .form-control {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 14px;
+        color: #1e293b;
+        transition: all 0.2s;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        padding-top: 24px;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .cancel-btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        background: white;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cancel-btn:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+    }
+
+    .submit-btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        border: none;
+        background: #3b82f6;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .submit-btn:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock %}

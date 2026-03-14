@@ -1,0 +1,355 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Bootcamp Categories{% endblock %}
+
+{% block content %}
+<style>
+    .category-dashboard {
+        padding: 24px;
+        background: #f8fafc;
+        min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .add-btn {
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1e293b;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+    }
+
+    .add-btn:hover {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .category-card {
+        background: white;
+        border: 1px solid #f1f5f9;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s;
+        position: relative;
+    }
+
+    .category-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-options {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #94a3b8;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .options-trigger {
+        padding: 4px;
+        border-radius: 50%;
+        transition: background 0.2s;
+    }
+
+    .options-trigger:hover {
+        background: #f1f5f9;
+        color: #3b82f6;
+    }
+
+    .category-dropdown {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f1f5f9;
+        z-index: 100;
+        min-width: 140px;
+        overflow: hidden;
+    }
+
+    .dropdown-item {
+        display: block;
+        padding: 12px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1e293b;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+
+    .dropdown-item:hover {
+        background: #f8fafc;
+        color: #3b82f6 !important;
+    }
+
+    .delete-item {
+        color: #ef4444;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .delete-item:hover {
+        background: #fef2f2;
+        color: #ef4444 !important;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .modal-overlay.active {
+        display: flex !important;
+    }
+
+    .modal-content {
+        background: white;
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .modal-header {
+        padding: 20px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e293b;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1e293b;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6 !important;
+    }
+
+    .modal-footer {
+        padding: 20px;
+        background: #f8fafc;
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="category-dashboard">
+    <div class="page-header">
+        <h2>
+            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+            Bootcamp Category
+        </h2>
+        <button class="add-btn" onclick="openModal('addCategoryModal')">
+            <span style="font-size: 18px; line-height: 1;">+</span> Add new category
+        </button>
+    </div>
+
+    <div class="category-grid">
+        {% for cat in categories %}
+        <div class="category-card">
+            <div class="card-options">
+                <div class="options-trigger" onclick="toggleDropdown(event, '{{ cat.id }}')">
+                    <svg style="width: 16px; height: 16px;" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                        </path>
+                    </svg>
+                </div>
+                <div id="dropdown-{{ cat.id }}" class="category-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="openEditModal('{{ cat.id }}', '{{ cat.name|escapejs }}')">Edit</a>
+                    <a href="javascript:void(0)" class="dropdown-item delete-item"
+                        onclick="confirmDelete('{{ cat.id }}', '{{ cat.name|escapejs }}')">Delete</a>
+                </div>
+            </div>
+            <h3 style="font-size: 15px; font-weight: 600; color: #1e293b; margin-bottom: 8px; padding-right: 24px;">{{ cat.name }}</h3>
+            <p style="font-size: 13px; color: #64748b; margin: 0;">Total bootcamps {{ cat.bootcamp_count }}</p>
+        </div>
+        {% empty %}
+        <div
+            style="grid-column: 1 / -1; text-align: center; padding: 48px; background: white; border-radius: 12px; border: 1px dashed #e2e8f0; color: #64748b;">
+            <p>No categories found. Start by adding a new one.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="margin-top: 24px; color: #94a3b8; font-size: 13px;">
+        Showing {{ categories|length }} of {{ categories|length }} data
+    </div>
+
+    <!-- Add Category Modal -->
+    <div id="addCategoryModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add new category</h3>
+                <button type="button" onclick="closeModal('addCategoryModal')" class="modal-close">&times;</button>
+            </div>
+            <form method="POST" action="{% url 'bootcamp_categories' %}" style="padding: 24px;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_name">Title</label>
+                    <input type="text" name="name" id="id_name" required placeholder="Category title"
+                        class="form-control">
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+                    <button type="submit"
+                        style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">Add
+                        Category</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="closeModal('addCategoryModal')"
+                        style="background: #64748b; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Category Modal -->
+    <div id="editCategoryModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit category</h3>
+                <button type="button" onclick="closeModal('editCategoryModal')" class="modal-close">&times;</button>
+            </div>
+            <form id="editCategoryForm" method="POST" action="" style="padding: 24px;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="edit_id_name">Title</label>
+                    <input type="text" name="name" id="edit_id_name" required placeholder="Category title"
+                        class="form-control">
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+                    <button type="submit"
+                        style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">Update
+                        category</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="closeModal('editCategoryModal')"
+                        style="background: #64748b; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function toggleDropdown(e, id) {
+        e.stopPropagation();
+        const allDropdowns = document.querySelectorAll('.category-dropdown');
+        const currentDropdown = document.getElementById('dropdown-' + id);
+        allDropdowns.forEach(d => { if (d !== currentDropdown) d.style.display = 'none'; });
+        currentDropdown.style.display = currentDropdown.style.display === 'none' ? 'block' : 'none';
+    }
+    function openEditModal(id, name) {
+        const form = document.getElementById('editCategoryForm');
+        form.action = `/bootcamps/categories/${id}/edit/`;
+        document.getElementById('edit_id_name').value = name;
+        openModal('editCategoryModal');
+    }
+    function confirmDelete(id, name) {
+        if (confirm(`Are you sure you want to delete the category "${name}"?`)) { window.location.href = `/bootcamps/categories/${id}/delete/`; }
+    }
+    document.addEventListener('click', () => { document.querySelectorAll('.category-dropdown').forEach(d => d.style.display = 'none'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal('addCategoryModal'); closeModal('editCategoryModal'); } });
+</script>
+{% endblock %}

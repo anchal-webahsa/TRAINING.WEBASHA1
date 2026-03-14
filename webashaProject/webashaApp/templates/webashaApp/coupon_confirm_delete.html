@@ -1,0 +1,15 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block title %}Delete Coupon{% endblock %}
+
+{% block content %}
+<div style="padding:18px;max-width:600px;margin:0 auto">
+    <h2>Delete Coupon</h2>
+    <p>Are you sure you want to delete coupon <strong>{{ coupon.code }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="padding:8px 14px;background:#ef4444;color:white;border:none;border-radius:6px">Delete</button>
+        <a href="{% url 'courses_by_category' 'coupons' %}" style="margin-left:12px">Cancel</a>
+    </form>
+</div>
+{% endblock %}

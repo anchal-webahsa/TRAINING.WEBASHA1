@@ -1,0 +1,32 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block title %}Add Coupon{% endblock %}
+
+{% block content %}
+<div style="padding:18px;max-width:600px;margin:0 auto">
+    <h2>{% if success %}Coupon added{% else %}Add Coupon{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom:12px">
+            {{ form.code.label_tag }}<br>
+            {{ form.code }}
+            {% for error in form.code.errors %}<div style="color:#b91c1c">{{ error }}</div>{% endfor %}
+        </div>
+        <div style="margin-bottom:12px">
+            {{ form.discount_percent.label_tag }}<br>
+            {{ form.discount_percent }}
+            {% for error in form.discount_percent.errors %}<div style="color:#b91c1c">{{ error }}</div>{% endfor %}
+        </div>
+        <div style="margin-bottom:12px">
+            {{ form.expiry.label_tag }}<br>
+            {{ form.expiry }}
+            {% for error in form.expiry.errors %}<div style="color:#b91c1c">{{ error }}</div>{% endfor %}
+        </div>
+        <div style="margin-bottom:12px">
+            {{ form.active }} {{ form.active.label_tag }}
+            {% for error in form.active.errors %}<div style="color:#b91c1c">{{ error }}</div>{% endfor %}
+        </div>
+        <button type="submit" style="padding:8px 14px;background:#3b82f6;color:white;border:none;border-radius:6px">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'webashaApp/base.html' %}
+{% load static %}
+
+{% block title %}Instructor Settings | Academy{% endblock %}
+
+{% block topbar_title %}Public Instructor Settings{% endblock %}
+
+{% block content %}
+<div class="settings-dashboard" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="margin-bottom: 24px;">
+        <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-cog" style="color: #64748b;"></i>
+            Public Instructor Settings
+        </h2>
+    </div>
+
+    {% include 'webashaApp/instructor_tabs.html' %}
+
+    <div style="display: grid; grid-template-columns: 1fr 400px; gap: 24px; align-items: start;">
+        <!-- Left: Basic Settings -->
+        <div
+            style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+            <div style="padding: 20px 24px; border-bottom: 1px solid #f1f5f9;">
+                <h3 style="font-size: 14px; font-weight: 600; color: #1e293b; margin: 0;">Instructor settings</h3>
+            </div>
+            <div style="padding: 24px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label"
+                            style="display: block; font-size: 13px; font-weight: 500; color: #1e293b; margin-bottom: 8px;">Allow
+                            public instructor</label>
+                        <select name="allow_public_instructor" class="form-control"
+                            style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; appearance: none; background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E') no-repeat right 12px center; background-size: 12px; background-color: white;">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label"
+                            style="display: block; font-size: 13px; font-weight: 500; color: #1e293b; margin-bottom: 8px;">Instructor
+                            application note</label>
+                        <textarea name="application_note" class="form-control"
+                            style="width: 100%; height: 200px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; resize: none; font-size: 14px; color: #475569;"
+                            placeholder="Fill all the fields carefully and share if you want to share any document with us it will help us to evaluate you as an instructor. dfdf s"></textarea>
+                    </div>
+                    <button type="submit"
+                        style="background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);">Update
+                        Settings</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right: Revenue Settings -->
+        <div
+            style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+            <div style="padding: 20px 24px; border-bottom: 1px solid #f1f5f9;">
+                <h3 style="font-size: 14px; font-weight: 600; color: #1e293b; margin: 0;">Revenue settings</h3>
+            </div>
+            <div style="padding: 24px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label"
+                            style="display: block; font-size: 13px; font-weight: 500; color: #1e293b; margin-bottom: 8px;">Instructor
+                            revenue percentage</label>
+                        <div style="position: relative;">
+                            <input type="number" name="instructor_revenue" value="70" class="form-control"
+                                style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; padding-right: 40px;">
+                            <span
+                                style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;">%</span>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label"
+                            style="display: block; font-size: 13px; font-weight: 500; color: #1e293b; margin-bottom: 8px;">Admin
+                            revenue percentage</label>
+                        <div style="position: relative;">
+                            <input type="number" name="admin_revenue" value="30" class="form-control"
+                                style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; padding-right: 40px; background: #f8fafc;"
+                                readonly>
+                            <span
+                                style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px;">%</span>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        style="background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3); width: 100%;">Update
+                        Settings</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

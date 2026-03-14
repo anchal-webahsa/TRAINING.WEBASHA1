@@ -1,0 +1,272 @@
+{% extends "webashaApp/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="add-bundle-container" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="display: flex; align-items: center; margin-bottom: 24px;">
+        <i class="fas fa-cubes" style="font-size: 20px; color: #475569; margin-right: 12px;"></i>
+        <h2 style="font-size: 18px; font-weight: 600; color: #1e293b; margin: 0;">Add course bundle</h2>
+    </div>
+
+    <div class="card"
+        style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Title</label>
+                <input type="text" name="title" placeholder="Course bundle title"
+                    style="width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;"
+                    onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59,130,246,0.1)';"
+                    onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none';">
+            </div>
+
+            <!-- Select Courses -->
+            <div class="form-group" style="margin-bottom: 20px; position: relative;" id="course-selector">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Select
+                    Courses</label>
+                <div id="course-search-box"
+                    style="width: 100%; min-height: 42px; padding: 6px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: #fff; cursor: pointer; display: flex; align-items: center; color: #94a3b8;">
+                    Search for courses...
+                </div>
+                <!-- Dropdown list (hidden initially) -->
+                <div id="course-dropdown"
+                    style="display: none; position: absolute; z-index: 10; width: 100%; background: #fff; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 8px 8px; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <input type="text" id="course-search-input" placeholder="Search courses..."
+                        style="width: 100%; padding: 10px 14px; border: none; border-bottom: 1px solid #e2e8f0; outline: none; font-size: 14px;">
+                    <div id="course-list">
+                        {% for course in courses %}
+                        <div class="course-option" data-id="{{ course.id }}" data-title="{{ course.title }}"
+                            data-price="{{ course.price }}"
+                            style="padding: 10px 14px; cursor: pointer; font-size: 14px; color: #475569; transition: background 0.2s;">
+                            {{ course.title }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Selected courses list -->
+                <div id="selected-courses-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                </div>
+                <input type="hidden" name="course_ids" id="selected-course-ids">
+                <p style="font-size: 12px; color: #64748b; margin-top: 6px;">Current price of the courses is ₹<span
+                        id="total-price">0</span></p>
+            </div>
+
+            <!-- Bundle Price -->
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Bundle
+                    Price</label>
+                <input type="number" name="price" placeholder="Enter bundle price"
+                    style="width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;"
+                    onfocus="this.style.borderColor='#3b82f6';" onblur="this.style.borderColor='#cbd5e1';">
+            </div>
+
+            <!-- Subscription renew days -->
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Subscription
+                    renew days</label>
+                <input type="number" name="subscription_days" placeholder="Enter subscription renew days"
+                    style="width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;"
+                    onfocus="this.style.borderColor='#3b82f6';" onblur="this.style.borderColor='#cbd5e1';">
+            </div>
+
+            <!-- Thumbnail -->
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Thumbnail</label>
+                <div
+                    style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 8px 14px; display: flex; align-items: center; gap: 12px;">
+                    <input type="file" name="thumbnail" id="thumbnail-input" style="display: none;">
+                    <button type="button" onclick="document.getElementById('thumbnail-input').click();"
+                        style="padding: 6px 12px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-weight: 500; color: #475569; cursor: pointer;">Choose
+                        File</button>
+                    <span id="thumbnail-filename" style="font-size: 13px; color: #94a3b8;">No file chosen</span>
+                </div>
+            </div>
+
+            <!-- Bundle details -->
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label
+                    style="display: block; font-size: 14px; font-weight: 500; color: #475569; margin-bottom: 8px;">Bundle
+                    details</label>
+                <!-- Rich Text Editor -->
+                <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
+                    <div style="background: #f8fafc; border-bottom: 1px solid #cbd5e1; padding: 8px; display: flex; gap: 4px; flex-wrap: wrap;"
+                        id="editor-toolbar">
+                        <button type="button" class="toolbar-btn" title="Bold" onclick="execCmd('bold')"><i
+                                class="fas fa-bold"></i></button>
+                        <button type="button" class="toolbar-btn" title="Italic" onclick="execCmd('italic')"><i
+                                class="fas fa-italic"></i></button>
+                        <button type="button" class="toolbar-btn" title="Underline" onclick="execCmd('underline')"><i
+                                class="fas fa-underline"></i></button>
+                        <button type="button" class="toolbar-btn" title="Unordered List"
+                            onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+                        <button type="button" class="toolbar-btn" title="Ordered List"
+                            onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
+                        <button type="button" class="toolbar-btn" title="Align Left" onclick="execCmd('justifyLeft')"><i
+                                class="fas fa-align-left"></i></button>
+                        <button type="button" class="toolbar-btn" title="Align Center"
+                            onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
+                        <button type="button" class="toolbar-btn" title="Link" onclick="addLink()"><i
+                                class="fas fa-link"></i></button>
+                    </div>
+                    <div id="rich-editor" contenteditable="true"
+                        style="width: 100%; min-height: 200px; padding: 14px; font-size: 14px; outline: none; background: #fff;"
+                        oninput="updateDetails()"></div>
+                    <textarea name="details" id="hidden-details" style="display: none;"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="display: flex; justify-content: flex-end;">
+                <button type="submit"
+                    style="background: #3b82f6; color: white; padding: 10px 24px; border-radius: 8px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                    onmouseover="this.style.background='#2563eb';" onmouseout="this.style.background='#3b82f6';">Create
+                    bundle</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .toolbar-btn {
+        background: white;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: #475569;
+        cursor: pointer;
+    }
+
+    .toolbar-btn:hover {
+        background: #f1f5f9;
+        color: #1e293b;
+    }
+
+    .selected-tag {
+        background: #eff6ff;
+        color: #3b82f6;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid #dbeafe;
+    }
+
+    .selected-tag .remove {
+        cursor: pointer;
+        font-weight: bold;
+        color: #93c5fd;
+    }
+
+    .selected-tag .remove:hover {
+        color: #2563eb;
+    }
+
+    .course-option:hover {
+        background: #f8fafc;
+    }
+</style>
+
+<script>
+    // --- File Input Logic ---
+    const fileInput = document.getElementById('thumbnail-input');
+    const filenameSpan = document.getElementById('thumbnail-filename');
+    if (fileInput) {
+        fileInput.addEventListener('change', function () {
+            filenameSpan.textContent = this.files[0] ? this.files[0].name : 'No file chosen';
+            filenameSpan.style.color = '#1e293b';
+        });
+    }
+
+    // --- Course Selector Logic ---
+    const searchBox = document.getElementById('course-search-box');
+    const dropdown = document.getElementById('course-dropdown');
+    const searchInput = document.getElementById('course-search-input');
+    const courseOptions = document.querySelectorAll('.course-option');
+    const selectedContainer = document.getElementById('selected-courses-container');
+    const hiddenInput = document.getElementById('selected-course-ids');
+    const totalPriceSpan = document.getElementById('total-price');
+
+    let selectedCourses = [];
+
+    if (searchBox) {
+        searchBox.addEventListener('click', () => {
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            if (dropdown.style.display === 'block') searchInput.focus();
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!document.getElementById('course-selector').contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+
+        // Search filter
+        searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.toLowerCase();
+            courseOptions.forEach(opt => {
+                const text = opt.dataset.title.toLowerCase();
+                opt.style.display = text.includes(filter) ? 'block' : 'none';
+            });
+        });
+
+        // Course selection
+        courseOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                const id = opt.dataset.id;
+                const title = opt.dataset.title;
+                const price = parseFloat(opt.dataset.price) || 0;
+                if (!selectedCourses.find(c => c.id === id)) {
+                    selectedCourses.push({ id, title, price });
+                    updateSelectedUI();
+                }
+                dropdown.style.display = 'none';
+                searchInput.value = '';
+            });
+        });
+    }
+
+    function updateSelectedUI() {
+        selectedContainer.innerHTML = '';
+        let total = 0;
+        selectedCourses.forEach(c => {
+            total += c.price;
+            const tag = document.createElement('div');
+            tag.className = 'selected-tag';
+            tag.innerHTML = `<span>${c.title}</span><span class="remove" onclick="removeCourse('${c.id}')">&times;</span>`;
+            selectedContainer.appendChild(tag);
+        });
+        hiddenInput.value = selectedCourses.map(c => c.id).join(',');
+        totalPriceSpan.textContent = total.toLocaleString();
+    }
+
+    window.removeCourse = function (id) {
+        selectedCourses = selectedCourses.filter(c => c.id !== id);
+        updateSelectedUI();
+    };
+
+    // --- Rich Text Editor Logic ---
+    window.execCmd = function (cmd) {
+        document.execCommand(cmd, false, null);
+    };
+
+    window.addLink = function () {
+        const url = prompt('Enter the URL:', 'https://');
+        if (url) document.execCommand('createLink', false, url);
+    };
+
+    window.updateDetails = function () {
+        document.getElementById('hidden-details').value = document.getElementById('rich-editor').innerHTML;
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,3 @@
+PATH: webashaApp\templates\webashaApp\add_ebook.html
+ERROR: Could not parse the remainder: '==cat.id' from 'ebook.category_id==cat.id'
+

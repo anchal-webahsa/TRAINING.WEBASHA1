@@ -1,0 +1,212 @@
+{% extends "webashaApp/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="add-bootcamp-container" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+    <div class="page-header" style="display: flex; align-items: center; margin-bottom: 24px; gap: 12px;">
+        <i class="fas fa-rocket" style="font-size: 20px; color: #475569;"></i>
+        <h2 style="font-size: 18px; font-weight: 600; color: #1e293b; margin: 0;">Add New Bootcamp</h2>
+    </div>
+
+    <div class="card"
+        style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <form method="POST" enctype="multipart/form-data" id="bootcamp-form">
+            {% csrf_token %}
+
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px;">
+                <!-- Left Column -->
+                <div class="form-left">
+                    <!-- Title -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Title <span style="color: #ef4444;">*</span></label>
+                        <input type="text" name="title" placeholder="Enter Bootcamp Title" class="form-control"
+                            required>
+                    </div>
+
+                    <!-- Short Description -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Short Description</label>
+                        <textarea name="short_description" placeholder="Enter Short Description" class="form-control"
+                            style="height: 120px; resize: none;"></textarea>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Description</label>
+                        <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
+                            <div style="background: #f8fafc; border-bottom: 1px solid #cbd5e1; padding: 12px; display: flex; gap: 8px; flex-wrap: wrap;"
+                                id="editor-toolbar">
+                                <button type="button" class="toolbar-btn" onclick="execCmd('bold')"><i
+                                        class="fas fa-bold"></i></button>
+                                <button type="button" class="toolbar-btn" onclick="execCmd('italic')"><i
+                                        class="fas fa-italic"></i></button>
+                                <button type="button" class="toolbar-btn" onclick="execCmd('underline')"><i
+                                        class="fas fa-underline"></i></button>
+                                <div style="width: 1px; background: #e2e8f0; height: 20px; margin: 0 4px;"></div>
+                                <button type="button" class="toolbar-btn" onclick="execCmd('insertUnorderedList')"><i
+                                        class="fas fa-list-ul"></i></button>
+                                <button type="button" class="toolbar-btn" onclick="execCmd('insertOrderedList')"><i
+                                        class="fas fa-list-ol"></i></button>
+                                <div style="width: 1px; background: #e2e8f0; height: 20px; margin: 0 4px;"></div>
+                                <button type="button" class="toolbar-btn" onclick="addLink()"><i
+                                        class="fas fa-link"></i></button>
+                                <button type="button" class="toolbar-btn"><i class="fas fa-image"></i></button>
+                                <button type="button" class="toolbar-btn"><i class="fas fa-video"></i></button>
+                                <button type="button" class="toolbar-btn" onclick="toggleCode()"><i
+                                        class="fas fa-code"></i></button>
+                            </div>
+                            <div id="rich-editor" contenteditable="true"
+                                style="min-height: 250px; padding: 16px; font-size: 14px; color: #1e293b; outline: none; background: white;"
+                                oninput="syncDescription()"></div>
+                            <textarea name="description" id="hidden-description" style="display: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-right">
+                    <!-- Category -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Category <span style="color: #ef4444;">*</span></label>
+                        <select name="category" class="form-control" required>
+                            <option value="">Select a category</option>
+                            {% for cat in categories %}
+                            <option value="{{ cat.id }}">{{ cat.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Pricing Type -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Pricing type <span style="color: #ef4444;">*</span></label>
+                        <div style="display: flex; gap: 24px; margin-top: 8px;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="pricing_type" value="paid" checked
+                                    style="accent-color: #3b82f6;"> Paid
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="pricing_type" value="free" style="accent-color: #3b82f6;">
+                                Free
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Price (₹) <span style="color: #ef4444;">*</span></label>
+                        <input type="number" name="price" placeholder="Enter your bootcamp price (₹0)"
+                            class="form-control">
+                        <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" id="has_discount" name="has_discount"
+                                style="width: 16px; height: 16px; accent-color: #3b82f6;">
+                            <label for="has_discount" style="font-size: 14px; color: #475569; cursor: pointer;">Check if
+                                this bootcamp has discount</label>
+                        </div>
+                    </div>
+
+                    <!-- Discounted Price -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Discounted price</label>
+                        <input type="number" name="discounted_price" placeholder="Enter your discount price (₹0)"
+                            class="form-control">
+                    </div>
+
+                    <!-- Thumbnail -->
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label class="form-label">Thumbnail</label>
+                        <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: all 0.2s;"
+                            onmouseover="this.style.borderColor='#3b82f6';"
+                            onmouseout="this.style.borderColor='#cbd5e1';"
+                            onclick="document.getElementById('bootcamp_thumbnail').click();">
+                            <button type="button"
+                                style="padding: 6px 12px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-weight: 500; color: #475569; cursor: pointer;">Choose
+                                File</button>
+                            <span id="file-filename" style="font-size: 13px; color: #94a3b8;">No file chosen</span>
+                            <input type="file" id="bootcamp_thumbnail" name="thumbnail" style="display: none;"
+                                onchange="document.getElementById('file-filename').innerText = this.files[0].name; document.getElementById('file-filename').style.color='#1e293b';">
+                        </div>
+                    </div>
+
+                    <!-- Publish Date -->
+                    <div class="form-group" style="margin-bottom: 32px;">
+                        <label class="form-label">Publish Date</label>
+                        <input type="date" name="publish_date" class="form-control" placeholder="dd-mm-yyyy">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button type="submit"
+                            style="background: #3b82f6; color: white; padding: 12px 32px; border-radius: 8px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(59,130,246,0.3);"
+                            onmouseover="this.style.background='#2563eb'; this.style.transform='translateY(-1px)';"
+                            onmouseout="this.style.background='#3b82f6'; this.style.transform='translateY(0)';">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1e293b;
+        outline: none;
+        transition: all 0.2s;
+        background: #fff;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .toolbar-btn {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .toolbar-btn:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+        color: #1e293b;
+    }
+</style>
+
+<script>
+    function execCmd(cmd) {
+        document.execCommand(cmd, false, null);
+    }
+    function addLink() {
+        const url = prompt('Enter URL:', 'https://');
+        if (url) document.execCommand('createLink', false, url);
+    }
+    function syncDescription() {
+        document.getElementById('hidden-description').value = document.getElementById('rich-editor').innerHTML;
+    }
+    function toggleCode() {
+        const editor = document.getElementById('rich-editor');
+        // Simple toggle for demo
+        alert('Code view toggle is a mock');
+    }
+    // Sync before submit
+    document.getElementById('bootcamp-form').onsubmit = syncDescription;
+</script>
+{% endblock %}

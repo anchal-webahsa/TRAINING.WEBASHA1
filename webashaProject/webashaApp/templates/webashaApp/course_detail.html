@@ -1,0 +1,14 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<h2>{{ course.title }}</h2>
+<p><strong>Status:</strong> {{ course.get_status_display }}</p>
+<p><strong>Price:</strong> {{ course.price }}</p>
+<p>{{ course.short_description }}</p>
+<div style="margin-top:12px">
+    <a href="{% url 'course_edit' course.id %}">Edit</a>
+    <form action="{% url 'course_delete' course.id %}" method="post" style="display:inline">{% csrf_token %}
+        <button style="background:none;border:none;color:#e11d48;cursor:pointer">Delete</button>
+    </form>
+</div>
+{% endblock %}
