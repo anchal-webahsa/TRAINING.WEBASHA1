@@ -1,0 +1,12 @@
+{
+  "source_directories": [
+    "d:/1.webashaProject/webashaProject"
+  ],
+  "search_path": [
+    "d:/1.webashaProject/webashaProject",
+    "d:/1.webashaProject/webashaProject/venv/Lib/site-packages"
+  ],
+  "exclude": [
+    "webashaProject/webasha-react/node_modules/.*"
+  ]
+}

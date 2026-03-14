@@ -1,0 +1,12 @@
+{
+  "include": [
+    "webashaProject"
+  ],
+  "venvPath": "d:\\1.webashaProject\\webashaProject",
+  "venv": "venv",
+  "python.analysis.extraPaths": [
+    "d:\\1.webashaProject\\webashaProject",
+    "d:\\1.webashaProject\\webashaProject\\venv\\Lib\\site-packages"
+  ],
+  "typeCheckingMode": "basic"
+}
