@@ -1,12 +1,13 @@
 from rest_framework import viewsets
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile
 from .serializers import (
     CourseSerializer, 
     TestimonialSerializer, 
     VideoReviewSerializer,
     InstructorSerializer, 
     CourseCategorySerializer,
-    HomeSectionSerializer
+    HomeSectionSerializer,
+    AlumniProfileSerializer
 )
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -33,3 +34,7 @@ class HomeSectionViewSet(viewsets.ModelViewSet):
     queryset = HomeSection.objects.all()
     serializer_class = HomeSectionSerializer
     lookup_field = 'identifier'
+
+class AlumniProfileViewSet(viewsets.ModelViewSet):
+    queryset = AlumniProfile.objects.all().order_by('-created_at')
+    serializer_class = AlumniProfileSerializer

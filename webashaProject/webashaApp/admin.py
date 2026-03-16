@@ -7,7 +7,8 @@ from .models import (
     Testimonial, 
     VideoReview,
     Instructor,
-    HomeSection
+    HomeSection,
+    AlumniProfile
 )
 
 
@@ -73,6 +74,13 @@ admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(VideoReview, VideoReviewAdmin)
 admin.site.register(Instructor, InstructorAdmin)
 admin.site.register(HomeSection)
+
+class AlumniProfileAdmin(BaseAdmin):
+    list_display = ('name', 'experience', 'growth_badge', 'is_active', 'created_at')
+    search_fields = ('name', 'before_role', 'after_role')
+    list_filter = ('is_active',)
+
+admin.site.register(AlumniProfile, AlumniProfileAdmin)
 
 # Restrict access to the admin site to superusers only
 admin.site.has_permission = lambda request: request.user.is_active and request.user.is_superuser

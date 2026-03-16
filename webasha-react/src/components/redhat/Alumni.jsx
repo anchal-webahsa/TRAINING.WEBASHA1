@@ -1,6 +1,6 @@
 // src/components/common/Alumni.jsx
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ArrowDown = () => (
   <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,11 @@ const AlumniCard = ({ img, name, exp, badge, desc, beforeRole, beforeCo, afterRo
 
       <div className="badge">{badge}</div>
 
-      <div className="card-description">"{desc}"</div>
+      {typeof desc === 'string' ? (
+        <div className="card-description">" <span dangerouslySetInnerHTML={{ __html: desc }}></span> "</div>
+      ) : (
+        <div className="card-description">"{desc}"</div>
+      )}
 
       <div className="inner-cards">
         {/* Before */}
@@ -116,7 +120,38 @@ const AlumniCard = ({ img, name, exp, badge, desc, beforeRole, beforeCo, afterRo
 );
 
 const Alumni = () => {
+  const [alumniData, setAlumniData] = useState([]);
+
   useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/alumni-profiles/")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.length > 0) {
+          const apiAlumni = data.map((item) => ({
+            img: item.image,
+            name: item.name,
+            exp: item.experience,
+            badge: item.growth_badge,
+            desc: item.description,
+            beforeRole: item.before_role,
+            beforeCo: { img: item.before_company_logo, alt: item.before_company_name },
+            afterRole: item.after_role,
+            afterCo: { img: item.after_company_logo, alt: item.after_company_name },
+          }));
+          setAlumniData(apiAlumni);
+        } else {
+          setAlumniData(alumni); // Fallback to hardcoded array
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching alumni profiles:", err);
+        setAlumniData(alumni); // Fallback to hardcoded array
+      });
+  }, []);
+
+  useEffect(() => {
+    if (alumniData.length === 0) return;
+
     const timer = setTimeout(() => {
       const $ = window.$;
       if (!$ || !$.fn || !$.fn.slick) return;
@@ -125,12 +160,14 @@ const Alumni = () => {
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
 
       $el.slick({
-        slidesToShow:   3,
+        slidesToShow:   4,
         slidesToScroll: 1,
+        infinite:       true,
         arrows:         true,
         dots:           false,
         autoplay:       false,
         responsive: [
+          { breakpoint: 1200, settings: { slidesToShow: 3 } },
           { breakpoint: 992, settings: { slidesToShow: 2 } },
           { breakpoint: 576, settings: { slidesToShow: 1 } },
         ],
@@ -144,7 +181,7 @@ const Alumni = () => {
       const $el = $(".course-discover-profile-slider");
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
     };
-  }, []);
+  }, [alumniData]);
 
   return (
     <section className="course-discover-profile lazy-section">
@@ -160,7 +197,7 @@ const Alumni = () => {
 
       <div className="container">
         <div className="course-discover-profile-slider slider-arrows-cs">
-          {alumni.map((a, i) => <AlumniCard key={i} {...a} />)}
+          {alumniData.map((a, i) => <AlumniCard key={i} {...a} />)}
         </div>
 
         <div className="text-center mt-4">

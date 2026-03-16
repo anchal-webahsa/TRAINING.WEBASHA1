@@ -8,7 +8,8 @@ from webashaApp.api import (
     VideoReviewViewSet,
     InstructorViewSet, 
     CourseCategoryViewSet,
-    HomeSectionViewSet
+    HomeSectionViewSet,
+    AlumniProfileViewSet
 )
 
 router = routers.DefaultRouter()
@@ -18,6 +19,7 @@ router.register(r'testimonials', TestimonialViewSet)
 router.register(r'video-reviews', VideoReviewViewSet)
 router.register(r'instructors', InstructorViewSet)
 router.register(r'sections', HomeSectionViewSet)
+router.register(r'alumni-profiles', AlumniProfileViewSet)
 
 from django.conf import settings
 from django.conf.urls.static import static

@@ -419,3 +419,26 @@ class HomeSection(models.Model):
 
     def __str__(self):
         return f"{self.identifier} - {self.title}"
+
+class AlumniProfile(models.Model):
+    name = models.CharField(max_length=255)
+    experience = models.CharField(max_length=255, help_text="e.g. 8+ Years of Experience")
+    growth_badge = models.CharField(max_length=100, help_text="e.g. 150% Growth")
+    description = models.TextField(help_text="Supports HTML formatting like <strong>")
+    before_role = models.CharField(max_length=255)
+    before_company_name = models.CharField(max_length=255)
+    before_company_logo = models.ImageField(upload_to="alumni_companies/")
+    after_role = models.CharField(max_length=255)
+    after_company_name = models.CharField(max_length=255)
+    after_company_logo = models.ImageField(upload_to="alumni_companies/")
+    image = models.ImageField(upload_to="alumni_profiles/", help_text="Profile picture of the alumni", null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Alumni Profile"
+        verbose_name_plural = "Alumni Profiles"
+        ordering = ['-created_at']

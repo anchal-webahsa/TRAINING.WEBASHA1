@@ -412,37 +412,82 @@ body.has-mobile-footer{
     height: 50px;
     z-index: 10;
     transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .slider-arrows-cs .slick-prev {
-    left: -30px;
+    left: -40px;
 }
 
 .slider-arrows-cs .slick-next {
-    right: -30px;
+    right: -40px;
 }
 
 .slider-arrows-cs .slick-prev::before,
 .slider-arrows-cs .slick-next::before {
-    font-family: "Font Awesome 6 Free" !important;
-    font-weight: 900;
-    font-size: 40px;
-    color: #333;
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
     opacity: 0.5;
-    transition: opacity 0.3s ease;
 }
 
 .slider-arrows-cs .slick-prev::before {
-    content: "\f104" !important; /* fa-chevron-left */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M15 4l-8 8 8 8'/%3E%3C/svg%3E");
 }
 
 .slider-arrows-cs .slick-next::before {
-    content: "\f105" !important; /* fa-chevron-right */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9 4l8 8-8 8'/%3E%3C/svg%3E");
 }
 
 .slider-arrows-cs .slick-prev:hover::before,
 .slider-arrows-cs .slick-next:hover::before {
     opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Fix Alumni Cards Height and Description Clamp */
+.course-discover-profile-slider .slick-track {
+    display: flex !important;
+}
+
+.course-discover-profile-slider .slick-slide {
+    height: auto;
+}
+
+.course-discover-profile-slider .slick-slide > div {
+    height: 100%;
+}
+
+.course-discover-profile-slider .items {
+    height: 100%;
+    padding: 10px; /* Optional, adds breathing room between slider cards */
+}
+
+.course-discover-profile-slider .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-discover-profile-slider .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1; /* Pushes the 'before'/'after' sections to the bottom uniformly */
+    margin-bottom: 20px;
 }
 
 @media (max-width: 1200px) {

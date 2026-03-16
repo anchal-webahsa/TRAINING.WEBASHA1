@@ -46,7 +46,7 @@ export default function Header() {
                 {/* Wrapping course dropdown content for styling */}
                 <div className="course-dropdown-wraper">
                   {/* Creating a scrollable container for course category tabs */}
-                  <div className="course-tabs-container scrollbar-inner">
+                  <div className="course-tabs-container">
                     {/* Listing navigation pills for course categories */}
                     <ul
                       className="nav nav-pills mb-3"
@@ -267,7 +267,7 @@ export default function Header() {
                             {/* Wrapping job-oriented programs content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for job programs */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for job-oriented programs */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -491,7 +491,7 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* Displaying authorized training partners */}
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -646,7 +646,7 @@ export default function Header() {
                             {/* Wrapping Red Hat courses content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for Red Hat tracks */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for Red Hat certifications */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -1268,7 +1268,7 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* Displaying authorized training partners for Red Hat */}
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -1423,7 +1423,7 @@ export default function Header() {
                             {/* Wrapping EC-Council courses content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for EC-Council tracks */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for EC-Council certifications */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -1840,7 +1840,7 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* Displaying authorized training partners for EC-Council */}
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -1995,7 +1995,7 @@ export default function Header() {
                             {/* Wrapping OffSec courses content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for OffSec tracks */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for OffSec certifications */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -2207,7 +2207,7 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* Displaying authorized training partners for OffSec */}
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -2362,7 +2362,7 @@ export default function Header() {
                             {/* Wrapping Cisco courses content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for Cisco tracks */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for Cisco certifications */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -2554,7 +2554,7 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* Displaying authorized training partners for Cisco */}
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -2709,7 +2709,7 @@ export default function Header() {
                             {/* Wrapping Cloud courses content */}
                             <div className="course-tabs-wraper">
                               {/* Creating a scrollable row for Cloud tracks */}
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 {/* Presenting the overview card for Cloud certifications */}
                                 <div className="column w-100">
                                   <div className="nav-card">
@@ -3107,7 +3107,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -3248,7 +3248,7 @@ export default function Header() {
                             tabIndex={0}
                           >
                             <div className="course-tabs-wraper">
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 <div className="column w-100">
                                   <div className="nav-card">
                                     <div className="icon-img">
@@ -3571,7 +3571,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -3712,7 +3712,7 @@ export default function Header() {
                             tabIndex={0}
                           >
                             <div className="course-tabs-wraper">
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 <div className="column w-100">
                                   <div className="nav-card">
                                     <div className="icon-img">
@@ -3957,7 +3957,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -4098,7 +4098,7 @@ export default function Header() {
                             tabIndex={0}
                           >
                             <div className="course-tabs-wraper">
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 <div className="column w-100">
                                   <div className="nav-card">
                                     <div className="icon-img">
@@ -4348,7 +4348,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -4489,7 +4489,7 @@ export default function Header() {
                             tabIndex={0}
                           >
                             <div className="course-tabs-wraper">
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 <div className="column w-100">
                                   <div className="nav-card">
                                     <div className="icon-img">
@@ -4738,7 +4738,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -4879,7 +4879,7 @@ export default function Header() {
                             tabIndex={0}
                           >
                             <div className="course-tabs-wraper">
-                              <div className="course-tabs-row scrollbar-inner">
+                              <div className="course-tabs-row">
                                 <div className="column w-100">
                                   <div className="nav-card">
                                     <div className="icon-img">
@@ -5072,7 +5072,7 @@ export default function Header() {
                                   </button>
                                 </div>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -5563,7 +5563,7 @@ export default function Header() {
           </span>
         </div>
         <div className="accordion-wraper">
-          <div className="accordion-main-menu scrollbar-inner">
+          <div className="accordion-main-menu">
             <ul className="accordion list-unstyled mb-0" id="parentAccordion">
               <li className="accordion-item accordion-drop">
                 <a
@@ -5959,7 +5959,7 @@ export default function Header() {
           <div className="dropdown-menu d-block position-static">
             <div className="container">
               <div className="course-dropdown-wraper">
-                <div className="course-tabs-container scrollbar-inner">
+                <div className="course-tabs-container">
                   <ul
                     className="nav nav-pills mb-3"
                     id="pills-tab"
@@ -6174,7 +6174,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -6363,7 +6363,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -6405,7 +6405,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -7032,7 +7032,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -7074,7 +7074,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -7489,7 +7489,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -7531,7 +7531,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -7734,7 +7734,7 @@ export default function Header() {
                                   View all Specialized Courses
                                 </button>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -7775,7 +7775,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -7958,7 +7958,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -8000,7 +8000,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -8379,7 +8379,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -8421,7 +8421,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -8722,7 +8722,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -8763,7 +8763,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -8988,7 +8988,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -9030,7 +9030,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -9258,7 +9258,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -9300,7 +9300,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -9529,7 +9529,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
@@ -9571,7 +9571,7 @@ export default function Header() {
                           tabIndex={0}
                         >
                           <div className="course-tabs-wraper">
-                            <div className="course-tabs-row scrollbar-inner">
+                            <div className="course-tabs-row">
                               <div className="column w-100">
                                 <div className="nav-card">
                                   <div className="icon-img">
@@ -9747,7 +9747,7 @@ export default function Header() {
                                   </div>
                                 </a>
                               </div>
-                              <div className="course-learn-more-bar scrollbar-inner">
+                              <div className="course-learn-more-bar">
                                 <div className="course-learn-more-row">
                                   <div className="course-learn-more-column">
                                     <h5 className="course-learn-more-title">
