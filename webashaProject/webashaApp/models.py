@@ -442,3 +442,47 @@ class AlumniProfile(models.Model):
         verbose_name = "Alumni Profile"
         verbose_name_plural = "Alumni Profiles"
         ordering = ['-created_at']
+
+class ExamVoucherOffer(models.Model):
+    title = models.CharField(max_length=255, default="Discounted Certification Exam Voucher")
+    image = models.ImageField(upload_to="vouchers/")
+    whatsapp_number = models.CharField(max_length=50, default="+91-8010911256")
+    whatsapp_message = models.TextField(default="Hello WebAsha, I want Discounted Exam Voucher")
+    enroll_link = models.CharField(max_length=500, default="#", blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class UpcomingBatch(models.Model):
+    date = models.DateField(help_text="e.g. 2026-03-30")
+    mode_of_class = models.CharField(max_length=255, default="Online/Classroom")
+    batch_form = models.CharField(max_length=255, default="Weekdays")
+    time = models.CharField(max_length=255, help_text="e.g. 6:30 PM IST")
+    
+    status_text = models.CharField(max_length=255, help_text="e.g. Only 1 Seat Available or Batch Full")
+    status_color = models.CharField(
+        max_length=50, 
+        choices=[('success', 'Green'), ('danger', 'Red'), ('warning', 'Yellow')],
+        default='success'
+    )
+    max_intake_limit = models.IntegerField(null=True, blank=True, help_text="e.g. 10")
+    
+    action_text = models.CharField(max_length=255, default="Enrollment Open →")
+    action_color = models.CharField(
+        max_length=50, 
+        choices=[('outline-success', 'Green Outline'), ('danger', 'Red Solid')],
+        default='outline-success'
+    )
+    
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.date} - {self.batch_form}"
+
+    class Meta:
+        verbose_name = "Upcoming Batch"
+        verbose_name_plural = "Upcoming Batches"
+        ordering = ['date']

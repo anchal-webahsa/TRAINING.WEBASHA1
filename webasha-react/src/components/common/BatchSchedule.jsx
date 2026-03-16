@@ -1,4 +1,5 @@
 // src/components/common/BatchSchedule.jsx
+import { useState, useEffect } from "react";
 
 // ── Helper: add days to today and skip weekends if needed ──
 const addDays = (days, skipWeekend = false) => {
@@ -20,6 +21,15 @@ const nextSaturday = () => {
   const day = d.getDay(); // 0=Sun, 6=Sat
   const daysToSat = day === 6 ? 1 : (6 - day);
   d.setDate(d.getDate() + daysToSat);
+  return d.toLocaleDateString("en-US", {
+    weekday: "long", year: "numeric", month: "long", day: "numeric",
+  });
+};
+
+// ── Date Formatter for Backend ──
+const formatBackendDate = (dateString) => {
+  if (!dateString) return "";
+  const d = new Date(dateString);
   return d.toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
@@ -57,7 +67,7 @@ const modes = [
   },
 ];
 
-// ── Batch rows 
+// ── Fallback Batch rows ──
 const getBatches = () => [
   {
     date:   addDays(0),
@@ -124,7 +134,52 @@ const getBatches = () => [
 ];
 
 const BatchSchedule = () => {
-  const batches = getBatches();
+  const [batches, setBatches] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/upcoming-batches/")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.length > 0) {
+          // Map backend data to frontend format
+          const formattedBatches = data.map(b => ({
+            date: formatBackendDate(b.date),
+            mode: b.mode_of_class,
+            batch: b.batch_form,
+            time: b.time,
+            status: (
+              <>
+                <span className={`badge bg-${b.status_color}`}>{b.status_text}</span>
+                {b.max_intake_limit && (
+                  <small className="text-muted d-block">Max intake limit is {b.max_intake_limit}</small>
+                )}
+              </>
+            ),
+            action: (
+              <a 
+                href="#" 
+                className={`btn btn-${b.action_color} btn-sm`}
+                data-bs-toggle={b.action_text.includes("Closed") ? "" : "modal"} 
+                data-bs-target={b.action_text.includes("Closed") ? "" : "#enquiryModal"}
+              >
+                {b.action_text}
+              </a>
+            ),
+          }));
+          setBatches(formattedBatches);
+        } else {
+          // Fallback if no data or empty
+          setBatches(getBatches());
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch upcoming batches:", err);
+        setBatches(getBatches());
+      });
+  }, []);
+
+  // While waiting on initial fetch, either render empty or the fallback so it doesn't jump
+  const displayBatches = batches.length > 0 ? batches : getBatches();
 
   return (
     <>
@@ -188,7 +243,7 @@ const BatchSchedule = () => {
                 </tr>
               </thead>
               <tbody>
-                {batches.map((b, i) => (
+                {displayBatches.map((b, i) => (
                   <tr key={i}>
                     <td>{b.date}</td>
                     <td>{b.mode}</td>
@@ -204,7 +259,7 @@ const BatchSchedule = () => {
 
           {/* Mobile Cards */}
           <div className="d-block d-md-none">
-            {batches.map((b, i) => (
+            {displayBatches.map((b, i) => (
               <div className="card mb-3 shadow-sm" key={i}>
                 <div className="card-body">
                   <h6 className="card-title mb-2">{b.date}</h6>

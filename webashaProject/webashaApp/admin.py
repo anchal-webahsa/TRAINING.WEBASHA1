@@ -8,7 +8,9 @@ from .models import (
     VideoReview,
     Instructor,
     HomeSection,
-    AlumniProfile
+    AlumniProfile,
+    ExamVoucherOffer,
+    UpcomingBatch
 )
 
 
@@ -81,6 +83,20 @@ class AlumniProfileAdmin(BaseAdmin):
     list_filter = ('is_active',)
 
 admin.site.register(AlumniProfile, AlumniProfileAdmin)
+
+class ExamVoucherOfferAdmin(BaseAdmin):
+    list_display = ('title', 'whatsapp_number', 'is_active', 'created_at')
+    search_fields = ('title', 'whatsapp_number')
+    list_filter = ('is_active',)
+
+admin.site.register(ExamVoucherOffer, ExamVoucherOfferAdmin)
+
+class UpcomingBatchAdmin(BaseAdmin):
+    list_display = ('date', 'mode_of_class', 'batch_form', 'time', 'status_text', 'is_active')
+    search_fields = ('batch_form', 'mode_of_class', 'status_text')
+    list_filter = ('is_active', 'status_color', 'batch_form')
+
+admin.site.register(UpcomingBatch, UpcomingBatchAdmin)
 
 # Restrict access to the admin site to superusers only
 admin.site.has_permission = lambda request: request.user.is_active and request.user.is_superuser
