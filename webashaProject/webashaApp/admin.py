@@ -10,7 +10,9 @@ from .models import (
     HomeSection,
     AlumniProfile,
     ExamVoucherOffer,
-    UpcomingBatch
+    UpcomingBatch,
+    CourseBanner,
+    StudentScreenshot
 )
 
 
@@ -97,6 +99,22 @@ class UpcomingBatchAdmin(BaseAdmin):
     list_filter = ('is_active', 'status_color', 'batch_form')
 
 admin.site.register(UpcomingBatch, UpcomingBatchAdmin)
+
+class CourseBannerAdmin(BaseAdmin):
+    list_display = ('page_identifier', 'heading', 'is_active')
+    search_fields = ('page_identifier', 'heading')
+    list_filter = ('is_active',)
+
+admin.site.register(CourseBanner, CourseBannerAdmin)
+
+class StudentScreenshotAdmin(BaseAdmin):
+    list_display = ('name', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('name',)
+    list_filter = ('is_active',)
+    ordering = ('order',)
+
+admin.site.register(StudentScreenshot, StudentScreenshotAdmin)
 
 # Restrict access to the admin site to superusers only
 admin.site.has_permission = lambda request: request.user.is_active and request.user.is_superuser

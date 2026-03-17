@@ -3,23 +3,55 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const items = [
-  { logo: "career-straight-logo-1.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-2.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-3.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-4.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-5.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-1.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-2.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-3.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-4.png", phone: "assets/img/feedback.png" },
-  { logo: "career-straight-logo-5.png", phone: "assets/img/feedback.png" },
+const fallBackItems = [
+  { logo: "assets/imgs/career-straight-logo-1.png", phone: "assets/img/feedback.png", id: "fb1" },
+  { logo: "assets/imgs/career-straight-logo-2.png", phone: "assets/img/feedback.png", id: "fb2" },
+  { logo: "assets/imgs/career-straight-logo-3.png", phone: "assets/img/feedback.png", id: "fb3" },
+  { logo: "assets/imgs/career-straight-logo-4.png", phone: "assets/img/feedback.png", id: "fb4" },
+  { logo: "assets/imgs/career-straight-logo-5.png", phone: "assets/img/feedback.png", id: "fb5" },
+  { logo: "assets/imgs/career-straight-logo-1.png", phone: "assets/img/feedback.png", id: "fb6" },
+  { logo: "assets/imgs/career-straight-logo-2.png", phone: "assets/img/feedback.png", id: "fb7" },
+  { logo: "assets/imgs/career-straight-logo-3.png", phone: "assets/img/feedback.png", id: "fb8" },
+  { logo: "assets/imgs/career-straight-logo-4.png", phone: "assets/img/feedback.png", id: "fb9" },
+  { logo: "assets/imgs/career-straight-logo-5.png", phone: "assets/img/feedback.png", id: "fb10" },
 ];
 
 const CareerStraight = () => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(2);
-  const [fading, setFading] = useState(false);   // ← controls .fading class
+  const [fading, setFading] = useState(false);
+  const [items, setItems] = useState(fallBackItems);
+
+  // Fetch dynamic screenshots from backend
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/student-screenshots/")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data.length > 0) {
+          // Map backend data to our required keys
+          const mappedItems = data.map((item) => ({
+            logo: item.logo_image,
+            phone: item.phone_image,
+            id: item.id
+          }));
+          
+          // The slider usually needs a few items to work properly, especially centerMode and infinite true
+          // Just duplicate the array if there are less than 5 items from the backend
+          let finalItems = mappedItems;
+          if (finalItems.length > 0 && finalItems.length < 5) {
+             const copiesNeeded = Math.ceil(5 / finalItems.length);
+             finalItems = Array(copiesNeeded).fill(mappedItems).flat().map((item, index) => ({...item, unique_key: index}));
+          }
+          setItems(finalItems);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch student screenshots:", err);
+      });
+  }, []);
 
   // When activeIndex changes → fade out → swap image → fade in
   useEffect(() => {
@@ -201,10 +233,10 @@ const CareerStraight = () => {
                 <div className="cs-slider-wrap">
                   <Slider ref={sliderRef} {...settings}>
                     {items.map((item, i) => (
-                      <div key={i} onClick={() => handleChange(i)}>
+                      <div key={item.unique_key || item.id || i} onClick={() => handleChange(i)}>
                         <div className="cs-img-wrap">
                           <img
-                            src={`assets/imgs/${item.logo}`}
+                            src={item.logo}
                             alt={`Student ${i + 1}`}
                             loading="lazy"
                           />

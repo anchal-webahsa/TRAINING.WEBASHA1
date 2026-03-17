@@ -42,7 +42,7 @@ const Career = () => {
     setMeta("og:url", window.location.href, true);
     setMeta(
       "og:image",
-      "https://training.webasha.com/assets/img/careers/webasha-careers.webp",
+      "/assets/img/careers/webasha-careers.webp",
       true
     );
   }, []);

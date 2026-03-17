@@ -22,7 +22,7 @@ export default function About() {
   
   <meta
     property="og:image"
-    content="https://training.webasha.com/assets/img/about/main-about.webp"
+    content="/assets/img/about/main-about.webp"
   />
   <meta
     property="og:image:alt"

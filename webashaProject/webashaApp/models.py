@@ -486,3 +486,59 @@ class UpcomingBatch(models.Model):
         verbose_name = "Upcoming Batch"
         verbose_name_plural = "Upcoming Batches"
         ordering = ['date']
+
+
+class CourseBanner(models.Model):
+    page_identifier = models.CharField(max_length=100, unique=True, help_text="e.g. rhcsa1")
+    breadcrumb_active = models.CharField(max_length=255, default="RH124 v10 Certification Training")
+    heading = models.CharField(max_length=255, default="RH124 v10 Certification Training: Essential Linux System Administration Skills")
+    enrolled_count = models.CharField(max_length=100, default="3,850+ Participants Enrolled")
+    rating_text = models.CharField(max_length=100, default="4.9/5 (48,765+ Reviews)")
+    google_rating = models.CharField(max_length=50, default="4.9/5")
+    facebook_rating = models.CharField(max_length=50, default="4.9/5")
+    description = models.TextField(help_text="Supports HTML formatting for styling.")
+    
+    # Table Details
+    detail_duration = models.CharField(max_length=255, default="50 Hours (Weekday/Weekend Batches)")
+    detail_mode = models.CharField(max_length=255, default="Online & Classroom Training")
+    detail_certification = models.CharField(max_length=255, default="Red Hat Certified System Administrator (EX200)")
+    detail_institute = models.CharField(max_length=255, default="WebAsha Technologies, Pune")
+    detail_includes = models.CharField(max_length=255, default="Hands-on Labs, Official Red Hat Curriculum, Exam Simulations")
+    
+    # Media
+    video_thumbnail = models.ImageField(upload_to="course_banners/", help_text="Image previewing the video")
+    youtube_video_id = models.CharField(max_length=100, default="ERtp4zua0-s")
+    pdf_syllabus_link = models.CharField(max_length=500, blank=True, null=True, help_text="Direct link if any, else opens modal")
+    
+    # Stats at bottom
+    stat_professionals = models.CharField(max_length=50, default="1000+")
+    stat_batches = models.CharField(max_length=50, default="8+")
+    stat_countries = models.CharField(max_length=50, default="20+")
+    stat_clients = models.CharField(max_length=50, default="1000+")
+    
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.page_identifier} - {self.heading}"
+
+    class Meta:
+        verbose_name = "Course Banner"
+        verbose_name_plural = "Course Banners"
+
+
+class StudentScreenshot(models.Model):
+    name = models.CharField(max_length=255, help_text="Name of the student or reference label")
+    logo_image = models.ImageField(upload_to="student_logos/", help_text="Circular profile image or logo in the slider")
+    phone_image = models.ImageField(upload_to="student_phones/", help_text="The large phone screenshot showing the feedback")
+    order = models.IntegerField(default=0, help_text="Controls the order in the slider (lowest first)")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Student Screenshot"
+        verbose_name_plural = "Student Screenshots"
+        ordering = ['order', '-created_at']

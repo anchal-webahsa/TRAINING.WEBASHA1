@@ -40,7 +40,7 @@ export default function Home() {
         name="keywords"
         content="RHCSA Training Pune, RHCE Certification, AWS Course Pune, Python Training, DevOps Institute Pune, CCNA Classes, Red Hat Exam Center, IT Training Pune, Graphic Design Course"
       />
-      <link rel="canonical" href="https://training.webasha.com/" />
+      <link rel="canonical" href="/" />
       <meta
         property="og:title"
         content="WebAsha Technologies | RHCSA, RHCE, AWS, Python, DevOps & CCNA Training in Pune"
@@ -51,11 +51,11 @@ export default function Home() {
       />
       <meta
         property="og:url"
-        content="https://training.webasha.com/"
+        content="/"
       />
       <meta
         property="og:image"
-        content="https://training.webasha.com/assets/img/webasha-training.webp"
+        content="/assets/img/webasha-training.webp"
       />
       <meta
         property="og:image:alt"
@@ -73,7 +73,7 @@ export default function Home() {
       />
       <meta
         name="twitter:image"
-        content="https://training.webasha.com/assets/img/webasha-training.webp"
+        content="/assets/img/webasha-training.webp"
       />
 
       {/* Banner-Start */}

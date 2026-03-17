@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot
 from .serializers import (
     CourseSerializer, 
     TestimonialSerializer, 
@@ -9,7 +9,9 @@ from .serializers import (
     HomeSectionSerializer,
     AlumniProfileSerializer,
     ExamVoucherOfferSerializer,
-    UpcomingBatchSerializer
+    UpcomingBatchSerializer,
+    CourseBannerSerializer,
+    StudentScreenshotSerializer
 )
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -50,3 +52,12 @@ class UpcomingBatchViewSet(viewsets.ModelViewSet):
     from django.utils import timezone
     queryset = UpcomingBatch.objects.filter(is_active=True, date__gte=timezone.now().date()).order_by('date')
     serializer_class = UpcomingBatchSerializer
+
+class CourseBannerViewSet(viewsets.ModelViewSet):
+    queryset = CourseBanner.objects.filter(is_active=True)
+    serializer_class = CourseBannerSerializer
+    lookup_field = 'page_identifier'
+
+class StudentScreenshotViewSet(viewsets.ModelViewSet):
+    queryset = StudentScreenshot.objects.filter(is_active=True).order_by('order', '-created_at')
+    serializer_class = StudentScreenshotSerializer

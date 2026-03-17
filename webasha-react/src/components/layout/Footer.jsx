@@ -182,54 +182,54 @@ export default function Footer() {
                             <div className="col">
                                 <h4 className="footer-title">Company</h4>
                                 <ul className="services-list list-unstyled">
-                                    <li><a href="https://training.webasha.com/gallery">Gallery</a></li>
+                                    <li><a href="/gallery">Gallery</a></li>
                                     <li><a href="/about-us">About Us</a></li>
                                     <li><a href="https://www.webasha.com/blog/">Blog</a></li>
-                                    <li><a href="https://training.webasha.com/job-oriented-course">Job Oriented Course</a></li>
+                                    <li><a href="/job-oriented-course">Job Oriented Course</a></li>
                                     <li><a href="/contact-us">Contact Us</a></li>
-                                    <li><a href="https://training.webasha.com/privacy-policy">Privacy Policy</a></li>
-                                    <li><a href="https://training.webasha.com/terms-conditions">Terms of Conditions</a></li>
-                                    <li><a href="https://training.webasha.com/refund-policy">Refund Policy</a></li>
+                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                    <li><a href="/terms-conditions">Terms of Conditions</a></li>
+                                    <li><a href="/refund-policy">Refund Policy</a></li>
                                 </ul>
                             </div>
                             <div className="col">
                                 <h4 className="footer-title">Offering</h4>
                                 <ul className="services-list list-unstyled">
-                                    <li><a href="https://training.webasha.com/live-virtual">Live Virtual</a></li>
-                                    <li><a href="https://training.webasha.com/classroom">Classroom</a></li>
-                                    <li><a href="https://training.webasha.com/corporate-training">Corporate Training</a></li>
-                                    <li><a href="https://training.webasha.com/refer-and-earn">Refer and Earn</a></li>
+                                    <li><a href="/live-virtual">Live Virtual</a></li>
+                                    <li><a href="/classroom">Classroom</a></li>
+                                    <li><a href="/corporate-training">Corporate Training</a></li>
+                                    <li><a href="/refer-and-earn">Refer and Earn</a></li>
                                 </ul>
                             </div>
                             <div className="col">
                                 <h4 className="footer-title">Resources</h4>
                                 <ul className="services-list list-unstyled">
-                                    <li><a href="https://training.webasha.com/courses-info">Courses info</a></li>
-                                    <li><a href="https://training.webasha.com/tutorials">Tutorials</a></li>
+                                    <li><a href="/courses-info">Courses info</a></li>
+                                    <li><a href="/tutorials">Tutorials</a></li>
                                     <li><a href="https://www.webasha.com/blog/">Blog</a></li>
-                                    <li><a href="https://training.webasha.com/interview-tips">Interview</a></li>
+                                    <li><a href="/interview-tips">Interview</a></li>
                                 </ul>
                             </div>
                             <div className="col">
                                 <h4 className="footer-title">Company</h4>
                                 <ul className="services-list list-unstyled">
-                                    <li><a href="https://training.webasha.com/gallery">Gallery</a></li>
+                                    <li><a href="/gallery">Gallery</a></li>
                                     <li><a href="/about-us">About Us</a></li>
                                     <li><a href="https://www.webasha.com/blog/">Blog</a></li>
-                                    <li><a href="https://training.webasha.com/job-oriented-course">Job Oriented Course</a></li>
+                                    <li><a href="/job-oriented-course">Job Oriented Course</a></li>
                                     <li><a href="/contact-us">Contact Us</a></li>
-                                    <li><a href="https://training.webasha.com/privacy-policy">Privacy Policy</a></li>
-                                    <li><a href="https://training.webasha.com/terms-conditions">Terms of Conditions</a></li>
-                                    <li><a href="https://training.webasha.com/refund-policy">Refund Policy</a></li>
+                                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                    <li><a href="/terms-conditions">Terms of Conditions</a></li>
+                                    <li><a href="/refund-policy">Refund Policy</a></li>
                                 </ul>
                             </div>
                             <div className="col">
                                 <h4 className="footer-title">Offering</h4>
                                 <ul className="services-list list-unstyled">
-                                    <li><a href="https://training.webasha.com/live-virtual">Live Virtual</a></li>
-                                    <li><a href="https://training.webasha.com/classroom">Classroom</a></li>
-                                    <li><a href="https://training.webasha.com/corporate-training">Corporate Training</a></li>
-                                    <li><a href="https://training.webasha.com/refer-and-earn">Refer and Earn</a></li>
+                                    <li><a href="/live-virtual">Live Virtual</a></li>
+                                    <li><a href="/classroom">Classroom</a></li>
+                                    <li><a href="/corporate-training">Corporate Training</a></li>
+                                    <li><a href="/refer-and-earn">Refer and Earn</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -270,55 +270,55 @@ export default function Footer() {
                         <div className="categories-list">
                             <h4 className="footer-title">Top Categories</h4>
                             <ul className="list-unstyled">
-                                <li><a href="https://training.webasha.com/">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="/about-us">About Us</a></li>
                                 <li><a href="https://www.webasha.com/blog/">Blog</a></li>
-                                <li><a href="https://training.webasha.com/results">Results</a></li>
-                                <li><a href="https://training.webasha.com/career">Career</a></li>
+                                <li><a href="/results">Results</a></li>
+                                <li><a href="/career">Career</a></li>
                                 <li><a href="/contact-us">Contact Us</a></li>
-                                <li><a href="https://training.webasha.com/sitemap">Sitemap</a></li>
-                                <li><a href="https://training.webasha.com/web-development">Web Development</a></li>
-                                <li><a href="https://training.webasha.com/data-science">Data Science</a></li>
-                                <li><a href="https://training.webasha.com/mobile-app-development">Mobile App Development</a></li>
-                                <li><a href="https://training.webasha.com/cloud-computing">Cloud Computing</a></li>
-                                <li><a href="https://training.webasha.com/cybersecurity">Cybersecurity</a></li>
-                                <li><a href="https://training.webasha.com/digital-marketing">Digital Marketing</a></li>
-                                <li><a href="https://training.webasha.com/project-management">Project Management</a></li>
-                                <li><a href="https://training.webasha.com/ui-ux-design">UI/UX Design</a></li>
-                                <li><a href="https://training.webasha.com/software-testing">Software Testing</a></li>
-                                <li><a href="https://training.webasha.com/devops">DevOps</a></li>
-                                <li><a href="https://training.webasha.com/artificial-intelligence">Artificial Intelligence</a></li>
-                                <li><a href="https://training.webasha.com/machine-learning">Machine Learning</a></li>
-                                <li><a href="https://training.webasha.com/blockchain">Blockchain</a></li>
-                                <li><a href="https://training.webasha.com/game-development">Game Development</a></li>
-                                <li><a href="https://training.webasha.com/business-intelligence">Business Intelligence</a></li>
+                                <li><a href="/sitemap">Sitemap</a></li>
+                                <li><a href="/web-development">Web Development</a></li>
+                                <li><a href="/data-science">Data Science</a></li>
+                                <li><a href="/mobile-app-development">Mobile App Development</a></li>
+                                <li><a href="/cloud-computing">Cloud Computing</a></li>
+                                <li><a href="/cybersecurity">Cybersecurity</a></li>
+                                <li><a href="/digital-marketing">Digital Marketing</a></li>
+                                <li><a href="/project-management">Project Management</a></li>
+                                <li><a href="/ui-ux-design">UI/UX Design</a></li>
+                                <li><a href="/software-testing">Software Testing</a></li>
+                                <li><a href="/devops">DevOps</a></li>
+                                <li><a href="/artificial-intelligence">Artificial Intelligence</a></li>
+                                <li><a href="/machine-learning">Machine Learning</a></li>
+                                <li><a href="/blockchain">Blockchain</a></li>
+                                <li><a href="/game-development">Game Development</a></li>
+                                <li><a href="/business-intelligence">Business Intelligence</a></li>
                             </ul>
                         </div>
                         <div className="categories-list">
                             <h4 className="footer-title">Top Courses</h4>
                             <ul className="list-unstyled">
-                                <li><a href="https://training.webasha.com/full-stack-developer">Full Stack Developer</a></li>
-                                <li><a href="https://training.webasha.com/data-analyst">Data Analyst</a></li>
-                                <li><a href="https://training.webasha.com/android-development">Android Development</a></li>
-                                <li><a href="https://training.webasha.com/aws-certified-solutions-architect">AWS Certified Solutions Architect</a></li>
-                                <li><a href="https://training.webasha.com/ethical-hacking">Ethical Hacking</a></li>
-                                <li><a href="https://training.webasha.com/seo-specialist">SEO Specialist</a></li>
-                                <li><a href="https://training.webasha.com/pmp-certification">PMP Certification</a></li>
-                                <li><a href="https://training.webasha.com/ux-designer">UX Designer</a></li>
-                                <li><a href="https://training.webasha.com/java-developer">Java Developer</a></li>
-                                <li><a href="https://training.webasha.com/python-programmer">Python Programmer</a></li>
-                                <li><a href="https://training.webasha.com/react-developer">React Developer</a></li>
-                                <li><a href="https://training.webasha.com/cloud-engineer">Cloud Engineer</a></li>
-                                <li><a href="https://training.webasha.com/ai-engineer">AI Engineer</a></li>
-                                <li><a href="https://training.webasha.com/devops-engineer">DevOps Engineer</a></li>
-                                <li><a href="https://training.webasha.com/salesforce-administrator">Salesforce Administrator</a></li>
-                                <li><a href="https://training.webasha.com/tableau-specialist">Tableau Specialist</a></li>
-                                <li><a href="https://training.webasha.com/power-bi-developer">Power BI Developer</a></li>
-                                <li><a href="https://training.webasha.com/cybersecurity-analyst">Cybersecurity Analyst</a></li>
-                                <li><a href="https://training.webasha.com/digital-marketing-masterclass">Digital Marketing Masterclass</a></li>
-                                <li><a href="https://training.webasha.com/web-design-fundamentals">Web Design Fundamentals</a></li>
-                                <li><a href="https://training.webasha.com/software-development-bootcamp">Software Development Bootcamp</a></li>
-                                <li><a href="https://training.webasha.com/blockchain-developer">Blockchain Developer</a></li>
+                                <li><a href="/full-stack-developer">Full Stack Developer</a></li>
+                                <li><a href="/data-analyst">Data Analyst</a></li>
+                                <li><a href="/android-development">Android Development</a></li>
+                                <li><a href="/aws-certified-solutions-architect">AWS Certified Solutions Architect</a></li>
+                                <li><a href="/ethical-hacking">Ethical Hacking</a></li>
+                                <li><a href="/seo-specialist">SEO Specialist</a></li>
+                                <li><a href="/pmp-certification">PMP Certification</a></li>
+                                <li><a href="/ux-designer">UX Designer</a></li>
+                                <li><a href="/java-developer">Java Developer</a></li>
+                                <li><a href="/python-programmer">Python Programmer</a></li>
+                                <li><a href="/react-developer">React Developer</a></li>
+                                <li><a href="/cloud-engineer">Cloud Engineer</a></li>
+                                <li><a href="/ai-engineer">AI Engineer</a></li>
+                                <li><a href="/devops-engineer">DevOps Engineer</a></li>
+                                <li><a href="/salesforce-administrator">Salesforce Administrator</a></li>
+                                <li><a href="/tableau-specialist">Tableau Specialist</a></li>
+                                <li><a href="/power-bi-developer">Power BI Developer</a></li>
+                                <li><a href="/cybersecurity-analyst">Cybersecurity Analyst</a></li>
+                                <li><a href="/digital-marketing-masterclass">Digital Marketing Masterclass</a></li>
+                                <li><a href="/web-design-fundamentals">Web Design Fundamentals</a></li>
+                                <li><a href="/software-development-bootcamp">Software Development Bootcamp</a></li>
+                                <li><a href="/blockchain-developer">Blockchain Developer</a></li>
                             </ul>
                         </div>
                     </div>
@@ -376,13 +376,13 @@ export default function Footer() {
                     <div className="col-lg-6 col-sm-6 col-12">
                         <div className="categories-list mt-0">
                             <ul className="list-unstyled">
-                                <li><a href="https://training.webasha.com/">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="/about-us">About Us</a></li>
                                 <li><a href="https://www.webasha.com/blog/">Blog</a></li>
-                                <li><a href="https://training.webasha.com/results">Results</a></li>
-                                <li><a href="https://training.webasha.com/career">Career</a></li>
+                                <li><a href="/results">Results</a></li>
+                                <li><a href="/career">Career</a></li>
                                 <li><a href="/contact-us">Contact Us</a></li>
-                                <li><a href="https://training.webasha.com/new-internal-page">New Page</a></li>
+                                <li><a href="/new-internal-page">New Page</a></li>
                             </ul>
                         </div>
                     </div>

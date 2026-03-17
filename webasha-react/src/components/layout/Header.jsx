@@ -291,7 +291,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/job-oriented-programs"
+                                        href="/job-oriented-programs"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Programs
@@ -304,7 +304,7 @@ export default function Header() {
                                   <h5>Cloud Admin</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -335,7 +335,7 @@ export default function Header() {
                                   <h5>DevOps Engineer</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -367,7 +367,7 @@ export default function Header() {
                                   <h5>Cyber Security</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -399,7 +399,7 @@ export default function Header() {
                                   </h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -430,7 +430,7 @@ export default function Header() {
                                   <h5>Data Science with AI/ML</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -463,7 +463,7 @@ export default function Header() {
                                   <h5>Full Stack with Python</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -668,7 +668,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/red-hat"
+                                        href="/red-hat"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Red Hat Courses
@@ -703,7 +703,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/rhcsa2"
+                                    href="/rhcsa2"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -726,7 +726,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/redhat-linux-rhcsa-online-training-institute-certification-exam-center"
+                                    href="/redhat-linux-rhcsa-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -749,7 +749,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/rhce"
+                                    href="/rhce"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -773,7 +773,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/linux-automation-training-rh294"
+                                    href="/linux-automation-training-rh294"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -796,7 +796,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-satellite-administration-online-training-institute-certification-exam-center"
+                                    href="/red-hat-satellite-administration-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -817,7 +817,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/rh436"
+                                    href="/rh436"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -844,7 +844,7 @@ export default function Header() {
                                   <h5>OpenShift Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                    href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -866,7 +866,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/openshift"
+                                    href="/openshift"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -889,7 +889,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-openshift-virtualization"
+                                    href="/red-hat-openshift-virtualization"
                                     className="course-link text-decoration-none"
                                     aria-label="DO316 Managing VMs with OpenShift Virtualization"
                                   >
@@ -912,7 +912,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-openshift-virtualization"
+                                    href="/red-hat-openshift-virtualization"
                                     className="course-link text-decoration-none"
                                     aria-label="DO316 Managing VMs with OpenShift Virtualization"
                                   >
@@ -935,7 +935,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-openshift-advanced"
+                                    href="/red-hat-openshift-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -958,7 +958,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-openshift-advanced"
+                                    href="/red-hat-openshift-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -980,7 +980,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-openshift-advanced"
+                                    href="/red-hat-openshift-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1008,7 +1008,7 @@ export default function Header() {
                                   <h5>Developer Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/red-hat-rhcjd"
+                                    href="/red-hat-rhcjd"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1031,7 +1031,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-rhcemd"
+                                    href="/red-hat-rhcemd"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1053,7 +1053,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                    href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1080,7 +1080,7 @@ export default function Header() {
                                   <h5>Cloud and Virtualization Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/redhat-openstack-cl110-online-training-institute-certification-exam-center"
+                                    href="/redhat-openstack-cl110-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1103,7 +1103,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/open-stack"
+                                    href="/open-stack"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1130,7 +1130,7 @@ export default function Header() {
                                   <h5>Security Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/red-hat-security-linux"
+                                    href="/red-hat-security-linux"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1153,7 +1153,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/red-hat-identity-management"
+                                    href="/red-hat-identity-management"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1176,7 +1176,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/rh442"
+                                    href="/rh442"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1203,7 +1203,7 @@ export default function Header() {
                                   <h5>Architect Level (RHCA)</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1224,7 +1224,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1245,7 +1245,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/#"
+                                    href="/#"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1447,7 +1447,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/ec-council"
+                                        href="/ec-council"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All EC-Council Courses
@@ -1460,7 +1460,7 @@ export default function Header() {
                                   <h5>Ethical Hacking Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ethical-hacking-ceh-cyber-security-training-institute-certification-exam-center"
+                                    href="/ethical-hacking-ceh-cyber-security-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1482,7 +1482,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/certified-ethical-hacker-ceh-practical-online-training-institute-certification-exam-center"
+                                    href="/certified-ethical-hacker-ceh-practical-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1503,7 +1503,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ceh-master-training"
+                                    href="/ceh-master-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1527,7 +1527,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ec-council-certified-security-analyst-ecsa-online-training-institute-certification-exam-center"
+                                    href="/ec-council-certified-security-analyst-ecsa-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1549,7 +1549,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/cpent-training"
+                                    href="/cpent-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1574,7 +1574,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/licensed-penetration-tester-lpt-master-training-institute-certification-exam-center"
+                                    href="/licensed-penetration-tester-lpt-master-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1600,7 +1600,7 @@ export default function Header() {
                                   <h5>Forensics Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/computer-hacking-forensic-investigator-chfi-online-training-institute-certification-exam-center"
+                                    href="/computer-hacking-forensic-investigator-chfi-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1623,7 +1623,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ecih-training"
+                                    href="/ecih-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1647,7 +1647,7 @@ export default function Header() {
                                   <h5>Monitoring Work</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/soc-analyst-training"
+                                    href="/soc-analyst-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1669,7 +1669,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/certified-threat-intelligence-analyst-ctia-online-training-institute-certification-exam-center"
+                                    href="/certified-threat-intelligence-analyst-ctia-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1696,7 +1696,7 @@ export default function Header() {
                                   <h5>Network Defense Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/certified-network-defender-cnd-online-training-institute-certification-exam-center"
+                                    href="/certified-network-defender-cnd-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1722,7 +1722,7 @@ export default function Header() {
                                   <h5>Executive &amp; Management Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/cciso-training"
+                                    href="/cciso-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1750,7 +1750,7 @@ export default function Header() {
                                   <h5>Other Specialists</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/vapt-training"
+                                    href="/vapt-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1772,7 +1772,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/wapt-training"
+                                    href="/wapt-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1795,7 +1795,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/cct-training"
+                                    href="/cct-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -1816,7 +1816,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/edrp-training"
+                                    href="/edrp-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2018,7 +2018,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/offsec"
+                                        href="/offsec"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All OffSec Courses
@@ -2031,7 +2031,7 @@ export default function Header() {
                                   <h5>Penetration Testing Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/offsec-oscp"
+                                    href="/offsec-oscp"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2054,7 +2054,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/offsec-osep"
+                                    href="/offsec-osep"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2087,7 +2087,7 @@ export default function Header() {
                                   <h5>Exploit Development Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/offsec-osed"
+                                    href="/offsec-osed"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2118,7 +2118,7 @@ export default function Header() {
                                   <h5>Web Attacks Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/offsec-oswe"
+                                    href="/offsec-oswe"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2148,7 +2148,7 @@ export default function Header() {
                                   <h5>Defensive Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/offsec-osda"
+                                    href="/offsec-osda"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2179,7 +2179,7 @@ export default function Header() {
                                   <h5>Specialized Tracks</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/offsec-osmr"
+                                    href="/offsec-osmr"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2384,7 +2384,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/cisco"
+                                        href="/cisco"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Cisco Courses
@@ -2397,7 +2397,7 @@ export default function Header() {
                                   <h5>Enterprise Networking Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ccna"
+                                    href="/ccna"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2419,7 +2419,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ccnp"
+                                    href="/ccnp"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2449,7 +2449,7 @@ export default function Header() {
                                   <h5>Security Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ccnp-security"
+                                    href="/ccnp-security"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2477,7 +2477,7 @@ export default function Header() {
                                   <h5>Collaboration Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ccnp-collaboration"
+                                    href="/ccnp-collaboration"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2504,7 +2504,7 @@ export default function Header() {
                                   <h5>Data Center Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ccnp-data-center"
+                                    href="/ccnp-data-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2531,7 +2531,7 @@ export default function Header() {
                                   <h5>DevNet Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/devnet-associate"
+                                    href="/devnet-associate"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2732,7 +2732,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/cloud"
+                                        href="/cloud"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Cloud Courses
@@ -2745,7 +2745,7 @@ export default function Header() {
                                   <h5>AWS Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/AWS-training-in-pune"
+                                    href="/AWS-training-in-pune"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2767,7 +2767,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/aws-certified-cloud-practitioner-online-training-institute-certification-exam-center"
+                                    href="/aws-certified-cloud-practitioner-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2791,7 +2791,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/aws-solutions-architect-professional-online-training-institute-certification-exam-center"
+                                    href="/aws-solutions-architect-professional-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2813,7 +2813,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/aws-certified-sysops-administrator-associate-online-training-institute-certification-exam-center"
+                                    href="/aws-certified-sysops-administrator-associate-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2837,7 +2837,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/aws-certified-security-specialty-online-training-institute-certification-exam-center"
+                                    href="/aws-certified-security-specialty-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2866,7 +2866,7 @@ export default function Header() {
                                   <h5>Azure Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/microsoft-azure-fundamentals-online-training-institute-certification-exam-center"
+                                    href="/microsoft-azure-fundamentals-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2888,7 +2888,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/microsoft-azure-administrator-online-training-institute-certification-exam-center"
+                                    href="/microsoft-azure-administrator-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2912,7 +2912,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/microsoft-azure-architect-design-online-training-institute-certification-exam-center"
+                                    href="/microsoft-azure-architect-design-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2934,7 +2934,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/microsoft-azure-architect-technologies-online-training-institute-certification-exam-center"
+                                    href="/microsoft-azure-architect-technologies-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2958,7 +2958,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/microsoft-azure-security-technologies-online-training-institute-certification-exam-center"
+                                    href="/microsoft-azure-security-technologies-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -2987,7 +2987,7 @@ export default function Header() {
                                   <h5>Google Cloud Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/google-professional-cloud-architect-online-training-institute-certification-exam-center"
+                                    href="/google-professional-cloud-architect-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3009,7 +3009,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/google-professional-cloud-developer-architect-online-training-institute-certification-exam-center"
+                                    href="/google-professional-cloud-developer-architect-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3033,7 +3033,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/google-professional-cloud-network-engineer-online-training-institute-certification-exam-center"
+                                    href="/google-professional-cloud-network-engineer-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3056,7 +3056,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/google-professional-cloud-security-engineer-online-training-institute-certification-exam-center"
+                                    href="/google-professional-cloud-security-engineer-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3081,7 +3081,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/google-professional-cloud-data-engineer-online-training-institute-certification-exam-center"
+                                    href="/google-professional-cloud-data-engineer-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3271,7 +3271,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/devops"
+                                        href="/devops"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All DevOps Courses
@@ -3283,7 +3283,7 @@ export default function Header() {
                                   <h5>Jenkins Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/jenkins-fundamentals"
+                                    href="/jenkins-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3305,7 +3305,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/jenkins-advanced"
+                                    href="/jenkins-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3336,7 +3336,7 @@ export default function Header() {
                                   <h5>Docker Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/docker-essentials"
+                                    href="/docker-essentials"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3358,7 +3358,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/docker-certified-associate"
+                                    href="/docker-certified-associate"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3389,7 +3389,7 @@ export default function Header() {
                                   <h5>Kubernetes Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
+                                    href="/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3411,7 +3411,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
+                                    href="/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3434,7 +3434,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/certified-kubernetes-security-specialist-cks-online-training-institute-certification-exam-center"
+                                    href="/certified-kubernetes-security-specialist-cks-online-training-institute-certification-exam-center"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3466,7 +3466,7 @@ export default function Header() {
                                   <h5>Ansible Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ansible-essentials"
+                                    href="/ansible-essentials"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3489,7 +3489,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ansible-advanced"
+                                    href="/ansible-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3520,7 +3520,7 @@ export default function Header() {
                                   <h5>Terraform Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/terraform-associate"
+                                    href="/terraform-associate"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3542,7 +3542,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/terraform-advanced"
+                                    href="/terraform-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3735,7 +3735,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/programming-databases"
+                                        href="/programming-databases"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Programming &amp; Databases
@@ -3748,7 +3748,7 @@ export default function Header() {
                                   <h5>Python Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/python-fundamentals"
+                                    href="/python-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3770,7 +3770,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/python-advanced"
+                                    href="/python-advanced"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3801,7 +3801,7 @@ export default function Header() {
                                   <h5>Oracle Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/oracle-database-admin"
+                                    href="/oracle-database-admin"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3823,7 +3823,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/oracle-pl-sql"
+                                    href="/oracle-pl-sql"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3854,7 +3854,7 @@ export default function Header() {
                                   <h5>SQL Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/sql-fundamentals"
+                                    href="/sql-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3876,7 +3876,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/advanced-sql"
+                                    href="/advanced-sql"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3907,7 +3907,7 @@ export default function Header() {
                                   <h5>Big Data Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/hadoop-fundamentals"
+                                    href="/hadoop-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -3929,7 +3929,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/spark-developer"
+                                    href="/spark-developer"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4121,7 +4121,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/ai-ml-data"
+                                        href="/ai-ml-data"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All AI, ML &amp; Data Courses
@@ -4133,7 +4133,7 @@ export default function Header() {
                                   <h5>AI Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ai-fundamentals"
+                                    href="/ai-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4155,7 +4155,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/azure-ai-fundamentals"
+                                    href="/azure-ai-fundamentals"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4187,7 +4187,7 @@ export default function Header() {
                                   <h5>Machine Learning Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/aws-ml-specialty"
+                                    href="/aws-ml-specialty"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4210,7 +4210,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/gcp-ml-engineer"
+                                    href="/gcp-ml-engineer"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4242,7 +4242,7 @@ export default function Header() {
                                   <h5>Data Analytics Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/google-data-analytics"
+                                    href="/google-data-analytics"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4264,7 +4264,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/power-bi-data-analyst"
+                                    href="/power-bi-data-analyst"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4296,7 +4296,7 @@ export default function Header() {
                                   <h5>Data Science Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/ibm-data-science"
+                                    href="/ibm-data-science"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4319,7 +4319,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/azure-data-scientist"
+                                    href="/azure-data-scientist"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4512,7 +4512,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/web-digital"
+                                        href="/web-digital"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Web &amp; Digital Courses
@@ -4524,7 +4524,7 @@ export default function Header() {
                                   <h5>Full Stack Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/full-stack-developer"
+                                    href="/full-stack-developer"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4546,7 +4546,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/mean-stack"
+                                    href="/mean-stack"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4577,7 +4577,7 @@ export default function Header() {
                                   <h5>Web Tech Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/html-css-js"
+                                    href="/html-css-js"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4599,7 +4599,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/react-js"
+                                    href="/react-js"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4630,7 +4630,7 @@ export default function Header() {
                                   <h5>Digital Marketing Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/seo-specialist"
+                                    href="/seo-specialist"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4653,7 +4653,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/social-media-marketing"
+                                    href="/social-media-marketing"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4685,7 +4685,7 @@ export default function Header() {
                                   <h5>Graphic Design Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/adobe-illustrator"
+                                    href="/adobe-illustrator"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4709,7 +4709,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/ui-ux-design"
+                                    href="/ui-ux-design"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4902,7 +4902,7 @@ export default function Header() {
                                         </p>
                                       </div>
                                       <a
-                                        href="https://training.webasha.com/corporate-career"
+                                        href="/corporate-career"
                                         className="btn-view text-decoration-none"
                                       >
                                         View All Corporate &amp; Career Programs
@@ -4914,7 +4914,7 @@ export default function Header() {
                                   <h5>Soft Skills Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/communication-skills"
+                                    href="/communication-skills"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4937,7 +4937,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/leadership-training"
+                                    href="/leadership-training"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4968,7 +4968,7 @@ export default function Header() {
                                   <h5>Internships Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/summer-internship"
+                                    href="/summer-internship"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -4990,7 +4990,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/6-months-internship"
+                                    href="/6-months-internship"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -5021,7 +5021,7 @@ export default function Header() {
                                   <h5>Job-Oriented Programs Track</h5>
                                   <hr />
                                   <a
-                                    href="https://training.webasha.com/job-guarantee-program"
+                                    href="/job-guarantee-program"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -5043,7 +5043,7 @@ export default function Header() {
                                     </div>
                                   </a>
                                   <a
-                                    href="https://training.webasha.com/career-development"
+                                    href="/career-development"
                                     className="course-link text-decoration-none"
                                   >
                                     <div className="image-icon">
@@ -5323,7 +5323,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/student-feedback"
+                        href="/student-feedback"
                       >
                         Student Feedback
                       </a>
@@ -5331,7 +5331,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/interview-question"
+                        href="/interview-question"
                       >
                         Interview Questions
                       </a>
@@ -5385,7 +5385,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/about-us"
+                    href="/about-us"
                   >
                     About us
                   </a>
@@ -5401,7 +5401,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/career"
+                    href="/career"
                   >
                     Career
                   </a>
@@ -5409,7 +5409,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/result"
+                    href="/result"
                   >
                     Result
                   </a>
@@ -5417,7 +5417,7 @@ export default function Header() {
                 <li className="dropdown-submenu">
                   <a
                     className="dropdown-item dropdown-toggle"
-                    href="https://training.webasha.com/internship"
+                    href="/internship"
                   >
                     Internship
                   </a>
@@ -5425,7 +5425,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/summer-training-in-pune"
+                        href="/summer-training-in-pune"
                       >
                         Summer Training
                       </a>
@@ -5433,7 +5433,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/winter-training"
+                        href="/winter-training"
                       >
                         Winter Training
                       </a>
@@ -5441,7 +5441,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/6-weeks-internship"
+                        href="/6-weeks-internship"
                       >
                         6 Weeks Internship
                       </a>
@@ -5449,7 +5449,7 @@ export default function Header() {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://training.webasha.com/6-months-internship"
+                        href="/6-months-internship"
                       >
                         6 Months Internship
                       </a>
@@ -5459,7 +5459,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/media"
+                    href="/media"
                   >
                     Media
                   </a>
@@ -5467,7 +5467,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/gallery"
+                    href="/gallery"
                   >
                     Gallery
                   </a>
@@ -5475,7 +5475,7 @@ export default function Header() {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://training.webasha.com/training-video"
+                    href="/training-video"
                   >
                     Training Video
                   </a>
@@ -5673,7 +5673,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/placed-students"
+                      href="/placed-students"
                     >
                       Recently Placed Students
                     </a>
@@ -5702,7 +5702,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/student-feedback"
+                              href="/student-feedback"
                             >
                               Student Feedback
                             </a>
@@ -5710,7 +5710,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/interview-question"
+                              href="/interview-question"
                             >
                               Interview Questions
                             </a>
@@ -5780,7 +5780,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/about-us"
+                      href="/about-us"
                     >
                       About us
                     </a>
@@ -5796,7 +5796,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/career"
+                      href="/career"
                     >
                       Career
                     </a>
@@ -5804,7 +5804,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/result"
+                      href="/result"
                     >
                       Result
                     </a>
@@ -5833,7 +5833,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/summer-training-in-pune"
+                              href="/summer-training-in-pune"
                             >
                               Summer Training
                             </a>
@@ -5841,7 +5841,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/winter-training"
+                              href="/winter-training"
                             >
                               Winter Training
                             </a>
@@ -5849,7 +5849,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/6-weeks-internship"
+                              href="/6-weeks-internship"
                             >
                               6 Weeks Internship
                             </a>
@@ -5857,7 +5857,7 @@ export default function Header() {
                           <li>
                             <a
                               className="dropdown-item"
-                              href="https://training.webasha.com/6-months-internship"
+                              href="/6-months-internship"
                             >
                               6 Months Internship
                             </a>
@@ -5869,7 +5869,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/media"
+                      href="/media"
                     >
                       Media
                     </a>
@@ -5877,7 +5877,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/gallery"
+                      href="/gallery"
                     >
                       Gallery
                     </a>
@@ -5885,7 +5885,7 @@ export default function Header() {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="https://training.webasha.com/training-video"
+                      href="/training-video"
                     >
                       Training Video
                     </a>
@@ -6203,7 +6203,7 @@ export default function Header() {
                                 <h5>Cloud Admin</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6230,7 +6230,7 @@ export default function Header() {
                                 <h5>DevOps Engineer</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6258,7 +6258,7 @@ export default function Header() {
                                 <h5>Cyber Security</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6284,7 +6284,7 @@ export default function Header() {
                                 <h5>Cyber Security with Advance Pen Tester</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6311,7 +6311,7 @@ export default function Header() {
                                 <h5>Data Science with AI/ML</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6340,7 +6340,7 @@ export default function Header() {
                                 <h5>Full Stack with Python</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6372,7 +6372,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -6381,7 +6381,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -6454,7 +6454,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/rhcsa2"
+                                  href="/rhcsa2"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6477,7 +6477,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/redhat-linux-rhcsa-online-training-institute-certification-exam-center"
+                                  href="/redhat-linux-rhcsa-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6500,7 +6500,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/rhce"
+                                  href="/rhce"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6524,7 +6524,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/linux-automation-training-rh294"
+                                  href="/linux-automation-training-rh294"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6547,7 +6547,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-satellite-administration-online-training-institute-certification-exam-center"
+                                  href="/red-hat-satellite-administration-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6569,7 +6569,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/rh436"
+                                  href="/rh436"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6596,7 +6596,7 @@ export default function Header() {
                                 <h5>OpenShift Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                  href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6618,7 +6618,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/openshift"
+                                  href="/openshift"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6641,7 +6641,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-openshift-virtualization"
+                                  href="/red-hat-openshift-virtualization"
                                   className="course-link text-decoration-none"
                                   aria-label="DO316 Managing VMs with OpenShift Virtualization"
                                 >
@@ -6665,7 +6665,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-openshift-virtualization"
+                                  href="/red-hat-openshift-virtualization"
                                   className="course-link text-decoration-none"
                                   aria-label="DO316 Managing VMs with OpenShift Virtualization"
                                 >
@@ -6689,7 +6689,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-openshift-advanced"
+                                  href="/red-hat-openshift-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6713,7 +6713,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-openshift-advanced"
+                                  href="/red-hat-openshift-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6736,7 +6736,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-openshift-advanced"
+                                  href="/red-hat-openshift-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6764,7 +6764,7 @@ export default function Header() {
                                 <h5>Developer Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/red-hat-rhcjd"
+                                  href="/red-hat-rhcjd"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6787,7 +6787,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-rhcemd"
+                                  href="/red-hat-rhcemd"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6812,7 +6812,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                  href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6841,7 +6841,7 @@ export default function Header() {
                                 <h5>Cloud and Virtualization Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/redhat-openstack-cl110-online-training-institute-certification-exam-center"
+                                  href="/redhat-openstack-cl110-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6864,7 +6864,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/open-stack"
+                                  href="/open-stack"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6893,7 +6893,7 @@ export default function Header() {
                                 <h5>Security Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/red-hat-security-linux"
+                                  href="/red-hat-security-linux"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6916,7 +6916,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/red-hat-identity-management"
+                                  href="/red-hat-identity-management"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6939,7 +6939,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/rh442"
+                                  href="/rh442"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6966,7 +6966,7 @@ export default function Header() {
                                 <h5>Architect Level (RHCA)</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -6988,7 +6988,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7010,7 +7010,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/#"
+                                  href="/#"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7041,7 +7041,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -7050,7 +7050,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -7102,7 +7102,7 @@ export default function Header() {
                                 <h5>Ethical Hacking Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ethical-hacking-ceh-cyber-security-training-institute-certification-exam-center"
+                                  href="/ethical-hacking-ceh-cyber-security-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7124,7 +7124,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/certified-ethical-hacker-ceh-practical-online-training-institute-certification-exam-center"
+                                  href="/certified-ethical-hacker-ceh-practical-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7146,7 +7146,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ceh-master-training"
+                                  href="/ceh-master-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7170,7 +7170,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ec-council-certified-security-analyst-ecsa-online-training-institute-certification-exam-center"
+                                  href="/ec-council-certified-security-analyst-ecsa-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7193,7 +7193,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/cpent-training"
+                                  href="/cpent-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7218,7 +7218,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/licensed-penetration-tester-lpt-master-training-institute-certification-exam-center"
+                                  href="/licensed-penetration-tester-lpt-master-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7244,7 +7244,7 @@ export default function Header() {
                                 <h5>Forensics Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/computer-hacking-forensic-investigator-chfi-online-training-institute-certification-exam-center"
+                                  href="/computer-hacking-forensic-investigator-chfi-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7267,7 +7267,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ecih-training"
+                                  href="/ecih-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7294,7 +7294,7 @@ export default function Header() {
                                 <h5>Monitoring Work</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/soc-analyst-training"
+                                  href="/soc-analyst-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7316,7 +7316,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/certified-threat-intelligence-analyst-ctia-online-training-institute-certification-exam-center"
+                                  href="/certified-threat-intelligence-analyst-ctia-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7345,7 +7345,7 @@ export default function Header() {
                                 <h5>Network Defense Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/certified-network-defender-cnd-online-training-institute-certification-exam-center"
+                                  href="/certified-network-defender-cnd-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7371,7 +7371,7 @@ export default function Header() {
                                 <h5>Executive &amp; Management Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/cciso-training"
+                                  href="/cciso-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7398,7 +7398,7 @@ export default function Header() {
                                 <h5>Other Specialists</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/vapt-training"
+                                  href="/vapt-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7421,7 +7421,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/wapt-training"
+                                  href="/wapt-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7444,7 +7444,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/cct-training"
+                                  href="/cct-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7466,7 +7466,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/edrp-training"
+                                  href="/edrp-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7498,7 +7498,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -7507,7 +7507,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -7553,7 +7553,7 @@ export default function Header() {
                                       </p>
                                     </div>
                                     <a
-                                      href="https://training.webasha.com/offsec"
+                                      href="/offsec"
                                       className="btn-view text-decoration-none"
                                     >
                                       View All OffSec Courses
@@ -7565,7 +7565,7 @@ export default function Header() {
                                 <h5>Penetration Testing Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/offsec-oscp"
+                                  href="/offsec-oscp"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7588,7 +7588,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/offsec-osep"
+                                  href="/offsec-osep"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7620,7 +7620,7 @@ export default function Header() {
                                 <h5>Exploit Development Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/offsec-osed"
+                                  href="/offsec-osed"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7650,7 +7650,7 @@ export default function Header() {
                                 <h5>Web Attacks Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/offsec-oswe"
+                                  href="/offsec-oswe"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7679,7 +7679,7 @@ export default function Header() {
                                 <h5>Defensive Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/offsec-osda"
+                                  href="/offsec-osda"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7709,7 +7709,7 @@ export default function Header() {
                                 <h5>Specialized Tracks</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/offsec-osmr"
+                                  href="/offsec-osmr"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7743,7 +7743,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Offsec Tutorial
@@ -7752,7 +7752,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Pentesting? A Beginner's Guide
@@ -7802,7 +7802,7 @@ export default function Header() {
                                 <h5>Enterprise Networking Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ccna"
+                                  href="/ccna"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7824,7 +7824,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ccnp"
+                                  href="/ccnp"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7853,7 +7853,7 @@ export default function Header() {
                                 <h5>Security Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ccnp-security"
+                                  href="/ccnp-security"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7880,7 +7880,7 @@ export default function Header() {
                                 <h5>Collaboration Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ccnp-collaboration"
+                                  href="/ccnp-collaboration"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7907,7 +7907,7 @@ export default function Header() {
                                 <h5>Data Center Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ccnp-data-center"
+                                  href="/ccnp-data-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7934,7 +7934,7 @@ export default function Header() {
                                 <h5>DevNet Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/devnet-associate"
+                                  href="/devnet-associate"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -7967,7 +7967,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -7976,7 +7976,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -8028,7 +8028,7 @@ export default function Header() {
                                 <h5>AWS Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/AWS-training-in-pune"
+                                  href="/AWS-training-in-pune"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8050,7 +8050,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/aws-certified-cloud-practitioner-online-training-institute-certification-exam-center"
+                                  href="/aws-certified-cloud-practitioner-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8074,7 +8074,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/aws-solutions-architect-professional-online-training-institute-certification-exam-center"
+                                  href="/aws-solutions-architect-professional-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8096,7 +8096,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/aws-certified-sysops-administrator-associate-online-training-institute-certification-exam-center"
+                                  href="/aws-certified-sysops-administrator-associate-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8120,7 +8120,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/aws-certified-security-specialty-online-training-institute-certification-exam-center"
+                                  href="/aws-certified-security-specialty-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8146,7 +8146,7 @@ export default function Header() {
                                 <h5>Azure Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/microsoft-azure-fundamentals-online-training-institute-certification-exam-center"
+                                  href="/microsoft-azure-fundamentals-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8168,7 +8168,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/microsoft-azure-administrator-online-training-institute-certification-exam-center"
+                                  href="/microsoft-azure-administrator-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8192,7 +8192,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/microsoft-azure-architect-design-online-training-institute-certification-exam-center"
+                                  href="/microsoft-azure-architect-design-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8214,7 +8214,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/microsoft-azure-architect-technologies-online-training-institute-certification-exam-center"
+                                  href="/microsoft-azure-architect-technologies-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8238,7 +8238,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/microsoft-azure-security-technologies-online-training-institute-certification-exam-center"
+                                  href="/microsoft-azure-security-technologies-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8264,7 +8264,7 @@ export default function Header() {
                                 <h5>Google Cloud Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/google-professional-cloud-architect-online-training-institute-certification-exam-center"
+                                  href="/google-professional-cloud-architect-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8286,7 +8286,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/google-professional-cloud-developer-architect-online-training-institute-certification-exam-center"
+                                  href="/google-professional-cloud-developer-architect-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8310,7 +8310,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/google-professional-cloud-network-engineer-online-training-institute-certification-exam-center"
+                                  href="/google-professional-cloud-network-engineer-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8332,7 +8332,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/google-professional-cloud-security-engineer-online-training-institute-certification-exam-center"
+                                  href="/google-professional-cloud-security-engineer-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8357,7 +8357,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/google-professional-cloud-data-engineer-online-training-institute-certification-exam-center"
+                                  href="/google-professional-cloud-data-engineer-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8388,7 +8388,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -8397,7 +8397,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -8450,7 +8450,7 @@ export default function Header() {
                                 <h5>Jenkins Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/jenkins-fundamentals"
+                                  href="/jenkins-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8472,7 +8472,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/jenkins-advanced"
+                                  href="/jenkins-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8500,7 +8500,7 @@ export default function Header() {
                                 <h5>Docker Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/docker-essentials"
+                                  href="/docker-essentials"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8522,7 +8522,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/docker-certified-associate"
+                                  href="/docker-certified-associate"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8550,7 +8550,7 @@ export default function Header() {
                                 <h5>Kubernetes Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
+                                  href="/certified-kubernetes-administrator-cka-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8572,7 +8572,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/certified-kubernetes-application-developer-ckad-online-training-institute-certification-exam-center"
+                                  href="/certified-kubernetes-application-developer-ckad-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8595,7 +8595,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/certified-kubernetes-security-specialist-cks-online-training-institute-certification-exam-center"
+                                  href="/certified-kubernetes-security-specialist-cks-online-training-institute-certification-exam-center"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8624,7 +8624,7 @@ export default function Header() {
                                 <h5>Ansible Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ansible-essentials"
+                                  href="/ansible-essentials"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8647,7 +8647,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ansible-advanced"
+                                  href="/ansible-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8675,7 +8675,7 @@ export default function Header() {
                                 <h5>Terraform Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/terraform-associate"
+                                  href="/terraform-associate"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8697,7 +8697,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/terraform-advanced"
+                                  href="/terraform-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8731,7 +8731,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -8740,7 +8740,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -8792,7 +8792,7 @@ export default function Header() {
                                 <h5>Python Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/python-fundamentals"
+                                  href="/python-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8814,7 +8814,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/python-advanced"
+                                  href="/python-advanced"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8842,7 +8842,7 @@ export default function Header() {
                                 <h5>Oracle Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/oracle-database-admin"
+                                  href="/oracle-database-admin"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8864,7 +8864,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/oracle-pl-sql"
+                                  href="/oracle-pl-sql"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8892,7 +8892,7 @@ export default function Header() {
                                 <h5>SQL Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/sql-fundamentals"
+                                  href="/sql-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8914,7 +8914,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/advanced-sql"
+                                  href="/advanced-sql"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8942,7 +8942,7 @@ export default function Header() {
                                 <h5>Big Data Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/hadoop-fundamentals"
+                                  href="/hadoop-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8964,7 +8964,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/spark-developer"
+                                  href="/spark-developer"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -8997,7 +8997,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -9006,7 +9006,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -9059,7 +9059,7 @@ export default function Header() {
                                 <h5>AI Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ai-fundamentals"
+                                  href="/ai-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9081,7 +9081,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/azure-ai-fundamentals"
+                                  href="/azure-ai-fundamentals"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9109,7 +9109,7 @@ export default function Header() {
                                 <h5>Machine Learning Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/aws-ml-specialty"
+                                  href="/aws-ml-specialty"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9131,7 +9131,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/gcp-ml-engineer"
+                                  href="/gcp-ml-engineer"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9160,7 +9160,7 @@ export default function Header() {
                                 <h5>Data Analytics Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/google-data-analytics"
+                                  href="/google-data-analytics"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9182,7 +9182,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/power-bi-data-analyst"
+                                  href="/power-bi-data-analyst"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9211,7 +9211,7 @@ export default function Header() {
                                 <h5>Data Science Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/ibm-data-science"
+                                  href="/ibm-data-science"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9233,7 +9233,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/azure-data-scientist"
+                                  href="/azure-data-scientist"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9267,7 +9267,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -9276,7 +9276,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -9329,7 +9329,7 @@ export default function Header() {
                                 <h5>Full Stack Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/full-stack-developer"
+                                  href="/full-stack-developer"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9351,7 +9351,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/mean-stack"
+                                  href="/mean-stack"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9379,7 +9379,7 @@ export default function Header() {
                                 <h5>Web Tech Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/html-css-js"
+                                  href="/html-css-js"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9401,7 +9401,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/react-js"
+                                  href="/react-js"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9429,7 +9429,7 @@ export default function Header() {
                                 <h5>Digital Marketing Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/seo-specialist"
+                                  href="/seo-specialist"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9452,7 +9452,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/social-media-marketing"
+                                  href="/social-media-marketing"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9481,7 +9481,7 @@ export default function Header() {
                                 <h5>Graphic Design Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/adobe-illustrator"
+                                  href="/adobe-illustrator"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9505,7 +9505,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/ui-ux-design"
+                                  href="/ui-ux-design"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9538,7 +9538,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -9547,7 +9547,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's
@@ -9599,7 +9599,7 @@ export default function Header() {
                                 <h5>Soft Skills Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/communication-skills"
+                                  href="/communication-skills"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9622,7 +9622,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/leadership-training"
+                                  href="/leadership-training"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9650,7 +9650,7 @@ export default function Header() {
                                 <h5>Internships Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/summer-internship"
+                                  href="/summer-internship"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9672,7 +9672,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/6-months-internship"
+                                  href="/6-months-internship"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9700,7 +9700,7 @@ export default function Header() {
                                 <h5>Job-Oriented Programs Track</h5>
                                 <hr />
                                 <a
-                                  href="https://training.webasha.com/job-guarantee-program"
+                                  href="/job-guarantee-program"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9722,7 +9722,7 @@ export default function Header() {
                                   </div>
                                 </a>
                                 <a
-                                  href="https://training.webasha.com/career-development"
+                                  href="/career-development"
                                   className="course-link text-decoration-none"
                                 >
                                   <div className="image-icon">
@@ -9756,7 +9756,7 @@ export default function Header() {
                                     <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           Python Tutorial
@@ -9765,7 +9765,7 @@ export default function Header() {
                                       </li>
                                       <li>
                                         <a
-                                          href="https://training.webasha.com/#"
+                                          href="/#"
                                           className="text-decoration-none more-text"
                                         >
                                           What is Cloud Computing? A Beginner's

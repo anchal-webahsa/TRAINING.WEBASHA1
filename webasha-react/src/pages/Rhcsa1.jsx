@@ -1,5 +1,5 @@
 
-
+import React, { useState, useEffect } from "react";
 import BrandsSection from "../components/common/BrandsSection";
 import VideoReviews from "../components/common/VideoReviews";
 import TextReviews from "../components/common/TextReviews";
@@ -22,6 +22,22 @@ import RelatedResources from "../components/redhat/RelatedResources";
 
 
 function Rhcsa() {
+  const [bannerData, setBannerData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/course-banners/rhcsa1/")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        setBannerData(data);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch course banner:", err);
+      });
+  }, []);
+
   return (
 
     <>
@@ -49,7 +65,7 @@ function Rhcsa() {
       
       <meta
         property="og:image"
-        content="https://training.webasha.com/assets/img/course/redhat/rh124.webp"
+        content="/assets/img/course/redhat/rh124.webp"
       />
       <meta
         property="og:image:alt"
@@ -68,7 +84,7 @@ function Rhcsa() {
       />
       <meta
         name="twitter:image"
-        content="https://training.webasha.com/assets/img/course/redhat/rh124.webp"
+        content="/assets/img/course/redhat/rh124.webp"
       />
 
       <section className="banner-course">
@@ -100,7 +116,7 @@ function Rhcsa() {
                     </a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    RH124 v10 Certification Training
+                    {bannerData ? bannerData.breadcrumb_active : "RH124 v10 Certification Training"}
                   </li>
                 </ol>
               </nav>
@@ -109,8 +125,7 @@ function Rhcsa() {
                 {/* Course At-a-Glance */}
                 <section className="at-a-glance text-light">
                   <h1 className="heading-main-1 text-white">
-                    RH124 v10 Certification Training: Essential Linux System
-                    Administration Skills
+                    {bannerData ? bannerData.heading : "RH124 v10 Certification Training: Essential Linux System Administration Skills"}
                   </h1>
                   {/* Review Card */}
                   <div className="banner-review-card">
@@ -127,7 +142,7 @@ function Rhcsa() {
                       >
                         <path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zm-8 0c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3zm0 2c-2.3 0-7 1.2-7 3.5V20h14v-3.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.7 0-1 .1 1.2.8 2 2.1 2 3.4V20h6v-3.5c0-2.3-4.7-3.5-7-3.5z" />
                       </svg>
-                      <span>3,850+ Participants Enrolled</span>
+                      <span>{bannerData ? bannerData.enrolled_count : "3,850+ Participants Enrolled"}</span>
                     </div>
                     {/* Rating Stars */}
                     <ul className="list-unstyled rating-list d-flex align-items-center">
@@ -209,7 +224,7 @@ function Rhcsa() {
                         </svg>
                       </li>
                       <li>
-                        <p className="mb-0">4.9/5 (48,765+ Reviews)</p>
+                        <p className="mb-0">{bannerData ? bannerData.rating_text : "4.9/5 (48,765+ Reviews)"}</p>
                       </li>
                     </ul>
                     {/* Social Ratings */}
@@ -217,48 +232,55 @@ function Rhcsa() {
                       <li className="me-3">
                         <img
                           src="assets/img/icons/google.svg"
-                          alt="Google rating for RH124 v10 training"
+                          alt="Google rating"
                           width={20}
                           height={20}
                           loading="lazy"
                         />{" "}
-                        4.9/5
+                        {bannerData ? bannerData.google_rating : "4.9/5"}
                       </li>
                       <li>
                         <img
                           src="assets/img/icons/facebook.svg"
-                          alt="Facebook rating for RH124 v10 training"
+                          alt="Facebook rating"
                           width={24}
                           height={24}
                           loading="lazy"
                         />{" "}
-                        4.9/5
+                        {bannerData ? bannerData.facebook_rating : "4.9/5"}
                       </li>
                     </ul>
                   </div>
                   {/* Description */}
-                  <p className="text-light mt-4">
-                    Launch your Linux career with{" "}
-                    <strong>RH124 v10 Certification Training</strong> at{" "}
-                    <span className="red-color">WebAsha Technologies</span> in Pune.
-                    This foundational course builds essential Red Hat Enterprise
-                    Linux skills, covering command-line operations, user management,
-                    file permissions, system installation, and basic networking.
-                    Designed for beginners and IT professionals, our 100-hour
-                    program features hands-on labs, expert-led sessions, and
-                    real-world simulations aligned with Red Hat’s RHCSA exam
-                    objectives (EX200). With guidance from certified instructors,
-                    you’ll master Linux administration fundamentals and gain
-                    confidence to pursue the RHCSA certification. Join over 3,850
-                    students who have advanced their careers with our top-rated
-                    training, earning a 4.9/5 from 48,765+ reviews. Flexible weekday
-                    or weekend batches, available online or in-classroom, ensure
-                    accessibility, while the official Red Hat curriculum and
-                    exam-focused practice prepare you for success. Enroll today to
-                    acquire in-demand skills for Linux administration, DevOps, and
-                    cloud computing roles, and earn a globally recognized credential
-                    to stand out in the IT industry.
-                  </p>
+                  {bannerData ? (
+                    <div 
+                      className="text-light mt-4 description-html"
+                      dangerouslySetInnerHTML={{ __html: bannerData.description }}
+                    />
+                  ) : (
+                    <p className="text-light mt-4">
+                      Launch your Linux career with{" "}
+                      <strong>RH124 v10 Certification Training</strong> at{" "}
+                      <span className="red-color">WebAsha Technologies</span> in Pune.
+                      This foundational course builds essential Red Hat Enterprise
+                      Linux skills, covering command-line operations, user management,
+                      file permissions, system installation, and basic networking.
+                      Designed for beginners and IT professionals, our 100-hour
+                      program features hands-on labs, expert-led sessions, and
+                      real-world simulations aligned with Red Hat’s RHCSA exam
+                      objectives (EX200). With guidance from certified instructors,
+                      you’ll master Linux administration fundamentals and gain
+                      confidence to pursue the RHCSA certification. Join over 3,850
+                      students who have advanced their careers with our top-rated
+                      training, earning a 4.9/5 from 48,765+ reviews. Flexible weekday
+                      or weekend batches, available online or in-classroom, ensure
+                      accessibility, while the official Red Hat curriculum and
+                      exam-focused practice prepare you for success. Enroll today to
+                      acquire in-demand skills for Linux administration, DevOps, and
+                      cloud computing roles, and earn a globally recognized credential
+                      to stand out in the IT industry.
+                    </p>
+                  )}
                   {/* Facts Table */}
                   <table className="table table-dark table-bordered facts-table mt-3 mb-0">
                     <tbody>
@@ -267,7 +289,7 @@ function Rhcsa() {
                           Duration:
                         </th>
                         <td className="text-light">
-                          50 Hours (Weekday/Weekend Batches)
+                          {bannerData ? bannerData.detail_duration : "50 Hours (Weekday/Weekend Batches)"}
                         </td>
                       </tr>
                       <tr>
@@ -275,7 +297,7 @@ function Rhcsa() {
                           Mode:
                         </th>
                         <td className="text-light">
-                          Online &amp; Classroom Training
+                          {bannerData ? bannerData.detail_mode : "Online & Classroom Training"}
                         </td>
                       </tr>
                       <tr>
@@ -283,22 +305,23 @@ function Rhcsa() {
                           Certification:
                         </th>
                         <td className="text-light">
-                          Red Hat Certified System Administrator (EX200)
+                          {bannerData ? bannerData.detail_certification : "Red Hat Certified System Administrator (EX200)"}
                         </td>
                       </tr>
                       <tr>
                         <th scope="row" className="fw-semibold text-warning">
                           Institute:
                         </th>
-                        <td className="text-light">WebAsha Technologies, Pune</td>
+                        <td className="text-light">
+                          {bannerData ? bannerData.detail_institute : "WebAsha Technologies, Pune"}
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row" className="fw-semibold text-warning">
                           Includes:
                         </th>
                         <td className="text-light">
-                          Hands-on Labs, Official Red Hat Curriculum, Exam
-                          Simulations
+                          {bannerData ? bannerData.detail_includes : "Hands-on Labs, Official Red Hat Curriculum, Exam Simulations"}
                         </td>
                       </tr>
                     </tbody>
@@ -309,19 +332,31 @@ function Rhcsa() {
                   <a
                     href="https://api.whatsapp.com/send?phone=+91-8010911256&text=Hello%20WebAsha%20Team,%20I%20want%20to%20join%20RH124%20v10%20Training"
                     className="btn-whatsapp text-decoration-none"
-                    aria-label="Contact WebAsha via WhatsApp for RH124 v10 training"
+                    aria-label="Contact WebAsha via WhatsApp"
                   >
                     <i className="fab fa-whatsapp me-2" /> WhatsApp
                   </a>
-                  <a
-                    href="#"
-                    className="btn-phone text-decoration-none"
-                    data-bs-toggle="modal"
-                    data-bs-target="#syllabusModalLabel"
-                    aria-label="Download RH124 v10 course syllabus"
-                  >
-                    <i className="fa fa-download me-2" /> Download Syllabus
-                  </a>
+                  {bannerData && bannerData.pdf_syllabus_link ? (
+                    <a
+                      href={bannerData.pdf_syllabus_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-phone text-decoration-none"
+                      aria-label="Download course syllabus"
+                    >
+                      <i className="fa fa-download me-2" /> Download Syllabus
+                    </a>
+                  ) : (
+                    <a
+                      href="#"
+                      className="btn-phone text-decoration-none"
+                      data-bs-toggle="modal"
+                      data-bs-target="#syllabusModalLabel"
+                      aria-label="Download course syllabus"
+                    >
+                      <i className="fa fa-download me-2" /> Download Syllabus
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -329,28 +364,41 @@ function Rhcsa() {
             <div className="col-lg-4 col-sm-12">
               <div className="ec-council">
                 <div className="video-thumbnail position-relative">
-                  <picture>
-                    <source
-                      srcSet="assets/img/course/redhat/rh124.webp"
-                      type="image/webp"
-                    />
+                  {bannerData && bannerData.video_thumbnail ? (
                     <img
-                      src="assets/img/course/redhat/rh124.jpg"
-                      alt="RH124 v10 course preview thumbnail"
+                      src={bannerData.video_thumbnail}
+                      alt="Course preview thumbnail"
                       width={360}
                       height={220}
                       loading="lazy"
                       decoding="async"
                       className="img-fluid rounded shadow-sm"
+                      style={{ objectFit: 'cover' }}
                     />
-                  </picture>
+                  ) : (
+                    <picture>
+                      <source
+                        srcSet="assets/img/course/redhat/rh124.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="assets/img/course/redhat/rh124.jpg"
+                        alt="Course preview thumbnail fallback"
+                        width={360}
+                        height={220}
+                        loading="lazy"
+                        decoding="async"
+                        className="img-fluid rounded shadow-sm"
+                      />
+                    </picture>
+                  )}
                   <button
                     type="button"
                     className="video-btn position-absolute top-50 start-50 translate-middle"
                     data-bs-toggle="modal"
                     data-bs-target="#videoModal"
-                    data-video-id="ERtp4zua0-s"
-                    aria-label="Watch RH124 v10 course preview video"
+                    data-video-id={bannerData ? bannerData.youtube_video_id : "ERtp4zua0-s"}
+                    aria-label="Watch course preview video"
                   >
                     <svg
                       className="play-icon"
@@ -377,7 +425,7 @@ function Rhcsa() {
                     className="animated-button1 mx-auto d-inline-flex align-items-center"
                     data-bs-toggle="modal"
                     data-bs-target="#enquiryModal"
-                    aria-label="Enroll in RH124 v10 certification training"
+                    aria-label="Enroll in certification training"
                   >
                     <span />
                     <span />
@@ -414,28 +462,28 @@ function Rhcsa() {
                   <div className="item">
                     <img src="assets/imgs/fi-1.png" alt="Professionals Trained" />
                     <div className="content">
-                      <h2>1000+</h2>
+                      <h2>{bannerData ? bannerData.stat_professionals : "1000+"}</h2>
                       <p>Professionals Trained</p>
                     </div>
                   </div>
                   <div className="item">
                     <img src="assets/imgs/fi-2.png" alt="Batches per Month" />
                     <div className="content">
-                      <h2>8+</h2>
+                      <h2>{bannerData ? bannerData.stat_batches : "8+"}</h2>
                       <p>Batches Every Month</p>
                     </div>
                   </div>
                   <div className="item">
                     <img src="assets/imgs/fi-3.png" alt="Countries" />
                     <div className="content">
-                      <h2>20+</h2>
+                      <h2>{bannerData ? bannerData.stat_countries : "20+"}</h2>
                       <p>Countries Served</p>
                     </div>
                   </div>
                   <div className="item">
                     <img src="assets/imgs/fi-4.png" alt="Corporate Clients" />
                     <div className="content">
-                      <h2>1000+</h2>
+                      <h2>{bannerData ? bannerData.stat_clients : "1000+"}</h2>
                       <p>Corporate Clients</p>
                     </div>
                   </div>
