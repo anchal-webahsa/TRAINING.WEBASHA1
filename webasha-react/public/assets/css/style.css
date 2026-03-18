@@ -8,13 +8,13 @@ body {
 html,
 body,
 #root {
-  font-family: "Poppins", "Be Vietnam Pro", "Epilogue", sans-serif !important;
+  font-family: "Jost", "Outfit", "Outfit", sans-serif !important;
   font-weight: 400;
 }
 
 /* Headings – PHP look */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Poppins", "Be Vietnam Pro", "Epilogue", sans-serif;
+  font-family: "Jost", "Outfit", "Outfit", sans-serif;
   font-weight: 600;
 }
 
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 1.875rem; /* 30px */
   font-weight: 600;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 57px;
   margin-bottom: 0;
 }
@@ -91,14 +91,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 1rem; /* 16px - improved for readability */
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 1.5rem;
 }
 
 .description b {
   color: #43484f;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 1.5rem;
 }
 
@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-size: 16px;
   font-weight: 400;
-/*  font-family: 'Be Vietnam Pro'; */
+/*  font-family: 'Outfit'; */
   line-height: 25.6px;
   margin-bottom: 0;
 }
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .header-top .btn {
   font-size: 12px;
   font-weight: 500;
-  font-family: 'Epilogue';
+  font-family: 'Outfit';
   line-height: 19.2px;
   padding: 7px 33px;
   border-radius: 50px;
@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 14px;
   font-weight: 400;
-  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  font-family: 'Outfit'; */ 
   line-height: 22.4px;
 }
 
@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 12px;
   font-weight: 400;
-  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  font-family: 'Outfit'; */ 
   line-height: 19.2px;
 }
 
@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 25.6px;
 }
 
@@ -259,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #7C8493;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 25.6px;
   box-shadow: unset;
 }
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header .navbar .nav-link {
   color: #0d233e;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 25.6px;
@@ -296,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-size: 10px;
   font-weight: 500;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 16px;
   display: flex;
   align-items: center;
@@ -310,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .navbar .btn-signup {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 25.6px;
   padding: 11.3px 35px;
   border-radius: 10px;
@@ -387,7 +387,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #1A1A1A;
   font-size: 70px;
   font-weight: 600;
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   line-height: 105px;
   position: relative;
 }
@@ -407,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 32px;
   font-weight: 500;
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   line-height: 48px;
   letter-spacing: 0.02em;
 }
@@ -431,7 +431,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #787878;
   font-size: 16px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 25.6px;
   margin-bottom: 0;
 }
@@ -458,7 +458,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 18.35px;
   font-weight: 600;
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   line-height: 23.22px;
 }
 
@@ -488,7 +488,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 16px;
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 20.4px;
   margin-bottom: 7px;
 }
@@ -497,7 +497,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 16px;
   font-weight: 400;
-  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  font-family: 'Outfit'; */ 
   line-height: 24px;
   margin-bottom: 5px;
 }
@@ -505,7 +505,7 @@ h1, h2, h3, h4, h5, h6 {
 .banner .content span {
   font-size: 12px;
   font-weight: 600;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 25.2px;
 }
 
@@ -521,7 +521,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 20px;
   font-weight: 500;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 25.3px;
   text-align: center;
   margin-bottom: 20px;
@@ -551,7 +551,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 24px;
   font-weight: 500;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 36px;
   letter-spacing: 0.02em;
 }
@@ -591,7 +591,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 20px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 30px;
   letter-spacing: 0.02em;
 }
@@ -600,7 +600,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 1rem; /* 16px - improved for readability */
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 22.4px;
   padding: 0 15px;
 }
@@ -665,7 +665,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 24px;
   font-weight: 500;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 36px;
   margin-bottom: 0;
 }
@@ -674,7 +674,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 24px;
   display: block;
 }
@@ -697,7 +697,7 @@ h1, h2, h3, h4, h5, h6 {
   /* background: #FFFFFF; */
   border: 1px solid #D2D2D2;
   border-radius: 8px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -735,7 +735,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000000;
   font-size: 24px;
   font-weight: 500;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 40.8px;
 }
 
@@ -743,7 +743,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 1rem; /* 16px */
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 20px;
   display: flex;
   align-items: start;
@@ -758,7 +758,7 @@ h1, h2, h3, h4, h5, h6 {
 .course-categories .card .desc {
   font-size: 16px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   margin-bottom: 0;
 }
 
@@ -778,7 +778,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 40px;
   font-weight: 500;
   line-height: 60px;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 .our-expert-services .our-expert-wraper {
@@ -806,7 +806,7 @@ h1, h2, h3, h4, h5, h6 {
 .our-expert-services .our-expert-wraper .our-expert-card .card-content h3 {
   font-size: 24px;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 38.4px;
   letter-spacing: 0.035em;
   margin-bottom: 0;
@@ -816,7 +816,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #6F6C90;
   font-size: 18px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 30px;
   margin-bottom: 0;
 }
@@ -893,7 +893,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-size: 32px;
   font-weight: 400;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -910,7 +910,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 32px;
   font-weight: 500;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Outfit", sans-serif;
   line-height: 48px;
 }
 
@@ -918,7 +918,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 20px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 32px;
   margin-bottom: 0;
 }
@@ -966,7 +966,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000000;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 24.8px;
   margin-bottom: 0;
 }
@@ -981,7 +981,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000000;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 23.8px;
   margin-bottom: 0;
 }
@@ -1002,7 +1002,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000000;
   font-size: 32px;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 54.4px;
 }
 
@@ -1025,7 +1025,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 27.2px;
 }
 
@@ -1142,14 +1142,14 @@ h1, h2, h3, h4, h5, h6 {
 .career-straight h2 {
   font-size: 40px;
   font-weight: 600;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 60px;
 }
 
 .career-straight .desc {
   font-size: 20px;
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 30px;
   letter-spacing: 0.02em;
 }
@@ -1266,7 +1266,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 21.35px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 34.16px;
   margin: 25px 0;
   height: 200px;
@@ -1282,7 +1282,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 18.68px;
   font-weight: 600;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 18.68px;
   margin-bottom: 0;
 }
@@ -1291,7 +1291,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #505050;
   font-size: 13.34px;
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 20.02px;
   margin-bottom: 0;
 }
@@ -1433,7 +1433,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 18.68px;
   font-weight: 600;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 23.63px;
   margin-bottom: 5px;
 }
@@ -1442,7 +1442,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #505050;
   font-size: 13.34px;
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 20.02px;
   margin-bottom: 15px;
 }
@@ -1451,7 +1451,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 16px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 25.6px;
   margin-bottom: 15px;
 }
@@ -1485,7 +1485,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 62px;
   font-weight: 600;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 62px;
   margin-bottom: 10px;
 }
@@ -1494,7 +1494,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #717171;
   font-size: 24px;
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 26px;
   margin: 0 0 0 0;
 }
@@ -1560,7 +1560,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-size: 36px;
   font-weight: 600;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 43.2px;
   margin-bottom: 30px;
 }
@@ -1569,7 +1569,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-size: 16px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 24px;
   margin-bottom: 30px;
 }
@@ -1633,7 +1633,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 18px;
   font-weight: 600;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   display: inline-block;
   margin-bottom: 15px;
   position: relative;
@@ -1666,7 +1666,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: .875rem; /* 14px - improved for accessibility */
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 1.25rem;
   transition: all 0.3s ease-in-out;
   text-decoration: none;
@@ -1681,7 +1681,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #1e2d3e;
   font-size: 24px;
   font-weight: 600;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 36px;
   letter-spacing: 0.02em;
   margin-bottom: 15px;
@@ -1724,7 +1724,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 1rem; /* 16px - improved for readability */
   font-weight: 500;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 1.5rem;
 }
 
@@ -1736,7 +1736,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #A6A7AB;
   font-size: 14px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 20px;
 }
 
@@ -1744,7 +1744,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 11px 20px;
   font-size: 14px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 20px;
 }
 
@@ -1781,7 +1781,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: .75rem;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 1rem;
   text-decoration: none;
 }
@@ -1789,7 +1789,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #e50914;
   font-size: .75rem;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 1rem;
   text-decoration: none;
 }
@@ -1825,7 +1825,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 16.82px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 25.24px;
   margin-bottom: 0;
 }
@@ -1839,7 +1839,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: .75rem;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 22.4px;
   margin: 25px 0 25px 0;
 }
@@ -1848,7 +1848,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: .875rem; /* 14px - improved for accessibility */
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 16px;
   text-align: end;
   margin-bottom: 0;
@@ -1900,7 +1900,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   font-size: 14px;
   font-weight: 500;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   position: absolute;
   z-index: 1;
 }
@@ -2063,7 +2063,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #E50914;
   font-size: 28px;
   font-weight: 500;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   line-height: 42px;
 }
 
@@ -2071,7 +2071,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #0d233e;
   font-size: 16px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   line-height: 24px;
   letter-spacing: 0.02em;
   height: 73px;
@@ -2143,7 +2143,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .navbar .course-dropdown .dropdown-menu ul > li > button {
   width: 100%;
   background: none;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -2235,7 +2235,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-tabs-row h5 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
@@ -2256,14 +2256,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-link .info .desc1 span {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
 }
 
 .header .navbar .course-dropdown .course-link .info .desc1 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 600;
   font-size: 20px;
   line-height: 150%;
@@ -2272,7 +2272,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-link .info .desc2 {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -2285,7 +2285,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #FF6903;
   border-radius: 45px;
   display: inline-block;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 10px;
   line-height: 150%;
@@ -2294,7 +2294,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .header .navbar .course-dropdown .course-tabs-row .btn-view {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 150%;
@@ -2350,7 +2350,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-learn-more-list h5 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 20px;
   line-height: 120%;
@@ -2364,7 +2364,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-learn-more-list ul li {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -2380,7 +2380,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-dropdown-wraper .course-tabs-container h4 {/* Heading */
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 24px;
   line-height: 150%;
@@ -2416,7 +2416,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5d646d;
   font-size: 18px;
   font-weight: 400;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   display: flex;
   align-items: baseline;
   gap: 8px;
@@ -2451,7 +2451,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .nav-card .info h4 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 26px;
   line-height: 150%;
@@ -2461,7 +2461,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .nav-card .info p {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -2484,7 +2484,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .course-learn-more-title {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
@@ -2512,7 +2512,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .navbar .course-dropdown .flex-wraper .info p {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -2530,7 +2530,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header .navbar .course-dropdown .btn-all-domains {
   margin-bottom: 50px;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
@@ -2589,7 +2589,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .navbar .navbar-nav .dropdown-item {
   border-top: 1px solid rgb(241 244 247);
   color: #0d233e;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 25.6px;
@@ -2642,7 +2642,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 3px;
 }
 .breadcrumb .breadcrumb-item+.breadcrumb-item {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -2657,7 +2657,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .heading-main-1 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 2.938rem;
@@ -2686,7 +2686,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 10px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -2715,7 +2715,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-course .banner-course-content .banner-review-card .rating-list li p {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -2736,7 +2736,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 13px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -2753,7 +2753,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-course .banner-course-content .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -2941,7 +2941,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ec-council p {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -2965,7 +2965,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16.7427px;
@@ -3027,7 +3027,7 @@ img#imagePreview {
   gap: 12px;
 }
 .banner-course-card .banner-course-row .item .content h2 {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 62px;
@@ -3036,7 +3036,7 @@ img#imagePreview {
   margin: 0;
 }
 .banner-course-card .banner-course-row .item .content p {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -3072,7 +3072,7 @@ img#imagePreview {
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 .accredited-by h5 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 600;
   font-size: 18.352px;
@@ -3096,7 +3096,7 @@ img#imagePreview {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -3163,7 +3163,7 @@ img#imagePreview {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -3248,7 +3248,7 @@ img#imagePreview {
 }
 
 .training-features .card-list li h5 {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 150%;
@@ -3287,7 +3287,7 @@ img#imagePreview {
   border-right: 1px solid #FFFFFF;
   border-bottom: 0;
   padding: 10px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
@@ -3303,7 +3303,7 @@ img#imagePreview {
   
 .training-calender .table tr td {
   border-bottom: 1px solid #D9D9D9;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -3315,7 +3315,7 @@ img#imagePreview {
 .training-calender .table tr td .btn-enrollment {
   background: #FFFFFF;
   border-radius: 10px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
@@ -3365,7 +3365,7 @@ img#imagePreview {
 }
   
 .bg-batch .bg-batch-request h4 {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-size: 20px;
   font-weight: 600;
   line-height: 160%;
@@ -3380,7 +3380,7 @@ img#imagePreview {
   height: 48px;
   padding: 0px;
   border-radius: 8px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -3428,7 +3428,7 @@ img#imagePreview {
 }
 
 .course-training-overview .summary-details h5 {
-   /*  font-family: 'Be Vietnam Pro'; */
+   /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 1.125rem;
@@ -3453,7 +3453,7 @@ img#imagePreview {
 }
 
 .course-top-curriculum .sub-heading {
-  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -3480,7 +3480,7 @@ img#imagePreview {
   display: flex;
   align-items: center;
   gap: 10px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -3494,7 +3494,7 @@ img#imagePreview {
 }
 
 .course-top-curriculum .top-curriculum-header .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -3544,7 +3544,7 @@ img#imagePreview {
 }
 
 .accordion-curriculum .accordion .accordion-item .accordion-button .curriculum-number {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -3553,7 +3553,7 @@ img#imagePreview {
 }
 
 .accordion-curriculum .accordion .accordion-item .accordion-button .curriculum-preview {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -3589,7 +3589,7 @@ img#imagePreview {
   justify-content: center;
   width: 238px;
   height: 45px;
-  /*  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -3640,7 +3640,7 @@ img#imagePreview {
   gap: 12px;
 }
 .mode-training-list .mode-training-card .content h4 {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -3676,7 +3676,7 @@ img#imagePreview {
   box-shadow: unset;
   background-color: transparent;
   height: 98px;
-  /*  font-family: 'Be Vietnam Pro'; */ 
+  /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 600;
   font-size: 18.6822px;
@@ -3726,7 +3726,7 @@ img#imagePreview {
   padding: 0 0 120px;
 }
 .course-ceh-group h4 {
-   /*  font-family: 'Be Vietnam Pro'; */
+   /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -3804,7 +3804,7 @@ img#imagePreview {
   border: 1px solid #D9D9D9;
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Jost', sans-serif;
   margin-bottom: 20px;
 }
 
@@ -4014,7 +4014,7 @@ img#imagePreview {
 }
 
 .course-technologies-placement .summary-details h5 {
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -4028,7 +4028,7 @@ img#imagePreview {
 }
 
 .course-our-recent-placement .desc {
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -4052,7 +4052,7 @@ img#imagePreview {
 }
 
 .course-discover-profile .desc {
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -4099,7 +4099,7 @@ img#imagePreview {
 }
 
 .course-discover-profile .card h4 {
-   /*  font-family: 'Be Vietnam Pro'; */
+   /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 18.6822px;
@@ -4109,7 +4109,7 @@ img#imagePreview {
 }
 
 .course-discover-profile .card h5 {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13.3445px;
@@ -4123,7 +4123,7 @@ img#imagePreview {
   height: 29px;
   background: #1FAF38;
   border-radius: 63px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -4132,7 +4132,7 @@ img#imagePreview {
 }
 
 .course-discover-profile .card .card-description {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -4262,7 +4262,7 @@ img#imagePreview {
 }
 
 .course-related-courses .card .card-title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -4292,7 +4292,7 @@ img#imagePreview {
 }
 
 .course-related-courses .card .card-inner-wraper p {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -4315,7 +4315,7 @@ img#imagePreview {
 .course-related-courses .card .button-group a {
   width: 100%;
   height: 44px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-size: 14px;
   font-weight: 400;
   
@@ -4394,7 +4394,7 @@ img#imagePreview {
   gap: 10px;
   border: 1px solid #d7d7d7;
   border-radius: 43px;
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -4426,7 +4426,7 @@ img#imagePreview {
 }
 
 .get-quote .card .card-title {
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
@@ -4435,7 +4435,7 @@ img#imagePreview {
 }
 
 .get-quote .card .card-text {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -4459,7 +4459,7 @@ img#imagePreview {
 }
 
 .form-card .form-title {
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
@@ -4481,7 +4481,7 @@ img#imagePreview {
 }
 
 .form-card form .form-control-item .form-label {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -4497,7 +4497,7 @@ img#imagePreview {
   border: 1px solid #D0D5DD;
   border-radius: 8px;
   box-shadow: unset;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem; /* 16px - improved for accessibility */
@@ -4528,7 +4528,7 @@ img#imagePreview {
 }
 
 .form-card form .form-control-item .form-text {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -4579,7 +4579,7 @@ img#imagePreview {
   justify-content: center;
   gap: 6.8px;
   border-radius: 5px;
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -4688,7 +4688,7 @@ img#imagePreview {
 }
 
 .course-subsciption .course-content-inner form .form-control-content label {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -4710,7 +4710,7 @@ img#imagePreview {
 }
 
 .course-subsciption .course-content-inner form .price .original-price span {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -4719,7 +4719,7 @@ img#imagePreview {
 }
 
 .course-subsciption .course-content-inner form .price .original-price del {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -4734,7 +4734,7 @@ img#imagePreview {
 }
 
 .course-subsciption .course-content-inner form .price .discounted-price {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -4757,7 +4757,7 @@ img#imagePreview {
   padding: 5px 10px;
   background: rgba(255, 8, 0, 0.1);
   border-radius: 63px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -4790,7 +4790,7 @@ img#imagePreview {
 }
 
 .course-subsciption .course-content-inner form .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -4867,7 +4867,7 @@ img#imagePreview {
 }
 
 .course-trainer-profile .course-trainer-profile-content .name {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 700;
   font-size: 17.9914px;
@@ -4876,7 +4876,7 @@ img#imagePreview {
 }
 
 .course-trainer-profile .course-trainer-profile-content .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 11.0132px;
@@ -4886,7 +4886,7 @@ img#imagePreview {
 }
 
 .course-trainer-profile .course-trainer-profile-content .description {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13.9933px;
@@ -5004,7 +5004,7 @@ img#imagePreview {
 }
 
 .sticky-header-list .btn {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-weight: 500;
   font-size: 16px;
   border-radius: 4px;
@@ -5042,7 +5042,7 @@ img#imagePreview {
 }
 
 .banner-course-inner-content .sub-title {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -5052,7 +5052,7 @@ img#imagePreview {
 }
 
 .banner-course-inner-content h1 {
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 74px;
@@ -5062,7 +5062,7 @@ img#imagePreview {
 }
 
 .banner-course-inner-content .desc {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -5086,7 +5086,7 @@ img#imagePreview {
   border-radius: 46px;
   width: 100%;
   padding-left: 55px;
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -5120,7 +5120,7 @@ img#imagePreview {
   background: #E50914;
   border-radius: 25px;
   border: 0;
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -5160,7 +5160,7 @@ img#imagePreview {
 }
 
 .banner-course-inner-card .items .title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
@@ -5169,7 +5169,7 @@ img#imagePreview {
 }
 
 .banner-course-inner-card .items .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -5182,7 +5182,7 @@ img#imagePreview {
 }
 
 .course-we-offer .sub-title {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -5216,7 +5216,7 @@ img#imagePreview {
   height: 38px;
   border-radius: 5px;
   width: 100%;
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -5232,7 +5232,7 @@ img#imagePreview {
 .course-we-offer-content .form-select {
   border: 1px solid #d2d2d2;
   border-radius: 8px;
-  font-family: "Poppins";
+  font-family: "Jost";
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -5258,7 +5258,7 @@ img#imagePreview {
 }
 
 .course-we-offer-content .card .card-title {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -5267,7 +5267,7 @@ img#imagePreview {
 }
 
 .course-we-offer-content .card .card-text {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -5303,7 +5303,7 @@ img#imagePreview {
 }
 
 .heading-main-2 {
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -5341,7 +5341,7 @@ img#imagePreview {
 }
 
 .course-certified-specialist-content .rating-list .desc {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -5403,7 +5403,7 @@ img#imagePreview {
 }
 
 .card-machine .content .title {
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
@@ -5412,7 +5412,7 @@ img#imagePreview {
 }
 
 .card-machine .content .card-text {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -5434,7 +5434,7 @@ img#imagePreview {
   height: 34px;
   background: rgba(255, 8, 0, 0.1);
   border-radius: 6px;
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -5455,7 +5455,7 @@ img#imagePreview {
 }
 
 .card-machine .content .price {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -5475,7 +5475,7 @@ img#imagePreview {
 }
 
 .card-machine .content .product .count {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 21.9602px;
@@ -5512,7 +5512,7 @@ img#imagePreview {
 }
 
 .card-machine .content .discounted-price {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -5521,7 +5521,7 @@ img#imagePreview {
 }
 
 .card-machine .content .discounted-price .original-price {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -5542,7 +5542,7 @@ img#imagePreview {
   background: #E50914;
   border-radius: 53px;
   display: inline-block;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -5551,7 +5551,7 @@ img#imagePreview {
 }
 
 .card-machine .content .price-low {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -5582,7 +5582,7 @@ img#imagePreview {
 }
 
 .card-machine .content .button-group .btn.filling-fast {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 8.18182px;
@@ -5601,7 +5601,7 @@ img#imagePreview {
 }
 
 .course-machine-learning .voucher-details h4 {
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -5617,7 +5617,7 @@ img#imagePreview {
 }
 
 .course-machine-learning .voucher-details ul li {
-  font-family: "Poppins";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 13.9933px;
@@ -5641,7 +5641,7 @@ img#imagePreview {
 }
 
 .course-recommended-training .summary-details h5 {
-  font-family: "Be Vietnam Pro";
+  font-family: "Outfit";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -5678,7 +5678,7 @@ img#imagePreview {
   background: #E50914;
   border-right: 1px solid #FFFFFF;
   border-bottom: 0;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -5694,7 +5694,7 @@ img#imagePreview {
 .learning-schedule-table .table>tbody tr td {
   height: 115px;
   border-bottom: 1px solid #D9D9D9;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -5777,7 +5777,7 @@ img#imagePreview {
   align-items: center;
   justify-content: center;
   gap: 10px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -5804,7 +5804,7 @@ img#imagePreview {
 }
 
 .course-choose-technologies .card .card-title {
-  /*  font-family: 'Be Vietnam Pro'; */
+  /*  font-family: 'Outfit'; */
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -5813,7 +5813,7 @@ img#imagePreview {
 }
 
 .course-choose-technologies .card .card-text {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -5856,7 +5856,7 @@ img#imagePreview {
 }
 
 .choose-check-list .form-check .form-check-label {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -5876,7 +5876,7 @@ img#imagePreview {
 }
 
 .enroll-now-modal .sub-title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -5966,7 +5966,7 @@ img#imagePreview {
   display: flex;
   align-items: center;
   gap: 5px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
@@ -5979,7 +5979,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .card .card-title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -5989,7 +5989,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .bundle-card .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -6002,7 +6002,7 @@ img#imagePreview {
 
 .enroll-now-info .bundle-card .discount-tag {
   background: #E50914;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 8.17391px;
@@ -6035,7 +6035,7 @@ img#imagePreview {
   background: #F8F8F8;
   border: 1px solid #E3E3E3;
   border-radius: 10px;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 500;
   font-size: 10px;
@@ -6066,7 +6066,7 @@ img#imagePreview {
   display: flex;
   align-items: center;
   gap: 5px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6091,7 +6091,7 @@ img#imagePreview {
   background: #FFFFFF;
   border: 1px solid #D0D5DD;
   border-radius: 8px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -6103,7 +6103,7 @@ img#imagePreview {
 .enroll-now-info .promo-card .promo-apply .btn-apply {
   position: absolute;
   right: 6px;
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -6167,7 +6167,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .discounts-card .form-check .form-check-label {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6179,7 +6179,7 @@ img#imagePreview {
   display: flex;
   align-items: center;
   gap: 5px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -6193,7 +6193,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .discounts-card .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6202,7 +6202,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .summery-title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6232,7 +6232,7 @@ img#imagePreview {
   display: flex;
   align-items: center;
   gap: 5px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6270,7 +6270,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .summery-card .content-list span {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -6313,7 +6313,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .summery-card .product .count {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -6334,7 +6334,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .price-list .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -6353,7 +6353,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .price-list .content-title {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -6380,7 +6380,7 @@ img#imagePreview {
   background: #E50914;
   border-radius: 53px;
   display: inline-block;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -6389,7 +6389,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .order-summery-card .price-list .price-rwo .price-low {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6420,7 +6420,7 @@ img#imagePreview {
   background: #FFFFFF;
   border: 1px solid #D0D5DD;
   border-radius: 8px;
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -6445,7 +6445,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .payment-card .desc {
-   font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+   font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -6454,7 +6454,7 @@ img#imagePreview {
 }
 
 .enroll-now-info .payment-card .btn {
-    /*  font-family: 'Be Vietnam Pro'; */ 
+    /*  font-family: 'Outfit'; */ 
   font-style: normal;
   font-weight: 500;
   font-size: 15.9924px;
@@ -6976,7 +6976,7 @@ img#imagePreview {
           transform: translate(0%, 0%);
   overflow: hidden;
   color: #fff;
-  font-family: "Poppins", system-ui, -apple-system, "Be Vietnam Pro", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, "Outfit", sans-serif;
   /* font-size: 20px;
   letter-spacing: 2.5px; */
   text-align: center;

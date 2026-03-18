@@ -478,7 +478,7 @@
     color: #A6A7AB;
     font-size: 12px;
     font-weight: 400;
-    font-family: 'Poppins';
+    font-family: 'Jost';
     line-height: 16px;
     text-align: center;
     margin: 15px 0 0;
@@ -1517,7 +1517,7 @@
     flex-wrap: wrap;
   }
   .category-card-list .info-title {
-    font-family: 'Be Vietnam Pro';
+    font-family: 'Outfit';
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -1768,7 +1768,7 @@
     text-decoration: none;
     gap: 8px;
     color: #515B6F;
-    font-family: 'Poppins';
+    font-family: 'Jost';
     font-size: 14px;
     font-weight: 500;
     line-height: 25.6px;
@@ -1792,7 +1792,7 @@
   .accordion-main-menu .accordion-dropmenu li .dropdown-item {
     border-bottom: 1px solid #ccc;
     color: #515B6F;
-    font-family: "Epilogue", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 25.6px;
@@ -1807,7 +1807,7 @@
   }
   .accordion-main-menu .accordion-item.accordion-subdrop .accordion-button {
     color: #515B6F;
-    font-family: "Epilogue", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 25.6px;
@@ -2080,7 +2080,7 @@
     color: #FFFFFF;
     font-size: 14px;
     font-weight: 500;
-    font-family: 'Be Vietnam Pro';
+    font-family: 'Outfit';
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2255,7 +2255,7 @@
   .career-straight h2 {
     font-size: 36px;
     font-weight: 600;
-    font-family: 'Be Vietnam Pro';
+    font-family: 'Outfit';
     line-height: 60px;
   }
   .career-straight-slider .slick-slide.slick-center {
@@ -3006,7 +3006,7 @@
     color: #5d646d;
     font-size: 13px;
     font-weight: 400;
-    font-family: "Poppins", sans-serif;
+    font-family: "Jost", sans-serif;
     line-height: 1.975rem;
 }
   .header .header-top {
@@ -3517,7 +3517,7 @@
     color: #262626;
     font-size: 18px;
     font-weight: 600;
-    font-family: 'Be Vietnam Pro';
+    font-family: 'Outfit';
     line-height: 36px;
     letter-spacing: 0.02em;
     margin-bottom: 10px;
@@ -3882,7 +3882,7 @@
     margin-bottom: 10px;
   }
   .course-trainer-profile .course-trainer-profile-content .description {
-    font-family: 'Poppins';
+    font-family: 'Jost';
     font-style: normal;
     font-weight: 400;
     font-size: 10.5px;
@@ -3922,7 +3922,7 @@
     color: #FFFFFF;
     font-size: 14px;
     font-weight: 400;
-    font-family: 'Poppins';
+    font-family: 'Jost';
     line-height: 24px;
     margin-bottom: 18px;
   }

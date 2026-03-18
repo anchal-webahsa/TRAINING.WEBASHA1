@@ -372,8 +372,8 @@ function Rhcsa() {
                       height={220}
                       loading="lazy"
                       decoding="async"
-                      className="img-fluid rounded shadow-sm"
-                      style={{ objectFit: 'cover' }}
+                      className="img-fluid rounded shadow-sm w-100"
+                      style={{ height: '220px', objectFit: 'cover' }}
                     />
                   ) : (
                     <picture>
