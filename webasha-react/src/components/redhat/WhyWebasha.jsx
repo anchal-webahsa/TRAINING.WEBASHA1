@@ -61,18 +61,18 @@ const WhyWebasha = () => (
 
       {/* Comparison Table */}
       <div className="table-responsive custom-table mb-4">
-        <table className="table table-bordered align-middle">
-          <thead className="table-light">
+        <table className="table table-bordered align-middle text-muted fw-normal">
+          <thead className="bg-danger text-white">
             <tr>
-              <th scope="col" className="subs-title">Features</th>
-              <th scope="col" className="subs-title">WebAsha Technologies</th>
-              <th scope="col" className="subs-title">Other Institutes</th>
+              <th scope="col" className="subs-title text-white">Features</th>
+              <th scope="col" className="subs-title text-white">WebAsha Technologies</th>
+              <th scope="col" className="subs-title text-white">Other Institutes</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row, i) => (
               <tr key={i}>
-                <td><strong>{row.feature}</strong></td>
+                <td className="fw-medium text-dark">{row.feature}</td>
                 <td>{row.webasha}</td>
                 <td>{row.others}</td>
               </tr>

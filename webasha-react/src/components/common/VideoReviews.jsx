@@ -93,8 +93,8 @@ const VideoReviews = ({
         <div className="course-recent-reviews-slider">
           {videos.map((v, i) => (
             <div className="recent-reviews-items" key={i}>
-              <div className="items-video">
-                <img src={v.img} alt={`review-${i}`} />
+              <div className="items-video shadow overflow-hidden rounded-4">
+                <img src={v.img} alt={`review-${i}`} className="w-100 img-fluid" style={{ objectFit: 'cover', aspectRatio: '16/9' }} />
                 <div className="thumbnail-position">
                   <button
                     type="button"
