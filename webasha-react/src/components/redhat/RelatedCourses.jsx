@@ -17,7 +17,7 @@ const StarIcon = () => (
 // ── Default Fallback ──
 const defaultRedhatCourses = [
     {
-        thumbnail: "assets/img/course/redhat/rh124.webp",
+        thumbnail: "/assets/img/course/redhat/rh124.webp",
         title: "RHCSA I | RH124 | EX200",
         short_description: "Build foundational Linux administration skills with the <strong>Red Hat Certified System Administrator (RHCSA) I</strong> certification, covering essential system management tasks.",
         student_count: "1,500",
@@ -25,7 +25,7 @@ const defaultRedhatCourses = [
         slug: "rhcsa1",
     },
     {
-        thumbnail: "assets/img/course/redhat/rh134.webp",
+        thumbnail: "/assets/img/course/redhat/rh134.webp",
         title: "RHCSA II | RH134 | EX200",
         short_description: "Advance your Linux skills with the <strong>Red Hat Certified System Administrator (RHCSA) II</strong> certification, focusing on automation and enterprise-level administration.",
         student_count: "1,400",
@@ -33,7 +33,7 @@ const defaultRedhatCourses = [
         slug: "rhcsa2",
     },
     {
-        thumbnail: "assets/img/course/redhat/rhcsa.webp",
+        thumbnail: "/assets/img/course/redhat/rhcsa.webp",
         title: "RHCSA | EX200",
         short_description: "Master Linux system administration with the <strong>Red Hat Certified System Administrator (RHCSA)</strong> certification, covering essential skills for managing Red Hat Enterprise Linux environments.",
         student_count: "1,456",
@@ -41,7 +41,7 @@ const defaultRedhatCourses = [
         slug: "redhat-linux-rhcsa-online-training-institute-certification-exam-center",
     },
     {
-        thumbnail: "assets/img/course/redhat/rhce.webp",
+        thumbnail: "/assets/img/course/redhat/rhce.webp",
         title: "RHCE | EX294",
         short_description: "Elevate your expertise with the <strong>Red Hat Certified Engineer (RHCE)</strong> certification, focusing on advanced automation and system management using Ansible.",
         student_count: "1,456",
@@ -52,7 +52,7 @@ const defaultRedhatCourses = [
 
 const defaultHomeCourses = [
     {
-        thumbnail: "assets/img/course/eccouncil/ceh-practical.webp",
+        thumbnail: "/assets/img/course/eccouncil/ceh-practical.webp",
         title: "CEH v13 Practical",
         short_description: "Validate hands-on hacking skills with the <strong>Certified Ethical Hacker (CEH) Practical</strong> certification, focusing on real-world penetration testing scenarios.",
         student_count: "1,800",
@@ -60,7 +60,7 @@ const defaultHomeCourses = [
         slug: "ceh-practical",
     },
     {
-        thumbnail: "assets/img/course/eccouncil/ceh-master.webp",
+        thumbnail: "/assets/img/course/eccouncil/ceh-master.webp",
         title: "CEH v13 Master",
         short_description: "Achieve mastery in ethical hacking with the <strong>CEH v13 Master</strong> certification, combining CEH and Practical for comprehensive cybersecurity expertise.",
         student_count: "1,500",
@@ -68,7 +68,7 @@ const defaultHomeCourses = [
         slug: "ceh-master",
     },
     {
-        thumbnail: "assets/img/course/eccouncil/ecsa.webp",
+        thumbnail: "/assets/img/course/eccouncil/ecsa.webp",
         title: "ECSA v10 | Certified Security Analyst",
         short_description: "Advance your penetration testing skills with the <strong>EC-Council Certified Security Analyst (ECSA) v10</strong> certification, focusing on advanced security analysis techniques.",
         student_count: "1,400",
@@ -76,7 +76,7 @@ const defaultHomeCourses = [
         slug: "ecsa",
     },
     {
-        thumbnail: "assets/img/course/eccouncil/cpent.webp",
+        thumbnail: "/assets/img/course/eccouncil/cpent.webp",
         title: "CPENT | Certified Penetration Testing Professional",
         short_description: "Excel in advanced penetration testing with the <strong>Certified Penetration Testing Professional (CPENT)</strong> certification, focusing on real-world attack scenarios and mitigation.",
         student_count: "1,200",
@@ -87,7 +87,7 @@ const defaultHomeCourses = [
 
 const CourseCard = ({ img, alt, title, desc, students, rating, href }) => {
     // Determine the final image source - handle asset vs server paths
-    const finalImg = img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "assets/img/course/default.webp";
+    const finalImg = img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/course/default.webp";
     
     return (
         <div className="items">
@@ -269,4 +269,4 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
     );
 };
 
-export default RelatedCourses;
+export default RelatedCourses;

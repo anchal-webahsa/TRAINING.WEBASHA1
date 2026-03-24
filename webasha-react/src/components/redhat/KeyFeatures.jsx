@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 // ── Feature cards (left grid) ──
 const features = [
-  { icon: "assets/imgs/training-features-icon-1.png", label: "Post Training Support" },
-  { icon: "assets/imgs/training-features-icon-2.png", label: "Real Time Projects : 2" },
-  { icon: "assets/imgs/training-features-icon-3.png", label: "Certification & Job Assistance" },
-  { icon: "assets/imgs/training-features-icon-4.png", label: "Course Duration : 2 Months" },
-  { icon: "assets/imgs/training-features-icon-5.png", label: "Hands-on Training" },
-  { icon: "assets/imgs/training-features-icon-6.png", label: "Full Day Lab Access" },
+  { icon: "/assets/imgs/training-features-icon-1.png", label: "Post Training Support" },
+  { icon: "/assets/imgs/training-features-icon-2.png", label: "Real Time Projects : 2" },
+  { icon: "/assets/imgs/training-features-icon-3.png", label: "Certification & Job Assistance" },
+  { icon: "/assets/imgs/training-features-icon-4.png", label: "Course Duration : 2 Months" },
+  { icon: "/assets/imgs/training-features-icon-5.png", label: "Hands-on Training" },
+  { icon: "/assets/imgs/training-features-icon-6.png", label: "Full Day Lab Access" },
 ];
 
 // ── Lab images (slider) ──

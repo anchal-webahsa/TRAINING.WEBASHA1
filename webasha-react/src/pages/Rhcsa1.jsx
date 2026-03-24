@@ -97,7 +97,6 @@ function Rhcsa() {
 
       <Rh124Banner bannerData={bannerData} />
       <Rh124StickyHeader />
-
       <section className="our-learners section-header text-center lazy-section">
         <BrandsSection />
       </section>

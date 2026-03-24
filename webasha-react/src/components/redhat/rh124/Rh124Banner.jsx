@@ -146,7 +146,7 @@ const Rh124Banner = ({ bannerData }) => {
                   <ul className="list-unstyled social-list d-flex">
                     <li className="me-3">
                       <img
-                        src="assets/img/icons/google.svg"
+                        src="/assets/img/icons/google.svg"
                         alt="Google rating"
                         width={20}
                         height={20}
@@ -156,7 +156,7 @@ const Rh124Banner = ({ bannerData }) => {
                     </li>
                     <li>
                       <img
-                        src="assets/img/icons/facebook.svg"
+                        src="/assets/img/icons/facebook.svg"
                         alt="Facebook rating"
                         width={24}
                         height={24}
@@ -293,11 +293,11 @@ const Rh124Banner = ({ bannerData }) => {
                 ) : (
                   <picture>
                     <source
-                      srcSet="assets/img/course/redhat/rh124.webp"
+                      srcSet="/assets/img/course/redhat/rh124.webp"
                       type="image/webp"
                     />
                     <img
-                      src="assets/img/course/redhat/rh124.jpg"
+                      src="/assets/img/course/redhat/rh124.jpg"
                       alt="Course preview thumbnail fallback"
                       width={360}
                       height={220}
@@ -359,7 +359,7 @@ const Rh124Banner = ({ bannerData }) => {
                 >
                   <picture>
                     <img
-                      src="assets/img/icons/partner/redhat.webp"
+                      src="/assets/img/icons/partner/redhat.webp"
                       alt="Authorised Training Partner"
                       height={146}
                       width={180}
@@ -375,28 +375,28 @@ const Rh124Banner = ({ bannerData }) => {
             <div className="banner-course-card">
               <div className="banner-course-row">
                 <div className="item">
-                  <img src="assets/imgs/fi-1.png" alt="Professionals Trained" />
+                  <img src="/assets/imgs/fi-1.png" alt="Professionals Trained" />
                   <div className="content">
                     <h2>{bannerData ? bannerData.stat_professionals : "1000+"}</h2>
                     <p>Professionals Trained</p>
                   </div>
                 </div>
                 <div className="item">
-                  <img src="assets/imgs/fi-2.png" alt="Batches per Month" />
+                  <img src="/assets/imgs/fi-2.png" alt="Batches per Month" />
                   <div className="content">
                     <h2>{bannerData ? bannerData.stat_batches : "8+"}</h2>
                     <p>Batches Every Month</p>
                   </div>
                 </div>
                 <div className="item">
-                  <img src="assets/imgs/fi-3.png" alt="Countries" />
+                  <img src="/assets/imgs/fi-3.png" alt="Countries" />
                   <div className="content">
                     <h2>{bannerData ? bannerData.stat_countries : "20+"}</h2>
                     <p>Countries Served</p>
                   </div>
                 </div>
                 <div className="item">
-                  <img src="assets/imgs/fi-4.png" alt="Corporate Clients" />
+                  <img src="/assets/imgs/fi-4.png" alt="Corporate Clients" />
                   <div className="content">
                     <h2>{bannerData ? bannerData.stat_clients : "1000+"}</h2>
                     <p>Corporate Clients</p>

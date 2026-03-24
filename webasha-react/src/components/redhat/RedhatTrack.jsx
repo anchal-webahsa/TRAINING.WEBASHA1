@@ -29,7 +29,7 @@ const RedhatTrack = () => {
             Red Hat Course Training <span className="red-color">Track</span>
           </h2>
           <img
-            src="assets/img/slider/redhat/redhat-track.webp"
+            src="/assets/img/slider/redhat/redhat-track.webp"
             alt="RH124 v10 Course Training Tools Overview"
             width="900"
             height="400"

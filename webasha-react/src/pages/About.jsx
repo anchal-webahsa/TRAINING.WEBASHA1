@@ -111,11 +111,11 @@ export default function About() {
         <div className="col-lg-6">
           <picture>
             <source
-              srcSet="assets/img/about/about-hero.webp"
+              srcSet="/assets/img/about/about-hero.webp"
               type="image/webp"
             />
             <img
-              src="assets/img/about/about-hero.jpg"
+              src="/assets/img/about/about-hero.jpg"
               alt="WebAsha Technologies classroom and lab"
               className="img-fluid rounded shadow-sm"
               loading="lazy"
@@ -188,7 +188,7 @@ export default function About() {
       <div className="row g-3">
         <div className="col-sm-6 col-md-3 text-center">
           <img
-            src="assets/img/team/ceo.webp"
+            src="/assets/img/team/ceo.webp"
             alt="Founder & CEO"
             className="img-fluid rounded-circle mb-2"
             width={120}
@@ -200,7 +200,7 @@ export default function About() {
         </div>
         <div className="col-sm-6 col-md-3 text-center">
           <img
-            src="assets/img/team/lead-trainer.webp"
+            src="/assets/img/team/lead-trainer.webp"
             alt="Lead Trainer"
             className="img-fluid rounded-circle mb-2"
             width={120}
@@ -214,7 +214,7 @@ export default function About() {
         </div>
         <div className="col-sm-6 col-md-3 text-center">
           <img
-            src="assets/img/team/placement-head.webp"
+            src="/assets/img/team/placement-head.webp"
             alt="Placement Head"
             className="img-fluid rounded-circle mb-2"
             width={120}
@@ -226,7 +226,7 @@ export default function About() {
         </div>
         <div className="col-sm-6 col-md-3 text-center">
           <img
-            src="assets/img/team/instructor-security.webp"
+            src="/assets/img/team/instructor-security.webp"
             alt="Security Instructor"
             className="img-fluid rounded-circle mb-2"
             width={120}

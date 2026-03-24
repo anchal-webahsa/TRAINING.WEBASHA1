@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Rh124StickyHeader = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const headerElm = document.querySelector('header.header');
+      const bannerElm = document.querySelector('.banner-course');
+      
+      if (headerElm && bannerElm) {
+        const offset = headerElm.offsetHeight + bannerElm.offsetHeight;
+        setIsSticky(window.scrollY >= offset);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check once on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section className="sticky-main-header1" id="stickyheader">
+    <section className={`sticky-main-header1 ${isSticky ? 'sticky' : ''}`} id="stickyheader">
       <div className="container">
         <div className="sticky-header-list">
           <ul className="list-unstyled mb-0">

@@ -137,7 +137,7 @@ export default function Footer() {
                         <div className="wraper">
                             <div className="footer-logo">
                                 <a href="home" className="d-inline-block text-decoration-none">
-                                    <img src="assets/imgs/footer-logo.png" alt="footer-logo" />
+                                    <img src="/assets/imgs/footer-logo.png" alt="footer-logo" />
                                 </a>
                             </div>
                             <div className="contact-list">
@@ -145,32 +145,32 @@ export default function Footer() {
                                 <ul className="social-list list-unstyled">
                                     <li>
                                         <a href="https://www.facebook.com/WebAshaTech/">
-                                            <img src="assets/imgs/contact-facebook.png" alt="facebook" />
+                                            <img src="/assets/imgs/contact-facebook.png" alt="facebook" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://x.com/ForteWebAsha">
-                                            <img src="assets/imgs/contact-twiter.png" alt="twiter" />
+                                            <img src="/assets/imgs/contact-twiter.png" alt="twiter" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://www.linkedin.com/company/yourcompany">
-                                            <img src="assets/imgs/contact-linkedin.png" alt="linkedin" />
+                                            <img src="/assets/imgs/contact-linkedin.png" alt="linkedin" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://www.pinterest.com/youraccount">
-                                            <img src="assets/imgs/contact-pinterest.png" alt="pinterest" />
+                                            <img src="/assets/imgs/contact-pinterest.png" alt="pinterest" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://wa.me/yourphonenumber">
-                                            <img src="assets/imgs/contact-whatsapp.png" alt="whatsapp" />
+                                            <img src="/assets/imgs/contact-whatsapp.png" alt="whatsapp" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://www.youtube.com/yourchannel">
-                                            <img src="assets/imgs/contact-you-tube.png" alt="you-tube" />
+                                            <img src="/assets/imgs/contact-you-tube.png" alt="you-tube" />
                                         </a>
                                     </li>
                                 </ul>
@@ -255,11 +255,11 @@ export default function Footer() {
                         <div className="contact-list">
                             <h3 className="footer-heading">Secure Payment</h3>
                             <ul className="payment-list list-unstyled">
-                                <li><a href="payment-info#visa"><img src="assets/imgs/visa.png" alt="visa" /></a></li>
-                                <li><a href="payment-info#mastercard"><img src="assets/imgs/mastercard.png" alt="mastercard" /></a></li>
-                                <li><a href="payment-info#paypal"><img src="assets/imgs/paypal.png" alt="paypal" /></a></li>
-                                <li><a href="payment-info#stripe"><img src="assets/imgs/stripe.png" alt="stripe" /></a></li>
-                                <li><a href="payment-info#unionpay"><img src="assets/imgs/unionpay.png" alt="unionpay" /></a></li>
+                                <li><a href="payment-info#visa"><img src="/assets/imgs/visa.png" alt="visa" /></a></li>
+                                <li><a href="payment-info#mastercard"><img src="/assets/imgs/mastercard.png" alt="mastercard" /></a></li>
+                                <li><a href="payment-info#paypal"><img src="/assets/imgs/paypal.png" alt="paypal" /></a></li>
+                                <li><a href="payment-info#stripe"><img src="/assets/imgs/stripe.png" alt="stripe" /></a></li>
+                                <li><a href="payment-info#unionpay"><img src="/assets/imgs/unionpay.png" alt="unionpay" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -329,28 +329,28 @@ export default function Footer() {
                         <div className="country-list">
                             <ul className="list-unstyled">
                                 <li className="d-flex align-items-center gap-2">
-                                    <img src="assets/imgs/flag-india.png" alt="India flag" width={22} />
+                                    <img src="/assets/imgs/flag-india.png" alt="India flag" width={22} />
                                     <p className="mb-0">
                                         <span>IND:</span>
                                         <a href="tel:+918010911256" className="text-decoration-none text-muted">+91 (8010) 911-256</a>
                                     </p>
                                 </li>
                                 <li className="d-flex align-items-center gap-2">
-                                    <img src="assets/imgs/flag-india.png" alt="India flag" width={22} />
+                                    <img src="/assets/imgs/flag-india.png" alt="India flag" width={22} />
                                     <p className="mb-0">
                                         <span>IND:</span>
                                         <a href="tel:+918488584790" className="text-decoration-none text-muted">+91 (8488) 584-790</a>
                                     </p>
                                 </li>
                                 <li className="d-flex align-items-center gap-2">
-                                    <img src="assets/imgs/flag-india.png" alt="India flag" width={22} />
+                                    <img src="/assets/imgs/flag-india.png" alt="India flag" width={22} />
                                     <p className="mb-0">
                                         <span>IND:</span>
                                         <a href="tel:+918488584627" className="text-decoration-none text-muted">+91 (8488) 584-627</a>
                                     </p>
                                 </li>
                                 <li className="d-flex align-items-center gap-2">
-                                    <img src="assets/imgs/flag-usa.png" alt="USA flag" width={22} />
+                                    <img src="/assets/imgs/flag-usa.png" alt="USA flag" width={22} />
                                     <p className="mb-0">
                                         <span>USA:</span>
                                         <a href="tel:+19292439565" className="text-decoration-none text-muted">+1 (929) 243-9565</a>

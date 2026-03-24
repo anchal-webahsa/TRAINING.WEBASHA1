@@ -24,7 +24,7 @@ const CourseSidebar2 = ({
 
     // Fallbacks
     const title = offer ? offer.title : "Discounted Certification Exam Voucher";
-    const image = offer ? offer.image : "assets/imgs/course-subsciption-1.png";
+    const image = offer ? offer.image : "/assets/imgs/course-subsciption-1.png";
     const num = offer ? offer.whatsapp_number.replace(/[^\w\s-]/gi, '') : defaultNum.replace(/[^\w\s-]/gi, ''); // remove special characters simply for the URL, though api format usually handles it
     const cleanNum = offer ? offer.whatsapp_number : defaultNum;
     const msg = offer ? encodeURIComponent(offer.whatsapp_message) : defaultMsg;

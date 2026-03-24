@@ -4,16 +4,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const fallBackItems = [
-  { logo: "assets/imgs/career-straight-logo-1.png", phone: "assets/img/feedback.png", id: "fb1" },
-  { logo: "assets/imgs/career-straight-logo-2.png", phone: "assets/img/feedback.png", id: "fb2" },
-  { logo: "assets/imgs/career-straight-logo-3.png", phone: "assets/img/feedback.png", id: "fb3" },
-  { logo: "assets/imgs/career-straight-logo-4.png", phone: "assets/img/feedback.png", id: "fb4" },
-  { logo: "assets/imgs/career-straight-logo-5.png", phone: "assets/img/feedback.png", id: "fb5" },
-  { logo: "assets/imgs/career-straight-logo-1.png", phone: "assets/img/feedback.png", id: "fb6" },
-  { logo: "assets/imgs/career-straight-logo-2.png", phone: "assets/img/feedback.png", id: "fb7" },
-  { logo: "assets/imgs/career-straight-logo-3.png", phone: "assets/img/feedback.png", id: "fb8" },
-  { logo: "assets/imgs/career-straight-logo-4.png", phone: "assets/img/feedback.png", id: "fb9" },
-  { logo: "assets/imgs/career-straight-logo-5.png", phone: "assets/img/feedback.png", id: "fb10" },
+  { logo: "/assets/imgs/career-straight-logo-1.png", phone: "/assets/img/feedback.png", id: "fb1" },
+  { logo: "/assets/imgs/career-straight-logo-2.png", phone: "/assets/img/feedback.png", id: "fb2" },
+  { logo: "/assets/imgs/career-straight-logo-3.png", phone: "/assets/img/feedback.png", id: "fb3" },
+  { logo: "/assets/imgs/career-straight-logo-4.png", phone: "/assets/img/feedback.png", id: "fb4" },
+  { logo: "/assets/imgs/career-straight-logo-5.png", phone: "/assets/img/feedback.png", id: "fb5" },
+  { logo: "/assets/imgs/career-straight-logo-1.png", phone: "/assets/img/feedback.png", id: "fb6" },
+  { logo: "/assets/imgs/career-straight-logo-2.png", phone: "/assets/img/feedback.png", id: "fb7" },
+  { logo: "/assets/imgs/career-straight-logo-3.png", phone: "/assets/img/feedback.png", id: "fb8" },
+  { logo: "/assets/imgs/career-straight-logo-4.png", phone: "/assets/img/feedback.png", id: "fb9" },
+  { logo: "/assets/imgs/career-straight-logo-5.png", phone: "/assets/img/feedback.png", id: "fb10" },
 ];
 
 const CareerStraight = () => {

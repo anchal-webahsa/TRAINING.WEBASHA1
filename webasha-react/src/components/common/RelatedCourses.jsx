@@ -8,7 +8,7 @@ const defaultCourses = [
   {
     title: "RHCSA Training",
     short_description: "Master Red Hat Enterprise Linux administration.",
-    thumbnail: "assets/img/course/rhcsa.webp",
+    thumbnail: "/assets/img/course/rhcsa.webp",
     student_count: "5,000+",
     rating: "4.9",
     slug: "rhcsa"
@@ -16,7 +16,7 @@ const defaultCourses = [
   {
     title: "AWS Certified Solutions Architect",
     short_description: "Learn cloud computing with AWS.",
-    thumbnail: "assets/img/course/aws.webp",
+    thumbnail: "/assets/img/course/aws.webp",
     student_count: "3,500+",
     rating: "4.8",
     slug: "aws"
@@ -24,7 +24,7 @@ const defaultCourses = [
   {
     title: "Ethical Hacking (CEH v13)",
     short_description: "Master the art of ethical hacking.",
-    thumbnail: "assets/img/course/ceh.webp",
+    thumbnail: "/assets/img/course/ceh.webp",
     student_count: "4,200+",
     rating: "4.9",
     slug: "ceh-v13"
@@ -32,7 +32,7 @@ const defaultCourses = [
   {
     title: "DevOps Course",
     short_description: "Bridge the gap between dev and ops.",
-    thumbnail: "assets/img/course/devops.webp",
+    thumbnail: "/assets/img/course/devops.webp",
     student_count: "2,800+",
     rating: "4.7",
     slug: "devops"
@@ -132,7 +132,7 @@ const RelatedCourses = ({ identifier = "related_courses" }) => {
                   {/* Image — */}
                   <div className="image-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                     <img
-                      src={course.thumbnail ? (course.thumbnail.startsWith('http') || course.thumbnail.startsWith('assets') ? course.thumbnail : `${MEDIA_BASE_URL}${course.thumbnail}`) : "assets/img/course/default.webp"}
+                      src={course.thumbnail ? (course.thumbnail.startsWith('http') || course.thumbnail.startsWith('assets') ? course.thumbnail : `${MEDIA_BASE_URL}${course.thumbnail}`) : "/assets/img/course/default.webp"}
                       className="card-img-top w-100 h-100"
                       style={{ objectFit: 'cover' }}
                       alt={course.title}

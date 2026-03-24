@@ -23,7 +23,7 @@ export default function Header() {
             <div className="container">
               {/* Displaying the logo as the navbar brand */}
               <a className="navbar-brand" href="/">
-                <img src="assets/imgs/logo.png" width={198} height={49} alt="logo" />
+                <img src="/assets/imgs/logo.png" width={198} height={49} alt="logo" />
               </a>
               {/* Grouping course dropdown and search bar for flexible layout */}
               <div className="d-flex course-dropdown order-sm-0 order-1">
@@ -272,7 +272,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/job.webp"
+                                              src="/assets/img/icons/job.webp"
                                               alt="Job Oriented Course"
                                             />
                                           </div>
@@ -308,7 +308,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cloud.webp"
+                                              src="/assets/img/icons/cloud.webp"
                                               alt="cloud"
                                             />
                                           </div>
@@ -339,7 +339,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/devops.webp"
+                                              src="/assets/img/icons/devops.webp"
                                               alt="devops"
                                             />
                                           </div>
@@ -371,7 +371,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cybersecurity.webp"
+                                              src="/assets/img/icons/cybersecurity.webp"
                                               alt="cybersecurity"
                                             />
                                           </div>
@@ -403,7 +403,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cybersecurity.webp"
+                                              src="/assets/img/icons/cybersecurity.webp"
                                               alt="cybersecurity"
                                             />
                                           </div>
@@ -434,7 +434,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/data-science.webp"
+                                              src="/assets/img/icons/data-science.webp"
                                               alt="data science"
                                             />
                                           </div>
@@ -467,7 +467,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/full-stack.webp"
+                                              src="/assets/img/icons/full-stack.webp"
                                               alt="full stack"
                                             />
                                           </div>
@@ -501,7 +501,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -513,7 +513,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -525,7 +525,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -537,7 +537,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -549,7 +549,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -561,7 +561,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -573,7 +573,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -585,7 +585,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -597,7 +597,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -609,7 +609,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -621,7 +621,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -651,7 +651,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -685,7 +685,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -707,7 +707,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -730,7 +730,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -753,7 +753,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -777,7 +777,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -800,7 +800,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -821,7 +821,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -848,7 +848,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -870,7 +870,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -894,7 +894,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -917,7 +917,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -939,7 +939,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -962,7 +962,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -984,7 +984,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1012,7 +1012,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1035,7 +1035,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1057,7 +1057,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1084,7 +1084,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1107,7 +1107,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1134,7 +1134,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1157,7 +1157,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1180,7 +1180,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1207,7 +1207,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1228,7 +1228,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1249,7 +1249,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/redhat.webp"
+                                              src="/assets/img/icons/redhat.webp"
                                               alt="red hat"
                                             />
                                           </div>
@@ -1278,7 +1278,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -1290,7 +1290,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -1302,7 +1302,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -1314,7 +1314,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -1326,7 +1326,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -1338,7 +1338,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -1350,7 +1350,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -1362,7 +1362,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -1374,7 +1374,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -1386,7 +1386,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -1398,7 +1398,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -1428,7 +1428,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1464,7 +1464,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1486,7 +1486,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1507,7 +1507,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1531,7 +1531,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1553,7 +1553,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1578,7 +1578,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1604,7 +1604,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1627,7 +1627,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1651,7 +1651,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1673,7 +1673,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1700,7 +1700,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1726,7 +1726,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1754,7 +1754,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1776,7 +1776,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1799,7 +1799,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1820,7 +1820,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ec.webp"
+                                              src="/assets/img/icons/ec.webp"
                                               alt="EC-Council"
                                             />
                                           </div>
@@ -1850,7 +1850,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -1862,7 +1862,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -1874,7 +1874,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -1886,7 +1886,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -1898,7 +1898,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -1910,7 +1910,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -1922,7 +1922,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -1934,7 +1934,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -1946,7 +1946,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -1958,7 +1958,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -1970,7 +1970,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -2000,7 +2000,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="OffSec"
                                             />
                                           </div>
@@ -2035,7 +2035,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2058,7 +2058,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2091,7 +2091,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2122,7 +2122,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2152,7 +2152,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2183,7 +2183,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/offsec.webp"
+                                              src="/assets/img/icons/offsec.webp"
                                               alt="Offsec"
                                             />
                                           </div>
@@ -2217,7 +2217,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -2229,7 +2229,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -2241,7 +2241,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -2253,7 +2253,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -2265,7 +2265,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -2277,7 +2277,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -2289,7 +2289,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -2301,7 +2301,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -2313,7 +2313,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -2325,7 +2325,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -2337,7 +2337,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -2367,7 +2367,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="CISCO"
                                             />
                                           </div>
@@ -2401,7 +2401,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2423,7 +2423,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2453,7 +2453,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2481,7 +2481,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2508,7 +2508,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2535,7 +2535,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/cisco.webp"
+                                              src="/assets/img/icons/cisco.webp"
                                               alt="cisco"
                                             />
                                           </div>
@@ -2564,7 +2564,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -2576,7 +2576,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -2588,7 +2588,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -2600,7 +2600,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -2612,7 +2612,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -2624,7 +2624,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -2636,7 +2636,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -2648,7 +2648,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -2660,7 +2660,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -2672,7 +2672,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -2684,7 +2684,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -2714,7 +2714,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/cloud.webp"
+                                              src="/assets/img/icons/cloud.webp"
                                               alt="Cloud"
                                             />
                                           </div>
@@ -2749,7 +2749,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/aws.webp"
+                                              src="/assets/img/icons/aws.webp"
                                               alt="aws"
                                             />
                                           </div>
@@ -2771,7 +2771,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/aws.webp"
+                                              src="/assets/img/icons/aws.webp"
                                               alt="aws"
                                             />
                                           </div>
@@ -2795,7 +2795,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/aws.webp"
+                                              src="/assets/img/icons/aws.webp"
                                               alt="aws"
                                             />
                                           </div>
@@ -2817,7 +2817,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/aws.webp"
+                                              src="/assets/img/icons/aws.webp"
                                               alt="aws"
                                             />
                                           </div>
@@ -2841,7 +2841,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/aws.webp"
+                                              src="/assets/img/icons/aws.webp"
                                               alt="aws"
                                             />
                                           </div>
@@ -2870,7 +2870,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/azure.webp"
+                                              src="/assets/img/icons/azure.webp"
                                               alt="azure"
                                             />
                                           </div>
@@ -2892,7 +2892,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/azure.webp"
+                                              src="/assets/img/icons/azure.webp"
                                               alt="azure"
                                             />
                                           </div>
@@ -2916,7 +2916,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/azure.webp"
+                                              src="/assets/img/icons/azure.webp"
                                               alt="azure"
                                             />
                                           </div>
@@ -2938,7 +2938,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/azure.webp"
+                                              src="/assets/img/icons/azure.webp"
                                               alt="azure"
                                             />
                                           </div>
@@ -2962,7 +2962,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/azure.webp"
+                                              src="/assets/img/icons/azure.webp"
                                               alt="azure"
                                             />
                                           </div>
@@ -2991,7 +2991,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/google.webp"
+                                              src="/assets/img/icons/google.webp"
                                               alt="google cloud"
                                             />
                                           </div>
@@ -3013,7 +3013,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/google.webp"
+                                              src="/assets/img/icons/google.webp"
                                               alt="google cloud"
                                             />
                                           </div>
@@ -3037,7 +3037,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/google.webp"
+                                              src="/assets/img/icons/google.webp"
                                               alt="google cloud"
                                             />
                                           </div>
@@ -3060,7 +3060,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/google.webp"
+                                              src="/assets/img/icons/google.webp"
                                               alt="google cloud"
                                             />
                                           </div>
@@ -3085,7 +3085,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/google.webp"
+                                              src="/assets/img/icons/google.webp"
                                               alt="google cloud"
                                             />
                                           </div>
@@ -3116,7 +3116,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -3127,7 +3127,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -3138,7 +3138,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -3149,7 +3149,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -3160,7 +3160,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -3171,7 +3171,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -3182,7 +3182,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -3193,7 +3193,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -3204,7 +3204,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -3215,7 +3215,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -3226,7 +3226,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -3252,7 +3252,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/devops.webp"
+                                              src="/assets/img/icons/devops.webp"
                                               alt="DevOps"
                                             />
                                           </div>
@@ -3287,7 +3287,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/jenkins.webp"
+                                              src="/assets/img/icons/jenkins.webp"
                                               alt="jenkins"
                                             />
                                           </div>
@@ -3309,7 +3309,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/jenkins.webp"
+                                              src="/assets/img/icons/jenkins.webp"
                                               alt="jenkins"
                                             />
                                           </div>
@@ -3340,7 +3340,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/docker.webp"
+                                              src="/assets/img/icons/docker.webp"
                                               alt="docker"
                                             />
                                           </div>
@@ -3362,7 +3362,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/docker.webp"
+                                              src="/assets/img/icons/docker.webp"
                                               alt="docker"
                                             />
                                           </div>
@@ -3393,7 +3393,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/kubernetes.webp"
+                                              src="/assets/img/icons/kubernetes.webp"
                                               alt="kubernetes"
                                             />
                                           </div>
@@ -3415,7 +3415,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/kubernetes.webp"
+                                              src="/assets/img/icons/kubernetes.webp"
                                               alt="kubernetes"
                                             />
                                           </div>
@@ -3438,7 +3438,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/kubernetes.webp"
+                                              src="/assets/img/icons/kubernetes.webp"
                                               alt="kubernetes"
                                             />
                                           </div>
@@ -3470,7 +3470,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ansible.webp"
+                                              src="/assets/img/icons/ansible.webp"
                                               alt="ansible"
                                             />
                                           </div>
@@ -3493,7 +3493,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ansible.webp"
+                                              src="/assets/img/icons/ansible.webp"
                                               alt="ansible"
                                             />
                                           </div>
@@ -3524,7 +3524,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/terraform.webp"
+                                              src="/assets/img/icons/terraform.webp"
                                               alt="terraform"
                                             />
                                           </div>
@@ -3546,7 +3546,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/terraform.webp"
+                                              src="/assets/img/icons/terraform.webp"
                                               alt="terraform"
                                             />
                                           </div>
@@ -3580,7 +3580,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -3591,7 +3591,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -3602,7 +3602,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -3613,7 +3613,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -3624,7 +3624,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -3635,7 +3635,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -3646,7 +3646,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -3657,7 +3657,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -3668,7 +3668,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -3679,7 +3679,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -3690,7 +3690,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -3716,7 +3716,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/programming.webp"
+                                              src="/assets/img/icons/programming.webp"
                                               alt="Programming"
                                             />
                                           </div>
@@ -3752,7 +3752,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/python.webp"
+                                              src="/assets/img/icons/python.webp"
                                               alt="python"
                                             />
                                           </div>
@@ -3774,7 +3774,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/python.webp"
+                                              src="/assets/img/icons/python.webp"
                                               alt="python"
                                             />
                                           </div>
@@ -3805,7 +3805,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/oracle.webp"
+                                              src="/assets/img/icons/oracle.webp"
                                               alt="oracle"
                                             />
                                           </div>
@@ -3827,7 +3827,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/oracle.webp"
+                                              src="/assets/img/icons/oracle.webp"
                                               alt="oracle"
                                             />
                                           </div>
@@ -3858,7 +3858,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/sql.webp"
+                                              src="/assets/img/icons/sql.webp"
                                               alt="sql"
                                             />
                                           </div>
@@ -3880,7 +3880,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/sql.webp"
+                                              src="/assets/img/icons/sql.webp"
                                               alt="sql"
                                             />
                                           </div>
@@ -3911,7 +3911,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/big-data.webp"
+                                              src="/assets/img/icons/big-data.webp"
                                               alt="big data"
                                             />
                                           </div>
@@ -3933,7 +3933,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/big-data.webp"
+                                              src="/assets/img/icons/big-data.webp"
                                               alt="big data"
                                             />
                                           </div>
@@ -3966,7 +3966,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -3977,7 +3977,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -3988,7 +3988,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -3999,7 +3999,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -4010,7 +4010,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -4021,7 +4021,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -4032,7 +4032,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -4043,7 +4043,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -4054,7 +4054,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -4065,7 +4065,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -4076,7 +4076,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -4102,7 +4102,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/ai-ml.webp"
+                                              src="/assets/img/icons/ai-ml.webp"
                                               alt="AI ML"
                                             />
                                           </div>
@@ -4137,7 +4137,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ai.webp"
+                                              src="/assets/img/icons/ai.webp"
                                               alt="ai"
                                             />
                                           </div>
@@ -4159,7 +4159,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ai.webp"
+                                              src="/assets/img/icons/ai.webp"
                                               alt="ai"
                                             />
                                           </div>
@@ -4191,7 +4191,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ml.webp"
+                                              src="/assets/img/icons/ml.webp"
                                               alt="ml"
                                             />
                                           </div>
@@ -4214,7 +4214,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/ml.webp"
+                                              src="/assets/img/icons/ml.webp"
                                               alt="ml"
                                             />
                                           </div>
@@ -4246,7 +4246,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/data-analytics.webp"
+                                              src="/assets/img/icons/data-analytics.webp"
                                               alt="data analytics"
                                             />
                                           </div>
@@ -4268,7 +4268,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/data-analytics.webp"
+                                              src="/assets/img/icons/data-analytics.webp"
                                               alt="data analytics"
                                             />
                                           </div>
@@ -4300,7 +4300,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/data-science.webp"
+                                              src="/assets/img/icons/data-science.webp"
                                               alt="data science"
                                             />
                                           </div>
@@ -4323,7 +4323,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/data-science.webp"
+                                              src="/assets/img/icons/data-science.webp"
                                               alt="data science"
                                             />
                                           </div>
@@ -4357,7 +4357,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -4368,7 +4368,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -4379,7 +4379,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -4390,7 +4390,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -4401,7 +4401,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -4412,7 +4412,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -4423,7 +4423,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -4434,7 +4434,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -4445,7 +4445,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -4456,7 +4456,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -4467,7 +4467,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -4493,7 +4493,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/web-digital.webp"
+                                              src="/assets/img/icons/web-digital.webp"
                                               alt="Web Digital"
                                             />
                                           </div>
@@ -4528,7 +4528,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/full-stack.webp"
+                                              src="/assets/img/icons/full-stack.webp"
                                               alt="full stack"
                                             />
                                           </div>
@@ -4550,7 +4550,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/full-stack.webp"
+                                              src="/assets/img/icons/full-stack.webp"
                                               alt="full stack"
                                             />
                                           </div>
@@ -4581,7 +4581,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/web-tech.webp"
+                                              src="/assets/img/icons/web-tech.webp"
                                               alt="web tech"
                                             />
                                           </div>
@@ -4603,7 +4603,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/web-tech.webp"
+                                              src="/assets/img/icons/web-tech.webp"
                                               alt="web tech"
                                             />
                                           </div>
@@ -4634,7 +4634,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/digital-marketing.webp"
+                                              src="/assets/img/icons/digital-marketing.webp"
                                               alt="digital marketing"
                                             />
                                           </div>
@@ -4657,7 +4657,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/digital-marketing.webp"
+                                              src="/assets/img/icons/digital-marketing.webp"
                                               alt="digital marketing"
                                             />
                                           </div>
@@ -4689,7 +4689,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/graphic-design.webp"
+                                              src="/assets/img/icons/graphic-design.webp"
                                               alt="graphic design"
                                             />
                                           </div>
@@ -4713,7 +4713,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/graphic-design.webp"
+                                              src="/assets/img/icons/graphic-design.webp"
                                               alt="graphic design"
                                             />
                                           </div>
@@ -4747,7 +4747,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -4758,7 +4758,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -4769,7 +4769,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -4780,7 +4780,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -4791,7 +4791,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -4802,7 +4802,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -4813,7 +4813,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -4824,7 +4824,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -4835,7 +4835,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -4846,7 +4846,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -4857,7 +4857,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -4883,7 +4883,7 @@ export default function Header() {
                                         <div className="nav-card">
                                           <div className="icon-img">
                                             <img
-                                              src="assets/img/icons/corporate-career.webp"
+                                              src="/assets/img/icons/corporate-career.webp"
                                               alt="Corporate Career"
                                             />
                                           </div>
@@ -4918,7 +4918,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/soft-skills.webp"
+                                              src="/assets/img/icons/soft-skills.webp"
                                               alt="soft skills"
                                             />
                                           </div>
@@ -4941,7 +4941,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/soft-skills.webp"
+                                              src="/assets/img/icons/soft-skills.webp"
                                               alt="soft skills"
                                             />
                                           </div>
@@ -4972,7 +4972,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/internship.webp"
+                                              src="/assets/img/icons/internship.webp"
                                               alt="internship"
                                             />
                                           </div>
@@ -4994,7 +4994,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/internship.webp"
+                                              src="/assets/img/icons/internship.webp"
                                               alt="internship"
                                             />
                                           </div>
@@ -5025,7 +5025,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/job-oriented.webp"
+                                              src="/assets/img/icons/job-oriented.webp"
                                               alt="job oriented"
                                             />
                                           </div>
@@ -5047,7 +5047,7 @@ export default function Header() {
                                         >
                                           <div className="image-icon">
                                             <img
-                                              src="assets/img/icons/job-oriented.webp"
+                                              src="/assets/img/icons/job-oriented.webp"
                                               alt="job oriented"
                                             />
                                           </div>
@@ -5081,7 +5081,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/redhat.webp"
+                                                src="/assets/img/icons/redhat.webp"
                                                 alt="Red Hat"
                                               />
                                             </div>
@@ -5092,7 +5092,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/ec.webp"
+                                                src="/assets/img/icons/ec.webp"
                                                 alt="EC-Council"
                                               />
                                             </div>
@@ -5103,7 +5103,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/offsec.webp"
+                                                src="/assets/img/icons/offsec.webp"
                                                 alt="OffSec"
                                               />
                                             </div>
@@ -5114,7 +5114,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/aws.webp"
+                                                src="/assets/img/icons/aws.webp"
                                                 alt="aws"
                                               />
                                             </div>
@@ -5125,7 +5125,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/azure.webp"
+                                                src="/assets/img/icons/azure.webp"
                                                 alt="Azure"
                                               />
                                             </div>
@@ -5136,7 +5136,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/google.webp"
+                                                src="/assets/img/icons/google.webp"
                                                 alt="Google Cloud"
                                               />
                                             </div>
@@ -5147,7 +5147,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/cisco.webp"
+                                                src="/assets/img/icons/cisco.webp"
                                                 alt="cisco"
                                               />
                                             </div>
@@ -5158,7 +5158,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/vmware.webp"
+                                                src="/assets/img/icons/vmware.webp"
                                                 alt="vmware"
                                               />
                                             </div>
@@ -5169,7 +5169,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/oracle.webp"
+                                                src="/assets/img/icons/oracle.webp"
                                                 alt="Oracle"
                                               />
                                             </div>
@@ -5180,7 +5180,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/linux.webp"
+                                                src="/assets/img/icons/linux.webp"
                                                 alt="The Linux Foundation"
                                               />
                                             </div>
@@ -5191,7 +5191,7 @@ export default function Header() {
                                           <div className="flex-wraper">
                                             <div className="icon-img">
                                               <img
-                                                src="assets/img/icons/comptia.webp"
+                                                src="/assets/img/icons/comptia.webp"
                                                 alt="Comptia"
                                               />
                                             </div>
@@ -5221,7 +5221,7 @@ export default function Header() {
                     aria-label="Search"
                   />
                   <button className="btn btn-search">
-                    <img src="assets/imgs/search.png" alt="search" />
+                    <img src="/assets/imgs/search.png" alt="search" />
                   </button>
                 </div>
               </div>
@@ -5520,7 +5520,7 @@ export default function Header() {
                 <a className="navbar-brand" href="/">
                   <img
                     className="object-fit-contain"
-                    src="assets/imgs/logo.png"
+                    src="/assets/imgs/logo.png"
                     width={100}
                     alt="logo"
                   />
@@ -5542,7 +5542,7 @@ export default function Header() {
                     data-bs-toggle="modal"
                     data-bs-target="#searchModal"
                   >
-                    <img src="assets/imgs/search.png" alt="search" />
+                    <img src="/assets/imgs/search.png" alt="search" />
                   </button>
                 </div>
               </div>
@@ -5552,7 +5552,7 @@ export default function Header() {
                 <a className="navbar-brand" href="/">
                   <img
                     className="object-fit-contain"
-                    src="assets/imgs/logo.png"
+                    src="/assets/imgs/logo.png"
                     width={100}
                     alt="logo"
                   />
@@ -5945,7 +5945,7 @@ export default function Header() {
                 <a className="navbar-brand" href="/">
                   <img
                     className="object-fit-contain"
-                    src="assets/imgs/logo.png"
+                    src="/assets/imgs/logo.png"
                     width={100}
                     alt="logo"
                   />
@@ -6178,7 +6178,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/job.webp"
+                                            src="/assets/img/icons/job.webp"
                                             alt="Job Oriented Course"
                                           />
                                         </div>
@@ -6207,7 +6207,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cloud.webp"
+                                            src="/assets/img/icons/cloud.webp"
                                             alt="cloud"
                                           />
                                         </div>
@@ -6234,7 +6234,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/devops.webp"
+                                            src="/assets/img/icons/devops.webp"
                                             alt="devops"
                                           />
                                         </div>
@@ -6262,7 +6262,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cybersecurity.webp"
+                                            src="/assets/img/icons/cybersecurity.webp"
                                             alt="cybersecurity"
                                           />
                                         </div>
@@ -6288,7 +6288,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cybersecurity.webp"
+                                            src="/assets/img/icons/cybersecurity.webp"
                                             alt="cybersecurity"
                                           />
                                         </div>
@@ -6315,7 +6315,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/data-science.webp"
+                                            src="/assets/img/icons/data-science.webp"
                                             alt="data science"
                                           />
                                         </div>
@@ -6344,7 +6344,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/full-stack.webp"
+                                            src="/assets/img/icons/full-stack.webp"
                                             alt="full stack"
                                           />
                                         </div>
@@ -6409,7 +6409,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6436,7 +6436,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6458,7 +6458,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6481,7 +6481,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6504,7 +6504,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6528,7 +6528,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6551,7 +6551,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6573,7 +6573,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6600,7 +6600,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6622,7 +6622,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6646,7 +6646,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6670,7 +6670,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6693,7 +6693,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6717,7 +6717,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6740,7 +6740,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6768,7 +6768,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6791,7 +6791,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6816,7 +6816,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6845,7 +6845,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6868,7 +6868,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6897,7 +6897,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6920,7 +6920,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6943,7 +6943,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6970,7 +6970,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -6992,7 +6992,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -7014,7 +7014,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/redhat.webp"
+                                            src="/assets/img/icons/redhat.webp"
                                             alt="red hat"
                                           />
                                         </div>
@@ -7078,7 +7078,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7106,7 +7106,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7128,7 +7128,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7150,7 +7150,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7174,7 +7174,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7197,7 +7197,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7222,7 +7222,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7248,7 +7248,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7271,7 +7271,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7298,7 +7298,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7320,7 +7320,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7349,7 +7349,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7375,7 +7375,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7402,7 +7402,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7425,7 +7425,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7448,7 +7448,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7470,7 +7470,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ec.webp"
+                                            src="/assets/img/icons/ec.webp"
                                             alt="EC-Council"
                                           />
                                         </div>
@@ -7535,7 +7535,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="OffSec"
                                           />
                                         </div>
@@ -7569,7 +7569,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7592,7 +7592,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7624,7 +7624,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7654,7 +7654,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7683,7 +7683,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7713,7 +7713,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/offsec.webp"
+                                            src="/assets/img/icons/offsec.webp"
                                             alt="Offsec"
                                           />
                                         </div>
@@ -7779,7 +7779,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="CISCO"
                                           />
                                         </div>
@@ -7806,7 +7806,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -7828,7 +7828,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -7857,7 +7857,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -7884,7 +7884,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -7911,7 +7911,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -7938,7 +7938,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/cisco.webp"
+                                            src="/assets/img/icons/cisco.webp"
                                             alt="cisco"
                                           />
                                         </div>
@@ -8004,7 +8004,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/cloud.webp"
+                                            src="/assets/img/icons/cloud.webp"
                                             alt="Cloud"
                                           />
                                         </div>
@@ -8032,7 +8032,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/aws.webp"
+                                            src="/assets/img/icons/aws.webp"
                                             alt="aws"
                                           />
                                         </div>
@@ -8054,7 +8054,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/aws.webp"
+                                            src="/assets/img/icons/aws.webp"
                                             alt="aws"
                                           />
                                         </div>
@@ -8078,7 +8078,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/aws.webp"
+                                            src="/assets/img/icons/aws.webp"
                                             alt="aws"
                                           />
                                         </div>
@@ -8100,7 +8100,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/aws.webp"
+                                            src="/assets/img/icons/aws.webp"
                                             alt="aws"
                                           />
                                         </div>
@@ -8124,7 +8124,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/aws.webp"
+                                            src="/assets/img/icons/aws.webp"
                                             alt="aws"
                                           />
                                         </div>
@@ -8150,7 +8150,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/azure.webp"
+                                            src="/assets/img/icons/azure.webp"
                                             alt="azure"
                                           />
                                         </div>
@@ -8172,7 +8172,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/azure.webp"
+                                            src="/assets/img/icons/azure.webp"
                                             alt="azure"
                                           />
                                         </div>
@@ -8196,7 +8196,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/azure.webp"
+                                            src="/assets/img/icons/azure.webp"
                                             alt="azure"
                                           />
                                         </div>
@@ -8218,7 +8218,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/azure.webp"
+                                            src="/assets/img/icons/azure.webp"
                                             alt="azure"
                                           />
                                         </div>
@@ -8242,7 +8242,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/azure.webp"
+                                            src="/assets/img/icons/azure.webp"
                                             alt="azure"
                                           />
                                         </div>
@@ -8268,7 +8268,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/google.webp"
+                                            src="/assets/img/icons/google.webp"
                                             alt="google cloud"
                                           />
                                         </div>
@@ -8290,7 +8290,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/google.webp"
+                                            src="/assets/img/icons/google.webp"
                                             alt="google cloud"
                                           />
                                         </div>
@@ -8314,7 +8314,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/google.webp"
+                                            src="/assets/img/icons/google.webp"
                                             alt="google cloud"
                                           />
                                         </div>
@@ -8336,7 +8336,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/google.webp"
+                                            src="/assets/img/icons/google.webp"
                                             alt="google cloud"
                                           />
                                         </div>
@@ -8361,7 +8361,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/google.webp"
+                                            src="/assets/img/icons/google.webp"
                                             alt="google cloud"
                                           />
                                         </div>
@@ -8425,7 +8425,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/devops.webp"
+                                            src="/assets/img/icons/devops.webp"
                                             alt="DevOps"
                                           />
                                         </div>
@@ -8454,7 +8454,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/jenkins.webp"
+                                            src="/assets/img/icons/jenkins.webp"
                                             alt="jenkins"
                                           />
                                         </div>
@@ -8476,7 +8476,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/jenkins.webp"
+                                            src="/assets/img/icons/jenkins.webp"
                                             alt="jenkins"
                                           />
                                         </div>
@@ -8504,7 +8504,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/docker.webp"
+                                            src="/assets/img/icons/docker.webp"
                                             alt="docker"
                                           />
                                         </div>
@@ -8526,7 +8526,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/docker.webp"
+                                            src="/assets/img/icons/docker.webp"
                                             alt="docker"
                                           />
                                         </div>
@@ -8554,7 +8554,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/kubernetes.webp"
+                                            src="/assets/img/icons/kubernetes.webp"
                                             alt="kubernetes"
                                           />
                                         </div>
@@ -8576,7 +8576,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/kubernetes.webp"
+                                            src="/assets/img/icons/kubernetes.webp"
                                             alt="kubernetes"
                                           />
                                         </div>
@@ -8599,7 +8599,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/kubernetes.webp"
+                                            src="/assets/img/icons/kubernetes.webp"
                                             alt="kubernetes"
                                           />
                                         </div>
@@ -8628,7 +8628,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ansible.webp"
+                                            src="/assets/img/icons/ansible.webp"
                                             alt="ansible"
                                           />
                                         </div>
@@ -8651,7 +8651,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ansible.webp"
+                                            src="/assets/img/icons/ansible.webp"
                                             alt="ansible"
                                           />
                                         </div>
@@ -8679,7 +8679,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/terraform.webp"
+                                            src="/assets/img/icons/terraform.webp"
                                             alt="terraform"
                                           />
                                         </div>
@@ -8701,7 +8701,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/terraform.webp"
+                                            src="/assets/img/icons/terraform.webp"
                                             alt="terraform"
                                           />
                                         </div>
@@ -8767,7 +8767,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/programming.webp"
+                                            src="/assets/img/icons/programming.webp"
                                             alt="Programming"
                                           />
                                         </div>
@@ -8796,7 +8796,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/python.webp"
+                                            src="/assets/img/icons/python.webp"
                                             alt="python"
                                           />
                                         </div>
@@ -8818,7 +8818,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/python.webp"
+                                            src="/assets/img/icons/python.webp"
                                             alt="python"
                                           />
                                         </div>
@@ -8846,7 +8846,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/oracle.webp"
+                                            src="/assets/img/icons/oracle.webp"
                                             alt="oracle"
                                           />
                                         </div>
@@ -8868,7 +8868,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/oracle.webp"
+                                            src="/assets/img/icons/oracle.webp"
                                             alt="oracle"
                                           />
                                         </div>
@@ -8896,7 +8896,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/sql.webp"
+                                            src="/assets/img/icons/sql.webp"
                                             alt="sql"
                                           />
                                         </div>
@@ -8918,7 +8918,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/sql.webp"
+                                            src="/assets/img/icons/sql.webp"
                                             alt="sql"
                                           />
                                         </div>
@@ -8946,7 +8946,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/big-data.webp"
+                                            src="/assets/img/icons/big-data.webp"
                                             alt="big data"
                                           />
                                         </div>
@@ -8968,7 +8968,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/big-data.webp"
+                                            src="/assets/img/icons/big-data.webp"
                                             alt="big data"
                                           />
                                         </div>
@@ -9034,7 +9034,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/ai-ml.webp"
+                                            src="/assets/img/icons/ai-ml.webp"
                                             alt="AI ML"
                                           />
                                         </div>
@@ -9063,7 +9063,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ai.webp"
+                                            src="/assets/img/icons/ai.webp"
                                             alt="ai"
                                           />
                                         </div>
@@ -9085,7 +9085,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ai.webp"
+                                            src="/assets/img/icons/ai.webp"
                                             alt="ai"
                                           />
                                         </div>
@@ -9113,7 +9113,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ml.webp"
+                                            src="/assets/img/icons/ml.webp"
                                             alt="ml"
                                           />
                                         </div>
@@ -9135,7 +9135,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/ml.webp"
+                                            src="/assets/img/icons/ml.webp"
                                             alt="ml"
                                           />
                                         </div>
@@ -9164,7 +9164,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/data-analytics.webp"
+                                            src="/assets/img/icons/data-analytics.webp"
                                             alt="data analytics"
                                           />
                                         </div>
@@ -9186,7 +9186,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/data-analytics.webp"
+                                            src="/assets/img/icons/data-analytics.webp"
                                             alt="data analytics"
                                           />
                                         </div>
@@ -9215,7 +9215,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/data-science.webp"
+                                            src="/assets/img/icons/data-science.webp"
                                             alt="data science"
                                           />
                                         </div>
@@ -9237,7 +9237,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/data-science.webp"
+                                            src="/assets/img/icons/data-science.webp"
                                             alt="data science"
                                           />
                                         </div>
@@ -9304,7 +9304,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/web-digital.webp"
+                                            src="/assets/img/icons/web-digital.webp"
                                             alt="Web Digital"
                                           />
                                         </div>
@@ -9333,7 +9333,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/full-stack.webp"
+                                            src="/assets/img/icons/full-stack.webp"
                                             alt="full stack"
                                           />
                                         </div>
@@ -9355,7 +9355,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/full-stack.webp"
+                                            src="/assets/img/icons/full-stack.webp"
                                             alt="full stack"
                                           />
                                         </div>
@@ -9383,7 +9383,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/web-tech.webp"
+                                            src="/assets/img/icons/web-tech.webp"
                                             alt="web tech"
                                           />
                                         </div>
@@ -9405,7 +9405,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/web-tech.webp"
+                                            src="/assets/img/icons/web-tech.webp"
                                             alt="web tech"
                                           />
                                         </div>
@@ -9433,7 +9433,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/digital-marketing.webp"
+                                            src="/assets/img/icons/digital-marketing.webp"
                                             alt="digital marketing"
                                           />
                                         </div>
@@ -9456,7 +9456,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/digital-marketing.webp"
+                                            src="/assets/img/icons/digital-marketing.webp"
                                             alt="digital marketing"
                                           />
                                         </div>
@@ -9485,7 +9485,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/graphic-design.webp"
+                                            src="/assets/img/icons/graphic-design.webp"
                                             alt="graphic design"
                                           />
                                         </div>
@@ -9509,7 +9509,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/graphic-design.webp"
+                                            src="/assets/img/icons/graphic-design.webp"
                                             alt="graphic design"
                                           />
                                         </div>
@@ -9575,7 +9575,7 @@ export default function Header() {
                                       <div className="nav-card">
                                         <div className="icon-img">
                                           <img
-                                            src="assets/img/icons/corporate-career.webp"
+                                            src="/assets/img/icons/corporate-career.webp"
                                             alt="Corporate Career"
                                           />
                                         </div>
@@ -9603,7 +9603,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/soft-skills.webp"
+                                            src="/assets/img/icons/soft-skills.webp"
                                             alt="soft skills"
                                           />
                                         </div>
@@ -9626,7 +9626,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/soft-skills.webp"
+                                            src="/assets/img/icons/soft-skills.webp"
                                             alt="soft skills"
                                           />
                                         </div>
@@ -9654,7 +9654,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/internship.webp"
+                                            src="/assets/img/icons/internship.webp"
                                             alt="internship"
                                           />
                                         </div>
@@ -9676,7 +9676,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/internship.webp"
+                                            src="/assets/img/icons/internship.webp"
                                             alt="internship"
                                           />
                                         </div>
@@ -9704,7 +9704,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/job-oriented.webp"
+                                            src="/assets/img/icons/job-oriented.webp"
                                             alt="job oriented"
                                           />
                                         </div>
@@ -9726,7 +9726,7 @@ export default function Header() {
                                       >
                                         <div className="image-icon">
                                           <img
-                                            src="assets/img/icons/job-oriented.webp"
+                                            src="/assets/img/icons/job-oriented.webp"
                                             alt="job oriented"
                                           />
                                         </div>
@@ -9809,7 +9809,7 @@ export default function Header() {
                   placeholder="Course title or keyword"
                   aria-label="Search"
                 />
-                <img src="assets/imgs/search.png" alt="search" />
+                <img src="/assets/imgs/search.png" alt="search" />
                 <button
                   type="button"
                   className="btn-close"

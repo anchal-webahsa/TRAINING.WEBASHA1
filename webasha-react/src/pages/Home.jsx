@@ -99,11 +99,11 @@ export default function Home() {
                     Explore Courses
                   </a>
                   <div className="reviews mt-3">
-                    <img src="assets/imgs/banner-review.png" className="rated-img" loading="lazy" alt="Student reviews of WebAsha Technologies" />
+                    <img src="/assets/imgs/banner-review.png" className="rated-img" loading="lazy" alt="Student reviews of WebAsha Technologies" />
                     <div className="rated-reviews mt-2">
                       <p className="mb-0">Trusted by 15,000+ learners</p>
                       <p className="desc">
-                        <img src="assets/imgs/star-fill.png" className="icon" loading="lazy" alt="star rating" />
+                        <img src="/assets/imgs/star-fill.png" className="icon" loading="lazy" alt="star rating" />
                         4.9/5 Overall Rating
                       </p>
                     </div>
@@ -140,11 +140,11 @@ export default function Home() {
                     Know More
                   </a>
                   <div className="reviews mt-3">
-                    <img src="assets/imgs/banner-review.png" className="rated-img" loading="lazy" alt="Student satisfaction rating" />
+                    <img src="/assets/imgs/banner-review.png" className="rated-img" loading="lazy" alt="Student satisfaction rating" />
                     <div className="rated-reviews mt-2">
                       <p className="mb-0">Recognized by Top IT Companies</p>
                       <p className="desc">
-                        <img src="assets/imgs/star-fill.png" className="icon" loading="lazy" alt="star rating" />
+                        <img src="/assets/imgs/star-fill.png" className="icon" loading="lazy" alt="star rating" />
                         4.8/5 Satisfaction Score
                       </p>
                     </div>
@@ -157,7 +157,7 @@ export default function Home() {
                     <span className="red-color">4.9 ★</span>
                   </div>
                   <div className="banner-figure">
-                    <img src="assets/imgs/banner-thumbnail-1.png" loading="lazy" alt="WebAsha Technologies student learning banner" />
+                    <img src="/assets/imgs/banner-thumbnail-1.png" loading="lazy" alt="WebAsha Technologies student learning banner" />
                   </div>
                 </div>
               </div>
@@ -190,31 +190,31 @@ export default function Home() {
             </p>
             <div className="card-wraper d-flex flex-wrap justify-content-center align-items-center gap-2 mb-2">
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/1.png" loading="lazy" width={120} height="auto" alt="Red Hat Authorized Training Partner Logo" />
+                <img src="/assets/img/icons/home/1.png" loading="lazy" width={120} height="auto" alt="Red Hat Authorized Training Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/2.png" loading="lazy" width={120} height="auto" alt="EC-Council Accredited Training Center Logo" />
+                <img src="/assets/img/icons/home/2.png" loading="lazy" width={120} height="auto" alt="EC-Council Accredited Training Center Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/3.png" loading="lazy" width={120} height="auto" alt="OffSec Authorized Learning Partner Logo" />
+                <img src="/assets/img/icons/home/3.png" loading="lazy" width={120} height="auto" alt="OffSec Authorized Learning Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/4.png" loading="lazy" width={120} height="auto" alt="CompTIA Training Partner Logo" />
+                <img src="/assets/img/icons/home/4.png" loading="lazy" width={120} height="auto" alt="CompTIA Training Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/5.png" loading="lazy" width={120} height="auto" alt="Microsoft Learning Partner Logo" />
+                <img src="/assets/img/icons/home/5.png" loading="lazy" width={120} height="auto" alt="Microsoft Learning Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/6.png" loading="lazy" width={120} height="auto" alt="AWS Academy Training Partner Logo" />
+                <img src="/assets/img/icons/home/6.png" loading="lazy" width={120} height="auto" alt="AWS Academy Training Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/7.png" loading="lazy" width={120} height="auto" alt="Cisco Networking Academy Partner Logo" />
+                <img src="/assets/img/icons/home/7.png" loading="lazy" width={120} height="auto" alt="Cisco Networking Academy Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/8.png" loading="lazy" width={120} height="auto" alt="Google Cloud Training Partner Logo" />
+                <img src="/assets/img/icons/home/8.png" loading="lazy" width={120} height="auto" alt="Google Cloud Training Partner Logo" />
               </div>
               <div className="card-logo card p-2">
-                <img src="assets/img/icons/home/9.png" loading="lazy" width={120} height="auto" alt="Python Institute Partner Logo" />
+                <img src="/assets/img/icons/home/9.png" loading="lazy" width={120} height="auto" alt="Python Institute Partner Logo" />
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function Home() {
           <div className="row">
             <div className="col-lg-6 col-sm-12 col-12">
               <div className="figure">
-                <img src="assets/imgs/training-provider.png" width="100%" loading="lazy" alt="WebAsha Technologies Training Institute in Pune" />
+                <img src="/assets/imgs/training-provider.png" width="100%" loading="lazy" alt="WebAsha Technologies Training Institute in Pune" />
               </div>
             </div>
             <div className="col-lg-6 col-sm-12 col-12">
@@ -289,7 +289,7 @@ export default function Home() {
           <div className="row">
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-1.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Expert Trainers at WebAsha Technologies" />
+                <img src="/assets/imgs/why-choose-icon-1.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Expert Trainers at WebAsha Technologies" />
                 <div className="card-body">
                   <h5 className="card-title">Expert Trainers</h5>
                   <p className="card-text">Learn directly from certified professionals with years of industry experience. Our trainers bring real-world insights, making complex concepts easy to understand.</p>
@@ -298,7 +298,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-2.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Flexible Schedule" />
+                <img src="/assets/imgs/why-choose-icon-2.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Flexible Schedule" />
                 <div className="card-body">
                   <h5 className="card-title">Flexible Schedule</h5>
                   <p className="card-text">We understand your time matters. Choose from weekday or weekend batches that fit your study, work, or personal schedule.</p>
@@ -307,7 +307,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-3.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Hands-on Training" />
+                <img src="/assets/imgs/why-choose-icon-3.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Hands-on Training" />
                 <div className="card-body">
                   <h5 className="card-title">Hands-on Training</h5>
                   <p className="card-text">Every course includes practical assignments and real-world lab exercises to build confidence and prepare you for on-the-job challenges.</p>
@@ -316,7 +316,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-4.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Full Day Lab Support" />
+                <img src="/assets/imgs/why-choose-icon-4.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Full Day Lab Support" />
                 <div className="card-body">
                   <h5 className="card-title">Full Day Lab Support</h5>
                   <p className="card-text">Access our labs all day long for additional practice and experimentation. Our technical team is available to assist you whenever you need help.</p>
@@ -325,7 +325,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-5.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Affordable Fee Structure" />
+                <img src="/assets/imgs/why-choose-icon-5.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Affordable Fee Structure" />
                 <div className="card-body">
                   <h5 className="card-title">Affordable Fee</h5>
                   <p className="card-text">Quality training doesn't have to be expensive. We offer competitive pricing and flexible payment options for students and professionals alike.</p>
@@ -334,7 +334,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-6.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Post Training Support" />
+                <img src="/assets/imgs/why-choose-icon-6.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Post Training Support" />
                 <div className="card-body">
                   <h5 className="card-title">Post-Training Support</h5>
                   <p className="card-text">Even after course completion, we offer mentorship, career guidance, and doubt-clearing sessions to help you succeed in your professional journey.</p>
@@ -343,7 +343,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-7.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Global Certification Preparation" />
+                <img src="/assets/imgs/why-choose-icon-7.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Global Certification Preparation" />
                 <div className="card-body">
                   <h5 className="card-title">Global Certification</h5>
                   <p className="card-text">Our training programs are aligned with globally recognized certifications, enhancing your credibility and career prospects worldwide.</p>
@@ -352,7 +352,7 @@ export default function Home() {
             </div>
             <div className="col-lg-3 col-sm-6 col-12">
               <div className="card text-center">
-                <img src="assets/imgs/why-choose-icon-8.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Interview and Placement Assistance" />
+                <img src="/assets/imgs/why-choose-icon-8.png" loading="lazy" className="card-icon mb-3 mx-auto" width={53} alt="Interview and Placement Assistance" />
                 <div className="card-body">
                   <h5 className="card-title">Interview &amp; Placement</h5>
                   <p className="card-text">Get resume-building assistance, mock interviews, and placement opportunities with our partnered IT companies to kickstart your career.</p>
@@ -427,14 +427,14 @@ export default function Home() {
               <div className="col-lg-7 col-sm-12 col-12">
                 <div className="our-expert-wraper">
                   <div className="our-expert-card border-one">
-                    <div className="icon"><img src="assets/imgs/our-expert-icon-1.png" alt="our-expert-icon" /></div>
+                    <div className="icon"><img src="/assets/imgs/our-expert-icon-1.png" alt="our-expert-icon" /></div>
                     <div className="card-content">
                       <h3 className="red-color">Personalized Career Coaching</h3>
                       <p className="description">Network with 450,000+ Alumni</p>
                     </div>
                   </div>
                   <div className="our-expert-card border-two">
-                    <div className="icon"><img src="assets/imgs/our-expert-icon-2.png" alt="our-expert-icon" /></div>
+                    <div className="icon"><img src="/assets/imgs/our-expert-icon-2.png" alt="our-expert-icon" /></div>
                     <div className="card-content">
                       <h3 className="red-color">Personalized Career Coaching</h3>
                       <p className="description">1:1 Mentorship by Experts</p>
@@ -443,14 +443,14 @@ export default function Home() {
                 </div>
                 <div className="our-expert-wraper">
                   <div className="our-expert-card border-two">
-                    <div className="icon"><img src="assets/imgs/our-expert-icon-3.png" alt="our-expert-icon" /></div>
+                    <div className="icon"><img src="/assets/imgs/our-expert-icon-3.png" alt="our-expert-icon" /></div>
                     <div className="card-content">
                       <h3 className="red-color">Global Alumni Network</h3>
                       <p className="description">1:1 Mentorship by Experts</p>
                     </div>
                   </div>
                   <div className="our-expert-card border-one">
-                    <div className="icon"><img src="assets/imgs/our-expert-icon-4.png" alt="our-expert-icon" /></div>
+                    <div className="icon"><img src="/assets/imgs/our-expert-icon-4.png" alt="our-expert-icon" /></div>
                     <div className="card-content">
                       <h3 className="red-color">Dedicated Job Support</h3>
                       <p className="description">1:1 Mentorship by Experts</p>
@@ -471,7 +471,7 @@ export default function Home() {
             <span className="red-color">Success</span> Speaks Volume
           </h2>
           <div className="success-speaks-video">
-            <img src="assets/imgs/success-speaks.png" alt="" />
+            <img src="/assets/imgs/success-speaks.png" alt="" />
             <div className="thumbnail-position">
               <button
                 type="button"
@@ -479,7 +479,7 @@ export default function Home() {
                 data-bs-toggle="modal"
                 data-bs-target="#videoModal"
               >
-                <img src="assets/imgs/video-play.png" alt="video-play" />
+                <img src="/assets/imgs/video-play.png" alt="video-play" />
               </button>
             </div>
           </div>
@@ -546,20 +546,20 @@ export default function Home() {
                   <strong>WebAsha Technologies Learning App</strong>.
                 </p>
                 <div className="learn-free-courses-items text-center mt-4">
-                  <img src="assets/img/qr-lms.webp" loading="lazy" alt="QR code to download WebAsha Technologies learning app" />
+                  <img src="/assets/img/qr-lms.webp" loading="lazy" alt="QR code to download WebAsha Technologies learning app" />
                   <div className="btn-img mt-3 d-flex justify-content-center gap-2">
                     <a href="#" aria-label="Download on App Store">
-                      <img src="assets/imgs/app-store.png" loading="lazy" alt="App Store download button" />
+                      <img src="/assets/imgs/app-store.png" loading="lazy" alt="App Store download button" />
                     </a>
                     <a href="#" aria-label="Get it on Google Play">
-                      <img src="assets/imgs/google-play.png" loading="lazy" alt="Google Play download button" />
+                      <img src="/assets/imgs/google-play.png" loading="lazy" alt="Google Play download button" />
                     </a>
                   </div>
                 </div>
               </div>
               <div className="col-lg-6 col-sm-12 col-12">
                 <div className="bg-thumbnail text-center">
-                  <img src="assets/img/lms-app.png" loading="lazy" width="100%" alt="Mobile view of WebAsha Technologies free learning app" />
+                  <img src="/assets/img/lms-app.png" loading="lazy" width="100%" alt="Mobile view of WebAsha Technologies free learning app" />
                 </div>
               </div>
             </div>
@@ -596,7 +596,7 @@ export default function Home() {
             </div>
             <div className="col-lg-4 col-sm-12 col-12">
               <div className="bg-thumbnail text-center">
-                <img src="assets/imgs/newsletter-img.png" loading="lazy" width="100%" alt="Student counselling session illustration - WebAsha Technologies" />
+                <img src="/assets/imgs/newsletter-img.png" loading="lazy" width="100%" alt="Student counselling session illustration - WebAsha Technologies" />
               </div>
             </div>
           </div>

@@ -10,11 +10,11 @@ const students = [
 ];
 
 const companies = [
-  { src: "assets/img/companies/infosys.webp",   alt: "Infosys"   },
-  { src: "assets/img/companies/tcs.webp",       alt: "TCS"       },
-  { src: "assets/img/companies/accenture.webp", alt: "Accenture" },
-  { src: "assets/img/companies/cognizant.webp", alt: "Cognizant" },
-  { src: "assets/img/companies/wipro.webp",     alt: "Wipro"     },
+  { src: "/assets/img/companies/infosys.webp",   alt: "Infosys"   },
+  { src: "/assets/img/companies/tcs.webp",       alt: "TCS"       },
+  { src: "/assets/img/companies/accenture.webp", alt: "Accenture" },
+  { src: "/assets/img/companies/cognizant.webp", alt: "Cognizant" },
+  { src: "/assets/img/companies/wipro.webp",     alt: "Wipro"     },
 ];
 
 const stats = [

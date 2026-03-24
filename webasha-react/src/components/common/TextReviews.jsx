@@ -6,21 +6,21 @@ const defaultReviews = [
     name: "Mohammad Navab Ishrat Mirja",
     text: "WebAsha Technologies is the best institute for RHCSA and RHCE training. The trainers are very knowledgeable and supportive.",
     role: "Red Hat Student",
-    img: "assets/img/profile/1.webp",
+    img: "/assets/img/profile/1.webp",
     stars: 5
   },
   {
     name: "Akash Shinde",
     text: "I completed my AWS certification from WebAsha. The hands-on labs were excellent and helped me understand the concepts clearly.",
     role: "AWS Professional",
-    img: "assets/img/profile/2.webp",
+    img: "/assets/img/profile/2.webp",
     stars: 5
   },
   {
     name: "Priya Sharma",
     text: "The Cybersecurity course is very well-structured. I learned a lot about ethical hacking and network security.",
     role: "Cybersecurity Analyst",
-    img: "assets/img/profile/3.webp",
+    img: "/assets/img/profile/3.webp",
     stars: 5
   }
 ];
@@ -49,7 +49,7 @@ const Stars = ({ count = 5 }) => (
 const ReviewCard = ({ img, name, role, text, linkedinUrl }) => (
   <div className="success-speaks-reviwe-items">
     <div className="card">
-      <img src={img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "assets/img/profile/default.webp"} className="img-top" alt={`${name} review`} loading="lazy" decoding="async" />
+      <img src={img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/profile/default.webp"} className="img-top" alt={`${name} review`} loading="lazy" decoding="async" />
       <Stars />
       <div className="card-body">
         <p className="card-text line-clamp-1">{text}</p>

@@ -25,7 +25,7 @@ const SelfAssessment = () => (
       <div className="col-lg-4 col-sm-12 col-12">
         <div className="bg-thumbnail">
           <img
-            src="assets/img/icons/test.webp"
+            src="/assets/img/icons/test.webp"
             alt="course-newsletter"
           />
         </div>

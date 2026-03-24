@@ -65,7 +65,7 @@ const OurChoose = () => {
                   <a href={item.href} className="oc-link">
                     Explore
                     <img
-                      src="assets/imgs/arrow-back.png"
+                      src="/assets/imgs/arrow-back.png"
                       width={10}
                       alt="arrow"
                       loading="lazy"
@@ -97,7 +97,7 @@ const OurChoose = () => {
                   <a href={item.href} className="oc-link">
                     Explore
                     <img
-                      src="assets/imgs/arrow-back.png"
+                      src="/assets/imgs/arrow-back.png"
                       width={10}
                       alt="arrow"
                       loading="lazy"

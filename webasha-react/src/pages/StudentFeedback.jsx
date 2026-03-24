@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { fetchData, MEDIA_BASE_URL } from "../api/config";
 
 const defaultVideos = [
-  { img: "assets/img/testimonials/feedback.webp",  videoId: "IT7R756mMK0" },
-  { img: "assets/img/testimonials/feedback1.webp", videoId: "dbqDEZsmaUc" },
-  { img: "assets/img/testimonials/feedback2.webp", videoId: "zI4G80v19pI" },
-  { img: "assets/img/testimonials/feedback3.webp", videoId: "YNmiLWqtN7E" },
-  { img: "assets/img/testimonials/feedback4.webp", videoId: "g5L8iaj4nf4" },
-  { img: "assets/img/testimonials/feedback5.webp", videoId: "-dL8xYXF0Io" },
+  { img: "/assets/img/testimonials/feedback.webp",  videoId: "IT7R756mMK0" },
+  { img: "/assets/img/testimonials/feedback1.webp", videoId: "dbqDEZsmaUc" },
+  { img: "/assets/img/testimonials/feedback2.webp", videoId: "zI4G80v19pI" },
+  { img: "/assets/img/testimonials/feedback3.webp", videoId: "YNmiLWqtN7E" },
+  { img: "/assets/img/testimonials/feedback4.webp", videoId: "g5L8iaj4nf4" },
+  { img: "/assets/img/testimonials/feedback5.webp", videoId: "-dL8xYXF0Io" },
 ];
 
 const StudentFeedback = () => {
@@ -21,7 +21,7 @@ const StudentFeedback = () => {
         const data = await fetchData("video-reviews/");
         const videoData = data
           .map(rev => ({
-            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "assets/img/testimonials/feedback.webp",
+            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "/assets/img/testimonials/feedback.webp",
             videoId: rev.video_id
           }));
         
@@ -96,7 +96,7 @@ const StudentFeedback = () => {
                           data-bs-target="#videoModal"
                           data-video-id={v.videoId}
                         >
-                          <img src="assets/imgs/video-play.png" alt="play" />
+                          <img src="/assets/imgs/video-play.png" alt="play" />
                         </button>
                       </div>
                     </div>

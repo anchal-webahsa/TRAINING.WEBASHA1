@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 const slides = [
-  { src: "assets/img/slider/redhat/1.webp", alt: "Red Hat Insight 1" },
-  { src: "assets/img/slider/redhat/2.webp", alt: "Red Hat Insight 2" },
+  { src: "/assets/img/slider/redhat/1.webp", alt: "Red Hat Insight 1" },
+  { src: "/assets/img/slider/redhat/2.webp", alt: "Red Hat Insight 2" },
 ];
 
 const Rh124Slider = () => {

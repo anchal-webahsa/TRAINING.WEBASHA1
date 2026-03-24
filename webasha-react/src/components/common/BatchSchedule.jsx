@@ -38,28 +38,28 @@ const formatBackendDate = (dateString) => {
 // ── Mode of Training cards ──
 const modes = [
   {
-    img:   "assets/imgs/mode-training-fi-1.png",
+    img:   "/assets/imgs/mode-training-fi-1.png",
     alt:   "E-learning",
     title: "E-learning",
     desc:  "Self-paced online learning with access to recorded sessions and resources.",
     btn:   "btn-outline-primary",
   },
   {
-    img:   "assets/imgs/mode-training-fi-2.png",
+    img:   "/assets/imgs/mode-training-fi-2.png",
     alt:   "Instructor Led",
     title: "Instructor Led",
     desc:  "Live, interactive sessions with expert instructors.",
     btn:   "btn-primary",
   },
   {
-    img:   "assets/imgs/mode-training-fi-3.png",
+    img:   "/assets/imgs/mode-training-fi-3.png",
     alt:   "Bootcamp",
     title: "Bootcamp",
     desc:  "Intensive, immersive training for rapid skill development.",
     btn:   "btn-outline-secondary",
   },
   {
-    img:   "assets/imgs/mode-training-fi-4.png",
+    img:   "/assets/imgs/mode-training-fi-4.png",
     alt:   "Training on Demand",
     title: "Training on Demand",
     desc:  "Customized training schedules tailored to your needs.",
