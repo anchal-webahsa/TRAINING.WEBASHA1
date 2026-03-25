@@ -11,7 +11,8 @@ from .serializers import (
     ExamVoucherOfferSerializer,
     UpcomingBatchSerializer,
     CourseBannerSerializer,
-    StudentScreenshotSerializer
+    StudentScreenshotSerializer,
+    MenuCategorySerializer
 )
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -61,3 +62,8 @@ class CourseBannerViewSet(viewsets.ModelViewSet):
 class StudentScreenshotViewSet(viewsets.ModelViewSet):
     queryset = StudentScreenshot.objects.filter(is_active=True).order_by('order', '-created_at')
     serializer_class = StudentScreenshotSerializer
+
+class MenuCategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CourseCategory.objects.all().order_by('order')
+    serializer_class = MenuCategorySerializer
+    pagination_class = None

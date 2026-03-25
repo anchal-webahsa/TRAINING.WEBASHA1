@@ -2,6 +2,35 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+class CourseCategory(models.Model):
+	name = models.CharField(max_length=120)
+	slug = models.SlugField(max_length=140, unique=True)
+	icon = models.ImageField(upload_to="category_icons/", null=True, blank=True)
+	order = models.IntegerField(default=0, help_text="Order in the mega menu (lowest first)")
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = 'Course Category'
+		verbose_name_plural = 'Course Categories'
+		ordering = ['order', 'name']
+
+	def __str__(self):
+		return self.name
+
+class CourseSubCategory(models.Model):
+	category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE, related_name="subcategories")
+	name = models.CharField(max_length=120)
+	order = models.IntegerField(default=0, help_text="Order in the mega menu (lowest first)")
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name = 'Course Subcategory'
+		verbose_name_plural = 'Course Subcategories'
+		ordering = ['order', 'name']
+
+	def __str__(self):
+		return f"{self.category.name} - {self.name}"
+
 class Course(models.Model):
 	STATUS_CHOICES = [
 		("active", "Active"),
@@ -12,8 +41,22 @@ class Course(models.Model):
 		("inactive", "Inactive"),
 	]
 
+	MENU_LABEL_CHOICES = [
+		("none", "None"),
+		("best_seller", "Best Seller"),
+		("trending", "Trending"),
+		("new", "New"),
+	]
+
 	title = models.CharField(max_length=255)
 	slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
+	
+	# Mega Menu fields
+	subcategory = models.ForeignKey(CourseSubCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name="courses")
+	course_code = models.CharField(max_length=100, blank=True, help_text="e.g. RH124v10")
+	menu_label = models.CharField(max_length=20, choices=MENU_LABEL_CHOICES, default="none")
+	menu_icon = models.ImageField(upload_to="course_menu_icons/", null=True, blank=True)
+	
 	short_description = models.TextField(blank=True)
 	description = models.TextField(blank=True)
 	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="active")
@@ -38,6 +81,9 @@ class Course(models.Model):
 
 	@property
 	def category_name(self):
+		# best-effort fallback: if subcategory is set, use its category name
+		if self.subcategory:
+			return self.subcategory.category.name
 		# best-effort: find a CourseCategory whose name appears in the title
 		try:
 			from .models import CourseCategory
@@ -58,21 +104,10 @@ class Course(models.Model):
 						break
 			return cat.name if cat else ''
 		except Exception:
-			# If the Category table doesn't exist or DB access fails, return empty string
 			return ''
 
 
-class CourseCategory(models.Model):
-	name = models.CharField(max_length=120)
-	slug = models.SlugField(max_length=140, unique=True)
-	created_at = models.DateTimeField(auto_now_add=True)
 
-	class Meta:
-		verbose_name = 'Course Category'
-		verbose_name_plural = 'Course Categories'
-
-	def __str__(self):
-		return self.name
 
 
 class Coupon(models.Model):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot
 
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,6 +11,23 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
+
+class MenuCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['id', 'title', 'slug', 'course_code', 'menu_label', 'menu_icon', 'short_description']
+
+class MenuSubCategorySerializer(serializers.ModelSerializer):
+    courses = MenuCourseSerializer(many=True, read_only=True)
+    class Meta:
+        model = CourseSubCategory
+        fields = ['id', 'name', 'order', 'courses']
+
+class MenuCategorySerializer(serializers.ModelSerializer):
+    subcategories = MenuSubCategorySerializer(many=True, read_only=True)
+    class Meta:
+        model = CourseCategory
+        fields = ['id', 'name', 'slug', 'icon', 'order', 'subcategories']
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:

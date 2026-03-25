@@ -1,0 +1,778 @@
+id="pills-02m"
+                                  role="tabpanel"
+                                  aria-labelledby="pills-02m-tab"
+                                  tabIndex={0}
+                                >
+                                  {/* Wrapping Red Hat courses content */}
+                                  <div className="course-tabs-wraper">
+                                    {/* Creating a scrollable row for Red Hat tracks */}
+                                    <div className="course-tabs-row">
+                                      {/* Presenting the overview card for Red Hat certifications */}
+                                      <div className="column w-100">
+                                        <div className="nav-card">
+                                          <div className="icon-img">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info-width">
+                                            <div className="info">
+                                              <h4>
+                                                Red Hat Training &amp; Certifications
+                                              </h4>
+                                              <p>
+                                                Performance-based certifications and
+                                                training for Linux, cloud, automation,
+                                                security, and development.
+                                              </p>
+                                            </div>
+                                            <a
+                                              href="/red-hat"
+                                              className="btn-view text-decoration-none"
+                                            >
+                                              View All Red Hat Courses
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* Listing Core System Administration track */}
+                                      <div className="column">
+                                        <h5>Core System Administration Track</h5>
+                                        <hr />
+                                        <a
+                                          href="/rhcsa1"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RHCSA I<span className="dots" />
+                                              <span>RH124v10</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified System Administrator
+                                              (RHCSA) I
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/rhcsa2"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RHCSA II
+                                              <span className="dots" />
+                                              <span>RH134v10</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified System Administrator
+                                              (RHCSA) II
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/redhat-linux-rhcsa-online-training-institute-certification-exam-center"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RHCSA RH199
+                                              <span className="dots" />
+                                              <span>EX200v10</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified System Administrator
+                                              (RHCSA)
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/rhce"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RHCE RH294
+                                              <span className="dots" />
+                                              <span>EX294</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Engineer (RHCE)
+                                            </h6>
+                                            <div className="seller trending">
+                                              Trending
+                                            </div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/linux-automation-training-rh294"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>RH294</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in Ansible
+                                              Automation
+                                            </h6>
+                                            <div className="seller new">New</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-satellite-administration-online-training-institute-certification-exam-center"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RH403
+                                              <span className="dots" />
+                                              <span>EX403</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Satellite 6 Administration
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/rh436"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RH436
+                                              <span className="dots" />
+                                              <span>EX436</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in High
+                                              Availability Clustering
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      {/* Listing OpenShift track */}
+                                      <div className="column">
+                                        <h5>OpenShift Track</h5>
+                                        <hr />
+                                        <a
+                                          href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO188
+                                              <span className="dots" />
+                                              <span>EX188</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Introduction to Containers with Podman
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/openshift"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO280
+                                              <span className="dots" />
+                                              <span>EX280</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat OpenShift Administration II
+                                              (Configuring a production cluster)
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-openshift-virtualization"
+                                          className="course-link text-decoration-none"
+                                          aria-label="DO316 Managing VMs with OpenShift Virtualization"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              AI267
+                                              <span className="dots" />
+                                              <span>EX267</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Developing and Deploying AI/ML
+                                              Applications on Red Hat OpenShift AI
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-openshift-virtualization"
+                                          className="course-link text-decoration-none"
+                                          aria-label="DO316 Managing VMs with OpenShift Virtualization"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO316
+                                              <span className="dots" />
+                                              <span>EX316</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Managing Virtual Machines with Red Hat
+                                              OpenShift Virtualization
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-openshift-advanced"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO380
+                                              <span className="dots" />
+                                              <span>EX380</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat OpenShift Administration III /
+                                              Automation &amp; Integration (advanced
+                                              admin/automation topics)
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-openshift-advanced"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO430
+                                              <span className="dots" />
+                                              <span>EX430</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Securing Kubernetes Clusters with Red
+                                              Hat Advanced Cluster Security
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-openshift-advanced"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              DO480
+                                              <span className="dots" />
+                                              <span>EX480</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Multicluster Management with Red Hat
+                                              OpenShift — multi-cluster operations
+                                              &amp; platform management
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      {/* Listing Developer track */}
+                                      <div className="column">
+                                        <h5>Developer Track</h5>
+                                        <hr />
+                                        <a
+                                          href="/red-hat-rhcjd"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>DO101 + AD183</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Enterprise Application
+                                              Developer (RHCJD)
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-rhcemd"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>DO283 + AD248</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Enterprise
+                                              Microservices Developer (RHCEMD)
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/containers-kubernetes-red-hat-openshift-online-training-institute-certification-exam-center"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>DO180</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in
+                                              Containers and Kubernetes
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      {/* Listing Cloud and Virtualization track */}
+                                      <div className="column">
+                                        <h5>Cloud and Virtualization Track</h5>
+                                        <hr />
+                                        <a
+                                          href="/redhat-openstack-cl110-online-training-institute-certification-exam-center"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              CL110
+                                              <span className="dots" />
+                                              <span>PE110</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified System Administrator
+                                              in Red Hat OpenStack
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/open-stack"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              CL210
+                                              <span className="dots" />
+                                              <span>EX210</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Engineer in Red Hat
+                                              OpenStack
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      {/* Listing Security track */}
+                                      <div className="column">
+                                        <h5>Security Track</h5>
+                                        <hr />
+                                        <a
+                                          href="/red-hat-security-linux"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RH415
+                                              <span className="dots" />
+                                              <span>EX415</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in
+                                              Security: Linux
+                                            </h6>
+                                            <div className="seller new">New</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/red-hat-identity-management"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RH362
+                                              <span className="dots" />
+                                              <span>EX362</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in Identity
+                                              Management
+                                            </h6>
+                                            <div className="seller">Best Seller</div>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/rh442"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              RH442
+                                              <span className="dots" />
+                                              <span>EX442</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              Red Hat Certified Specialist in
+                                              Performance Tuning
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                      {/* Listing Architect Level (RHCA) track */}
+                                      <div className="column">
+                                        <h5>Architect Level (RHCA)</h5>
+                                        <hr />
+                                        <a
+                                          href="/#"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>Advanced</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              RHCA - Infrastructure Track
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/#"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>Advanced</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              RHCA - Enterprise Applications Track
+                                            </h6>
+                                          </div>
+                                        </a>
+                                        <a
+                                          href="/#"
+                                          className="course-link text-decoration-none"
+                                        >
+                                          <div className="image-icon">
+                                            <img
+                                              src="/assets/img/icons/redhat.webp"
+                                              alt="red hat"
+                                            />
+                                          </div>
+                                          <div className="info">
+                                            <h6 className="desc1 flex-desc">
+                                              Red Hat
+                                              <span className="dots" />
+                                              <span>Advanced</span>
+                                            </h6>
+                                            <h6 className="desc2">
+                                              RHCA - DevOps Track
+                                            </h6>
+                                          </div>
+                                        </a>
+                                      </div>
+                                    </div>
+                                    {/* Displaying authorized training partners for Red Hat */}
+                                    <div className="course-learn-more-bar">
+                                      <div className="course-learn-more-row">
+                                        <div className="course-learn-more-column">
+                                          <h5 className="course-learn-more-title">
+                                            Authorized Training &amp; Certification
+                                            Exam Center
+                                          </h5>
+                                          {/* Listing Red Hat partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/redhat.webp"
+                                                alt="Red Hat"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Red Hat</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing EC-Council partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/ec.webp"
+                                                alt="EC-Council"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>EC-Council</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing OffSec partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/offsec.webp"
+                                                alt="OffSec"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>OffSec</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing AWS Cloud partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/aws.webp"
+                                                alt="aws"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>AWS Cloud</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing Microsoft Azure partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/azure.webp"
+                                                alt="Azure"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Microsoft Azure</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing Google Cloud partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/google.webp"
+                                                alt="Google Cloud"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Google Cloud</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing Cisco partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/cisco.webp"
+                                                alt="cisco"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Cisco</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing VMware partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/vmware.webp"
+                                                alt="vmware"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>VMware</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing Oracle partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/oracle.webp"
+                                                alt="Oracle"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Oracle</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing The Linux Foundation partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/linux.webp"
+                                                alt="The Linux Foundation"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>The Linux Foundation</p>
+                                            </div>
+                                          </div>
+                                          {/* Listing CompTIA partner */}
+                                          <div className="flex-wraper">
+                                            <div className="icon-img">
+                                              <img
+                                                src="/assets/img/icons/comptia.webp"
+                                                alt="Comptia"
+                                              />
+                                            </div>
+                                            <div className="info">
+                                              <p>Comptia</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                {/* Displaying content for the EC-Council tab */}
+                                <div
+                                  className="tab-pane fade"
+                                  

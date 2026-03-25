@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import (
     Course, 
     CourseCategory, 
+    CourseSubCategory,
     Coupon, 
     Profile, 
     Testimonial, 
@@ -36,17 +37,24 @@ class CouponAdmin(BaseAdmin):
 
 
 class CourseAdmin(BaseAdmin):
-    list_display = ('title', 'status', 'price', 'created_at')
-    search_fields = ('title',)
-    list_filter = ('status',)
+    list_display = ('title', 'course_code', 'subcategory', 'status', 'price', 'created_at')
+    search_fields = ('title', 'course_code')
+    list_filter = ('status', 'subcategory__category', 'subcategory', 'menu_label')
 
     class Media:
         js = ('admin/js/course_admin.js',)
 
 
 class CourseCategoryAdmin(BaseAdmin):
-    list_display = ('name', 'slug', 'created_at')
+    list_display = ('name', 'slug', 'order', 'created_at')
     search_fields = ('name',)
+    list_editable = ('order',)
+
+class CourseSubCategoryAdmin(BaseAdmin):
+    list_display = ('name', 'category', 'order', 'created_at')
+    search_fields = ('name', 'category__name')
+    list_filter = ('category',)
+    list_editable = ('order',)
 
 
 class TestimonialAdmin(BaseAdmin):
@@ -72,6 +80,7 @@ class VideoReviewAdmin(BaseAdmin):
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
+admin.site.register(CourseSubCategory, CourseSubCategoryAdmin)
 admin.site.register(Coupon, CouponAdmin)
 admin.site.register(Profile, BaseAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
