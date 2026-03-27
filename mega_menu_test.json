@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "SDDbfdnbfd",
+    "slug": "hey",
+    "icon": null,
+    "order": 0,
+    "subcategories": []
+  },
+  {
+    "id": 2,
+    "name": "Red Hat",
+    "slug": "red-hat",
+    "icon": null,
+    "order": 1,
+    "subcategories": [
+      {
+        "id": 1,
+        "name": "Core System Administration Track",
+        "order": 1,
+        "courses": [
+          {
+            "id": 11,
+            "title": "RHCSA I",
+            "slug": "rhcsa1",
+            "course_code": "RH124v10",
+            "menu_label": "best_seller",
+            "menu_icon": null,
+            "short_description": "Red Hat Certified System Administrator (RHCSA) I"
+          },
+          {
+            "id": 12,
+            "title": "RHCSA II",
+            "slug": "rhcsa2",
+            "course_code": "RH134v10",
+            "menu_label": "best_seller",
+            "menu_icon": null,
+            "short_description": "Red Hat Certified System Administrator (RHCSA) II"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "OpenShift Track",
+        "order": 2,
+        "courses": [
+          {
+            "id": 13,
+            "title": "DO188",
+            "slug": "do188",
+            "course_code": "EX188",
+            "menu_label": "none",
+            "menu_icon": null,
+            "short_description": "Introduction to Containers with Podman"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "hy8hionjm",
+    "slug": "ss",
+    "icon": null,
+    "order": 4,
+    "subcategories": []
+  }
+]

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const tabMapping = {
+  "01": "Get a Job",
   "01m": "Get a Job",
   "02m": "Red Hat",
   "03m": "Cybersecurity & Ethical Hacking - EC-Council",
@@ -15,13 +16,13 @@ const tabMapping = {
   "11m": "Corporate & Career Training (Soft Skills, Internships, Job-Oriented Programs)"
 };
 
-export default function DynamicCourseColumns({ tabId, megaMenuData }) {
-  if (!megaMenuData || megaMenuData.length === 0) return null;
-
-  const categoryName = tabMapping[tabId];
-  if (!categoryName) return null;
-
-  const category = megaMenuData.find(c => c.name === categoryName);
+export default function DynamicCourseColumns({ tabId, megaMenuData, category }) {
+  if (!category) {
+    if (!megaMenuData || megaMenuData.length === 0) return null;
+    const categoryName = tabMapping[tabId];
+    if (!categoryName) return null;
+    category = megaMenuData.find(c => c.name === categoryName);
+  }
   
   if (!category || !category.subcategories) return null;
 

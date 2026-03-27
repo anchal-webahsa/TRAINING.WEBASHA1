@@ -6,6 +6,7 @@ class CourseCategory(models.Model):
 	name = models.CharField(max_length=120)
 	slug = models.SlugField(max_length=140, unique=True)
 	icon = models.ImageField(upload_to="category_icons/", null=True, blank=True)
+	icon_class = models.CharField(max_length=100, blank=True, help_text="FontAwesome class for the mega menu, e.g. fa-solid fa-cloud")
 	order = models.IntegerField(default=0, help_text="Order in the mega menu (lowest first)")
 	created_at = models.DateTimeField(auto_now_add=True)
 

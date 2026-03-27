@@ -27,7 +27,7 @@ class MenuCategorySerializer(serializers.ModelSerializer):
     subcategories = MenuSubCategorySerializer(many=True, read_only=True)
     class Meta:
         model = CourseCategory
-        fields = ['id', 'name', 'slug', 'icon', 'order', 'subcategories']
+        fields = ['id', 'name', 'slug', 'icon', 'icon_class', 'order', 'subcategories']
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
