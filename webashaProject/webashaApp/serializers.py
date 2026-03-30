@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, CourseSyllabus, CourseFAQ
 
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -65,7 +65,20 @@ class UpcomingBatchSerializer(serializers.ModelSerializer):
         model = UpcomingBatch
         fields = '__all__'
 
+class CourseSyllabusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseSyllabus
+        fields = '__all__'
+
+class CourseFAQSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseFAQ
+        fields = '__all__'
+
 class CourseBannerSerializer(serializers.ModelSerializer):
+    syllabus_modules = CourseSyllabusSerializer(many=True, read_only=True)
+    faqs = CourseFAQSerializer(many=True, read_only=True)
+
     class Meta:
         model = CourseBanner
         fields = '__all__'

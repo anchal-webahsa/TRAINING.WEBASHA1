@@ -13,7 +13,9 @@ from .models import (
     ExamVoucherOffer,
     UpcomingBatch,
     CourseBanner,
-    StudentScreenshot
+    StudentScreenshot,
+    CourseSyllabus,
+    CourseFAQ
 )
 
 
@@ -109,10 +111,19 @@ class UpcomingBatchAdmin(BaseAdmin):
 
 admin.site.register(UpcomingBatch, UpcomingBatchAdmin)
 
+class CourseSyllabusInline(admin.StackedInline):
+    model = CourseSyllabus
+    extra = 1
+
+class CourseFAQInline(admin.StackedInline):
+    model = CourseFAQ
+    extra = 1
+
 class CourseBannerAdmin(BaseAdmin):
     list_display = ('page_identifier', 'heading', 'is_active')
     search_fields = ('page_identifier', 'heading')
     list_filter = ('is_active',)
+    inlines = [CourseSyllabusInline, CourseFAQInline]
 
 admin.site.register(CourseBanner, CourseBannerAdmin)
 

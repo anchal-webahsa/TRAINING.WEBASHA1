@@ -9,6 +9,7 @@ import PlacedStudents from "../pages/PlacedStudents";
 import StudentFeedback from "../pages/StudentFeedback";
 
 import Rhcsa1 from "../pages/Rhcsa1";
+import CourseTemplate from "../pages/CourseTemplate";
 
 // ── OffSec Courses ──
 import Oscp from "../pages/Oscp";
@@ -37,7 +38,9 @@ export default function AppRoutes() {
       <Route path="/rhce"  element={<Rhce />}  />
 
 
-      <Route path="/rhcsa1" element={<Rhcsa1 />} />
+      <Route path="/rhcsa1" element={<CourseTemplate slug="rhcsa1" />} />
+      <Route path="/rhcsa2" element={<CourseTemplate slug="rhcsa2" />} />
+      <Route path="/:slug" element={<CourseTemplate />} />
 
 
       <Route path="/placed-students" element={<PlacedStudents />} />

@@ -552,6 +552,13 @@ class CourseBanner(models.Model):
     stat_countries = models.CharField(max_length=50, default="20+")
     stat_clients = models.CharField(max_length=50, default="1000+")
     
+    # Dynamic Page Content Fields (Raw HTML)
+    overview_html = models.TextField(blank=True, help_text="HTML content for the Course Overview section")
+    exam_info_html = models.TextField(blank=True, help_text="HTML content for Exam Information & Passing Criteria")
+    salary_html = models.TextField(blank=True, help_text="HTML content for Salary & Job Roles")
+    career_benefits_html = models.TextField(blank=True, help_text="HTML content for Career Benefits")
+    why_choose_us_html = models.TextField(blank=True, help_text="HTML content for Why Choose Us")
+    
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -578,3 +585,35 @@ class StudentScreenshot(models.Model):
         verbose_name = "Student Screenshot"
         verbose_name_plural = "Student Screenshots"
         ordering = ['order', '-created_at']
+
+
+class CourseSyllabus(models.Model):
+    course_banner = models.ForeignKey(CourseBanner, on_delete=models.CASCADE, related_name="syllabus_modules")
+    module_title = models.CharField(max_length=255, help_text="e.g. 1. Get Started with Red Hat Enterprise Linux")
+    description = models.TextField(blank=True, help_text="HTML supported content for this module")
+    order = models.IntegerField(default=0, help_text="Ordering of the module in the accordion")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Course Syllabus Module"
+        verbose_name_plural = "Course Syllabus Modules"
+        ordering = ['order', 'created_at']
+
+    def __str__(self):
+        return f"{self.course_banner.page_identifier} - {self.module_title}"
+
+
+class CourseFAQ(models.Model):
+    course_banner = models.ForeignKey(CourseBanner, on_delete=models.CASCADE, related_name="faqs")
+    question = models.TextField()
+    answer = models.TextField(help_text="HTML supported")
+    order = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Course FAQ"
+        verbose_name_plural = "Course FAQs"
+        ordering = ['order', 'created_at']
+
+    def __str__(self):
+        return f"{self.course_banner.page_identifier} - Question {self.order}"

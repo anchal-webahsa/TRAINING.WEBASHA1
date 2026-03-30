@@ -94,7 +94,7 @@ export default function Home() {
                     training institute, offering globally recognized certifications.
                     Get hands-on experience through real-world labs and live
                     projects designed to make you job-ready.
-                  </p>
+                    sql </p>
                   <a href="all-courses" className="btn btn-width btn-primary text-decoration-none">
                     Explore Courses
                   </a>
