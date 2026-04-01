@@ -89,6 +89,7 @@ const CareerStraight = () => {
           background: #000;
           padding: 60px 0;
           overflow: hidden;
+          margin-top: 50px;
         }
         .career-straight h2 {
           font-size: clamp(20px, 3vw, 30px);

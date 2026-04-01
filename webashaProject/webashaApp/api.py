@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate
 from .serializers import (
     CourseSerializer, 
     TestimonialSerializer, 
@@ -12,8 +12,14 @@ from .serializers import (
     UpcomingBatchSerializer,
     CourseBannerSerializer,
     StudentScreenshotSerializer,
-    MenuCategorySerializer
+    MenuCategorySerializer,
+    GalleryImageSerializer,
+    StudentCertificateSerializer
 )
+
+class GalleryImageViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = GalleryImage.objects.filter(is_active=True)
+    serializer_class = GalleryImageSerializer
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
@@ -49,9 +55,13 @@ class ExamVoucherOfferViewSet(viewsets.ModelViewSet):
     serializer_class = ExamVoucherOfferSerializer
 
 class UpcomingBatchViewSet(viewsets.ModelViewSet):
-    # Only return batches from today onwards natively ordered by closest date
-    from django.utils import timezone
-    queryset = UpcomingBatch.objects.filter(is_active=True, date__gte=timezone.now().date()).order_by('date')
+    def get_queryset(self):
+        from django.utils import timezone
+        qs = UpcomingBatch.objects.filter(is_active=True, date__gte=timezone.now().date()).order_by('date')
+        course = self.request.query_params.get('course', None)
+        if course:
+            qs = qs.filter(course_banner__page_identifier=course)
+        return qs
     serializer_class = UpcomingBatchSerializer
 
 class CourseBannerViewSet(viewsets.ModelViewSet):
@@ -67,3 +77,8 @@ class MenuCategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CourseCategory.objects.all().order_by('order')
     serializer_class = MenuCategorySerializer
     pagination_class = None
+
+class StudentCertificateViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = StudentCertificate.objects.filter(is_active=True)
+    serializer_class = StudentCertificateSerializer
+    lookup_field = 'certificate_id'

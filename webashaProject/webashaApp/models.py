@@ -58,8 +58,7 @@ class Course(models.Model):
 	menu_label = models.CharField(max_length=20, choices=MENU_LABEL_CHOICES, default="none")
 	menu_icon = models.ImageField(upload_to="course_menu_icons/", null=True, blank=True)
 	
-	short_description = models.TextField(blank=True)
-	description = models.TextField(blank=True)
+	short_description = models.TextField(max_length=150, blank=True)
 	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="active")
 	thumbnail = models.ImageField(upload_to="course_thumbnails/", null=True, blank=True)
 	student_count = models.CharField(max_length=50, default="1,000+")
@@ -492,6 +491,7 @@ class ExamVoucherOffer(models.Model):
         return self.title
 
 class UpcomingBatch(models.Model):
+    course_banner = models.ForeignKey('CourseBanner', on_delete=models.CASCADE, related_name="upcoming_batches", null=True, blank=True, help_text="Select the course page this batch belongs to. If empty, it may appear globally.")
     date = models.DateField(help_text="e.g. 2026-03-30")
     mode_of_class = models.CharField(max_length=255, default="Online/Classroom")
     batch_form = models.CharField(max_length=255, default="Weekdays")
@@ -542,8 +542,10 @@ class CourseBanner(models.Model):
     detail_includes = models.CharField(max_length=255, default="Hands-on Labs, Official Red Hat Curriculum, Exam Simulations")
     
     # Media
+    voucher_offer = models.ForeignKey('ExamVoucherOffer', on_delete=models.SET_NULL, null=True, blank=True, related_name="course_banners", help_text="Select a specific Exam Voucher Offer for this page. If empty, uses default active offer.")
     video_thumbnail = models.ImageField(upload_to="course_banners/", help_text="Image previewing the video")
-    youtube_video_id = models.CharField(max_length=100, default="ERtp4zua0-s")
+    youtube_video_url = models.URLField(max_length=500, blank=True, null=True, help_text="Paste full YouTube video URL (e.g. https://www.youtube.com/watch?v=...)")
+    youtube_video_id = models.CharField(max_length=100, default="ERtp4zua0-s", help_text="Or enter YouTube Video ID directly")
     pdf_syllabus_link = models.CharField(max_length=500, blank=True, null=True, help_text="Direct link if any, else opens modal")
     
     # Stats at bottom
@@ -617,3 +619,42 @@ class CourseFAQ(models.Model):
 
     def __str__(self):
         return f"{self.course_banner.page_identifier} - Question {self.order}"
+
+
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=255, help_text="Image title or alt text")
+    image = models.ImageField(upload_to="gallery_images/")
+    category = models.CharField(max_length=100, blank=True, help_text="E.g., Event, Classroom, Lab (Optional)")
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Gallery Image"
+        verbose_name_plural = "Gallery Images"
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return self.title
+
+def generate_cert_id():
+    import string, random
+    code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+    return f"WACERT-{code}"
+
+class StudentCertificate(models.Model):
+    certificate_id = models.CharField(max_length=50, unique=True, default=generate_cert_id, help_text="Unique Certificate ID, used by students to lookup their certificate.")
+    student_name = models.CharField(max_length=255)
+    course_name = models.CharField(max_length=255)
+    total_lectures = models.CharField(max_length=100, blank=True, help_text="e.g. 50 Hours or 40 Lectures")
+    issue_date = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Student Certificate"
+        verbose_name_plural = "Student Certificates"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.student_name} - {self.certificate_id}"

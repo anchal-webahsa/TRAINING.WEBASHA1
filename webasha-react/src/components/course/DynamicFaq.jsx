@@ -4,7 +4,7 @@ const DynamicFaq = ({ faqs }) => {
   if (!faqs || faqs.length === 0) return null;
 
   return (
-    <section className="faq-section lazy-section">
+    <section className="faq-section lazy-section mt-5 pt-4">
       <h2 className="heading-main text-center">
         Frequently Asked <span className="red-color">Questions</span>
       </h2>

@@ -35,6 +35,7 @@ function CourseTemplate(props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetch(`http://127.0.0.1:8000/api/course-banners/${slug}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
@@ -94,7 +95,7 @@ function CourseTemplate(props) {
         description="Explore the unique benefits of our courses designed for foundational success in Pune's booming IT sector."
       />
       <WhyWebasha />
-      <BatchSchedule />
+      <BatchSchedule slug={slug} />
 
       <main>
         <div className="container">
@@ -181,7 +182,7 @@ function CourseTemplate(props) {
             {/* Sidebar-2 */}
             <div className="col-lg-4 col-sm-12 col-12 sticky-sidebar1 lazy-section" id="sticky-sidebar2">
               <div className="course-subsciption sticky-sidebar-container">
-                <CourseSidebar2 />
+                <CourseSidebar2 voucherOffer={bannerData.voucher_offer} />
               </div>
             </div>
           </div>

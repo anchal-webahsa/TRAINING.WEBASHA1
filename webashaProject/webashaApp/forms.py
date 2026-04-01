@@ -5,11 +5,10 @@ from .models import Course, Coupon
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['title', 'short_description', 'description', 'status', 'price']
+        fields = ['title', 'short_description', 'status', 'price']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'rows':2, 'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'rows':4, 'class': 'form-control'}),
         }
 
 

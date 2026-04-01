@@ -133,11 +133,14 @@ const getBatches = () => [
   },
 ];
 
-const BatchSchedule = () => {
+const BatchSchedule = ({ slug }) => {
   const [batches, setBatches] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/upcoming-batches/")
+    const url = slug 
+      ? `http://127.0.0.1:8000/api/upcoming-batches/?course=${slug}`
+      : "http://127.0.0.1:8000/api/upcoming-batches/";
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         if (data && data.length > 0) {
@@ -173,10 +176,9 @@ const BatchSchedule = () => {
         }
       })
       .catch((err) => {
-        console.error("Failed to fetch upcoming batches:", err);
         setBatches(getBatches());
       });
-  }, []);
+  }, [slug]);
 
   // While waiting on initial fetch, either render empty or the fallback so it doesn't jump
   const displayBatches = batches.length > 0 ? batches : getBatches();

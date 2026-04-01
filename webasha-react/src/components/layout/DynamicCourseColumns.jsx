@@ -37,6 +37,7 @@ export default function DynamicCourseColumns({ tabId, megaMenuData, category }) 
               to={`/${course.slug || course.id}`}
               className="course-link text-decoration-none"
               key={course.id}
+              onClick={() => document.body.click()}
             >
               <div className="image-icon">
                 {course.menu_icon ? (
@@ -55,7 +56,7 @@ export default function DynamicCourseColumns({ tabId, megaMenuData, category }) 
                     </>
                   )}
                 </h6>
-                <h6 className="desc2">
+                <h6 className="desc2" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-all' }}>
                   {course.short_description}
                 </h6>
                 {course.menu_label !== 'none' && (

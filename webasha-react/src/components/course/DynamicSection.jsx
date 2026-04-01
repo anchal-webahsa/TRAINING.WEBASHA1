@@ -16,18 +16,7 @@ const DynamicSection = ({ id, content, title, isCard = false, customClass = "" }
             className="description-html description text-center"
             dangerouslySetInnerHTML={{ __html: content }} 
           />
-          <div className="gradient-overlay" />
         </div>
-        <button
-          className="toggle-button"
-          onClick={(e) => {
-            const container = e.target.previousElementSibling;
-            container.classList.toggle("expanded");
-            e.target.innerText = container.classList.contains("expanded") ? "View Less" : "View More";
-          }}
-        >
-          View More
-        </button>
       </section>
     );
   }

@@ -596,6 +596,14 @@ export default function Header() {
                           Result
                         </a>
                       </li>
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/certificate"
+                        >
+                          Certificate
+                        </a>
+                      </li>
                       <li className="dropdown-submenu">
                         <a
                           className="dropdown-item dropdown-toggle"

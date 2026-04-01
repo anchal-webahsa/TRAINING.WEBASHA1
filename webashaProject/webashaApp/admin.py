@@ -15,7 +15,9 @@ from .models import (
     CourseBanner,
     StudentScreenshot,
     CourseSyllabus,
-    CourseFAQ
+    CourseFAQ,
+    GalleryImage,
+    StudentCertificate
 )
 
 
@@ -119,11 +121,15 @@ class CourseFAQInline(admin.StackedInline):
     model = CourseFAQ
     extra = 1
 
+class UpcomingBatchInline(admin.StackedInline):
+    model = UpcomingBatch
+    extra = 1
+
 class CourseBannerAdmin(BaseAdmin):
     list_display = ('page_identifier', 'heading', 'is_active')
     search_fields = ('page_identifier', 'heading')
     list_filter = ('is_active',)
-    inlines = [CourseSyllabusInline, CourseFAQInline]
+    inlines = [CourseSyllabusInline, CourseFAQInline, UpcomingBatchInline]
 
 admin.site.register(CourseBanner, CourseBannerAdmin)
 
@@ -135,6 +141,22 @@ class StudentScreenshotAdmin(BaseAdmin):
     ordering = ('order',)
 
 admin.site.register(StudentScreenshot, StudentScreenshotAdmin)
+
+class GalleryImageAdmin(BaseAdmin):
+    list_display = ('title', 'category', 'order', 'is_active', 'created_at')
+    list_editable = ('order', 'is_active')
+    search_fields = ('title', 'category')
+    list_filter = ('is_active', 'category')
+    ordering = ('order', '-created_at')
+
+admin.site.register(GalleryImage, GalleryImageAdmin)
+
+class StudentCertificateAdmin(BaseAdmin):
+    list_display = ('student_name', 'course_name', 'certificate_id', 'issue_date', 'is_active')
+    search_fields = ('student_name', 'course_name', 'certificate_id')
+    list_filter = ('is_active',)
+
+admin.site.register(StudentCertificate, StudentCertificateAdmin)
 
 # Restrict access to the admin site to superusers only
 admin.site.has_permission = lambda request: request.user.is_active and request.user.is_superuser

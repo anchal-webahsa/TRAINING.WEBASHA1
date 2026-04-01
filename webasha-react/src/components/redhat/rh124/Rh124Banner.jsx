@@ -1,12 +1,27 @@
 import React from "react";
 
 const Rh124Banner = ({ bannerData }) => {
+  const getParsedVideoId = (data) => {
+    if (!data) return "ERtp4zua0-s";
+    let url = data.youtube_video_url;
+    if (url) {
+      // Extract video ID from full URL
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+      if (match && match[1]) {
+        return match[1];
+      }
+    }
+    return data.youtube_video_id || "ERtp4zua0-s";
+  };
+
+  const videoId = getParsedVideoId(bannerData);
+
   return (
     <section className="banner-course">
       <div className="container">
-        <div className="row align-items-center">
+        <div className="row align-items-center" style={{ overflow: "hidden" }}>
           {/* Left Column */}
-          <div className="col-lg-8 col-sm-12">
+          <div className="col-lg-8 col-sm-12" style={{ minWidth: 0 }}>
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb navigation">
               <ol className="breadcrumb">
@@ -36,14 +51,14 @@ const Rh124Banner = ({ bannerData }) => {
               </ol>
             </nav>
             {/* Banner Content */}
-            <div className="banner-course-content">
+            <div className="banner-course-content" style={{ maxWidth: "100%", wordWrap: "break-word" }}>
               {/* Course At-a-Glance */}
-              <section className="at-a-glance text-light">
-                <h1 className="heading-main-1 text-white">
+              <section className="at-a-glance text-light" style={{ maxWidth: "100%" }}>
+                <h1 className="heading-main-1 text-white" style={{ wordBreak: 'break-word' }}>
                   {bannerData ? bannerData.heading : "RH124 v10 Certification Training: Essential Linux System Administration Skills"}
                 </h1>
                 {/* Review Card */}
-                <div className="banner-review-card">
+                <div className="banner-review-card d-flex flex-wrap gap-3" style={{ maxWidth: "100%" }}>
                   <div className="enrolled-group d-flex align-items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +75,7 @@ const Rh124Banner = ({ bannerData }) => {
                     <span>{bannerData ? bannerData.enrolled_count : "3,850+ Participants Enrolled"}</span>
                   </div>
                   {/* Rating Stars */}
-                  <ul className="list-unstyled rating-list d-flex align-items-center">
+                  <ul className="list-unstyled rating-list d-flex align-items-center m-0">
                     <li>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +158,7 @@ const Rh124Banner = ({ bannerData }) => {
                     </li>
                   </ul>
                   {/* Social Ratings */}
-                  <ul className="list-unstyled social-list d-flex">
+                  <ul className="list-unstyled social-list d-flex m-0">
                     <li className="me-3">
                       <img
                         src="/assets/img/icons/google.svg"
@@ -169,11 +184,12 @@ const Rh124Banner = ({ bannerData }) => {
                 {/* Description */}
                 {bannerData ? (
                   <div 
-                    className="text-light mt-4 description-html"
+                    className="text-light mt-4 description-html text-break"
+                    style={{ wordBreak: 'break-all' }}
                     dangerouslySetInnerHTML={{ __html: bannerData.description }}
                   />
                 ) : (
-                  <p className="text-light mt-4">
+                  <p className="text-light mt-4 text-break" style={{ wordBreak: 'break-all' }}>
                     Launch your Linux career with{" "}
                     <strong>RH124 v10 Certification Training</strong> at{" "}
                     <span className="red-color">WebAsha Technologies</span> in Pune.
@@ -197,10 +213,10 @@ const Rh124Banner = ({ bannerData }) => {
                   </p>
                 )}
                 {/* Facts Table */}
-                <table className="table table-dark table-bordered facts-table mt-3 mb-0">
+                <table className="table table-dark table-bordered facts-table mt-3 mb-0" style={{ tableLayout: 'fixed', wordBreak: 'break-word', width: '100%' }}>
                   <tbody>
                     <tr>
-                      <th scope="row" className="fw-semibold text-warning">
+                      <th scope="row" className="fw-semibold text-warning" style={{ width: '120px' }}>
                         Duration:
                       </th>
                       <td className="text-light">
@@ -243,7 +259,7 @@ const Rh124Banner = ({ bannerData }) => {
                 </table>
               </section>
               {/* Buttons */}
-              <div className="button-group mt-4 mb-4 d-flex gap-3">
+              <div className="button-group mt-4 mb-4 d-flex flex-wrap gap-3">
                 <a
                   href="https://api.whatsapp.com/send?phone=+91-8010911256&text=Hello%20WebAsha%20Team,%20I%20want%20to%20join%20RH124%20v10%20Training"
                   className="btn-whatsapp text-decoration-none"
@@ -312,7 +328,7 @@ const Rh124Banner = ({ bannerData }) => {
                   className="video-btn position-absolute top-50 start-50 translate-middle"
                   data-bs-toggle="modal"
                   data-bs-target="#videoModal"
-                  data-video-id={bannerData ? bannerData.youtube_video_id : "ERtp4zua0-s"}
+                  data-video-id={videoId}
                   aria-label="Watch course preview video"
                 >
                   <svg

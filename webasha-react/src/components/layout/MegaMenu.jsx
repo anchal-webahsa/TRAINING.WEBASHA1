@@ -73,6 +73,7 @@ export default function MegaMenu() {
                         to={`/${course.slug || course.id}`}
                         className="course-link text-decoration-none"
                         key={course.id}
+                        onClick={() => document.body.click()}
                       >
                         <div className="image-icon">
                           {course.menu_icon ? (

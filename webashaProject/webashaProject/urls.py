@@ -14,7 +14,9 @@ from webashaApp.api import (
     UpcomingBatchViewSet,
     CourseBannerViewSet,
     StudentScreenshotViewSet,
-    MenuCategoryViewSet
+    MenuCategoryViewSet,
+    GalleryImageViewSet,
+    StudentCertificateViewSet
 )
 
 router = routers.DefaultRouter()
@@ -26,10 +28,12 @@ router.register(r'instructors', InstructorViewSet)
 router.register(r'sections', HomeSectionViewSet)
 router.register(r'alumni-profiles', AlumniProfileViewSet)
 router.register(r'exam-voucher-offer', ExamVoucherOfferViewSet)
-router.register(r'upcoming-batches', UpcomingBatchViewSet)
+router.register(r'upcoming-batches', UpcomingBatchViewSet, basename='upcomingbatch')
 router.register(r'course-banners', CourseBannerViewSet, basename='coursebanner')
 router.register(r'student-screenshots', StudentScreenshotViewSet, basename='studentscreenshot')
 router.register(r'mega-menu', MenuCategoryViewSet, basename='megamenu')
+router.register(r'gallery-images', GalleryImageViewSet, basename='galleryimage')
+router.register(r'student-certificates', StudentCertificateViewSet, basename='studentcertificate')
 
 from django.conf import settings
 from django.conf.urls.static import static

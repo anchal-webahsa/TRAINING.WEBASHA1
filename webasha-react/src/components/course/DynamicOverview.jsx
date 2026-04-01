@@ -19,18 +19,7 @@ const DynamicOverview = ({ content, defaultHeading }) => {
             </p>
           </div>
         )}
-        <div className="gradient-overlay" />
       </div>
-      <button
-        className="toggle-button"
-        onClick={(e) => {
-          const container = e.target.previousElementSibling;
-          container.classList.toggle("expanded");
-          e.target.innerText = container.classList.contains("expanded") ? "View Less" : "View More";
-        }}
-      >
-        View More
-      </button>
     </section>
   );
 };

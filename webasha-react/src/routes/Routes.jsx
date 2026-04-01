@@ -19,6 +19,10 @@ import Osep from "../pages/Osep";
 import Rhcsa from "../pages/Rhcsa";
 import Rhce  from "../pages/Rhce";
 
+// ── Other Pages ──
+import Gallery from "../pages/Gallery";
+import Certificate from "../pages/Certificate";
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -37,9 +41,10 @@ export default function AppRoutes() {
       <Route path="/rhcsa" element={<Rhcsa />} />
       <Route path="/rhce"  element={<Rhce />}  />
 
-
       <Route path="/rhcsa1" element={<CourseTemplate slug="rhcsa1" />} />
       <Route path="/rhcsa2" element={<CourseTemplate slug="rhcsa2" />} />
+      <Route path="/gallery" element={<Gallery />} />
+      <Route path="/certificate" element={<Certificate />} />
       <Route path="/:slug" element={<CourseTemplate />} />
 
 

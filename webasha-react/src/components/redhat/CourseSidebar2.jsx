@@ -4,10 +4,16 @@ import { useState, useEffect } from "react";
 const CourseSidebar2 = ({
     whatsappMsg: defaultMsg = "Hello%20WebAsha,%20I%20want%20Discounted%20Exam%20Voucher",
     whatsappNum: defaultNum = "+91-8010911256",
+    voucherOffer = null,
 }) => {
-    const [offer, setOffer] = useState(null);
+    const [offer, setOffer] = useState(voucherOffer);
 
     useEffect(() => {
+        if (voucherOffer) {
+            setOffer(voucherOffer);
+            return;
+        }
+        
         fetch("http://127.0.0.1:8000/api/exam-voucher-offer/")
             .then(res => res.json())
             .then(data => {
@@ -20,7 +26,7 @@ const CourseSidebar2 = ({
                 }
             })
             .catch(err => console.error("Error fetching voucher offer:", err));
-    }, []);
+    }, [voucherOffer]);
 
     // Fallbacks
     const title = offer ? offer.title : "Discounted Certification Exam Voucher";
