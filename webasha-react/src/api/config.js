@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-export const API_BASE_URL = "http://localhost:8000/api";
-export const MEDIA_BASE_URL = "http://localhost:8000/media";
+// Detect if we are running in development or production
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+// Base URLs
+const BASE_URL = isDevelopment ? "http://localhost:8000" : "";
+
+export const API_BASE_URL = `${BASE_URL}/api`;
+export const MEDIA_BASE_URL = `${BASE_URL}/media`;
 
 export const fetchData = async (endpoint) => {
     try {
