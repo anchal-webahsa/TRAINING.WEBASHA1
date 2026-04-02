@@ -1,5 +1,43 @@
-
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
+
+const CountUp = ({ end, duration }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(null);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    let animationFrameId;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(step);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          animationFrameId = window.requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (countRef.current) observer.observe(countRef.current);
+
+    return () => {
+      observer.disconnect();
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [end, duration]);
+
+  return <span ref={countRef}>{count}</span>;
+};
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TextReviews from "../components/common/TextReviews";
@@ -371,25 +409,25 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-3 col-sm-6 col-12">
                 <div className="content text-center">
-                  <h2><span id="counter1">0</span>+</h2>
+                  <h2><CountUp end={120} duration={3000} />+</h2>
                   <p className="desc">Certified <br /> Industry Experts</p>
                 </div>
               </div>
               <div className="col-lg-3 col-sm-6 col-12">
                 <div className="content text-center">
-                  <h2><span id="counter2">0</span>+</h2>
+                  <h2><CountUp end={100} duration={3000} />+</h2>
                   <p className="desc">Comprehensive <br /> Job-Oriented Courses</p>
                 </div>
               </div>
               <div className="col-lg-3 col-sm-6 col-12">
                 <div className="content text-center">
-                  <h2><span id="counter3">0</span>+</h2>
+                  <h2><CountUp end={50} duration={3000} />+</h2>
                   <p className="desc">Hands-on Labs &amp; <br /> Learning Facilities</p>
                 </div>
               </div>
               <div className="col-lg-3 col-sm-6 col-12">
                 <div className="content text-center">
-                  <h2><span id="counter4">0</span>+</h2>
+                  <h2><CountUp end={100} duration={3000} />+</h2>
                   <p className="desc">Countries <br /> &amp; Growing Reach</p>
                 </div>
               </div>

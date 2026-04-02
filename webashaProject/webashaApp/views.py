@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Course, CourseBundle, Bootcamp, BootcampCategory, BootcampPurchase, Coupon, TutorCategory, TutorSubject, EbookCategory, Ebook, EbookPurchase, Profile, Contact, Ticket, FAQ
+from .models import (
+    Course, CourseBundle, Bootcamp, BootcampCategory, BootcampPurchase, 
+    Coupon, TutorCategory, TutorSubject, EbookCategory, Ebook, 
+    EbookPurchase, Profile, Contact, Ticket, FAQ, PlacedStudent, 
+    PlacementStat, HiringPartner
+)
 from .forms import CouponForm
 from django.contrib import messages
 
@@ -1119,3 +1124,39 @@ def delete_ticket(request, pk):
         ticket.delete()
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+def get_placements(request):
+    """API view to fetch all placement related data."""
+    students = PlacedStudent.objects.filter(is_active=True).order_by('order', '-created_at')
+    partners = HiringPartner.objects.filter(is_active=True).order_by('order', '-created_at')
+    stats = PlacementStat.objects.first()
+
+    student_data = [
+        {
+            "sno": i + 1,
+            "name": s.name,
+            "course": s.course,
+            "role": s.role,
+            "company": s.company,
+            "pkg": s.package,
+            "date": s.month_year
+        } for i, s in enumerate(students)
+    ]
+
+    partner_data = [
+        {
+            "src": p.logo.url if p.logo else "",
+            "alt": p.name
+        } for p in partners
+    ]
+
+    stats_data = [
+        {"value": stats.total_placements if stats else "350+", "label": "Total Placements"},
+        {"value": stats.average_package if stats else "8.9 LPA", "label": "Average Package"},
+        {"value": stats.hiring_partners if stats else "120+", "label": "Hiring Partners"}
+    ]
+
+    return JsonResponse({
+        "students": student_data,
+        "companies": partner_data,
+        "stats": stats_data
+    })

@@ -658,3 +658,67 @@ class StudentCertificate(models.Model):
 
     def __str__(self):
         return f"{self.student_name} - {self.certificate_id}"
+
+class Enquiry(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    course_name = models.CharField(max_length=255, blank=True)
+    country = models.CharField(max_length=100, default="India")
+    city = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Enquiry"
+        verbose_name_plural = "Enquiries"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"Enquiry from {self.name} for {self.course_name}"
+
+class PlacedStudent(models.Model):
+    name = models.CharField(max_length=255)
+    course = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    package = models.CharField(max_length=50, help_text="e.g. 8.5")
+    month_year = models.CharField(max_length=100, help_text="e.g. Apr 2024")
+    order = models.IntegerField(default=0, help_text="Controls the display order")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Placed Student"
+        verbose_name_plural = "Placed Students"
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return f"{self.name} - {self.company}"
+
+class PlacementStat(models.Model):
+    total_placements = models.CharField(max_length=50, default="350+")
+    average_package = models.CharField(max_length=50, default="8.9 LPA")
+    hiring_partners = models.CharField(max_length=50, default="120+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Placement Stat"
+        verbose_name_plural = "Placement Stats"
+
+    def __str__(self):
+        return f"Placement Stats: {self.total_placements} Placements"
+
+class HiringPartner(models.Model):
+    name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to="hiring_partners/", help_text="Company Logo")
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Hiring Partner"
+        verbose_name_plural = "Hiring Partners"
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return self.name

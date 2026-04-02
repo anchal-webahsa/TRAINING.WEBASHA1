@@ -1,29 +1,44 @@
-const students = [
-  { sno: 1,  name: "Abhishek Jadhav", course: "Cloud",      role: "Cloud Engineer",       company: "Infosys",   pkg: "8.5",  date: "Apr 2024" },
-  { sno: 2,  name: "Anjali Deshmukh", course: "Security",   role: "Security Analyst",     company: "TCS",       pkg: "10.2", date: "Mar 2024" },
-  { sno: 3,  name: "Rohit Patil",     course: "DevOps",     role: "DevOps Engineer",      company: "Accenture", pkg: "7.8",  date: "Feb 2024" },
-  { sno: 4,  name: "Priya Kulkarni", course: "Networking",  role: "Network Engineer",     company: "Cognizant", pkg: "6.5",  date: "Jan 2024" },
-  { sno: 5,  name: "Vikas Sharma",   course: "Automation",  role: "Automation Engineer",  company: "Wipro",     pkg: "6.3",  date: "Dec 2023" },
-  { sno: 6,  name: "Sneha More",     course: "Cloud",       role: "Cloud Engineer",       company: "HCL",       pkg: "7.2",  date: "Nov 2023" },
-  { sno: 7,  name: "Akash Gupta",    course: "RHCE",        role: "System Administrator", company: "IBM",       pkg: "9.0",  date: "Oct 2023" },
-  { sno: 8,  name: "Meera Joshi",    course: "Security",    role: "Security Engineer",    company: "Capgemini", pkg: "8.0",  date: "Sep 2023" },
-];
-
-const companies = [
-  { src: "/assets/img/companies/infosys.webp",   alt: "Infosys"   },
-  { src: "/assets/img/companies/tcs.webp",       alt: "TCS"       },
-  { src: "/assets/img/companies/accenture.webp", alt: "Accenture" },
-  { src: "/assets/img/companies/cognizant.webp", alt: "Cognizant" },
-  { src: "/assets/img/companies/wipro.webp",     alt: "Wipro"     },
-];
-
-const stats = [
-  { value: "350+", label: "Total Placements"  },
-  { value: "8.9 LPA", label: "Average Package" },
-  { value: "120+", label: "Hiring Partners"   },
-];
+import React, { useState, useEffect } from 'react';
+import { fetchData, MEDIA_BASE_URL } from '../api/config';
 
 const PlacedStudents = () => {
+  const [students, setStudents] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [stats, setStats] = useState([
+    { value: "350+", label: "Total Placements"  },
+    { value: "8.9 LPA", label: "Average Package" },
+    { value: "120+", label: "Hiring Partners"   },
+  ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getPlacements = async () => {
+      try {
+        const data = await fetchData('placements/');
+        if (data.students && data.students.length > 0) {
+          setStudents(data.students);
+        }
+        
+        if (data.companies && data.companies.length > 0) {
+          const companiesWithMedia = data.companies.map(c => ({
+            ...c,
+            src: c.src.startsWith('http') ? c.src : `${MEDIA_BASE_URL.replace('/api', '')}${c.src}`
+          }));
+          setCompanies(companiesWithMedia);
+        }
+
+        if (data.stats && data.stats.length > 0) {
+          setStats(data.stats);
+        }
+      } catch (error) {
+        console.error("Failed to fetch placements:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getPlacements();
+  }, []);
+
   return (
     <>
       {/* Breadcrumb */}
@@ -79,49 +94,67 @@ const PlacedStudents = () => {
 
           {/* Table */}
           <div className="table-responsive custom-table mb-4">
-            <table className="table table-bordered align-middle">
-              <thead className="table-light">
-                <tr>
-                  <th scope="col">S.No.</th>
-                  <th scope="col">Student Name</th>
-                  <th scope="col">Course</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Company</th>
-                  <th scope="col">Package (LPA)</th>
-                  <th scope="col">Month/Year</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((s) => (
-                  <tr key={s.sno}>
-                    <td>{s.sno}</td>
-                    <td>{s.name}</td>
-                    <td>{s.course}</td>
-                    <td>{s.role}</td>
-                    <td>{s.company}</td>
-                    <td>{s.pkg}</td>
-                    <td>{s.date}</td>
+            {loading ? (
+              <div className="text-center py-5">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <table className="table table-bordered align-middle">
+                <thead className="table-light">
+                  <tr>
+                    <th scope="col">S.No.</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Package (LPA)</th>
+                    <th scope="col">Month/Year</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {students.length > 0 ? (
+                    students.map((s) => (
+                      <tr key={s.sno}>
+                        <td>{s.sno}</td>
+                        <td>{s.name}</td>
+                        <td>{s.course}</td>
+                        <td>{s.role}</td>
+                        <td>{s.company}</td>
+                        <td>{s.pkg}</td>
+                        <td>{s.date}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="7" className="text-center py-4">No placement records found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            )}
           </div>
 
           {/* Hiring Partners */}
-          <h2 className="heading-main mt-4">Our Hiring Partners</h2>
-          <div className="row align-items-center g-3 mb-4">
-            {companies.map((c, i) => (
-              <div className="col-auto" key={i}>
-                <img
-                  src={c.src}
-                  alt={c.alt}
-                  className="img-fluid"
-                  style={{ maxHeight: "48px" }}
-                  loading="lazy"
-                />
+          {companies.length > 0 && (
+            <>
+              <h2 className="heading-main mt-4">Our Hiring Partners</h2>
+              <div className="row align-items-center g-3 mb-4">
+                {companies.map((c, i) => (
+                  <div className="col-auto" key={i}>
+                    <img
+                      src={c.src}
+                      alt={c.alt}
+                      className="img-fluid"
+                      style={{ maxHeight: "48px" }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
 
           {/* CTA */}
           <div className="text-center mt-4">

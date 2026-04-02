@@ -355,7 +355,7 @@ const Rh124Banner = ({ bannerData }) => {
                   href="#"
                   className="animated-button1 mx-auto d-inline-flex align-items-center"
                   data-bs-toggle="modal"
-                  data-bs-target="#enquiryModal"
+                  data-bs-target="#enrollModal"
                   aria-label="Enroll in certification training"
                 >
                   <span />
@@ -370,7 +370,7 @@ const Rh124Banner = ({ bannerData }) => {
                 <a
                   href="#"
                   data-bs-toggle="modal"
-                  data-bs-target="#enquiryModal"
+                  data-bs-target="#enrollModal"
                   aria-label="Enroll in Course"
                 >
                   <picture>

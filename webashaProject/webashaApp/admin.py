@@ -17,7 +17,11 @@ from .models import (
     CourseSyllabus,
     CourseFAQ,
     GalleryImage,
-    StudentCertificate
+    StudentCertificate,
+    Enquiry,
+    PlacedStudent,
+    PlacementStat,
+    HiringPartner
 )
 
 
@@ -160,3 +164,33 @@ admin.site.register(StudentCertificate, StudentCertificateAdmin)
 
 # Restrict access to the admin site to superusers only
 admin.site.has_permission = lambda request: request.user.is_active and request.user.is_superuser
+
+class EnquiryAdmin(BaseAdmin):
+    list_display = ('name', 'email', 'phone', 'course_name', 'country', 'city', 'created_at')
+    search_fields = ('name', 'email', 'phone', 'course_name')
+    list_filter = ('country', 'course_name')
+
+admin.site.register(Enquiry, EnquiryAdmin)
+
+class PlacedStudentAdmin(BaseAdmin):
+    list_display = ('name', 'company', 'package', 'month_year', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('name', 'company', 'course', 'role')
+    list_filter = ('company', 'is_active')
+    ordering = ('order', '-created_at')
+
+admin.site.register(PlacedStudent, PlacedStudentAdmin)
+
+class PlacementStatAdmin(BaseAdmin):
+    list_display = ('total_placements', 'average_package', 'hiring_partners')
+
+admin.site.register(PlacementStat, PlacementStatAdmin)
+
+class HiringPartnerAdmin(BaseAdmin):
+    list_display = ('name', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('name',)
+    list_filter = ('is_active',)
+    ordering = ('order', '-created_at')
+
+admin.site.register(HiringPartner, HiringPartnerAdmin)

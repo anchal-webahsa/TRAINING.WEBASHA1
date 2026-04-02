@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../api/config';
 
-const EnquiryModal = () => {
+const EnrollModal = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,8 +24,8 @@ const EnquiryModal = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      await axios.post(`${API_BASE_URL}/submit-enquiry/`, formData);
-      setStatus({ type: 'success', message: 'Enquiry submitted successfully. We will call you back soon!' });
+      await axios.post(`${API_BASE_URL}/submit-enrollment/`, formData);
+      setStatus({ type: 'success', message: 'Enrollment submitted successfully. Our team will contact you shortly!' });
       setFormData({ name: '', email: '', phone: '', course_name: '', country: 'India', city: '' });
     } catch (error) {
       setStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
@@ -37,19 +37,18 @@ const EnquiryModal = () => {
   return (
     <div
       className="modal fade"
-      id="enquiryModal"
+      id="enrollModal"
       tabIndex={-1}
-      aria-labelledby="enquiryModalLabel"
+      aria-labelledby="enrollModalLabel"
       aria-hidden="true"
       style={{ backdropFilter: "blur(8px)" }}
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content shadow-lg border-0">
-
           {/* Header */}
           <div className="modal-header bg-danger text-white">
-            <h5 className="modal-title" id="enquiryModalLabel">
-              📩 Contact Us
+            <h5 className="modal-title" id="enrollModalLabel">
+              🎓 Enroll Now
             </h5>
             <button
               type="button"
@@ -62,7 +61,7 @@ const EnquiryModal = () => {
           {/* Body */}
           <div className="modal-body p-4">
             <p className="mb-4 mt-0 text-muted">
-              One of our advisors will call you in less than 45 minutes.
+              Ready to start your journey? Fill out the form below and secure your seat!
             </p>
             
             {status.message && (
@@ -148,8 +147,8 @@ const EnquiryModal = () => {
               </div>
               <div className="mb-4 text-start">
                 <div className="border rounded p-2 d-inline-flex align-items-center bg-white" style={{ maxWidth: "300px" }}>
-                  <input type="checkbox" id="recaptcha-fake" className="me-3 ms-2" style={{ transform: "scale(1.5)" }} required />
-                  <label htmlFor="recaptcha-fake" className="mb-0">I'm not a robot</label>
+                  <input type="checkbox" id="recaptcha-fake-enroll" className="me-3 ms-2" style={{ transform: "scale(1.5)" }} required />
+                  <label htmlFor="recaptcha-fake-enroll" className="mb-0">I'm not a robot</label>
                   <div className="ms-auto text-center" style={{ fontSize: "10px", lineHeight: "1" }}>
                     <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" width="32" className="mb-1" /><br/>
                     <span className="text-muted">reCAPTCHA</span><br/>
@@ -184,4 +183,4 @@ const EnquiryModal = () => {
   );
 };
 
-export default EnquiryModal;
+export default EnrollModal;

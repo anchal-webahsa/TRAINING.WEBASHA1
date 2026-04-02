@@ -1,5 +1,10 @@
-from rest_framework import viewsets
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate
+from rest_framework import viewsets, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry
+
+
 from .serializers import (
     CourseSerializer, 
     TestimonialSerializer, 
@@ -82,3 +87,54 @@ class StudentCertificateViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = StudentCertificate.objects.filter(is_active=True)
     serializer_class = StudentCertificateSerializer
     lookup_field = 'certificate_id'
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def submit_contact(request):
+    data = request.data
+    try:
+        Enquiry.objects.create(
+            name=data.get('name', ''),
+            email=data.get('email', ''),
+            phone=data.get('phone', ''),
+            course_name=data.get('course_name', ''),
+            country=data.get('country', 'India'),
+            city=data.get('city', '')
+        )
+        return Response({"message": "Form submitted successfully!"}, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def submit_enquiry(request):
+    data = request.data
+    try:
+        Enquiry.objects.create(
+            name=data.get('name', ''),
+            email=data.get('email', ''),
+            phone=data.get('phone', ''),
+            course_name=data.get('course_name', ''),
+            country=data.get('country', 'India'),
+            city=data.get('city', '')
+        )
+        return Response({"message": "Enquiry submitted successfully!"}, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def submit_enrollment(request):
+    data = request.data
+    try:
+        Enquiry.objects.create(
+            name=data.get('name', ''),
+            email=data.get('email', ''),
+            phone=data.get('phone', ''),
+            course_name=data.get('course_name', ''),
+            country=data.get('country', 'India'),
+            city=data.get('city', '')
+        )
+        return Response({"message": "Enrollment submitted successfully!"}, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

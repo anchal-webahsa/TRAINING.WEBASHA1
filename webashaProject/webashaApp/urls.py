@@ -75,4 +75,6 @@ urlpatterns = [
     path('support/faq/add/', views.add_faq, name='add_faq'),
     path('support/faq/<int:pk>/edit/', views.edit_faq, name='edit_faq'),
     path('support/faq/<int:pk>/delete/', views.delete_faq, name='delete_faq'),
+    # placements API
+    path('api/placements/', views.get_placements, name='get_placements'),
 ]

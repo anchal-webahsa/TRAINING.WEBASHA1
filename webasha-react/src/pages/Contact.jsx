@@ -1,4 +1,39 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { API_BASE_URL } from '../api/config';
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    course_name: '',
+    country: 'India',
+    city: ''
+  });
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      await axios.post(`${API_BASE_URL}/submit-contact/`, formData);
+      setStatus({ type: 'success', message: 'Message sent successfully. We will be in touch!' });
+      setFormData({ name: '', email: '', phone: '', course_name: '', country: 'India', city: '' });
+    } catch (error) {
+      setStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       {/* Breadcrumb */}
@@ -84,16 +119,108 @@ const Contact = () => {
             {/* RIGHT — Enquiry Form */}
             <div className="col-lg-5">
               <div className="card shadow border-0">
-                <div className="card-body">
-                  <h4 className="card-title fw-semibold mb-3 text-center text-danger">Enquiry Form</h4>
-                  <iframe
-                    width="100%"
-                    height="550px"
-                    src="https://center.webasha.com/forms/wtl/5da88f1759099bb67f64c24d61fb2592"
-                    frameBorder={0}
-                    sandbox="allow-top-navigation allow-forms allow-scripts allow-same-origin allow-popups"
-                    title="Career Counseling Form"
-                  />
+                <div className="card-body p-4">
+                  <h4 className="card-title fw-semibold mb-3 text-center text-danger">Contact Form</h4>
+                  
+                  {status.message && (
+                    <div className={`alert alert-${status.type === 'success' ? 'success' : 'danger'}`}>
+                      {status.message}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit}>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1"><span className="text-danger">*</span> Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Your Full Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1"><span className="text-danger">*</span> Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1"><span className="text-danger">*</span> Phone</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        className="form-control"
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1"><span className="text-danger">*</span> Course Name</label>
+                      <input
+                        type="text"
+                        name="course_name"
+                        className="form-control"
+                        placeholder="1 Year Diploma in Cyber Security"
+                        value={formData.course_name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1">Country</label>
+                      <select
+                        name="country"
+                        className="form-select"
+                        value={formData.country}
+                        onChange={handleChange}
+                      >
+                        <option value="India">India</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div className="mb-3 text-start">
+                      <label className="fw-bold text-muted small mb-1">City</label>
+                      <input
+                        type="text"
+                        name="city"
+                        className="form-control"
+                        value={formData.city}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-4 text-start">
+                      <div className="border rounded p-2 d-inline-flex align-items-center bg-white" style={{ maxWidth: "300px" }}>
+                        <input type="checkbox" id="recaptcha-fake-contact" className="me-3 ms-2" style={{ transform: "scale(1.5)" }} required />
+                        <label htmlFor="recaptcha-fake-contact" className="mb-0">I'm not a robot</label>
+                        <div className="ms-auto text-center" style={{ fontSize: "10px", lineHeight: "1" }}>
+                          <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" width="32" className="mb-1" /><br/>
+                          <span className="text-muted">reCAPTCHA</span><br/>
+                          <a href="#" className="text-muted text-decoration-none">Privacy</a> - <a href="#" className="text-muted text-decoration-none">Terms</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="d-grid mt-2">
+                      <button type="submit" className="btn btn-danger btn-lg text-white rounded ds-2" disabled={isSubmitting}>
+                        {isSubmitting ? 'Sending...' : 'Submit'}
+                      </button>
+                    </div>
+                  </form>
+
                 </div>
               </div>
             </div>

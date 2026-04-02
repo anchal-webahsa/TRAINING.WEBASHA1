@@ -38,10 +38,15 @@ router.register(r'student-certificates', StudentCertificateViewSet, basename='st
 from django.conf import settings
 from django.conf.urls.static import static
 
+from webashaApp.api import submit_contact, submit_enquiry, submit_enrollment
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', RedirectView.as_view(url='/', permanent=False)),
+    path('api/submit-contact/', submit_contact, name='submit_contact'),
+    path('api/submit-enquiry/', submit_enquiry, name='submit_enquiry'),
+    path('api/submit-enrollment/', submit_enrollment, name='submit_enrollment'),
     path('api/', include(router.urls)),
     path("",include("webashaApp.urls")),
 ]
