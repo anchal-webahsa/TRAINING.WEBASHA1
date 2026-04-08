@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin, SummernoteModelAdminMixin
 from .models import (
     Course, 
     CourseCategory, 
@@ -25,7 +26,9 @@ from .models import (
 )
 
 
-class BaseAdmin(admin.ModelAdmin):
+class BaseAdmin(SummernoteModelAdmin):
+    summernote_fields = '__all__'
+
     def has_module_permission(self, request):
         return request.user.is_active and request.user.is_superuser
     def has_view_permission(self, request, obj=None):
@@ -117,13 +120,15 @@ class UpcomingBatchAdmin(BaseAdmin):
 
 admin.site.register(UpcomingBatch, UpcomingBatchAdmin)
 
-class CourseSyllabusInline(admin.StackedInline):
+class CourseSyllabusInline(SummernoteModelAdminMixin, admin.StackedInline):
     model = CourseSyllabus
     extra = 1
+    summernote_fields = ('description',)
 
-class CourseFAQInline(admin.StackedInline):
+class CourseFAQInline(SummernoteModelAdminMixin, admin.StackedInline):
     model = CourseFAQ
     extra = 1
+    summernote_fields = ('answer',)
 
 class UpcomingBatchInline(admin.StackedInline):
     model = UpcomingBatch
@@ -134,6 +139,55 @@ class CourseBannerAdmin(BaseAdmin):
     search_fields = ('page_identifier', 'heading')
     list_filter = ('is_active',)
     inlines = [CourseSyllabusInline, CourseFAQInline, UpcomingBatchInline]
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': (
+                'page_identifier', 'breadcrumb_active', 'heading', 
+                'description', 'is_active'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Ratings & Enrollments', {
+            'fields': (
+                'enrolled_count', 'rating_text', 'google_rating', 'facebook_rating'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Table Details', {
+            'fields': (
+                'detail_duration', 'detail_mode', 'detail_certification', 
+                'detail_institute', 'detail_includes'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Media Section', {
+            'fields': (
+                'voucher_offer', 'video_thumbnail', 'youtube_video_url', 
+                'youtube_video_id', 'pdf_syllabus_link'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Statistics', {
+            'fields': (
+                'stat_professionals', 'stat_batches', 'stat_countries', 'stat_clients'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Dynamic HTML Content', {
+            'fields': (
+                'overview_html', 'exam_info_html', 'salary_html', 
+                'career_benefits_html', 'why_choose_us_html'
+            ),
+            'classes': ('tab-section',)
+        }),
+    )
+
+    class Media:
+        css = {
+            'all': ('admin/css/course_banner_tabs.css',)
+        }
+        js = ('admin/js/course_banner_tabs.js',)
 
 admin.site.register(CourseBanner, CourseBannerAdmin)
 

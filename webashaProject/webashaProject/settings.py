@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     "webashaApp",
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Redirect users after login/logout to working pages in this app
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SUMMERNOTE_CONFIG = {
+    'css': (
+        '/static/css/summernote_dark.css',
+    ),
+}

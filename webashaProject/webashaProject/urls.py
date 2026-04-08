@@ -48,6 +48,7 @@ urlpatterns = [
     path('api/submit-enquiry/', submit_enquiry, name='submit_enquiry'),
     path('api/submit-enrollment/', submit_enrollment, name='submit_enrollment'),
     path('api/', include(router.urls)),
+    path('summernote/', include('django_summernote.urls')),
     path("",include("webashaApp.urls")),
 ]
 

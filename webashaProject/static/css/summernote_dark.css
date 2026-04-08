@@ -1,0 +1,101 @@
+/* Summernote Dark Theme Override */
+
+/* Editor container */
+.note-editor.note-frame {
+    border: 1px solid #454d55;
+    background-color: #1a1a1a;
+}
+
+/* Toolbar */
+.note-editor.note-frame .note-toolbar {
+    background-color: #2c2c2c;
+    border-bottom: 1px solid #454d55;
+}
+
+/* Toolbar Buttons */
+.note-editor.note-frame .note-toolbar .note-btn {
+    color: #e0e0e0;
+    background-color: #3a3a3a;
+    border-color: #454d55;
+}
+.note-editor.note-frame .note-toolbar .note-btn:hover {
+    background-color: #555555;
+}
+.note-editor.note-frame .note-toolbar .note-btn.active {
+    background-color: #666666;
+    color: #ffffff;
+}
+
+/* Dropdown menus */
+.note-editor .dropdown-menu {
+    background-color: #2c2c2c;
+    border-color: #454d55;
+}
+.note-editor .dropdown-menu li a {
+    color: #e0e0e0;
+}
+.note-editor .dropdown-menu li a:hover {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+/* Editable Area (the actual text box) */
+.note-editor.note-frame .note-editing-area {
+    background-color: #1a1a1a;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+/* Status Bar (bottom) */
+.note-editor.note-frame .note-statusbar {
+    background-color: #2c2c2c;
+    border-top: 1px solid #454d55;
+}
+.note-editor.note-frame .note-statusbar .note-resizebar {
+    border-top: 1px solid #4a4a4a;
+}
+.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar {
+    border-top: 1px solid #666666;
+}
+
+/* Modals (Link/Image dialogs) */
+.note-modal-content {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border-color: #454d55;
+}
+.note-modal-header {
+    border-bottom: 1px solid #454d55;
+}
+.note-modal-footer {
+    border-top: 1px solid #454d55;
+}
+.note-modal-title {
+    color: #e0e0e0;
+}
+.note-form-label {
+    color: #cccccc;
+}
+.note-input {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 1px solid #454d55;
+}
+.note-input:focus {
+    border-color: #666666;
+}
+
+/* Fix text colors inside the editor by default, allowing user overrides */
+.note-editable p, 
+.note-editable h1, 
+.note-editable h2, 
+.note-editable h3, 
+.note-editable h4, 
+.note-editable h5, 
+.note-editable h6, 
+.note-editable div, 
+.note-editable li {
+    color: #e0e0e0;
+}
