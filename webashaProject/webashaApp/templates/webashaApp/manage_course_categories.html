@@ -1,0 +1,99 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <h2 class="section-title" style="margin-bottom: 0;">Course Categories</h2> 
+        <a href="{% url 'add_course_category' %}" class="action-icon-btn" style="width: auto; padding: 0 20px; background: var(--accent); color: white; border: none; text-decoration: none; font-weight: 700;"> 
+            <i class="fa-solid fa-plus"></i> Add Course Category 
+        </a> 
+    </div> 
+
+    <!-- Messages --> 
+    {% if messages %} 
+        {% for message in messages %} 
+        <div class="alert-styled {% if message.tags == 'error' %}alert-error{% else %}alert-{{ message.tags }}{% endif %}"> 
+            {{ message }} 
+        </div> 
+        {% endfor %} 
+    {% endif %} 
+
+    <!-- Search Bar --> 
+    <div class="search-bar-wrap" style="background:var(--bg); padding:16px; border-radius:12px; margin-bottom:24px; border: 1px solid var(--border);"> 
+        <form method="get" style="display:flex; gap:12px; align-items:center"> 
+            <div style="flex:1; position:relative"> 
+                <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted);"></i> 
+                <input name="q" placeholder="Search category name..." value="{{ q|default:'' }}" class="form-control" style="padding-left: 44px;"> 
+            </div> 
+            <button type="submit" class="action-icon-btn" style="width: auto; padding: 0 24px; font-weight: 600;">Filter</button> 
+        </form> 
+    </div> 
+
+    <!-- Table --> 
+    <div class="modern-table-wrap"> 
+        <table class="modern-table"> 
+            <thead> 
+                <tr> 
+                    <th>Icon</th> 
+                    <th>Name</th> 
+                    <th>Slug</th> 
+                    <th>Order</th> 
+                    <th>Created At</th> 
+                </tr> 
+            </thead> 
+            <tbody> 
+                {% for category in categories %} 
+                <tr> 
+                    <td> 
+                        {% if category.icon %} 
+                        <img src="{{ category.icon.url }}" alt="icon" style="width:36px; height:36px; object-fit:contain; background:var(--bg); border-radius:8px; padding:4px;"> 
+                        {% else %} 
+                        <div style="width:36px; height:36px; background:var(--bg); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--muted)"> 
+                            {% if category.icon_class %} 
+                            <i class="{{ category.icon_class }}" style="font-size: 18px;"></i> 
+                            {% else %} 
+                            <i class="fa-solid fa-folder-open"></i> 
+                            {% endif %} 
+                        </div> 
+                        {% endif %} 
+                    </td> 
+                    <td> 
+                        <div style="font-weight: 700; color: var(--text);">{{ category.name }}</div> 
+                    </td> 
+                    <td style="color: var(--muted); font-size: 13px; font-family: monospace;">{{ category.slug }}</td> 
+                    <td> 
+                        <span class="badge badge-primary" style="font-weight: 700; padding: 4px 12px;">#{{ category.order }}</span> 
+                    </td> 
+                    <td style="color: var(--muted); font-size: 13px;"> 
+                        {{ category.created_at|date:"M d, Y" }} 
+                    </td> 
+                </tr> 
+                {% empty %} 
+                <tr> 
+                    <td colspan="5" style="padding:48px; text-align:center; color:var(--muted)"> 
+                        <i class="fa-solid fa-layer-group" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i> 
+                        <p style="font-size:16px; margin:0; font-weight: 500;">No categories found.</p> 
+                    </td> 
+                </tr> 
+                {% endfor %} 
+            </tbody> 
+        </table> 
+    </div> 
+
+    <!-- Pagination --> 
+    {% if paginator.num_pages > 1 %} 
+    <div style="display:flex; justify-content:center; margin-top:32px; gap:8px"> 
+        {% if categories.has_previous %} 
+        <a href="?q={{ q }}&page={{ categories.previous_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Previous</a> 
+        {% endif %} 
+        <div style="display:flex; align-items:center; padding:0 20px; color:var(--muted); font-size:14px; font-weight: 600;"> 
+            Page {{ categories.number }} of {{ paginator.num_pages }} 
+        </div> 
+        {% if categories.has_next %} 
+        <a href="?q={{ q }}&page={{ categories.next_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Next</a> 
+        {% endif %} 
+    </div> 
+    {% endif %} 
+</div> 
+{% endblock %} 

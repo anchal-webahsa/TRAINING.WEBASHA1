@@ -7,7 +7,7 @@
 <style>
     .add-ticket-container {
         padding: 24px;
-        background: #f8fafc;
+        background:var(--bg);
         min-height: calc(100vh - 70px);
     }
 
@@ -27,7 +27,7 @@
     .page-title {
         font-size: 18px;
         font-weight: 600;
-        color: #0f172a;
+        color:var(--text);
         margin: 0;
     }
 
@@ -37,9 +37,9 @@
         gap: 8px;
         padding: 8px 16px;
         background: white;
-        border: 1px solid #e2e8f0;
+        border:1px solid var(--border);
         border-radius: 8px;
-        color: #475569;
+        color:var(--muted);
         font-size: 14px;
         font-weight: 500;
         text-decoration: none;
@@ -47,13 +47,13 @@
     }
 
     .back-btn:hover {
-        background: #f8fafc;
+        background:var(--bg);
     }
 
     .form-card {
         background: white;
         border-radius: 12px;
-        border: 1px solid #f1f5f9;
+        border:1px solid var(--border);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         padding: 32px;
     }
@@ -61,7 +61,7 @@
     .form-title {
         font-size: 16px;
         font-weight: 600;
-        color: #0f172a;
+        color:var(--text);
         margin-bottom: 32px;
     }
 
@@ -76,7 +76,7 @@
     .form-label {
         font-size: 14px;
         font-weight: 500;
-        color: #475569;
+        color:var(--muted);
         padding-top: 10px;
     }
 
@@ -88,7 +88,7 @@
     .form-control {
         width: 100%;
         padding: 10px 16px;
-        border: 1px solid #e2e8f0;
+        border:1px solid var(--border);
         border-radius: 8px;
         font-size: 14px;
         color: #1e293b;
@@ -122,10 +122,10 @@
 
     .file-input-custom {
         padding: 8px 16px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background:var(--bg);
+        border:1px solid var(--border);
         border-radius: 8px;
-        color: #64748b;
+        color:var(--muted);
         font-size: 14px;
         cursor: pointer;
     }
@@ -156,7 +156,7 @@
 <div class="add-ticket-container">
     <div class="page-header">
         <div class="header-left">
-            <i class="fas fa-list-ul" style="color: #64748b;"></i>
+            <i class="fas fa-list-ul" style="color:var(--muted);"></i>
             <h1 class="page-title">Add New Ticket</h1>
         </div>
         <a href="{% url 'tickets_view' %}" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>

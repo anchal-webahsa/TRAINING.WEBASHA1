@@ -1,0 +1,266 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #1e293b;
+        font-size: 14px;
+    }
+    .form-control, .form-select, .django-summernote {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 14px;
+        color:var(--text);
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #3b82f6;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+    }
+    .form-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .form-col {
+        flex: 1;
+        min-width: 250px;
+    }
+    .file-upload-wrapper {
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        background:var(--bg);
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        position: relative;
+    }
+    .file-upload-wrapper:hover {
+        border-color:var(--muted);
+        background:var(--bg);
+    }
+    .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .file-name-display {
+        background: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        border:1px solid var(--border);
+        font-size: 13px;
+        margin-top: 8px;
+        display: inline-block;
+        pointer-events: none;
+    }
+</style>
+
+<div style="width:100%">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <a href="{% url 'manage_alumni_profiles' %}" style="width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Add New Alumni Profile</h2>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert-styled {% if message.tags == 'error' %}alert-error{% else %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="background:var(--card);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Basic Details -->
+            <div style="margin-bottom:32px">
+                <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Basic Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.name.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Experience</label>
+                            {{ form.experience }}
+                            <div style="font-size:13px;color:var(--muted);margin-top:4px">e.g. 8+ Years of Experience</div>
+                            {% if form.experience.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.experience.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Growth Badge</label>
+                            {{ form.growth_badge }}
+                            <div style="font-size:13px;color:var(--muted);margin-top:4px">e.g. 150% Growth</div>
+                            {% if form.growth_badge.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.growth_badge.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description (Review / Bio)</label>
+                    {{ form.media }}
+                    {{ form.description }}
+                    {% if form.description.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.description.errors }}</div>{% endif %}
+                </div>
+            </div>
+
+            <!-- Transition Section "Before" -->
+            <div style="margin-bottom:32px">
+                <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Journey: Before WebAsha</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Before Role</label>
+                            {{ form.before_role }}
+                            {% if form.before_role.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.before_role.errors }}</div>{% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Before Company Name</label>
+                            {{ form.before_company_name }}
+                            {% if form.before_company_name.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.before_company_name.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Before Company Logo</label>
+                            <div class="file-upload-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-bottom:8px" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                <div style="font-size:14px;color:var(--muted);margin-bottom:8px">Upload image here</div>
+                                {{ form.before_company_logo }}
+                                <!-- Javascript helper to show file name -->
+                                <div class="file-name-display" id="file-name-before-logo">No file chosen</div>
+                            </div>
+                            {% if form.before_company_logo.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.before_company_logo.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transition Section "After" -->
+            <div style="margin-bottom:32px">
+                <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Journey: After WebAsha</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">After Role</label>
+                            {{ form.after_role }}
+                            {% if form.after_role.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.after_role.errors }}</div>{% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">After Company Name</label>
+                            {{ form.after_company_name }}
+                            {% if form.after_company_name.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.after_company_name.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">After Company Logo</label>
+                            <div class="file-upload-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-bottom:8px" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                <div style="font-size:14px;color:var(--muted);margin-bottom:8px">Upload image here</div>
+                                {{ form.after_company_logo }}
+                                <div class="file-name-display" id="file-name-after-logo">No file chosen</div>
+                            </div>
+                            {% if form.after_company_logo.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.after_company_logo.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Media & Status -->
+            <div style="margin-bottom:32px">
+                <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Media & Visibility</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label">Profile Image (Optional)</label>
+                            <div class="file-upload-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-bottom:8px" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                <div style="font-size:14px;color:var(--muted);margin-bottom:8px">Upload Portrait Image</div>
+                                {{ form.image }}
+                                <div class="file-name-display" id="file-name-image">No file chosen</div>
+                            </div>
+                            {% if form.image.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.image.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group" style="margin-top:24px">
+                            <label class="form-label" style="display:flex;align-items:center;cursor:pointer">
+                                {{ form.is_active }}
+                                <span>Profile is Active (Visible on site)</span>
+                            </label>
+                            <div style="font-size:13px;color:var(--muted);margin-left:26px">Uncheck to hide this profile temporarily.</div>
+                            {% if form.is_active.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.is_active.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:24px;border-top:1px solid #e2e8f0">
+                <a href="{% url 'manage_alumni_profiles' %}" style="padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;color:var(--muted);background:var(--bg);border:1px solid var(--border);transition:background 0.2s">Cancel</a>
+                <button type="submit" style="padding:12px 24px;border-radius:8px;font-weight:600;color:white;background:#3b82f6;border:none;cursor:pointer;box-shadow:0 1px 2px rgba(59, 130, 246, 0.4);transition:background 0.2s">Save Alumni Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // JS to update the custom file inputs visually
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInputs = [
+            { input: document.querySelector('input[name="before_company_logo"]'), display: document.getElementById('file-name-before-logo') },
+            { input: document.querySelector('input[name="after_company_logo"]'), display: document.getElementById('file-name-after-logo') },
+            { input: document.querySelector('input[name="image"]'), display: document.getElementById('file-name-image') }
+        ];
+
+        fileInputs.forEach(item => {
+            if(item.input && item.display) {
+                item.input.addEventListener('change', function(e) {
+                    if(e.target.files.length > 0) {
+                        item.display.textContent = e.target.files[0].name;
+                        item.display.style.background = '#e0f2fe';
+                        item.display.style.color = '#0369a1';
+                    } else {
+                        item.display.textContent = 'No file chosen';
+                        item.display.style.background = 'white';
+                        item.display.style.color = '#334155';
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -335,6 +335,7 @@ class Contact(models.Model):
     address = models.TextField(blank=True)
     message = models.TextField()
     is_registered = models.BooleanField(default=False)
+    is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -478,6 +479,7 @@ class AlumniProfile(models.Model):
         verbose_name_plural = "Alumni Profiles"
         ordering = ['-created_at']
 
+
 class ExamVoucherOffer(models.Model):
     title = models.CharField(max_length=255, default="Discounted Certification Exam Voucher")
     image = models.ImageField(upload_to="vouchers/")
@@ -489,6 +491,23 @@ class ExamVoucherOffer(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Exam(models.Model):
+    title = models.CharField(max_length=255, help_text="Exam Name (e.g. Red Hat Certified System Administrator)")
+    exam_code = models.CharField(max_length=100, help_text="Exam Code (e.g. EX200)")
+    image = models.ImageField(upload_to="exams/", null=True, blank=True)
+    description = models.TextField(blank=True, help_text="Detailed description of the exam")
+    price = models.CharField(max_length=100, blank=True, null=True, help_text="e.g. 15,000 + GST / $200")
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.exam_code} - {self.title}"
+
+    class Meta:
+        ordering = ['order', '-created_at']
 
 class UpcomingBatch(models.Model):
     course_banner = models.ForeignKey('CourseBanner', on_delete=models.CASCADE, related_name="upcoming_batches", null=True, blank=True, help_text="Select the course page this batch belongs to. If empty, it may appear globally.")
@@ -666,6 +685,7 @@ class Enquiry(models.Model):
     course_name = models.CharField(max_length=255, blank=True)
     country = models.CharField(max_length=100, default="India")
     city = models.CharField(max_length=100, blank=True)
+    is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -722,3 +742,245 @@ class HiringPartner(models.Model):
 
     def __str__(self):
         return self.name
+
+class StandaloneRelatedCourse(models.Model):
+    thumbnail = models.ImageField(upload_to="related_courses/", blank=True, null=True)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True, help_text="Short decription to display under the title.")
+    student_count = models.CharField(max_length=100, default="1,000+")
+    rating = models.CharField(max_length=50, default="4.8")
+    explore_link = models.CharField(max_length=255, default="/all-courses", help_text="The URL that the explore button pushes.")
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first.")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Standalone Related Course"
+        verbose_name_plural = "Standalone Related Courses"
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return self.title
+
+
+class Exam(models.Model):
+    exam_code = models.CharField(max_length=50, unique=True, help_text="e.g. EX200")
+    title = models.CharField(max_length=200, help_text="e.g. Red Hat Certified System Administrator")
+    image = models.ImageField(upload_to="exams/", blank=True, null=True, help_text="Upload exam image if any")
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, help_text="e.g. 400.00")
+    description = models.TextField(blank=True, help_text="Short description of the exam")
+    # Subtitle Details
+    bootcamp_title = models.CharField(max_length=255, blank=True, default="Exam Preparation Class (Bootcamp)", help_text="e.g. Exam Preparation Class (Bootcamp)")
+    review_score = models.CharField(max_length=10, blank=True, default="4.9", help_text="e.g. 4.9")
+    review_count = models.CharField(max_length=50, blank=True, default="8092", help_text="e.g. 8092")
+    # Real Exam Format Table
+    exam_duration = models.CharField(max_length=100, default="180 Minutes", help_text="e.g. 180 Minutes")
+    number_of_questions = models.CharField(max_length=100, default="10-12", help_text="e.g. 10-12")
+    exam_fee = models.CharField(max_length=255, default="Varies country to country", help_text="e.g. Varies country to country (20000 + 18% GST for India)")
+    validity = models.CharField(max_length=100, default="3 years", help_text="e.g. 3 years")
+    exam_format_table = models.CharField(max_length=100, default="Lab based", help_text="e.g. Lab based")
+    passing_score = models.CharField(max_length=100, default="210 out of 300", help_text="e.g. 210 out of 300")
+    eligibility = models.CharField(max_length=255, default="None", help_text="e.g. None")
+    exam_languages = models.CharField(max_length=255, default="English", help_text="e.g. English, Japanese, Korean")
+
+    # Bottom Product Box
+    box_image = models.ImageField(upload_to="exams/boxes/", blank=True, null=True, help_text="The 3D Mock Test / Q&A Box Image")
+    last_update_date = models.CharField(max_length=100, default="Apr 08, 2026", help_text="e.g. Apr 08, 2026")
+    original_price = models.DecimalField(max_digits=10, decimal_places=2, default=500.00, help_text="The strike-through price, e.g. 500.00")
+
+    # Meta Specifications
+    preparation_mode = models.CharField(max_length=255, default="Classroom / Online", help_text="e.g. Classroom / Online")
+    mock_test_count = models.CharField(max_length=100, default="5-10", help_text="e.g. 5-10")
+    bundle_includes = models.CharField(max_length=255, default="10-12 Questions & Answers", help_text="e.g. 10-12 Questions & Answers")
+    free_updates = models.CharField(max_length=100, default="90 days", help_text="e.g. 90 days")
+    
+    # Statistics
+    stat_customers_passed = models.CharField(max_length=50, default="13+", help_text="e.g. 13+")
+    stat_average_score = models.CharField(max_length=50, default="94%", help_text="e.g. 94%")
+    stat_similar_questions = models.CharField(max_length=50, default="92%", help_text="e.g. 92%")
+
+    # HTML Snippets (Except certified candidates which is now dynamic)
+    overview_html = models.TextField(blank=True, help_text="General Overview / About the Exam")
+    audience_html = models.TextField(blank=True, help_text="Audience / Bootcamp section")
+    prerequisites_html = models.TextField(blank=True, help_text="Prerequisites / Syllabus section")
+    objectives_html = models.TextField(blank=True, help_text="Passing Criteria section")
+    certification_value_html = models.TextField(blank=True, help_text="What is Certification section")
+    career_opportunities_html = models.TextField(blank=True, help_text="Cost / Career section")
+    benefits_html = models.TextField(blank=True, help_text="Benefits of Certification section")
+    future_html = models.TextField(blank=True, help_text="Future / Impact section")
+    conclusion_html = models.TextField(blank=True, help_text="Conclusion / How to Pass section")
+    location = models.CharField(max_length=255, default="Dubai, UAE", help_text="Location for headers (e.g. Dubai, UAE)")
+    
+    # Sidebar Custom Offer Box
+    offer_box_title = models.CharField(max_length=255, blank=True, null=True, help_text="e.g. Free Red Hat certification exam offer")
+    offer_box_subtitle = models.CharField(max_length=255, blank=True, null=True, help_text="e.g. Buy 1 Get 1 Exam Voucher")
+    offer_box_button_text = models.CharField(max_length=100, blank=True, null=True, help_text="e.g. Enroll Here")
+    offer_box_button_url = models.CharField(max_length=255, blank=True, null=True, help_text="e.g. /contact or an external link")
+
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first.")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.exam_code} - {self.title}"
+
+class ExamCertificate(models.Model):
+    exam = models.ForeignKey(Exam, related_name='certificates', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="exams/certificates/", help_text="Upload certificate image")
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', 'created_at']
+
+    def __str__(self):
+        return f"Certificate for {self.exam.exam_code}"
+
+
+class ExamFAQ(models.Model):
+    exam = models.ForeignKey(Exam, related_name='faqs', on_delete=models.CASCADE)
+    question = models.TextField()
+    answer = models.TextField()
+    order = models.IntegerField(default=0, help_text="Order of appearance")
+    
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.exam.exam_code} FAQ - {self.question[:30]}"
+
+
+class ExamReview(models.Model):
+    exam = models.ForeignKey(Exam, related_name='reviews', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, blank=True, help_text="e.g. Perfect Exam Blueprint")
+    name = models.CharField(max_length=255)
+    role = models.CharField(max_length=255, default="Student")
+    text = models.TextField()
+    rating = models.IntegerField(default=5)
+    image = models.ImageField(upload_to="exams/reviews/", blank=True, null=True, help_text="Reviewer profile image")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"Review by {self.name} for {self.exam.exam_code}"
+
+
+class ExamPartnerLogo(models.Model):
+    TYPE_CHOICES = [
+        ('learner', 'Our Learners Work At'),
+        ('trusted', 'Trusted By The Best'),
+    ]
+    exam = models.ForeignKey(Exam, related_name='partner_logos', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, help_text="Name of the company/partner")
+    logo_type = models.CharField(max_length=20, choices=TYPE_CHOICES, default='learner')
+    icon_class = models.CharField(max_length=100, blank=True, help_text="e.g. fa-brands fa-microsoft")
+    image = models.ImageField(upload_to="exams/partners/", blank=True, null=True, help_text="Upload image OR use icon_class")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.get_logo_type_display()}: {self.name} ({self.exam.exam_code})"
+
+
+class ExamRelatedCourse(models.Model):
+    exam = models.ForeignKey(Exam, related_name='related_courses', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, help_text="e.g. Red Hat OpenStack Administration I EX110")
+    bundle_includes = models.CharField(max_length=255, default="597 Questions & Answers", help_text="e.g. 597 Questions & Answers")
+    last_update_date = models.CharField(max_length=100, default="Apr 10, 2026")
+    price_original = models.DecimalField(max_digits=10, decimal_places=2, default=500.00)
+    price_discounted = models.DecimalField(max_digits=10, decimal_places=2, default=99.00)
+    explore_link = models.CharField(max_length=255, default="/exams", help_text="URL to navigate to")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"Related: {self.title} -> {self.exam.exam_code}"
+
+
+class ExamWhyChooseUs(models.Model):
+    exam = models.ForeignKey(Exam, related_name='why_choose_us', on_delete=models.CASCADE)
+    text = models.CharField(max_length=255, help_text="e.g. 100% Latest Exam Questions")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.exam.exam_code}: {self.text}"
+
+
+class ExamAdBanner(models.Model):
+    THEME_CHOICES = [
+        ('danger', 'Red Theme'),
+        ('dark', 'Dark Theme'),
+        ('primary', 'Blue Theme'),
+    ]
+    exam = models.ForeignKey(Exam, related_name='ad_banners', on_delete=models.CASCADE)
+    theme = models.CharField(max_length=20, choices=THEME_CHOICES, default='danger')
+    icon_class = models.CharField(max_length=100, blank=True, help_text="e.g. fa-linux or fa-redhat")
+    title = models.CharField(max_length=255, help_text="e.g. Linux")
+    subtitle = models.CharField(max_length=255, blank=True, help_text="e.g. Training & Certification")
+    button_text = models.CharField(max_length=100, default="JOIN NOW")
+    button_url = models.CharField(max_length=255, default="/exams")
+    contact_email = models.CharField(max_length=255, default="training.webasha@gmail.com")
+    contact_phone = models.CharField(max_length=50, default="+918485847920")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.title} Ad for {self.exam.exam_code}"
+
+
+class ExamSidebarCarousel(models.Model):
+    exam = models.ForeignKey(Exam, related_name='sidebar_carousels', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="exams/sidebar/", help_text="Upload 400x250 slider image")
+    alt_text = models.CharField(max_length=255, blank=True, help_text="Accessibility alt text")
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"Sidebar Slider {self.order} for {self.exam.exam_code}"
+
+
+
+class CustomPage(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    content = models.TextField(help_text='HTML/Summernote content')
+    
+    # Banner Section
+    banner_image = models.ImageField(upload_to="pages/banners/", blank=True, null=True, help_text="Top banner background image")
+    banner_title = models.CharField(max_length=255, blank=True, null=True, help_text="Large title over banner")
+    banner_subtitle = models.CharField(max_length=255, blank=True, null=True, help_text="Subtitle under banner title")
+    
+    # Call to Action Section
+    cta_text = models.CharField(max_length=100, blank=True, null=True, help_text="Button text (e.g. Enroll Now)")
+    cta_link = models.CharField(max_length=255, blank=True, null=True, help_text="Button URL")
+    
+    # Sidebar Toggle
+    show_sidebar = models.BooleanField(default=True, help_text="Show the right-side informational sidebar?")
+    
+    meta_title = models.CharField(max_length=255, blank=True, null=True)
+    meta_description = models.TextField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Custom Page'
+        verbose_name_plural = 'Custom Pages'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title

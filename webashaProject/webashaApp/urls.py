@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('accounts/register/', views.register, name='register'),
     path("", views.dashboard, name="dashboard"),
+    path("search/", views.global_search, name="global_search"),
     path("add-course/", views.add_course, name="add_course"),
     path("update-course/", views.update_course, name="update_course"),
     path("delete-course/", views.delete_course, name="delete_course"),
@@ -45,6 +46,10 @@ urlpatterns = [
     path("ebooks/admin-revenue/", views.ebook_admin_revenue, name="ebook_admin_revenue"),
     path("ebooks/instructor-revenue/", views.ebook_instructor_revenue, name="ebook_instructor_revenue"),
     # user management
+    path("users/", views.manage_users, name="manage_users"),
+    path("groups/", views.manage_groups, name="manage_groups"),
+    path("groups/add/", views.add_group, name="add_group"),
+    path("groups/<int:pk>/edit/", views.edit_group, name="edit_group"),
     path("users/admins/", views.manage_admins, name="manage_admins"),
     path('users/admins/add/', views.add_admin, name='add_admin'),
     path('users/instructors/', views.manage_instructors, name='manage_instructors'),
@@ -77,4 +82,98 @@ urlpatterns = [
     path('support/faq/<int:pk>/delete/', views.delete_faq, name='delete_faq'),
     # placements API
     path('api/placements/', views.get_placements, name='get_placements'),
+    
+    # Custom Alumni Profiles
+    path('webashaApp/alumniprofile/', views.manage_alumni_profiles, name='manage_alumni_profiles'),
+    path('webashaApp/alumniprofile/add/', views.add_alumni_profile, name='add_alumni_profile'),
+    
+    # Custom Coupons
+    path('webashaApp/coupon/', views.manage_coupons, name='manage_coupons'),
+    path('webashaApp/coupon/add/', views.add_coupon, name='add_coupon'),
+    
+    # Custom Course Banners
+    path('webashaApp/coursebanner/', views.manage_course_banners, name='manage_course_banners'),
+    path('webashaApp/coursebanner/add/', views.add_course_banner, name='add_course_banner'),
+    
+    # Custom Course Subcategories
+    path('webashaApp/coursesubcategory/', views.manage_course_subcategories, name='manage_course_subcategories'),
+    path('webashaApp/coursesubcategory/add/', views.add_course_subcategory, name='add_course_subcategory'),
+    
+    # Custom Course Categories
+    path('webashaApp/coursecategory/', views.manage_course_categories, name='manage_course_categories'),
+    path('webashaApp/coursecategory/add/', views.add_course_category, name='add_course_category'),
+    
+    # Custom Courses
+    path('webashaApp/course/', views.manage_courses, name='manage_courses'),
+    path('webashaApp/course/add/', views.add_course, name='add_course'),
+    
+    # Custom Enquiries
+    path('webashaApp/enquiry/', views.manage_enquiries, name='manage_enquiries'),
+    path('webashaApp/enquiry/add/', views.add_enquiry, name='add_enquiry'),
+    path('webashaApp/enquiry/<int:pk>/delete/', views.delete_enquiry, name='delete_enquiry'),
+    
+    # Custom Exam Voucher Offers
+    path('webashaApp/examvoucheroffer/', views.manage_vouchers, name='manage_vouchers'),
+    path('webashaApp/examvoucheroffer/add/', views.add_voucher, name='add_voucher'),
+
+    # Custom Exams
+    path('webashaApp/exams/', views.manage_exams, name='manage_exams'),
+    path('webashaApp/exams/add/', views.add_exam, name='add_exam'),
+    path('webashaApp/exams/edit/<int:pk>/', views.add_exam, name='edit_exam'),
+    
+    # Custom Gallery Images
+    path('webashaApp/galleryimage/', views.manage_gallery_images, name='manage_gallery_images'),
+    path('webashaApp/galleryimage/add/', views.add_gallery_image, name='add_gallery_image'),
+    path('webashaApp/galleryimage/<int:pk>/delete/', views.delete_gallery_image, name='delete_gallery_image'),
+    
+    # Custom Hiring Partners
+    path('webashaApp/hiringpartner/', views.manage_hiring_partners, name='manage_hiring_partners'),
+    path('webashaApp/hiringpartner/add/', views.add_hiring_partner, name='add_hiring_partner'),
+    path('webashaApp/hiringpartner/<int:pk>/delete/', views.delete_hiring_partner, name='delete_hiring_partner'),
+    
+    # Custom Home Sections
+    path('webashaApp/homesection/', views.manage_home_sections, name='manage_home_sections'),
+    path('webashaApp/homesection/add/', views.add_home_section, name='add_home_section'),
+    
+    # Custom Standalone Related Courses
+    path('webashaApp/related-courses/', views.manage_standalone_related_courses, name='manage_standalone_related_courses'),
+    path('webashaApp/related-courses/add/', views.add_standalone_related_course, name='add_standalone_related_course'),
+    
+    # Custom Exam Certificates list/upload mapping
+    # path('manage/exams/<int:exam_id>/certificates/', views.manage_exam_certificates, name='manage_exam_certificates'),
+]
+
+
+# --- GENERATED URIs FOR 9 BRAND NEW CRM COMPONENTS ---
+urlpatterns += [
+    path('manage/instructors/', views.manage_instructors, name='manage_instructors'),
+    path('manage/instructors/add/', views.add_instructor, name='add_instructor'),
+    path('manage/instructors/<int:pk>/delete/', views.delete_instructor, name='delete_instructor'),
+    path('manage/placed_students/', views.manage_placed_students, name='manage_placed_students'),
+    path('manage/placed_students/add/', views.add_placed_student, name='add_placed_student'),
+    path('manage/placed_students/<int:pk>/delete/', views.delete_placed_student, name='delete_placed_student'),
+    path('manage/placement_stats/', views.manage_placement_stats, name='manage_placement_stats'),
+    path('manage/placement_stats/add/', views.add_placement_stat, name='add_placement_stat'),
+    path('manage/profiles/', views.manage_profiles, name='manage_profiles'),
+    path('manage/profiles/add/', views.add_profile, name='add_profile'),
+    path('manage/student_certificates/', views.manage_student_certificates, name='manage_student_certificates'),
+    path('manage/student_certificates/add/', views.add_student_certificate, name='add_student_certificate'),
+    path('manage/student_screenshots/', views.manage_student_screenshots, name='manage_student_screenshots'),
+    path('manage/student_screenshots/add/', views.add_student_screenshot, name='add_student_screenshot'),
+    path('manage/testimonials/', views.manage_testimonials, name='manage_testimonials'),
+    path('manage/testimonials/add/', views.add_testimonial, name='add_testimonial'),
+    path('manage/testimonials/<int:pk>/delete/', views.delete_testimonial, name='delete_testimonial'),
+    path('manage/upcoming_batches/', views.manage_upcoming_batches, name='manage_upcoming_batches'),
+    path('manage/upcoming_batches/add/', views.add_upcoming_batch, name='add_upcoming_batch'),
+    path('manage/video_reviews/', views.manage_video_reviews, name='manage_video_reviews'),
+    path('manage/video_reviews/add/', views.add_video_review, name='add_video_review'),
+    
+    # Custom Pages Management
+    path('manage/pages/', views.manage_pages, name='manage_pages'),
+    path('manage/pages/add/', views.add_page, name='add_page'),
+    path('manage/pages/<int:pk>/edit/', views.edit_page, name='edit_page'),
+    path('manage/pages/<int:pk>/delete/', views.delete_page, name='delete_page'),
+    
+    # Frontend Custom Pages
+    path('p/<slug:slug>/', views.serve_page, name='serve_page'),
 ]

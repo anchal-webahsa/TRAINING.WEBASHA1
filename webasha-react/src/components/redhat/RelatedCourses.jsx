@@ -149,45 +149,27 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
     useEffect(() => {
         const getCourses = async () => {
             try {
-                const sectionData = await fetchData(`sections/${identifier}/`).catch(() => null);
-
-                if (sectionData && sectionData.is_active) {
-                    // Curation check
-                    if (sectionData.curated_courses && sectionData.curated_courses.length > 0) {
-                        setCoursesList(sectionData.curated_courses);
-                    } else {
-                        const courseData = await fetchData("courses/");
-                        setCoursesList(courseData && courseData.length > 0 ? courseData : currentDefaults);
-                    }
-
-                    let processedTitle = sectionData.title;
-                    if (sectionData.highlight_text && processedTitle.includes(sectionData.highlight_text)) {
-                        processedTitle = processedTitle.replace(
-                            sectionData.highlight_text,
-                            `<span class="red-color">${sectionData.highlight_text}</span>`
-                        );
-                    }
-
-                    setSection({
-                        badge: sectionData.badge || (isHome ? "Popular Courses" : "Related Courses"),
-                        title: processedTitle,
-                        description: sectionData.description || "Find additional courses to boost your career and skills.",
-                        button_text: sectionData.button_text || "Explore More",
-                        view_all_text: sectionData.view_all_text || "View All",
-                        view_all_link: sectionData.view_all_link || "/all-courses"
-                    });
+                // Always fetch the standalone related courses table
+                const courseData = await fetchData("standalone-related-courses/").catch(() => null);
+                
+                if (courseData && courseData.length > 0) {
+                    setCoursesList(courseData);
                 } else {
-                    const courseData = await fetchData("courses/");
-                    setCoursesList(courseData && courseData.length > 0 ? courseData : currentDefaults);
-                    // Ensure defaults are correct if no backend data
-                    setSection(prev => ({
-                        ...prev,
-                        badge: isHome ? "Popular Courses" : "Related Courses",
-                        title: isHome 
-                            ? 'Popular Training & <span class="red-color">Certification Courses</span>' 
-                            : 'Explore <span class="red-color">Related Courses</span>'
-                    }));
+                    setCoursesList(currentDefaults);
                 }
+                
+                // Keep standard visual headers based on context (Home vs Course page)
+                setSection({
+                    badge: isHome ? "Popular Courses" : "Related Courses",
+                    title: isHome 
+                        ? 'Popular Training & <span class="red-color">Certification Courses</span>' 
+                        : 'Explore <span class="red-color">Related Courses</span>',
+                    description: "Find additional courses to boost your career and skills.",
+                    button_text: "Explore More",
+                    view_all_text: "View All",
+                    view_all_link: "/all-courses"
+                });
+
             } catch (error) {
                 console.error("Failed to fetch data:", error);
                 setCoursesList(currentDefaults);
@@ -251,10 +233,10 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
                             img={c.thumbnail} 
                             alt={c.title} 
                             title={c.title} 
-                            desc={c.short_description} 
+                            desc={c.description || c.short_description} 
                             students={c.student_count || "1,000+"} 
                             rating={c.rating || "4.8"} 
-                            href={`/courses/${c.slug}`} 
+                            href={c.explore_link ? c.explore_link : `/courses/${c.slug}`} 
                         />
                     ))}
                 </div>

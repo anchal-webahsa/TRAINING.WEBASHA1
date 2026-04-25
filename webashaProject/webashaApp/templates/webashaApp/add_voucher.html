@@ -1,0 +1,91 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<style>
+    .form-group { margin-bottom: 24px; }
+    .form-label { display: block; font-weight: 500; margin-bottom: 8px; color: #1e293b; font-size: 14px; }
+    .form-control, .form-select {
+        width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
+        font-size: 14px; color:var(--text); box-sizing: border-box; transition: 0.2s;
+    }
+    .form-control:focus, .form-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .form-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .form-col { flex: 1; min-width: 250px; }
+    .form-check { display: flex; align-items: center; gap: 8px; }
+    .form-check-input { width: 18px; height: 18px; cursor: pointer; }
+    .form-check-label { font-size: 14px; color:var(--text); cursor: pointer; user-select: none; }
+</style>
+
+<div style="width:100%">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <a href="{% url 'manage_vouchers' %}" style="width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:0.2s" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Add Exam Voucher Offer</h2>
+    </div>
+
+    {% if form.errors %}
+    <div class="alert-styled alert-error"><strong>Error:</strong> Please correct the errors highlighted below.</div>
+    {% endif %}
+
+    <div style="background:var(--card);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.05);width:100%">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="form-col" style="flex:2">
+                    <div class="form-group">
+                        <label class="form-label">Offer Title <span style="color:#ef4444">*</span></label>
+                        {{ form.title }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">e.g., Discounted Certification Exam Voucher</div>
+                        {% if form.title.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.title.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Enroll Link</label>
+                        {{ form.enroll_link }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">Leave blank or '#' if no external link</div>
+                        {% if form.enroll_link.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.enroll_link.errors }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Voucher Image <span style="color:#ef4444">*</span></label>
+                        {{ form.image }}
+                        {% if form.image.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.image.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp Contact Number <span style="color:#ef4444">*</span></label>
+                        {{ form.whatsapp_number }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">Ensure country code is provided (e.g. +91)</div>
+                        {% if form.whatsapp_number.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.whatsapp_number.errors }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Pre-filled WhatsApp Message <span style="color:#ef4444">*</span></label>
+                {{ form.whatsapp_message }}
+                <div style="font-size:13px;color:var(--muted);margin-top:6px">This text pre-fills on the user's phone when they click the WhatsApp button.</div>
+                {% if form.whatsapp_message.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.whatsapp_message.errors }}</div>{% endif %}
+            </div>
+
+            <div class="form-group form-check" style="margin-top:32px;padding:16px;background:var(--bg);border-radius:8px;border:1px solid var(--border);display:inline-flex">
+                {{ form.is_active }}
+                <label class="form-check-label" for="{{ form.is_active.id_for_label }}" style="font-weight:600">Offer is Active and displayed to public</label>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:24px;margin-top:32px;border-top:1px solid #e2e8f0">
+                <a href="{% url 'manage_vouchers' %}" style="padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;color:var(--muted);background:var(--bg);border:1px solid var(--border);transition:0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">Cancel</a>
+                <button type="submit" style="padding:12px 24px;border-radius:8px;font-weight:600;color:white;background:#3b82f6;border:none;cursor:pointer;box-shadow:0 1px 2px rgba(59, 130, 246, 0.4);transition:0.2s" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Save Voucher Offer</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

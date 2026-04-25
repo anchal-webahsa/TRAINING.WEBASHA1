@@ -1,0 +1,238 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <div style="display:flex; align-items:center; gap:16px;"> 
+            <a href="{% url 'manage_course_banners' %}" class="action-icon-btn" style="border-radius: 50%;"> 
+                <i class="fa-solid fa-arrow-left"></i> 
+            </a> 
+            <h2 class="section-title" style="margin-bottom: 0;">{% if form.instance.pk %}Update{% else %}Add{% endif %} Course Banner</h2> 
+        </div> 
+    </div> 
+
+    {% if form.errors or syllabus_formset.errors or faq_formset.errors or batch_formset.errors %} 
+    <div class="alert-styled alert-error"> 
+        <strong>Error:</strong> Please correct the issues highlighted in the tabs below. 
+    </div> 
+    {% endif %} 
+
+    <form method="post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        {{ form.media }}
+        
+        <div style="display: flex; gap: 32px; align-items: flex-start;"> 
+            <!-- Sidebar Navigation --> 
+            <div style="width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; position: sticky; top: 24px;"> 
+                <button type="button" class="tab-btn active" onclick="switchTab('tab_basic', this)">Basic Information</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_ratings', this)">Ratings & Enrollments</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_table', this)">Table Details</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_media', this)">Media Section</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_stats', this)">Statistics</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_html', this)">Dynamic HTML Content</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_syllabus', this)">Course Syllabus Modules</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_faq', this)">Course FAQs</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_batches', this)">Upcoming Batches</button> 
+                
+                <div style="margin: 24px 0; padding: 24px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border);"> 
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; color: var(--text); font-weight: 600;"> 
+                        {{ form.is_active }} 
+                        <span>Banner is Active</span> 
+                    </label> 
+                    <button type="submit" class="action-icon-btn" style="width: 100%; margin-top: 20px; background: var(--accent); color: white; border: none; font-weight: 700; height: 48px;"> 
+                        SAVE BANNER 
+                    </button> 
+                </div> 
+            </div> 
+
+            <!-- Tab Content --> 
+            <div style="flex: 1; min-width: 0;"> 
+                <!-- Basic Information --> 
+                <div id="tab_basic" class="tab-pane active"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Basic Information</h3> 
+                    <div class="form-row"> 
+                        <div class="form-col"><div class="form-group"><label class="form-label">Page Identifier</label>{{ form.page_identifier }}</div></div> 
+                        <div class="form-col"><div class="form-group"><label class="form-label">Breadcrumb Active Text</label>{{ form.breadcrumb_active }}</div></div> 
+                    </div> 
+                    <div class="form-group"><label class="form-label">Heading</label>{{ form.heading }}</div> 
+                    <div class="form-group"><label class="form-label">Description</label>{{ form.description }}</div> 
+                </div> 
+
+                <!-- Ratings --> 
+                <div id="tab_ratings" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Ratings & Enrollments</h3> 
+                    <div class="form-row"> 
+                        <div class="form-col"> 
+                            <div class="form-group"><label class="form-label">Enrolled Count</label>{{ form.enrolled_count }}</div> 
+                            <div class="form-group"><label class="form-label">Rating Text</label>{{ form.rating_text }}</div> 
+                        </div> 
+                        <div class="form-col"> 
+                            <div class="form-group"><label class="form-label">Google Rating</label>{{ form.google_rating }}</div> 
+                            <div class="form-group"><label class="form-label">Facebook Rating</label>{{ form.facebook_rating }}</div> 
+                        </div> 
+                    </div> 
+                </div> 
+
+                <!-- Table Details --> 
+                <div id="tab_table" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Table Details</h3> 
+                    <div class="form-group"><label class="form-label">Detail Duration</label>{{ form.detail_duration }}</div> 
+                    <div class="form-group"><label class="form-label">Detail Mode</label>{{ form.detail_mode }}</div> 
+                    <div class="form-group"><label class="form-label">Detail Certification</label>{{ form.detail_certification }}</div> 
+                    <div class="form-group"><label class="form-label">Detail Institute</label>{{ form.detail_institute }}</div> 
+                    <div class="form-group"><label class="form-label">Detail Includes</label>{{ form.detail_includes }}</div> 
+                </div> 
+
+                <!-- Media --> 
+                <div id="tab_media" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Media Section</h3> 
+                    <div class="form-group"><label class="form-label">Voucher Offer mapped</label>{{ form.voucher_offer }}</div> 
+                    <div class="form-group"> 
+                        <label class="form-label">Video Thumbnail</label> 
+                        <div class="form-control" style="padding: 8px;">{{ form.video_thumbnail }}</div> 
+                    </div> 
+                    <div class="form-group"><label class="form-label">YouTube Video URL</label>{{ form.youtube_video_url }}</div> 
+                    <div class="form-group"><label class="form-label">YouTube Video ID</label>{{ form.youtube_video_id }}</div> 
+                    <div class="form-group"><label class="form-label">PDF Syllabus Link</label>{{ form.pdf_syllabus_link }}</div> 
+                </div> 
+
+                <!-- Statistics --> 
+                <div id="tab_stats" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Statistics</h3> 
+                    <div class="form-row"> 
+                        <div class="form-col"> 
+                            <div class="form-group"><label class="form-label">Professionals Trained</label>{{ form.stat_professionals }}</div> 
+                            <div class="form-group"><label class="form-label">Completed Batches</label>{{ form.stat_batches }}</div> 
+                        </div> 
+                        <div class="form-col"> 
+                            <div class="form-group"><label class="form-label">Countries</label>{{ form.stat_countries }}</div> 
+                            <div class="form-group"><label class="form-label">Corporate Clients</label>{{ form.stat_clients }}</div> 
+                        </div> 
+                    </div> 
+                </div> 
+
+                <!-- HTML Content --> 
+                <div id="tab_html" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Dynamic HTML Content</h3> 
+                    <div class="form-group"><label class="form-label">Overview HTML</label>{{ form.overview_html }}</div> 
+                    <div class="form-group"><label class="form-label">Exam Info HTML</label>{{ form.exam_info_html }}</div> 
+                    <div class="form-group"><label class="form-label">Salary HTML</label>{{ form.salary_html }}</div> 
+                    <div class="form-group"><label class="form-label">Career Benefits HTML</label>{{ form.career_benefits_html }}</div> 
+                    <div class="form-group"><label class="form-label">Why Choose Us HTML</label>{{ form.why_choose_us_html }}</div> 
+                </div> 
+
+                <!-- Syllabus Formset --> 
+                <div id="tab_syllabus" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Course Syllabus Modules</h3> 
+                    {{ syllabus_formset.management_form }} 
+                    <div id="syllabus-forms"> 
+                        {% for sys_form in syllabus_formset %} 
+                        <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px; position: relative;"> 
+                            {% for hidden in sys_form.hidden_fields %}{{ hidden }}{% endfor %} 
+                            <div class="form-group"><label class="form-label">Module Title</label>{{ sys_form.module_title }}</div> 
+                            <div class="form-group"><label class="form-label">Description (HTML)</label>{{ sys_form.description }}</div> 
+                            <div class="form-row"> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ sys_form.order }}</div></div> 
+                                <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;"> 
+                                    <label style="color: #ef4444; font-weight: 600; cursor: pointer;">{{ sys_form.DELETE }} Remove Module</label> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        {% endfor %} 
+                    </div> 
+                    <button type="button" class="action-icon-btn" style="width: 100%; border: 2px dashed var(--border); background: transparent; color: var(--muted); height: 56px;" onclick="addInlineForm('syllabus')"> 
+                        <i class="fa-solid fa-plus"></i> Add another Module 
+                    </button> 
+                </div> 
+
+                <!-- FAQ Formset --> 
+                <div id="tab_faq" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Course FAQs</h3> 
+                    {{ faq_formset.management_form }} 
+                    <div id="faq-forms"> 
+                        {% for faq_form in faq_formset %} 
+                        <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;"> 
+                            {% for hidden in faq_form.hidden_fields %}{{ hidden }}{% endfor %} 
+                            <div class="form-group"><label class="form-label">Question</label>{{ faq_form.question }}</div> 
+                            <div class="form-group"><label class="form-label">Answer (HTML)</label>{{ faq_form.answer }}</div> 
+                            <div class="form-row"> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ faq_form.order }}</div></div> 
+                                <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;"> 
+                                    <label style="color: #ef4444; font-weight: 600;">{{ faq_form.DELETE }} Remove FAQ</label> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        {% endfor %} 
+                    </div> 
+                    <button type="button" class="action-icon-btn" style="width: 100%; border: 2px dashed var(--border); background: transparent; color: var(--muted); height: 56px;" onclick="addInlineForm('faq')"> 
+                        <i class="fa-solid fa-plus"></i> Add another FAQ 
+                    </button> 
+                </div> 
+
+                <!-- Batches Formset --> 
+                <div id="tab_batches" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Upcoming Batches</h3> 
+                    {{ batch_formset.management_form }} 
+                    <div id="batch-forms"> 
+                        {% for batch_form in batch_formset %} 
+                        <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;"> 
+                            {% for hidden in batch_form.hidden_fields %}{{ hidden }}{% endfor %} 
+                            <div class="form-row"> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Date</label>{{ batch_form.date }}</div></div> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Mode of Class</label>{{ batch_form.mode_of_class }}</div></div> 
+                            </div> 
+                            <div class="form-row"> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Batch Form</label>{{ batch_form.batch_form }}</div></div> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Time</label>{{ batch_form.time }}</div></div> 
+                            </div> 
+                            <div class="form-group"><label class="form-label">Status Text</label>{{ batch_form.status_text }}</div> 
+                            <div style="display: flex; justify-content: flex-end;"> 
+                                <label style="color: #ef4444; font-weight: 600;">{{ batch_form.DELETE }} Remove Batch</label> 
+                            </div> 
+                        </div> 
+                        {% endfor %} 
+                    </div> 
+                    <button type="button" class="action-icon-btn" style="width: 100%; border: 2px dashed var(--border); background: transparent; color: var(--muted); height: 56px;" onclick="addInlineForm('batch')"> 
+                        <i class="fa-solid fa-plus"></i> Add another Batch 
+                    </button> 
+                </div> 
+            </div> 
+        </div> 
+    </form> 
+</div> 
+
+<style> 
+    .tab-btn { 
+        text-align: left; padding: 14px 20px; border: 1px solid transparent; background: transparent; 
+        color: var(--muted); font-size: 14px; font-weight: 700; border-radius: 10px; cursor: pointer; 
+        transition: all 0.3s; 
+    } 
+    .tab-btn:hover { background: var(--bg); color: var(--text); } 
+    .tab-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); } 
+    
+    .tab-pane { display: none; } 
+    .tab-pane.active { display: block; animation: slideUp 0.4s ease-out; } 
+    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } } 
+</style> 
+
+<script> 
+    function switchTab(tabId, btn) { 
+        document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active')); 
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active')); 
+        document.getElementById(tabId).classList.add('active'); 
+        btn.classList.add('active'); 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } 
+
+    function addInlineForm(prefix) { 
+        const totalFormsInput = document.querySelector(`#id_${prefix}-TOTAL_FORMS`); 
+        let formCount = parseInt(totalFormsInput.value); 
+        const emptyFormHtml = document.getElementById(`empty-${prefix}-form`).innerHTML; 
+        const newFormHtml = emptyFormHtml.replace(/__prefix__/g, formCount); 
+        const targetDiv = document.getElementById(`${prefix}-forms`); 
+        targetDiv.insertAdjacentHTML('beforeend', newFormHtml); 
+        totalFormsInput.value = formCount + 1; 
+    } 
+</script> 
+{% endblock %} 

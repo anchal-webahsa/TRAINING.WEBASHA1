@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_obj.meta_title|default:page_obj.title }} | WebAsha</title>
+    <meta name="description" content="{{ page_obj.meta_description }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --text: #0f172a;
+            --muted: #64748b;
+            --bg: #ffffff;
+            --border: #e2e8f0;
+            --accent: #ef4444;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+        }
+        
+        /* Banner Styling */
+        .page-banner {
+            position: relative;
+            background: #1e293b;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            overflow: hidden;
+            {% if page_obj.banner_image %}
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("{{ page_obj.banner_image.url }}");
+            background-size: cover;
+            background-position: center;
+            {% endif %}
+        }
+        .banner-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+        }
+        .banner-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: var(--bg);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            min-width: 0; /* Fix flex child overflow */
+        }
+
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0;
+            color: #1e293b;
+        }
+
+        .content {
+            font-size: 18px;
+            color: #334155;
+        }
+        .content h2 { margin-top: 40px; color: #1e293b; }
+        .content p { margin-bottom: 20px; }
+        .content img { max-width: 100%; height: auto; border-radius: 12px; margin: 20px 0; }
+
+        .cta-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: #f1f5f9;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+        .cta-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.4);
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 40px;
+        }
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+        .contact-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+        .contact-item i { color: var(--primary); margin-top: 3px; }
+
+        @media (max-width: 992px) {
+            .main-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .main-content { padding: 30px; }
+            .banner-title { font-size: 32px; }
+            .page-banner { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+    {% if page_obj.banner_title or page_obj.banner_image %}
+    <section class="page-banner">
+        <h1 class="banner-title">{{ page_obj.banner_title|default:page_obj.title }}</h1>
+        {% if page_obj.banner_subtitle %}
+        <p class="banner-subtitle">{{ page_obj.banner_subtitle }}</p>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <div class="main-wrapper">
+        <main class="main-content">
+            {% if not page_obj.banner_title and not page_obj.banner_image %}
+            <header class="page-header">
+                <h1>{{ page_obj.title }}</h1>
+            </header>
+            {% endif %}
+
+            <article class="content">
+                {{ page_obj.content|safe }}
+            </article>
+
+            {% if page_obj.cta_text and page_obj.cta_link %}
+            <div class="cta-section">
+                <a href="{{ page_obj.cta_link }}" class="cta-btn">{{ page_obj.cta_text }}</a>
+            </div>
+            {% endif %}
+        </main>
+
+        {% if page_obj.show_sidebar %}
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Quick Information</h3>
+                <div class="contact-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Available 24/7 for Online Support</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 8485847920</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>training.webasha@gmail.com</span>
+                </div>
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0;">
+                <p style="font-size: 14px; color: var(--muted);">WebAsha Technologies is a premier IT training provider specializing in Red Hat, Cloud, and Cybersecurity certifications.</p>
+                <a href="/contact" class="cta-btn" style="width: 100%; padding: 12px; font-size: 15px; box-sizing: border-box; text-align: center; margin-top: 10px;">Contact Us Now</a>
+            </div>
+        </aside>
+        {% endif %}
+    </div>
+</body>
+</html>

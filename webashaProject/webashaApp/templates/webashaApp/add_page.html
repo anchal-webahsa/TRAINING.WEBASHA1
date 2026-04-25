@@ -1,0 +1,127 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <h2 class="section-title">{% if page_obj %}Edit Page{% else %}Create New Page{% endif %}</h2> 
+        <a href="{% url 'manage_pages' %}" class="action-icon-btn" style="width: auto; padding: 0 20px; text-decoration: none;"> 
+            <i class="fa-solid fa-arrow-left"></i> Back to List 
+        </a> 
+    </div> 
+
+    <!-- Include Summernote CSS/JS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <form method="post" enctype="multipart/form-data" style="padding: 24px;"> 
+        {% csrf_token %} 
+        <div class="form-row"> 
+            <div class="form-group" style="flex: 2;"> 
+                <label class="form-label">Page Title</label> 
+                <input type="text" name="title" value="{{ page_obj.title }}" class="form-control" placeholder="e.g. Privacy Policy" required onkeyup="generateSlug(this.value)"> 
+                <small class="form-text">The internal name of the page.</small> 
+            </div> 
+            <div class="form-group" style="flex: 1;"> 
+                <label class="form-label">URL Slug</label> 
+                <input type="text" name="slug" id="page_slug" value="{{ page_obj.slug }}" class="form-control" placeholder="e.g. privacy-policy" required> 
+                <small class="form-text">Accessible at: /p/<span id="slug_preview">{{ page_obj.slug|default:'...' }}</span>/</small> 
+            </div> 
+        </div> 
+
+        <div class="form-group" style="margin-top: 24px;"> 
+            <label class="form-label">Page Content</label> 
+            <textarea name="content" id="summernote" class="form-control">{{ page_obj.content }}</textarea> 
+            <small class="form-text">Use the editor above to design your page with images, links, and formatting.</small> 
+        </div> 
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border);"> 
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--text); font-weight: 700;">Page Design & Header (Banners)</h3> 
+            <div class="form-row"> 
+                <div class="form-group" style="flex: 1;"> 
+                    <label class="form-label">Banner Image (Optional)</label> 
+                    <input type="file" name="banner_image" class="form-control" style="padding: 8px;"> 
+                    {% if page_obj.banner_image %}<small>Current: {{ page_obj.banner_image.name }}</small>{% endif %}
+                </div> 
+                <div class="form-group" style="flex: 2;"> 
+                    <label class="form-label">Banner Display Title</label> 
+                    <input type="text" name="banner_title" value="{{ page_obj.banner_title|default:'' }}" class="form-control" placeholder="Large text displayed over the banner"> 
+                </div> 
+            </div> 
+            <div class="form-group"> 
+                <label class="form-label">Banner Subtitle</label> 
+                <input type="text" name="banner_subtitle" value="{{ page_obj.banner_subtitle|default:'' }}" class="form-control" placeholder="Short description under the banner title"> 
+            </div> 
+        </div> 
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border);"> 
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--text); font-weight: 700;">Call to Action (CTA Button)</h3> 
+            <div class="form-row"> 
+                <div class="form-group" style="flex: 1;"> 
+                    <label class="form-label">Button Text</label> 
+                    <input type="text" name="cta_text" value="{{ page_obj.cta_text|default:'' }}" class="form-control" placeholder="e.g. Enroll Now"> 
+                </div> 
+                <div class="form-group" style="flex: 2;"> 
+                    <label class="form-label">Button Link (URL)</label> 
+                    <input type="text" name="cta_link" value="{{ page_obj.cta_link|default:'' }}" class="form-control" placeholder="e.g. /contact or https://..."> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div style="margin-top: 32px; display: flex; align-items: center; gap: 12px; padding: 16px; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border);"> 
+            <input type="checkbox" name="show_sidebar" id="show_sidebar" {% if page_obj.show_sidebar or not page_obj %}checked{% endif %} style="width: 20px; height: 20px;"> 
+            <label for="show_sidebar" style="font-weight: 600; cursor: pointer;">Enable Standard Info Sidebar on this page?</label> 
+        </div> 
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--bg); border-radius: 12px; border: 1px dashed var(--border);"> 
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: var(--text);">SEO & Search Engine Settings</h3> 
+            <div class="form-row"> 
+                <div class="form-group" style="flex: 1;"> 
+                    <label class="form-label">Meta Title (SEO Title)</label> 
+                    <input type="text" name="meta_title" value="{{ page_obj.meta_title }}" class="form-control" placeholder="How it appears in Google search results"> 
+                </div> 
+                <div class="form-group" style="flex: 1;"> 
+                    <label class="form-label">Meta Description</label> 
+                    <textarea name="meta_description" rows="2" class="form-control" placeholder="Brief summary of the page for search engines...">{{ page_obj.meta_description }}</textarea> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: flex-end;"> 
+            <button type="reset" class="action-icon-btn" style="width: auto; padding: 0 32px; background: transparent; border: 1px solid var(--border); color: var(--text);">Reset</button> 
+            <button type="submit" class="action-icon-btn" style="width: auto; padding: 0 48px; background: var(--accent); color: white; border: none; font-weight: 700;"> 
+                {% if page_obj %}Update Page{% else %}Publish Page{% endif %} 
+            </button> 
+        </div> 
+    </form> 
+</div> 
+
+
+
+<script> 
+function generateSlug(text) { 
+    if ("{{ page_obj.pk }}" !== "") return; 
+    const slug = text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-'); 
+    document.getElementById('page_slug').value = slug; 
+    document.getElementById('slug_preview').innerText = slug; 
+} 
+
+$(document).ready(function() {
+    $('#summernote').summernote({
+        placeholder: 'Start building your page content here...',
+        tabsize: 2,
+        height: 400,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+});
+</script> 
+{% endblock %} 

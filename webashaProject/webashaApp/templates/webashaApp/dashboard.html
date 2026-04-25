@@ -1,290 +1,223 @@
 {% extends 'webashaApp/base.html' %}
 
-{% block title %}Dashboard | Academy{% endblock %}
+{% block title %}Dashboard | WebAsha Admin{% endblock %}
 
 {% block content %}
-<h2 style="margin-bottom: 24px; color: #1e293b; font-size: 20px; font-weight: 600;">Dashboard Overview</h2>
-<div class="cards">
-    <div class="card">
-        <div class="num">{{ stats.num_courses }}</div>
-        <div class="label">Number of Courses</div>
-    </div>
-    <div class="card">
-        <div class="num">{{ stats.num_lessons }}</div>
-        <div class="label">Number of Lessons</div>
-    </div>
-    <div class="card">
-        <div class="num">{{ stats.num_enrollments }}</div>
-        <div class="label">Number of Enrollment</div>
-    </div>
-    <div class="card">
-        <div class="num">{{ stats.num_students }}</div>
-        <div class="label">Number of Students</div>
-    </div>
-    <div class="card">
-        <div class="num">{{ stats.num_instructors }}</div>
-        <div class="label">Number of Instructor</div>
-    </div>
-</div>
+<div class="dashboard-wrapper">
+    <h2 class="section-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted);"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Command Center
+    </h2>
 
-<div class="content-row">
-    <div class="panel">
-        <div class="panel-header">
-            <h4>Admin Revenue This Year</h4>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-num">{{ stats.num_students }}</div>
+            <div class="stat-label">Total Student Users</div>
         </div>
-        <div class="chart-wrap">
-            <canvas id="lineChart"></canvas>
+        <div class="stat-card">
+            <div class="stat-num">{{ stats.num_enrollments }}</div>
+            <div class="stat-label">Total Valid Enrollments</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">{{ stats.num_courses }}</div>
+            <div class="stat-label">Active Master Courses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">{{ stats.num_bootcamps }}</div>
+            <div class="stat-label">Bootcamp Tracks</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">{{ stats.num_instructors }}</div>
+            <div class="stat-label">Registered Instructors</div>
         </div>
     </div>
 
-    <div class="panel side-panel">
-        <div class="panel-header">
-            <h4>Course Status</h4>
-            <a href="{% url 'manage_courses' %}" class="view-all" style="text-decoration: none;">→</a>
-        </div>
-        <div class="status-container">
-            <div class="chart-box">
-                <canvas id="doughnutChart"></canvas>
+    <div class="dashboard-row">
+        <!-- Main Line Chart -->
+        <div class="dashboard-panel chart-panel">
+            <div class="panel-header">
+                <h4>Lead Generation History (Trailing 12 Months)</h4>
+                <a href="{% url 'manage_enquiries' %}" class="panel-action">View Leads <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
-            <div class="status-legend">
-                <div class="legend-item"><span class="dot active"></span> Active</div>
-                <div class="legend-item"><span class="dot upcoming"></span> Upcoming</div>
-                <div class="legend-item"><span class="dot pending"></span> Pending</div>
-                <div class="legend-item"><span class="dot private"></span> Private</div>
-                <div class="legend-item"><span class="dot draft"></span> Draft</div>
-                <div class="legend-item"><span class="dot inactive"></span> Inactive</div>
+            <div class="chart-wrap">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Doughnut Chart -->
+        <div class="dashboard-panel status-panel">
+            <div class="panel-header">
+                <h4>Platform Engine Status</h4>
+                <a href="{% url 'manage_courses' %}" class="panel-action">Manage <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+            <div class="status-container">
+                <div class="chart-box">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+                <div class="status-legend">
+                    <div class="legend-item"><span class="dot active"></span> Active</div>
+                    <div class="legend-item"><span class="dot upcoming"></span> Upcoming</div>
+                    <div class="legend-item"><span class="dot pending"></span> Pending</div>
+                    <div class="legend-item"><span class="dot private"></span> Private</div>
+                    <div class="legend-item"><span class="dot draft"></span> Draft</div>
+                    <div class="legend-item"><span class="dot inactive"></span> Inactive</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="bottom-row">
-    <div class="panel withdrawal-panel">
-        <div class="panel-header">
-            <h4>Pending Requested withdrawal</h4>
-            <span class="view-all">→</span>
-        </div>
-        <div class="withdrawal-content">
-            <div class="user-info">
-                <div class="name">Name: James Mariyati</div>
-                <div class="email">Email: instructor@example.com</div>
+    <div class="dashboard-row">
+        <!-- Recent Leads Panel -->
+        <div class="dashboard-panel table-panel">
+            <div class="panel-header">
+                <h4>Recent Live Enquiries</h4>
+                <a href="{% url 'manage_enquiries' %}" class="panel-action">All Enquiries <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
-            <div class="amount-box">
-                <div class="amount">100 ₹</div>
-                <div class="amount-label">Requested withdrawal amount</div>
+            
+            <div style="overflow-x:auto;">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Prospect Name</th>
+                            <th>Contact Email</th>
+                            <th>Phone Identifier</th>
+                            <th>Requested Course</th>
+                            <th style="text-align: right;">Time Captured</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enquiry in recent_enquiries %}
+                        <tr>
+                            <td><strong>{{ enquiry.name }}</strong></td>
+                            <td><a href="mailto:{{ enquiry.email }}" style="color: #3b82f6; text-decoration: none;">{{ enquiry.email }}</a></td>
+                            <td>{{ enquiry.phone }}</td>
+                            <td>
+                                {% if enquiry.course_name %}
+                                <span class="badge">{{ enquiry.course_name }}</span>
+                                {% else %}
+                                <span class="badge" style="background:#fef3c7;color:#d97706;">General Request</span>
+                                {% endif %}
+                            </td>
+                            <td style="text-align: right; color:var(--muted); font-size: 13px;">{{ enquiry.created_at|date:"M d, Y - h:i a" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 32px; color:var(--muted);">
+                                No recent enquiries tracked.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{ revenue_labels|json_script:"revenue-labels" }}
 {{ revenue_data|json_script:"revenue-data" }}
 {{ status_data|json_script:"status-data" }}
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Line Chart
+        // Line Chart - Enquiries
         const lineCtx = document.getElementById('lineChart');
         if (lineCtx) {
             const ctx = lineCtx.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.1)');
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
             gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    labels: JSON.parse(document.getElementById('revenue-labels').textContent),
                     datasets: [{
-                        label: 'Admin Revenue',
+                        label: 'Total Generated Leads',
                         data: JSON.parse(document.getElementById('revenue-data').textContent),
                         borderColor: '#3b82f6',
                         backgroundColor: gradient,
                         fill: true,
                         tension: 0.4,
                         pointRadius: 4,
-                        pointBackgroundColor: '#3b82f6',
-                        borderWidth: 2
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#3b82f6',
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 6,
+                        borderWidth: 3
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            align: 'end',
-                            labels: {
-                                usePointStyle: true,
-                                boxWidth: 8,
-                                padding: 20
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            padding: 12,
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) { return context.parsed.y + ' Leads'; }
                             }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            grid: { color: '#f3f4f6' },
-                            ticks: { color: '#9ca3af', font: { size: 11 } }
+                            grid: { color: document.body.classList.contains('dark-theme') ? '#334155' : '#f8fafc', drawBorder: false },
+                            ticks: { color: '#94a3b8', font: { size: 12 }, padding: 10 }
                         },
                         x: {
-                            grid: { display: false },
-                            ticks: { color: '#9ca3af', font: { size: 11 } }
+                            grid: { display: false, drawBorder: false },
+                            ticks: { color: '#94a3b8', font: { size: 12 }, padding: 10 }
                         }
                     }
                 }
             });
         }
 
-        // Doughnut Chart
+        // Doughnut Chart - Course Status
         const doughnutCtx = document.getElementById('doughnutChart');
         if (doughnutCtx) {
             const dctx = doughnutCtx.getContext('2d');
+            const rawData = JSON.parse(document.getElementById('status-data').textContent);
+            
+            // Check if entirely zero, give fake data so chart renders grey ring
+            const totalStatus = rawData.reduce((a, b) => a + b, 0);
+            
             new Chart(dctx, {
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        data: JSON.parse(document.getElementById('status-data').textContent),
-                        backgroundColor: ['#10b981', '#3b82f6', '#f43f5e', '#1f2937', '#9ca3af', '#d1d5db'],
-                        borderWidth: 0
+                        data: totalStatus === 0 ? [1] : rawData,
+                        backgroundColor: totalStatus === 0 ? ['#f1f5f9'] : ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#94a3b8', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 4
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '75%',
-                    plugins: { legend: { display: false } }
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: totalStatus !== 0,
+                            callbacks: {
+                                label: function(context) {
+                                    const labels = ['Active', 'Upcoming', 'Pending', 'Private', 'Draft', 'Inactive'];
+                                    return ' ' + labels[context.dataIndex] + ': ' + context.parsed + ' Courses';
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }
     });
 </script>
-
-<style>
-    .panel-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .view-all {
-        color: #3b82f6;
-        font-size: 18px;
-        cursor: pointer;
-    }
-
-    .status-container {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .chart-box {
-        width: 150px;
-        height: 150px;
-    }
-
-    .status-legend {
-        flex: 1;
-    }
-
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-        font-size: 13px;
-        color: #4b5563;
-    }
-
-    .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 3px;
-    }
-
-    .dot.active {
-        background: #10b981;
-    }
-
-    .dot.upcoming {
-        background: #3b82f6;
-    }
-
-    .dot.pending {
-        background: #f43f5e;
-    }
-
-    .dot.private {
-        background: #1f2937;
-    }
-
-    .dot.draft {
-        background: #9ca3af;
-    }
-
-    .dot.inactive {
-        background: #d1d5db;
-    }
-
-    .bottom-row {
-        margin-top: 16px;
-    }
-
-    .withdrawal-panel {
-        max-width: 600px;
-    }
-
-    .withdrawal-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-
-    .user-info .name {
-        font-weight: 600;
-        color: #1f2937;
-        margin-bottom: 4px;
-    }
-
-    .user-info .email {
-        color: #6b7280;
-        font-size: 13px;
-    }
-
-    .amount-box {
-        text-align: right;
-    }
-
-    .amount {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1f2937;
-    }
-
-    .amount-label {
-        font-size: 12px;
-        color: #6b7280;
-    }
-
-    .panel h4 {
-        margin-top: 0;
-        margin-bottom: 24px;
-        font-size: 16px;
-        color: #0f172a;
-    }
-
-    .cards {
-        margin-top: 10px;
-    }
-
-    .card {
-        padding: 20px 24px !important;
-    }
-
-    .card .num {
-        margin-bottom: 2px;
-    }
-</style>
 {% endblock %}

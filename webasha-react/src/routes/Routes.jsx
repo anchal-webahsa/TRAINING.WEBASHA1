@@ -22,6 +22,9 @@ import Rhce  from "../pages/Rhce";
 // ── Other Pages ──
 import Gallery from "../pages/Gallery";
 import Certificate from "../pages/Certificate";
+import Exams from "../pages/Exams";
+import ExamTemplate from "../pages/ExamTemplate";
+import CustomPage from "../pages/CustomPage";
 
 export default function AppRoutes() {
   return (
@@ -32,6 +35,8 @@ export default function AppRoutes() {
       <Route path="/about-us"  element={<About />}   />
       <Route path="/career"    element={<Career />}  />
       <Route path="/contact-us"   element={<Contact />} />
+      <Route path="/exams" element={<Exams />} />
+      <Route path="/exam/:exam_code" element={<ExamTemplate />} />
 
       {/* ── OffSec Courses ── */}
       <Route path="/oscp" element={<Oscp />} />
@@ -45,9 +50,8 @@ export default function AppRoutes() {
       <Route path="/rhcsa2" element={<CourseTemplate slug="rhcsa2" />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/certificate" element={<Certificate />} />
+      <Route path="/p/:slug" element={<CustomPage />} />
       <Route path="/:slug" element={<CourseTemplate />} />
-
-
       <Route path="/placed-students" element={<PlacedStudents />} />
       <Route path="/student-feedback" element={<StudentFeedback />} />
 

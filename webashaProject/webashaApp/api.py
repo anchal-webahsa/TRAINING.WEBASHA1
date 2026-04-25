@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry, StandaloneRelatedCourse, CustomPage
 
 
 from .serializers import (
@@ -14,12 +14,15 @@ from .serializers import (
     HomeSectionSerializer,
     AlumniProfileSerializer,
     ExamVoucherOfferSerializer,
+    ExamSerializer,
     UpcomingBatchSerializer,
     CourseBannerSerializer,
     StudentScreenshotSerializer,
     MenuCategorySerializer,
     GalleryImageSerializer,
-    StudentCertificateSerializer
+    StudentCertificateSerializer,
+    StandaloneRelatedCourseSerializer,
+    CustomPageSerializer
 )
 
 class GalleryImageViewSet(viewsets.ReadOnlyModelViewSet):
@@ -59,6 +62,19 @@ class ExamVoucherOfferViewSet(viewsets.ModelViewSet):
     queryset = ExamVoucherOffer.objects.all().order_by('-created_at')
     serializer_class = ExamVoucherOfferSerializer
 
+class ExamViewSet(viewsets.ModelViewSet):
+    queryset = Exam.objects.filter(is_active=True).order_by('order', '-created_at')
+    serializer_class = ExamSerializer
+    lookup_field = 'exam_code'
+
+    def get_object(self):
+        from django.shortcuts import get_object_or_404
+        queryset = self.filter_queryset(self.get_queryset())
+        filter_kwargs = {f"{self.lookup_field}__iexact": self.kwargs[self.lookup_field]}
+        obj = get_object_or_404(queryset, **filter_kwargs)
+        self.check_object_permissions(self.request, obj)
+        return obj
+
 class UpcomingBatchViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         from django.utils import timezone
@@ -88,20 +104,28 @@ class StudentCertificateViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = StudentCertificateSerializer
     lookup_field = 'certificate_id'
 
+class StandaloneRelatedCourseViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = StandaloneRelatedCourse.objects.filter(is_active=True)
+    serializer_class = StandaloneRelatedCourseSerializer
+
+class CustomPageViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CustomPage.objects.filter(is_active=True)
+    serializer_class = CustomPageSerializer
+    lookup_field = 'slug'
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def submit_contact(request):
     data = request.data
     try:
-        Enquiry.objects.create(
+        Contact.objects.create(
             name=data.get('name', ''),
             email=data.get('email', ''),
             phone=data.get('phone', ''),
-            course_name=data.get('course_name', ''),
-            country=data.get('country', 'India'),
-            city=data.get('city', '')
+            message=data.get('message', ''),
+            is_read=False
         )
-        return Response({"message": "Form submitted successfully!"}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Contact form submitted successfully!"}, status=status.HTTP_201_CREATED)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

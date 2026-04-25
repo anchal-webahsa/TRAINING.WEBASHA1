@@ -1,0 +1,89 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<style>
+    .form-group { margin-bottom: 24px; }
+    .form-label { display: block; font-weight: 500; margin-bottom: 8px; color: #1e293b; font-size: 14px; }
+    .form-control, .form-select {
+        width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
+        font-size: 14px; color:var(--text); box-sizing: border-box; transition: 0.2s;
+    }
+    .form-control:focus, .form-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .form-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .form-col { flex: 1; min-width: 250px; }
+</style>
+
+<div style="width:100%">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <a href="{% url 'manage_enquiries' %}" style="width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:0.2s" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Add Lead / Enquiry</h2>
+    </div>
+
+    {% if form.errors %}
+    <div class="alert-styled alert-error"><strong>Error:</strong> Please correctly fill out the mandatory fields.</div>
+    {% endif %}
+
+    <div style="background:var(--card);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.05);width:100%">
+        <form method="post">
+            {% csrf_token %}
+            
+            <h3 style="font-size:18px;font-weight:600;margin-top:0;margin-bottom:24px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Contact Details</h3>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Full Name <span style="color:#ef4444">*</span></label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.name.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Email Address <span style="color:#ef4444">*</span></label>
+                        {{ form.email }}
+                        {% if form.email.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.email.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Phone Number <span style="color:#ef4444">*</span></label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.phone.errors }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size:18px;font-weight:600;margin-top:16px;margin-bottom:24px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Enquiry Context</h3>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Interested Course</label>
+                        {{ form.course_name }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">Leave blank if general enquiry</div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Country</label>
+                        {{ form.country }}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        {{ form.city }}
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:24px;margin-top:32px;border-top:1px solid #e2e8f0">
+                <a href="{% url 'manage_enquiries' %}" style="padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;color:var(--muted);background:var(--bg);border:1px solid var(--border);transition:0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">Cancel</a>
+                <button type="submit" style="padding:12px 24px;border-radius:8px;font-weight:600;color:white;background:#3b82f6;border:none;cursor:pointer;box-shadow:0 1px 2px rgba(59, 130, 246, 0.4);transition:0.2s" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Add Lead</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

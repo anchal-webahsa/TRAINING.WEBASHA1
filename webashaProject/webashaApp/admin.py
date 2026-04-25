@@ -1,5 +1,12 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin, SummernoteModelAdminMixin
+from django_summernote.models import Attachment
+
+try:
+    admin.site.unregister(Attachment)
+except admin.sites.NotRegistered:
+    pass
+
 from .models import (
     Course, 
     CourseCategory, 
@@ -12,6 +19,7 @@ from .models import (
     HomeSection,
     AlumniProfile,
     ExamVoucherOffer,
+    Exam,
     UpcomingBatch,
     CourseBanner,
     StudentScreenshot,
@@ -22,7 +30,15 @@ from .models import (
     Enquiry,
     PlacedStudent,
     PlacementStat,
-    HiringPartner
+    HiringPartner,
+    StandaloneRelatedCourse,
+    ExamFAQ, 
+    ExamReview, 
+    ExamPartnerLogo, 
+    ExamRelatedCourse,
+    ExamWhyChooseUs,
+    ExamAdBanner,
+    ExamSidebarCarousel
 )
 
 
@@ -112,6 +128,7 @@ class ExamVoucherOfferAdmin(BaseAdmin):
     list_filter = ('is_active',)
 
 admin.site.register(ExamVoucherOffer, ExamVoucherOfferAdmin)
+
 
 class UpcomingBatchAdmin(BaseAdmin):
     list_display = ('date', 'mode_of_class', 'batch_form', 'time', 'status_text', 'is_active')
@@ -226,6 +243,92 @@ class EnquiryAdmin(BaseAdmin):
 
 admin.site.register(Enquiry, EnquiryAdmin)
 
+class ExamFAQInline(admin.TabularInline):
+    model = ExamFAQ
+    extra = 1
+
+class ExamReviewInline(admin.StackedInline):
+    model = ExamReview
+    extra = 1
+
+class ExamPartnerLogoInline(admin.TabularInline):
+    model = ExamPartnerLogo
+    extra = 1
+
+class ExamRelatedCourseInline(admin.TabularInline):
+    model = ExamRelatedCourse
+    extra = 1
+
+class ExamWhyChooseUsInline(admin.TabularInline):
+    model = ExamWhyChooseUs
+    extra = 1
+
+class ExamAdBannerInline(admin.StackedInline):
+    model = ExamAdBanner
+    extra = 1
+
+class ExamSidebarCarouselInline(admin.TabularInline):
+    model = ExamSidebarCarousel
+    extra = 1
+
+class ExamAdmin(BaseAdmin):
+    list_display = ('title', 'exam_code', 'price', 'order', 'is_active', 'created_at')
+    search_fields = ('title', 'exam_code')
+    list_filter = ('is_active',)
+    list_editable = ('order', 'is_active')
+    ordering = ('order', '-created_at')
+    inlines = [ExamFAQInline, ExamReviewInline, ExamPartnerLogoInline, ExamRelatedCourseInline, ExamWhyChooseUsInline, ExamAdBannerInline, ExamSidebarCarouselInline]
+    summernote_fields = ('overview_html', 'audience_html', 'prerequisites_html', 'objectives_html', 'certification_value_html', 'career_opportunities_html', 'benefits_html', 'future_html', 'conclusion_html')
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': (
+                'title', 'exam_code', 'location', 'image', 'price', 'description', 'bootcamp_title', 'review_score', 'review_count', 'order', 'is_active'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Real Exam Format Table', {
+            'fields': (
+                'exam_duration', 'number_of_questions', 'exam_fee', 'validity',
+                'exam_format_table', 'passing_score', 'eligibility', 'exam_languages'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Prices & Deals', {
+            'fields': (
+                'box_image', 'last_update_date', 'original_price'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Meta & Stats', {
+            'fields': (
+                'preparation_mode', 'mock_test_count', 'bundle_includes', 'free_updates',
+                'stat_customers_passed', 'stat_average_score', 'stat_similar_questions',
+                'offer_box_title', 'offer_box_subtitle', 'offer_box_button_text', 'offer_box_button_url'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Dynamic HTML Content', {
+            'fields': (
+                'overview_html', 'audience_html', 'prerequisites_html', 
+                'objectives_html', 'certification_value_html', 'career_opportunities_html',
+                'benefits_html', 'future_html', 'conclusion_html'
+            ),
+            'classes': ('tab-section',)
+        }),
+    )
+
+    class Media:
+        css = {
+            'all': ('admin/css/course_banner_tabs.css',)
+        }
+        js = ('admin/js/course_banner_tabs.js',)
+
+try:
+    admin.site.register(Exam, ExamAdmin)
+except admin.sites.AlreadyRegistered:
+    pass
+
 class PlacedStudentAdmin(BaseAdmin):
     list_display = ('name', 'company', 'package', 'month_year', 'order', 'is_active')
     list_editable = ('order', 'is_active')
@@ -248,3 +351,12 @@ class HiringPartnerAdmin(BaseAdmin):
     ordering = ('order', '-created_at')
 
 admin.site.register(HiringPartner, HiringPartnerAdmin)
+
+class StandaloneRelatedCourseAdmin(BaseAdmin):
+    list_display = ('title', 'student_count', 'rating', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('title', 'description')
+    list_filter = ('is_active',)
+    ordering = ('order', '-created_at')
+
+admin.site.register(StandaloneRelatedCourse, StandaloneRelatedCourseAdmin)

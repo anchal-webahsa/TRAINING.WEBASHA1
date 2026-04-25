@@ -1,0 +1,86 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <h2 class="section-title" style="margin-bottom: 0;">Hiring Partners</h2> 
+        <a href="{% url 'add_hiring_partner' %}" class="action-icon-btn" style="width: auto; padding: 0 20px; background: var(--accent); color: white; border: none; text-decoration: none; font-weight: 700;"> 
+            <i class="fa-solid fa-plus"></i> Add Hiring Partner 
+        </a> 
+    </div> 
+
+    <!-- Messages --> 
+    {% if messages %} 
+        {% for message in messages %} 
+        <div class="alert-styled {% if message.tags == 'error' %}alert-error{% else %}alert-{{ message.tags }}{% endif %}"> 
+            {{ message }} 
+        </div> 
+        {% endfor %} 
+    {% endif %} 
+
+    <!-- Search Bar --> 
+    <div class="search-bar-wrap" style="background:var(--bg); padding:16px; border-radius:12px; margin-bottom:24px; border: 1px solid var(--border);"> 
+        <form method="get" style="display:flex; gap:12px; align-items:center"> 
+            <div style="flex:1; position:relative"> 
+                <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted);"></i> 
+                <input name="q" placeholder="Search company names..." value="{{ q|default:'' }}" class="form-control" style="padding-left: 44px;"> 
+            </div> 
+            <button type="submit" class="action-icon-btn" style="width: auto; padding: 0 24px; font-weight: 600;">Filter</button> 
+        </form> 
+    </div> 
+
+    <!-- Grid --> 
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:24px"> 
+        {% for partner in partners %} 
+        <div class="premium-card" style="padding: 0; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column;"> 
+            <div style="height:150px; background:var(--bg); position:relative; padding:24px; display:flex; align-items:center; justify-content:center"> 
+                {% if partner.logo %} 
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" style="max-width:100%; max-height:100%; object-fit:contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"> 
+                {% else %} 
+                <div style="color:var(--muted)"> 
+                    <i class="fa-solid fa-building-user" style="font-size: 48px; opacity: 0.2;"></i> 
+                </div> 
+                {% endif %} 
+                
+                <div style="position:absolute; top:12px; right:12px;"> 
+                    {% if partner.is_active %} 
+                    <span class="badge badge-success" style="backdrop-filter: blur(8px); background: rgba(34, 197, 94, 0.85); color: white;">Active</span> 
+                    {% else %} 
+                    <span class="badge badge-error" style="backdrop-filter: blur(8px); background: rgba(239, 68, 68, 0.85); color: white;">Inactive</span> 
+                    {% endif %} 
+                </div> 
+            </div> 
+            
+            <div style="padding:20px; text-align:center; flex:1; border-top: 1px solid var(--border);"> 
+                <h3 style="margin:0 0 10px 0; font-size:16px; color:var(--text); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis" title="{{ partner.name }}">{{ partner.name }}</h3> 
+                <div style="color:var(--muted); font-size:12px;"> 
+                    <span class="badge badge-primary" style="font-size: 11px;">Order: {{ partner.order }}</span> 
+                </div> 
+            </div> 
+        </div> 
+        {% empty %} 
+        <div style="grid-column:1 / -1; padding:80px; text-align:center; color:var(--muted); background:var(--card); border-radius:12px; border:2px dashed var(--border)"> 
+            <i class="fa-solid fa-handshake" style="font-size: 64px; margin-bottom: 24px; opacity: 0.2;"></i> 
+            <h3 style="margin:0 0 12px 0; color:var(--text); font-size:20px; font-weight: 700;">No Partners Found</h3> 
+            <p style="margin:0; font-size:15px;">Add company logos to display them in the partners section.</p> 
+        </div> 
+        {% endfor %} 
+    </div> 
+
+    <!-- Pagination --> 
+    {% if paginator.num_pages > 1 %} 
+    <div style="display:flex; justify-content:center; margin-top:40px; gap:8px"> 
+        {% if partners.has_previous %} 
+        <a href="?q={{ q }}&page={{ partners.previous_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Previous</a> 
+        {% endif %} 
+        <div style="display:flex; align-items:center; padding:0 24px; color:var(--muted); font-size:14px; font-weight: 700;"> 
+            Page {{ partners.number }} of {{ paginator.num_pages }} 
+        </div> 
+        {% if partners.has_next %} 
+        <a href="?q={{ q }}&page={{ partners.next_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Next</a> 
+        {% endif %} 
+    </div> 
+    {% endif %} 
+</div> 
+{% endblock %} 

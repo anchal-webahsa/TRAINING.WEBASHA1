@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, UpcomingBatch, CourseBanner, StudentScreenshot, CourseSyllabus, CourseFAQ, GalleryImage, StudentCertificate, PlacedStudent, PlacementStat, HiringPartner
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, CourseSyllabus, CourseFAQ, GalleryImage, StudentCertificate, PlacedStudent, PlacementStat, HiringPartner, StandaloneRelatedCourse, ExamCertificate
 
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -60,6 +60,72 @@ class ExamVoucherOfferSerializer(serializers.ModelSerializer):
         model = ExamVoucherOffer
         fields = '__all__'
 
+class ExamCertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamCertificate
+        fields = '__all__'
+
+from .models import (
+    ExamFAQ, ExamReview, ExamPartnerLogo, ExamRelatedCourse, 
+    ExamWhyChooseUs, ExamAdBanner, ExamSidebarCarousel, ExamCertificate, CustomPage
+)
+
+class ExamFAQSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamFAQ
+        fields = '__all__'
+
+class ExamReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamReview
+        fields = '__all__'
+
+class ExamPartnerLogoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamPartnerLogo
+        fields = '__all__'
+
+class ExamRelatedCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamRelatedCourse
+        fields = '__all__'
+
+class ExamWhyChooseUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamWhyChooseUs
+        fields = '__all__'
+
+class ExamAdBannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamAdBanner
+        fields = '__all__'
+
+class ExamCertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamCertificate
+        fields = '__all__'
+        fields = '__all__'
+
+class ExamSidebarCarouselSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExamSidebarCarousel
+        fields = '__all__'
+
+class ExamSerializer(serializers.ModelSerializer):
+    certificates = ExamCertificateSerializer(many=True, read_only=True)
+    faqs = ExamFAQSerializer(many=True, read_only=True)
+    reviews = ExamReviewSerializer(many=True, read_only=True)
+    partner_logos = ExamPartnerLogoSerializer(many=True, read_only=True)
+    related_courses = ExamRelatedCourseSerializer(many=True, read_only=True)
+    why_choose_us = ExamWhyChooseUsSerializer(many=True, read_only=True)
+    ad_banners = ExamAdBannerSerializer(many=True, read_only=True)
+    sidebar_carousels = ExamSidebarCarouselSerializer(many=True, read_only=True)
+    certificates = ExamCertificateSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Exam
+        fields = '__all__'
+
 class UpcomingBatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = UpcomingBatch
@@ -112,4 +178,14 @@ class PlacementStatSerializer(serializers.ModelSerializer):
 class HiringPartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = HiringPartner
+        fields = '__all__'
+
+class CustomPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomPage
+        fields = '__all__'
+
+class StandaloneRelatedCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StandaloneRelatedCourse
         fields = '__all__'

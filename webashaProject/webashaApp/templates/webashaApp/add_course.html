@@ -1,0 +1,126 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <div style="display:flex; align-items:center; gap:16px;"> 
+            <a href="{% url 'manage_courses' %}" class="action-icon-btn" style="border-radius: 50%;"> 
+                <i class="fa-solid fa-arrow-left"></i> 
+            </a> 
+            <h2 class="section-title" style="margin-bottom: 0;">Add Course</h2> 
+        </div> 
+    </div> 
+
+    {% if form.errors %} 
+    <div class="alert-styled alert-error"><strong>Error:</strong> Please correct the issues highlighted below.</div> 
+    {% endif %} 
+
+    <form method="post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        
+        <h3 class="section-title" style="font-size: 18px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Basic Information</h3> 
+        <div class="form-row"> 
+            <div class="form-col" style="flex:2"> 
+                <div class="form-group"> 
+                    <label class="form-label">Course Title <span style="color:#ef4444">*</span></label> 
+                    {{ form.title }} 
+                    {% if form.title.errors %}<div style="color:#ef4444; font-size:13px; margin-top:4px">{{ form.title.errors }}</div>{% endif %} 
+                </div> 
+            </div> 
+            <div class="form-col" style="flex:1"> 
+                <div class="form-group"> 
+                    <label class="form-label">Course Code</label> 
+                    {{ form.course_code }} 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">e.g. RH124v10</div> 
+                    {% if form.course_code.errors %}<div style="color:#ef4444; font-size:13px; margin-top:4px">{{ form.course_code.errors }}</div>{% endif %} 
+                </div> 
+            </div> 
+        </div> 
+
+        <div class="form-row"> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Slug</label> 
+                    {{ form.slug }} 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">Unique URL identifier</div> 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Subcategory</label> 
+                    {{ form.subcategory }} 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">Used for Mega Menu</div> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div class="form-group"> 
+            <label class="form-label">Short Description</label> 
+            {{ form.short_description }} 
+            {% if form.short_description.errors %}<div style="color:#ef4444; font-size:13px; margin-top:4px">{{ form.short_description.errors }}</div>{% endif %} 
+        </div> 
+
+        <h3 class="section-title" style="font-size: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Media & Labels</h3> 
+        <div class="form-row"> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Course Thumbnail</label> 
+                    <div class="form-control" style="padding: 8px;">{{ form.thumbnail }}</div> 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">Main image for the course card</div> 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Menu Icon</label> 
+                    <div class="form-control" style="padding: 8px;">{{ form.menu_icon }}</div> 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">Icon shown in Mega Menu</div> 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Menu Label</label> 
+                    {{ form.menu_label }} 
+                </div> 
+            </div> 
+        </div> 
+
+        <h3 class="section-title" style="font-size: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Metrics & Pricing</h3> 
+        <div class="form-row"> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Status</label> 
+                    {{ form.status }} 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Price</label> 
+                    {{ form.price }} 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Rating</label> 
+                    {{ form.rating }} 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">0.0 to 5.0</div> 
+                </div> 
+            </div> 
+            <div class="form-col"> 
+                <div class="form-group"> 
+                    <label class="form-label">Student Count Text</label> 
+                    {{ form.student_count }} 
+                    <div style="font-size:12px; color:var(--muted); margin-top:6px">e.g. 1,000+</div> 
+                </div> 
+            </div> 
+        </div> 
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:32px; padding-top:24px; border-top: 1px solid var(--border);"> 
+            <a href="{% url 'manage_courses' %}" class="action-icon-btn" style="width: auto; padding: 0 24px; text-decoration: none; font-weight: 600;">Cancel</a> 
+            <button type="submit" class="action-icon-btn" style="width: auto; padding: 0 32px; background: var(--accent); color: white; border: none; font-weight: 700;"> 
+                SAVE COURSE 
+            </button> 
+        </div> 
+    </form> 
+</div> 
+{% endblock %} 

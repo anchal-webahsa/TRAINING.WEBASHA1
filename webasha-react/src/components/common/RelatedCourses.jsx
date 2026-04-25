@@ -54,37 +54,23 @@ const RelatedCourses = ({ identifier = "related_courses" }) => {
   useEffect(() => {
     const getCourses = async () => {
       try {
-        const sectionData = await fetchData(`sections/${identifier}/`).catch(() => null);
-
-        if (sectionData && sectionData.is_active) {
-          // Use curated courses if available, otherwise fetch all active courses
-          if (sectionData.curated_courses && sectionData.curated_courses.length > 0) {
-            setCourses(sectionData.curated_courses);
-          } else {
-            const courseData = await fetchData("courses/");
-            setCourses(courseData && courseData.length > 0 ? courseData : defaultCourses);
-          }
-
-          let processedTitle = sectionData.title;
-          if (sectionData.highlight_text && processedTitle.includes(sectionData.highlight_text)) {
-            processedTitle = processedTitle.replace(
-              sectionData.highlight_text,
-              `<span class="red-color">${sectionData.highlight_text}</span>`
-            );
-          }
+        // Always fetch the standalone related courses table
+        const courseData = await fetchData("standalone-related-courses/").catch(() => null);
+        
+        if (courseData && courseData.length > 0) {
+          setCourses(courseData);
+        } else {
+          setCourses(defaultCourses);
+        }
 
           setSection({
-            badge: sectionData.badge || "Popular Courses",
-            title: processedTitle,
-            description: sectionData.description || "Find additional courses to boost your career and skills.",
-            button_text: sectionData.button_text || "Explore More",
-            view_all_text: sectionData.view_all_text || "View All",
-            view_all_link: sectionData.view_all_link || "/all-courses"
+            badge: "Popular Courses",
+            title: 'Popular Training & <span class="red-color">Certification Courses</span>',
+            description: "Find additional courses to boost your career and skills.",
+            button_text: "Explore More",
+            view_all_text: "View All",
+            view_all_link: "/all-courses"
           });
-        } else {
-          const courseData = await fetchData("courses/");
-          setCourses(courseData && courseData.length > 0 ? courseData : defaultCourses);
-        }
       } catch (error) {
         console.error("Failed to fetch data:", error);
         setCourses(defaultCourses);
@@ -149,7 +135,7 @@ const RelatedCourses = ({ identifier = "related_courses" }) => {
 
                     <p
                       className="description mb-3 text-start text-muted flex-grow-1" style={{ fontSize: '0.9rem', lineHeight: '1.4' }}
-                      dangerouslySetInnerHTML={{ __html: course.short_description || "Short description placeholder text goes here to describe the course contents." }}
+                      dangerouslySetInnerHTML={{ __html: course.description || course.short_description || "Short description placeholder text goes here to describe the course contents." }}
                     />
 
                     {/* Footer — students + rating  */}
@@ -167,7 +153,7 @@ const RelatedCourses = ({ identifier = "related_courses" }) => {
                     {/* CTA */}
                     <div className="button-group mt-auto w-100">
                       <a
-                        href={`/courses/${course.slug}`}
+                        href={course.explore_link ? course.explore_link : `/courses/${course.slug}`}
                         className="btn btn-outline-primary w-100 rounded-pill"
                         style={{ padding: '8px 0', borderColor: '#e60000', color: '#e60000' }}
                         aria-label="Learn More"

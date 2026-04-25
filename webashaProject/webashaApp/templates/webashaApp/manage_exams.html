@@ -1,0 +1,99 @@
+{% extends 'webashaApp/base.html' %} 
+{% load static %} 
+
+{% block content %} 
+<div class="premium-card"> 
+    <div class="panel-header"> 
+        <h2 class="section-title" style="margin-bottom: 0;">Exams Registry</h2> 
+        <a href="{% url 'add_exam' %}" class="action-icon-btn" style="width: auto; padding: 0 20px; background: var(--accent); color: white; border: none; text-decoration: none; font-weight: 700;"> 
+            <i class="fa-solid fa-plus"></i> Add New Exam 
+        </a> 
+    </div> 
+
+    <!-- Messages --> 
+    {% if messages %} 
+        {% for message in messages %} 
+        <div class="alert-styled {% if message.tags == 'error' %}alert-error{% else %}alert-{{ message.tags }}{% endif %}"> 
+            {{ message }} 
+        </div> 
+        {% endfor %} 
+    {% endif %} 
+
+    <!-- Search / Filter (Optional but recommended) --> 
+    <div class="search-bar-wrap" style="background:var(--bg); padding:16px; border-radius:12px; margin-bottom:24px; border: 1px solid var(--border);"> 
+        <form method="get" style="display:flex; gap:12px; align-items:center"> 
+            <div style="flex:1; position:relative"> 
+                <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted);"></i> 
+                <input name="q" placeholder="Search exams by code or title..." value="{{ query|default:'' }}" class="form-control" style="padding-left: 44px;"> 
+            </div> 
+            <button type="submit" class="action-icon-btn" style="width: auto; padding: 0 24px; font-weight: 600;">Filter</button> 
+        </form> 
+    </div> 
+
+    <!-- Table --> 
+    <div class="modern-table-wrap"> 
+        <table class="modern-table"> 
+            <thead> 
+                <tr> 
+                    <th>Exam Code</th> 
+                    <th>Title</th> 
+                    <th>Price</th> 
+                    <th>Status</th> 
+                    <th style="text-align: right;">Options</th> 
+                </tr> 
+            </thead> 
+            <tbody> 
+                {% for item in page_obj %} 
+                <tr> 
+                    <td> 
+                        <div style="font-weight: 800; color: var(--accent); font-family: monospace;">{{ item.exam_code }}</div> 
+                    </td> 
+                    <td> 
+                        <div style="font-weight: 700; color: var(--text);">{{ item.title }}</div> 
+                    </td> 
+                    <td> 
+                        <div style="color: var(--muted); font-weight: 600;">${{ item.price }}</div> 
+                    </td> 
+                    <td> 
+                        {% if item.is_active %} 
+                        <span class="badge badge-success">Active</span> 
+                        {% else %} 
+                        <span class="badge badge-error">Hidden</span> 
+                        {% endif %} 
+                    </td> 
+                    <td style="text-align: right;"> 
+                        <div style="display: flex; gap: 8px; justify-content: flex-end;"> 
+                            <a href="{% url 'edit_exam' item.id %}" class="action-icon-btn" title="Edit"> 
+                                <i class="fa-solid fa-pen-to-square"></i> 
+                            </a> 
+                        </div> 
+                    </td> 
+                </tr> 
+                {% empty %} 
+                <tr> 
+                    <td colspan="5" style="padding:48px; text-align:center; color:var(--muted)"> 
+                        <i class="fa-solid fa-file-invoice" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i> 
+                        <p style="font-size:16px; margin:0; font-weight: 500;">No exams found.</p> 
+                    </td> 
+                </tr> 
+                {% endfor %} 
+            </tbody> 
+        </table> 
+    </div> 
+
+    <!-- Pagination --> 
+    {% if page_obj.has_other_pages %} 
+    <div style="display:flex; justify-content:center; margin-top:32px; gap:8px"> 
+        {% if page_obj.has_previous %} 
+        <a href="?q={{ query|default:'' }}&page={{ page_obj.previous_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Previous</a> 
+        {% endif %} 
+        <div style="display:flex; align-items:center; padding:0 20px; color:var(--muted); font-size:14px; font-weight: 600;"> 
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} 
+        </div> 
+        {% if page_obj.has_next %} 
+        <a href="?q={{ query|default:'' }}&page={{ page_obj.next_page_number }}" class="action-icon-btn" style="width: auto; padding: 0 16px; text-decoration: none;">Next</a> 
+        {% endif %} 
+    </div> 
+    {% endif %} 
+</div> 
+{% endblock %} 

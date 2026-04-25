@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import DynamicCourseColumns from "./DynamicCourseColumns";
 
 export default function Header() {
-
   const [megaMenuData, setMegaMenuData] = useState([]);
   useEffect(() => {
     fetch('http://localhost:8000/api/mega-menu/')
@@ -604,6 +603,14 @@ export default function Header() {
                           Certificate
                         </a>
                       </li>
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/exam/ex200"
+                        >
+                          Exams
+                        </a>
+                      </li>
                       <li className="dropdown-submenu">
                         <a
                           className="dropdown-item dropdown-toggle"
@@ -1078,6 +1085,14 @@ export default function Header() {
                             href="/training-video"
                           >
                             Training Video
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="dropdown-item"
+                            href="/exams"
+                          >
+                            Exams
                           </a>
                         </li>
                       </ul>

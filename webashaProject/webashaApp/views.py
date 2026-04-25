@@ -11,10 +11,54 @@ from .models import (
     Course, CourseBundle, Bootcamp, BootcampCategory, BootcampPurchase, 
     Coupon, TutorCategory, TutorSubject, EbookCategory, Ebook, 
     EbookPurchase, Profile, Contact, Ticket, FAQ, PlacedStudent, 
-    PlacementStat, HiringPartner
+    PlacementStat, HiringPartner, AlumniProfile, CourseBanner,
+    CourseSyllabus, CourseFAQ, Exam, UpcomingBatch, CourseSubCategory,
+    CourseCategory, Enquiry, ExamVoucherOffer, GalleryImage, HiringPartner,
+    HomeSection, StandaloneRelatedCourse, Instructor, Message,
+    StudentCertificate, StudentScreenshot, Testimonial, VideoReview, ExamCertificate, CustomPage
 )
-from .forms import CouponForm
+from .forms import (
+    CouponForm, AlumniProfileForm, CourseBannerForm,
+    SyllabusFormSet, FAQFormSet, BatchFormSet, CourseSubCategoryForm,
+    CourseCategoryForm, CourseForm, EnquiryForm, ExamVoucherOfferForm,
+    GalleryImageForm, HiringPartnerForm, HomeSectionForm,
+    StandaloneRelatedCourseForm, InstructorForm, PlacedStudentForm,
+    PlacementStatForm, ProfileForm, StudentCertificateForm,
+    StudentScreenshotForm, TestimonialForm, VideoReviewForm, UpcomingBatchForm, ExamForm,
+    ExamFAQFormSet, ExamReviewFormSet, ExamPartnerLogoFormSet, ExamRelatedCourseFormSet,
+    ExamWhyChooseUsFormSet, ExamAdBannerFormSet, ExamSidebarCarouselFormSet, ExamCertificateFormSet
+)
+from django.core.paginator import Paginator
 from django.contrib import messages
+
+@login_required
+def global_search(request):
+    query = request.GET.get('q', '').strip()
+    results = {
+        'courses': [],
+        'enquiries': [],
+        'pages': [],
+        'query': query
+    }
+    
+    if query:
+        results['courses'] = Course.objects.filter(
+            models.Q(title__icontains=query) | 
+            models.Q(short_description__icontains=query)
+        )[:10]
+        
+        results['enquiries'] = Enquiry.objects.filter(
+            models.Q(name__icontains=query) | 
+            models.Q(email__icontains=query) |
+            models.Q(course_name__icontains=query)
+        )[:10]
+        
+        results['pages'] = CustomPage.objects.filter(
+            models.Q(title__icontains=query) | 
+            models.Q(content__icontains=query)
+        )[:10]
+        
+    return render(request, 'webashaApp/search_results.html', results)
 
 def dashboard(request):
     courses = Course.objects.all()
@@ -41,7 +85,7 @@ def dashboard(request):
     # Real data calculation
     stats = {
         'num_courses': courses.count(),
-        'num_lessons': 605, # Placeholder for now
+        'num_lessons': CourseSubCategory.objects.count() * 12, # Dynamic mock based on subcategories
         'num_enrollments': num_enrollments,
         'num_students': num_students,
         'num_instructors': num_instructors,
@@ -49,19 +93,51 @@ def dashboard(request):
         'num_bundles': bundles.count(),
     }
     
-    # Revenue mock data: peak in March (index 2)
-    revenue_data = [20, 40, 1334, 100, 50, 60, 45, 60, 55, 60, 50, 40]
+    # Live Enquiry metrics for Line Chart
+    from django.db.models.functions import TruncMonth
+    from django.db.models import Count
+    from django.utils import timezone
+    from datetime import timedelta
     
-    # Status mock data (Active, Upcoming, Pending, Private, Draft, Inactive)
-    # Total should be around courses.count() or just fixed values for the demo
-    status_data = [courses.count(), 2, 1, 0, 0, 0]
+    one_year_ago = timezone.now() - timedelta(days=365)
+    enquiries_per_month = Enquiry.objects.filter(created_at__gte=one_year_ago).annotate(month=TruncMonth('created_at')).values('month').annotate(total=Count('id')).order_by('month')
+    
+    month_counts = {i: 0 for i in range(1, 13)}
+    for e in enquiries_per_month:
+        if e['month']:
+            month_counts[e['month'].month] = e['total']
+            
+    current_month = timezone.now().month
+    revenue_labels = []
+    revenue_data = []
+    month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    
+    for i in range(11, -1, -1):
+        m = (current_month - i - 1) % 12 + 1
+        revenue_labels.append(month_names[m-1])
+        revenue_data.append(month_counts[m])
+        
+    # Status dynamic data
+    status_data = [
+        courses.filter(status='active').count(),
+        courses.filter(status='upcoming').count(),
+        courses.filter(status='pending').count(),
+        courses.filter(status='private').count(),
+        courses.filter(status='draft').count(),
+        courses.filter(status='inactive').count()
+    ]
+    
+    # Fetch actual recent leads instead of static withdrawal
+    recent_enquiries = Enquiry.objects.order_by('-created_at')[:5]
     
     context = {
         "title": "Dashboard Overview",
         "courses": courses,
         "stats": stats,
+        "revenue_labels": revenue_labels,
         "revenue_data": revenue_data,
         "status_data": status_data,
+        "recent_enquiries": recent_enquiries,
     }
     return render(request, "webashaApp/dashboard.html", context)
 
@@ -712,6 +788,20 @@ def offline_payments(request):
     })
 
 @login_required
+def manage_users(request):
+    """View to list all base users natively in the dashboard."""
+    from django.contrib.auth.models import User
+    users = User.objects.all().order_by('-date_joined')
+    return render(request, 'webashaApp/manage_users.html', {'users': users})
+
+@login_required
+def manage_groups(request):
+    """View to list all base groups natively in the dashboard."""
+    from django.contrib.auth.models import Group
+    groups = Group.objects.annotate(user_count=Count('user')).order_by('name')
+    return render(request, 'webashaApp/manage_groups.html', {'groups': groups})
+
+@login_required
 def manage_admins(request):
     """View to list all administrators."""
     from django.contrib.auth.models import User
@@ -780,10 +870,37 @@ def add_admin(request):
 
 @login_required
 def manage_instructors(request):
-    instructors = User.objects.filter(profile__role='instructor').annotate(
-        course_count=Count('owned_bootcamps')
-    ).select_related('profile')
-    return render(request, 'webashaApp/manage_instructors.html', {'instructors': instructors})
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    
+    qs = Instructor.objects.all().order_by('-created_at')
+    
+    query = request.GET.get('q', '').strip()
+    if query:
+        qs = qs.filter(full_name__icontains=query)
+    
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 10)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_instructors.html', {
+        'page_obj': page_obj,
+        'query': query,
+        'paginator': paginator
+    })
+
+@login_required
+def delete_instructor(request, pk):
+    instructor = get_object_or_404(Instructor, pk=pk)
+    name = instructor.full_name
+    instructor.delete()
+    messages.success(request, f"Instructor '{name}' deleted successfully.")
+    return redirect('manage_instructors')
+
 
 @login_required
 def add_instructor(request):
@@ -980,20 +1097,20 @@ def messages_view(request, user_id=None):
     
     # Get initial conversation if user_id is provided
     selected_user = None
-    messages = []
+    chat_messages = []
     if user_id:
         selected_user = get_object_or_404(User, id=user_id)
         from django.db.models import Q
-        messages = Message.objects.filter(
+        chat_messages = Message.objects.filter(
             (Q(sender=request.user) & Q(receiver=selected_user)) |
             (Q(sender=selected_user) & Q(receiver=request.user))
         ).order_by('timestamp')
         # Mark as read
-        messages.filter(receiver=request.user, is_read=False).update(is_read=True)
+        chat_messages.filter(receiver=request.user, is_read=False).update(is_read=True)
     elif users.exists():
         # Default to first user if none selected
         # selected_user = users.first()
-        # messages = Message.objects.filter(
+        # chat_messages = Message.objects.filter(
         #     (Q(sender=request.user) & Q(receiver=selected_user)) |
         #     (Q(sender=selected_user) & Q(receiver=request.user))
         # ).order_by('timestamp')
@@ -1002,7 +1119,7 @@ def messages_view(request, user_id=None):
     return render(request, 'webashaApp/messages.html', {
         'users': users,
         'selected_user': selected_user,
-        'messages': messages,
+        'messages': chat_messages,
     })
 
 @login_required
@@ -1028,6 +1145,7 @@ def send_message(request):
 
 @login_required
 def contacts_view(request):
+    Contact.objects.filter(is_read=False).update(is_read=True)
     contacts = Contact.objects.all()
     context = {
         'contacts': contacts,
@@ -1160,3 +1278,1000 @@ def get_placements(request):
         "companies": partner_data,
         "stats": stats_data
     })
+
+@login_required
+def manage_alumni_profiles(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = AlumniProfile.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(name__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        profiles = paginator.page(page)
+    except PageNotAnInteger:
+        profiles = paginator.page(1)
+    except EmptyPage:
+        profiles = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_alumni_profiles.html', {
+        'profiles': profiles,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_alumni_profile(request):
+    if request.method == 'POST':
+        form = AlumniProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Alumni Profile created successfully.')
+            return redirect('manage_alumni_profiles')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = AlumniProfileForm()
+        
+    return render(request, 'webashaApp/add_alumni_profile.html', {'form': form})
+
+@login_required
+def manage_coupons(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = Coupon.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(code__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        coupons = paginator.page(page)
+    except PageNotAnInteger:
+        coupons = paginator.page(1)
+    except EmptyPage:
+        coupons = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_coupons.html', {
+        'coupons': coupons,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_coupon(request):
+    if request.method == 'POST':
+        form = CouponForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Coupon created successfully.')
+            return redirect('manage_coupons')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = CouponForm()
+        
+    return render(request, 'webashaApp/add_coupon.html', {'form': form})
+
+@login_required
+def manage_course_banners(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = CourseBanner.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(heading__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        banners = paginator.page(page)
+    except PageNotAnInteger:
+        banners = paginator.page(1)
+    except EmptyPage:
+        banners = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_course_banners.html', {
+        'banners': banners,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_course_banner(request):
+    if request.method == 'POST':
+        form = CourseBannerForm(request.POST, request.FILES)
+        syllabus_formset = SyllabusFormSet(request.POST, prefix='syllabus')
+        faq_formset = FAQFormSet(request.POST, prefix='faq')
+        batch_formset = BatchFormSet(request.POST, prefix='batch')
+        
+        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid():
+            banner = form.save()
+            
+            syllabus_formset.instance = banner
+            syllabus_formset.save()
+            
+            faq_formset.instance = banner
+            faq_formset.save()
+            
+            batch_formset.instance = banner
+            batch_formset.save()
+            
+            messages.success(request, 'Course Banner created successfully with all related modules.')
+            return redirect('manage_course_banners')
+        else:
+            messages.error(request, 'Please correct the highlighted errors.')
+    else:
+        form = CourseBannerForm()
+        syllabus_formset = SyllabusFormSet(prefix='syllabus')
+        faq_formset = FAQFormSet(prefix='faq')
+        batch_formset = BatchFormSet(prefix='batch')
+        
+    return render(request, 'webashaApp/add_course_banner.html', {
+        'form': form,
+        'syllabus_formset': syllabus_formset,
+        'faq_formset': faq_formset,
+        'batch_formset': batch_formset
+    })
+
+@login_required
+def manage_course_subcategories(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = CourseSubCategory.objects.select_related('category').order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(name__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        subcategories = paginator.page(page)
+    except PageNotAnInteger:
+        subcategories = paginator.page(1)
+    except EmptyPage:
+        subcategories = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_course_subcategories.html', {
+        'subcategories': subcategories,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_course_subcategory(request):
+    if request.method == 'POST':
+        form = CourseSubCategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Course Subcategory created successfully.')
+            return redirect('manage_course_subcategories')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = CourseSubCategoryForm()
+        
+    return render(request, 'webashaApp/add_course_subcategory.html', {'form': form})
+
+@login_required
+def manage_course_categories(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = CourseCategory.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(name__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        categories = paginator.page(page)
+    except PageNotAnInteger:
+        categories = paginator.page(1)
+    except EmptyPage:
+        categories = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_course_categories.html', {
+        'categories': categories,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_course_category(request):
+    if request.method == 'POST':
+        form = CourseCategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Course Category created successfully.')
+            return redirect('manage_course_categories')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = CourseCategoryForm()
+        
+    return render(request, 'webashaApp/add_course_category.html', {'form': form})
+
+@login_required
+def manage_courses(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = Course.objects.select_related('subcategory').order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(title__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        courses = paginator.page(page)
+    except PageNotAnInteger:
+        courses = paginator.page(1)
+    except EmptyPage:
+        courses = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_courses.html', {
+        'courses': courses,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Course created successfully.')
+            return redirect('manage_courses')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = CourseForm()
+        
+    return render(request, 'webashaApp/add_course.html', {'form': form})
+
+@login_required
+def manage_enquiries(request):
+    Enquiry.objects.filter(is_read=False).update(is_read=True)
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = Enquiry.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        from django.db.models import Q
+        qs = qs.filter(Q(name__icontains=q) | Q(email__icontains=q) | Q(phone__icontains=q) | Q(course_name__icontains=q))
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        enquiries = paginator.page(page)
+    except PageNotAnInteger:
+        enquiries = paginator.page(1)
+    except EmptyPage:
+        enquiries = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_enquiries.html', {
+        'enquiries': enquiries,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_enquiry(request):
+    if request.method == 'POST':
+        form = EnquiryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Enquiry added successfully.')
+            return redirect('manage_enquiries')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = EnquiryForm()
+        
+    return render(request, 'webashaApp/add_enquiry.html', {'form': form})
+
+@login_required
+def manage_vouchers(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = ExamVoucherOffer.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(title__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        vouchers = paginator.page(page)
+    except PageNotAnInteger:
+        vouchers = paginator.page(1)
+    except EmptyPage:
+        vouchers = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_vouchers.html', {
+        'vouchers': vouchers,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_voucher(request):
+    if request.method == 'POST':
+        form = ExamVoucherOfferForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Exam Voucher Offer created successfully.')
+            return redirect('manage_vouchers')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ExamVoucherOfferForm()
+        
+    return render(request, 'webashaApp/add_voucher.html', {'form': form})
+
+@login_required
+def manage_gallery_images(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = GalleryImage.objects.order_by('order', '-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        from django.db.models import Q
+        qs = qs.filter(Q(title__icontains=q) | Q(category__icontains=q))
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        images = paginator.page(1)
+    except EmptyPage:
+        images = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_gallery_images.html', {
+        'images': images,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_gallery_image(request):
+    if request.method == 'POST':
+        form = GalleryImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Gallery Image added successfully.')
+            return redirect('manage_gallery_images')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = GalleryImageForm()
+        
+    return render(request, 'webashaApp/add_gallery_image.html', {'form': form})
+
+@login_required
+def manage_hiring_partners(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = HiringPartner.objects.order_by('order', '-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        qs = qs.filter(name__icontains=q)
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        partners = paginator.page(page)
+    except PageNotAnInteger:
+        partners = paginator.page(1)
+    except EmptyPage:
+        partners = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_hiring_partners.html', {
+        'partners': partners,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_hiring_partner(request):
+    if request.method == 'POST':
+        form = HiringPartnerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Hiring Partner added successfully.')
+            return redirect('manage_hiring_partners')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = HiringPartnerForm()
+        
+    return render(request, 'webashaApp/add_hiring_partner.html', {'form': form})
+
+@login_required
+def manage_home_sections(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = HomeSection.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        from django.db.models import Q
+        qs = qs.filter(Q(identifier__icontains=q) | Q(title__icontains=q))
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        sections = paginator.page(page)
+    except PageNotAnInteger:
+        sections = paginator.page(1)
+    except EmptyPage:
+        sections = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_home_sections.html', {
+        'sections': sections,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_home_section(request):
+    if request.method == 'POST':
+        form = HomeSectionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Home Section created successfully.')
+            return redirect('manage_home_sections')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = HomeSectionForm()
+        
+    return render(request, 'webashaApp/add_home_section.html', {'form': form})
+
+@login_required
+def manage_standalone_related_courses(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = StandaloneRelatedCourse.objects.order_by('order', '-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        from django.db.models import Q
+        qs = qs.filter(Q(title__icontains=q) | Q(description__icontains=q))
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        courses = paginator.page(page)
+    except PageNotAnInteger:
+        courses = paginator.page(1)
+    except EmptyPage:
+        courses = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_standalone_related_courses.html', {
+        'courses': courses,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def add_standalone_related_course(request):
+    if request.method == 'POST':
+        form = StandaloneRelatedCourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Related Course Card added successfully.')
+            return redirect('manage_standalone_related_courses')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = StandaloneRelatedCourseForm()
+        
+    return render(request, 'webashaApp/add_standalone_related_course.html', {'form': form})
+
+
+# --- GENERATED VIEWS FOR 9 BRAND NEW CRM COMPONENTS ---
+
+@login_required
+def manage_instructors(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = Instructor.objects.filter(full_name__icontains=query)
+    else:
+        items = Instructor.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_instructors.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_instructor(request):
+    if request.method == 'POST':
+        form = InstructorForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Instructor added successfully.')
+            return redirect('manage_instructors')
+    else:
+        form = InstructorForm()
+    return render(request, 'webashaApp/add_instructor.html', {'form': form})
+
+@login_required
+def manage_placed_students(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = PlacedStudent.objects.filter(name__icontains=query)
+    else:
+        items = PlacedStudent.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_placed_students.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_placed_student(request):
+    if request.method == 'POST':
+        form = PlacedStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'PlacedStudent added successfully.')
+            return redirect('manage_placed_students')
+    else:
+        form = PlacedStudentForm()
+    return render(request, 'webashaApp/add_placed_student.html', {'form': form})
+
+@login_required
+def manage_placement_stats(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = PlacementStat.objects.filter(total_placements__icontains=query)
+    else:
+        items = PlacementStat.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_placement_stats.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_placement_stat(request):
+    if request.method == 'POST':
+        form = PlacementStatForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'PlacementStat added successfully.')
+            return redirect('manage_placement_stats')
+    else:
+        form = PlacementStatForm()
+    return render(request, 'webashaApp/add_placement_stat.html', {'form': form})
+
+@login_required
+def manage_profiles(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = Profile.objects.filter(user__username__icontains=query)
+    else:
+        items = Profile.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_profiles.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile added successfully.')
+            return redirect('manage_profiles')
+    else:
+        form = ProfileForm()
+    return render(request, 'webashaApp/add_profile.html', {'form': form})
+
+@login_required
+def manage_student_certificates(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = StudentCertificate.objects.filter(student_name__icontains=query)
+    else:
+        items = StudentCertificate.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_student_certificates.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_student_certificate(request):
+    if request.method == 'POST':
+        form = StudentCertificateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'StudentCertificate added successfully.')
+            return redirect('manage_student_certificates')
+    else:
+        form = StudentCertificateForm()
+    return render(request, 'webashaApp/add_student_certificate.html', {'form': form})
+
+@login_required
+def manage_student_screenshots(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = StudentScreenshot.objects.filter(name__icontains=query)
+    else:
+        items = StudentScreenshot.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_student_screenshots.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_student_screenshot(request):
+    if request.method == 'POST':
+        form = StudentScreenshotForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'StudentScreenshot added successfully.')
+            return redirect('manage_student_screenshots')
+    else:
+        form = StudentScreenshotForm()
+    return render(request, 'webashaApp/add_student_screenshot.html', {'form': form})
+
+@login_required
+def manage_testimonials(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = Testimonial.objects.filter(full_name__icontains=query)
+    else:
+        items = Testimonial.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_testimonials.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_testimonial(request):
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Testimonial added successfully.')
+            return redirect('manage_testimonials')
+    else:
+        form = TestimonialForm()
+    return render(request, 'webashaApp/add_testimonial.html', {'form': form})
+
+@login_required
+def manage_upcoming_batches(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = UpcomingBatch.objects.filter(batch_form__icontains=query)
+    else:
+        items = UpcomingBatch.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_upcoming_batches.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_upcoming_batch(request):
+    if request.method == 'POST':
+        form = UpcomingBatchForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'UpcomingBatch added successfully.')
+            return redirect('manage_upcoming_batches')
+    else:
+        form = UpcomingBatchForm()
+    return render(request, 'webashaApp/add_upcoming_batch.html', {'form': form})
+
+@login_required
+def manage_video_reviews(request):
+    query = request.GET.get('q', '')
+    if query:
+        items = VideoReview.objects.filter(title__icontains=query)
+    else:
+        items = VideoReview.objects.all()
+        
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'webashaApp/manage_video_reviews.html', {
+        'page_obj': page_obj, 'query': query
+    })
+
+@login_required
+def add_video_review(request):
+    if request.method == 'POST':
+        form = VideoReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'VideoReview added successfully.')
+            return redirect('manage_video_reviews')
+    else:
+        form = VideoReviewForm()
+    return render(request, 'webashaApp/add_video_review.html', {'form': form})
+
+@login_required
+def add_group(request):
+    from django.contrib.auth.models import Group
+    from .forms import GroupForm
+    from django.contrib import messages
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Group specifically mapped successfully!")
+            return redirect('manage_groups')
+    else:
+        form = GroupForm()
+    return render(request, 'webashaApp/add_group.html', {'form': form, 'is_edit': False})
+
+@login_required
+def edit_group(request, pk):
+    from django.contrib.auth.models import Group
+    from .forms import GroupForm
+    from django.contrib import messages
+    group = get_object_or_404(Group, pk=pk)
+    if request.method == 'POST':
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Group specifically mapped successfully!")
+            return redirect('manage_groups')
+    else:
+        form = GroupForm(instance=group)
+    return render(request, 'webashaApp/add_group.html', {'form': form, 'is_edit': True, 'group': group})
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def manage_exams(request):
+    query = request.GET.get('q', '')
+    if query:
+        exams = Exam.objects.filter(
+            models.Q(title__icontains=query) | 
+            models.Q(exam_code__icontains=query)
+        ).order_by('order', '-created_at')
+    else:
+        exams = Exam.objects.all().order_by('order', '-created_at')
+
+    paginator = Paginator(exams, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'query': query,
+        'title': 'Manage Exams'
+    }
+    return render(request, 'webashaApp/manage_exams.html', context)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def add_exam(request, pk=None):
+    if pk:
+        exam = get_object_or_404(Exam, pk=pk)
+        title = "Edit Exam"
+    else:
+        exam = None
+        title = "Add Exam"
+
+    if request.method == 'POST':
+        form = ExamForm(request.POST, request.FILES, instance=exam)
+        faq_formset = ExamFAQFormSet(request.POST, request.FILES, prefix='faq', instance=exam)
+        review_formset = ExamReviewFormSet(request.POST, request.FILES, prefix='review', instance=exam)
+        partner_formset = ExamPartnerLogoFormSet(request.POST, request.FILES, prefix='partner', instance=exam)
+        related_course_formset = ExamRelatedCourseFormSet(request.POST, request.FILES, prefix='relatedcourse', instance=exam)
+        why_choose_us_formset = ExamWhyChooseUsFormSet(request.POST, request.FILES, prefix='whychooseus', instance=exam)
+        ad_banner_formset = ExamAdBannerFormSet(request.POST, request.FILES, prefix='adbanner', instance=exam)
+        carousel_formset = ExamSidebarCarouselFormSet(request.POST, request.FILES, prefix='carousel', instance=exam)
+        certificate_formset = ExamCertificateFormSet(request.POST, request.FILES, prefix='certificate', instance=exam)
+        
+        if (form.is_valid() and faq_formset.is_valid() and review_formset.is_valid() and 
+            partner_formset.is_valid() and related_course_formset.is_valid() and 
+            why_choose_us_formset.is_valid() and ad_banner_formset.is_valid() and 
+            carousel_formset.is_valid() and certificate_formset.is_valid()):
+            
+            exam_instance = form.save()
+            
+            faq_formset.instance = exam_instance
+            faq_formset.save()
+            
+            review_formset.instance = exam_instance
+            review_formset.save()
+            
+            partner_formset.instance = exam_instance
+            partner_formset.save()
+            
+            related_course_formset.instance = exam_instance
+            related_course_formset.save()
+            
+            why_choose_us_formset.instance = exam_instance
+            why_choose_us_formset.save()
+            
+            ad_banner_formset.instance = exam_instance
+            ad_banner_formset.save()
+            
+            carousel_formset.instance = exam_instance
+            carousel_formset.save()
+
+            certificate_formset.instance = exam_instance
+            certificate_formset.save()
+
+            messages.success(request, f'Exam {"updated" if pk else "added"} successfully with all inline modules!')
+            return redirect('manage_exams')
+        else:
+            messages.error(request, 'Please correct the highlighted errors in the form or tabs.')
+    else:
+        form = ExamForm(instance=exam)
+        faq_formset = ExamFAQFormSet(prefix='faq', instance=exam)
+        review_formset = ExamReviewFormSet(prefix='review', instance=exam)
+        partner_formset = ExamPartnerLogoFormSet(prefix='partner', instance=exam)
+        related_course_formset = ExamRelatedCourseFormSet(prefix='relatedcourse', instance=exam)
+        why_choose_us_formset = ExamWhyChooseUsFormSet(prefix='whychooseus', instance=exam)
+        ad_banner_formset = ExamAdBannerFormSet(prefix='adbanner', instance=exam)
+        carousel_formset = ExamSidebarCarouselFormSet(prefix='carousel', instance=exam)
+        certificate_formset = ExamCertificateFormSet(prefix='certificate', instance=exam)
+
+    return render(request, 'webashaApp/add_exam.html', {
+        'form': form,
+        'title': title,
+        'faq_formset': faq_formset,
+        'review_formset': review_formset,
+        'partner_formset': partner_formset,
+        'related_course_formset': related_course_formset,
+        'why_choose_us_formset': why_choose_us_formset,
+        'ad_banner_formset': ad_banner_formset,
+        'carousel_formset': carousel_formset,
+        'certificate_formset': certificate_formset
+    })
+
+
+def delete_gallery_image(request, pk):
+    image = get_object_or_404(GalleryImage, pk=pk)
+    title = image.title
+    image.delete()
+    messages.success(request, f'Image {title} deleted successfully.')
+    return redirect('manage_gallery_images')
+
+@login_required
+def delete_testimonial(request, pk):
+    testimonial = get_object_or_404(Testimonial, pk=pk)
+    name = testimonial.name
+    testimonial.delete()
+    messages.success(request, f'Testimonial from {name} deleted successfully.')
+    return redirect('manage_testimonials')
+
+@login_required
+def delete_hiring_partner(request, pk):
+    partner = get_object_or_404(HiringPartner, pk=pk)
+    name = partner.name
+    partner.delete()
+    messages.success(request, f'Hiring partner {name} deleted successfully.')
+    return redirect('manage_hiring_partners')
+
+@login_required
+def delete_placed_student(request, pk):
+    student = get_object_or_404(PlacedStudent, pk=pk)
+    name = student.name
+    student.delete()
+    messages.success(request, f'Placed student record for {name} deleted successfully.')
+    return redirect('manage_placed_students')
+
+
+@login_required
+def manage_pages(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = CustomPage.objects.all().order_by('-created_at')
+    query = request.GET.get('q', '').strip()
+    if query:
+        qs = qs.filter(title__icontains=query)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 10)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+    return render(request, 'webashaApp/manage_pages.html', {'page_obj': page_obj, 'query': query})
+
+@login_required
+def add_page(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        slug = request.POST.get('slug')
+        content = request.POST.get('content')
+        meta_title = request.POST.get('meta_title')
+        meta_description = request.POST.get('meta_description')
+        if title and slug:
+            CustomPage.objects.create(
+                title=title, slug=slug, content=content,
+                meta_title=meta_title, meta_description=meta_description,
+                banner_image=request.FILES.get('banner_image'),
+                banner_title=request.POST.get('banner_title'),
+                banner_subtitle=request.POST.get('banner_subtitle'),
+                cta_text=request.POST.get('cta_text'),
+                cta_link=request.POST.get('cta_link'),
+                show_sidebar=request.POST.get('show_sidebar') == 'on'
+            )
+            messages.success(request, f'Page {title} created successfully!')
+            return redirect('manage_pages')
+    return render(request, 'webashaApp/add_page.html')
+
+@login_required
+def edit_page(request, pk):
+    page_obj = get_object_or_404(CustomPage, pk=pk)
+    if request.method == 'POST':
+        page_obj.title = request.POST.get('title')
+        page_obj.slug = request.POST.get('slug')
+        page_obj.content = request.POST.get('content')
+        page_obj.meta_title = request.POST.get('meta_title')
+        page_obj.meta_description = request.POST.get('meta_description')
+        if request.FILES.get('banner_image'):
+            page_obj.banner_image = request.FILES.get('banner_image')
+        page_obj.banner_title = request.POST.get('banner_title')
+        page_obj.banner_subtitle = request.POST.get('banner_subtitle')
+        page_obj.cta_text = request.POST.get('cta_text')
+        page_obj.cta_link = request.POST.get('cta_link')
+        page_obj.show_sidebar = request.POST.get('show_sidebar') == 'on'
+        page_obj.save()
+        messages.success(request, f'Page {page_obj.title} updated successfully!')
+        return redirect('manage_pages')
+    return render(request, 'webashaApp/add_page.html', {'page_obj': page_obj})
+
+@login_required
+def delete_page(request, pk):
+    page_obj = get_object_or_404(CustomPage, pk=pk)
+    title = page_obj.title
+    page_obj.delete()
+    messages.success(request, f'Page {title} deleted successfully.')
+    return redirect('manage_pages')
+
+def serve_page(request, slug):
+    page_obj = get_object_or_404(CustomPage, slug=slug, is_active=True)
+    return render(request, 'webashaApp/custom_page.html', {'page_obj': page_obj})
+
+@login_required
+def delete_enquiry(request, pk):
+    enquiry = get_object_or_404(Enquiry, pk=pk)
+    name = enquiry.name
+    enquiry.delete()
+    messages.success(request, f'Enquiry from {name} deleted successfully.')
+    return redirect('manage_enquiries')

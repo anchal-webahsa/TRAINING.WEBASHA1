@@ -1,0 +1,107 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Home Sections</h2>
+        <a href="{% url 'add_home_section' %}" style="background:#3b82f6;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:500;display:flex;align-items:center;gap:8px;transition:background 0.2s">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Create New Section
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert-styled {% if message.tags == 'error' %}alert-error{% else %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="background:var(--bg);padding:16px;border-radius:8px;margin-bottom:24px">
+        <form method="get" style="display:flex;gap:12px;align-items:center">
+            <div style="flex:1;position:relative">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input name="q" placeholder="Search by identifier or title..." value="{{ q }}" style="width:100%;padding:10px 10px 10px 40px;border-radius:8px;border:1px solid var(--border);outline:none;font-size:14px;box-sizing:border-box">
+            </div>
+            <button type="submit" style="background:#475569;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:500">Filter</button>
+        </form>
+    </div>
+
+    <div style="overflow-x:auto;border:1px solid var(--border);border-radius:8px">
+        <table style="width:100%;border-collapse:collapse;min-width:900px;text-align:left">
+            <thead style="background:var(--bg);border-bottom:1px solid var(--border)">
+                <tr>
+                    <th style="padding:16px;color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px">Identifier & Badge</th>
+                    <th style="padding:16px;color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px">Section Title</th>
+                    <th style="padding:16px;color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px">Curated Courses</th>
+                    <th style="padding:16px;color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px">Status</th>
+                    <th style="padding:16px;color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px">Link Route</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for section in sections %}
+                <tr style="border-bottom:1px solid var(--border);transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                    <td style="padding:16px">
+                        <div style="font-weight:600;color:var(--text);font-family:monospace;background:var(--bg);padding:4px 8px;border-radius:4px;display:inline-block;margin-bottom:6px;border:1px solid var(--border)">{{ section.identifier }}</div>
+                        <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                            Badge: {{ section.badge|default:"None" }}
+                        </div>
+                    </td>
+                    <td style="padding:16px">
+                        <strong style="color:var(--text);font-size:15px">{{ section.title }}</strong>
+                        <div style="color:var(--muted);font-size:12px;margin-top:4px"><strong>Highlight:</strong> {{ section.highlight_text|default:"None" }}</div>
+                    </td>
+                    <td style="padding:16px">
+                        {% if section.curated_courses.all %}
+                        <div style="display:flex;flex-wrap:wrap;gap:4px">
+                            {% for course in section.curated_courses.all %}
+                            <span style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">{{ course.course_code }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <span style="color:var(--muted);font-size:12px;font-style:italic">Auto-feed (All Courses)</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding:16px">
+                        {% if section.is_active %}
+                            <span style="background:#dcfce7;color:#166534;padding:4px 10px;border-radius:16px;font-size:12px;font-weight:600">Active</span>
+                        {% else %}
+                            <span style="background:#fee2e2;color:#991b1b;padding:4px 10px;border-radius:16px;font-size:12px;font-weight:600">Hidden</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding:16px;color:var(--muted);font-size:13px">
+                        <div style="display:flex;align-items:center;gap:4px">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            {{ section.view_all_link }}
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="padding:32px;text-align:center;color:var(--muted)">
+                        <div style="margin-bottom:12px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                        <p style="font-size:15px;margin:0">No sections found.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if paginator.num_pages > 1 %}
+    <div style="display:flex;justify-content:center;margin-top:24px;gap:8px">
+        {% if sections.has_previous %}
+        <a href="?q={{ q }}&page={{ sections.previous_page_number }}" style="padding:8px 16px;border:1px solid var(--border);border-radius:6px;color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">Previous</a>
+        {% endif %}
+        <div style="display:flex;align-items:center;padding:0 16px;color:var(--muted);font-size:14px">
+            Page {{ sections.number }} of {{ paginator.num_pages }}
+        </div>
+        {% if sections.has_next %}
+        <a href="?q={{ q }}&page={{ sections.next_page_number }}" style="padding:8px 16px;border:1px solid var(--border);border-radius:6px;color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">Next</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

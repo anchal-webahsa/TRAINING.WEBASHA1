@@ -9,7 +9,7 @@
 
 <form method="post">
     {% csrf_token %}
-    <div style="max-width:720px">
+    <div style="width:100%">
         <div style="margin-bottom:8px">{{ form.title.label_tag }}<br>{{ form.title }}</div>
         <div style="margin-bottom:8px">{{ form.short_description.label_tag }}<br>{{ form.short_description }}</div>
         <div style="margin-bottom:8px">{{ form.description.label_tag }}<br>{{ form.description }}</div>

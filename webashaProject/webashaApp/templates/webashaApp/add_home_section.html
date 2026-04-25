@@ -1,0 +1,141 @@
+{% extends 'webashaApp/base.html' %}
+
+{% block content %}
+<style>
+    .form-group { margin-bottom: 24px; }
+    .form-label { display: block; font-weight: 500; margin-bottom: 8px; color: #1e293b; font-size: 14px; }
+    .form-control, .form-select {
+        width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
+        font-size: 14px; color:var(--text); box-sizing: border-box; transition: 0.2s;
+    }
+    .form-control:focus, .form-select:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .form-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .form-col { flex: 1; min-width: 250px; }
+    .form-check { display: flex; align-items: center; gap: 8px; }
+    .form-check-input { width: 18px; height: 18px; cursor: pointer; }
+    .form-check-label { font-size: 14px; color:var(--text); cursor: pointer; user-select: none; }
+    
+    /* Style the multiselect to look cleaner */
+    select[multiple] {
+        height: auto;
+        padding: 8px;
+    }
+    select[multiple] option {
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 2px;
+    }
+    select[multiple] option:checked {
+        background: #e0f2fe linear-gradient(0deg, #e0f2fe 0%, #e0f2fe 100%);
+        color: #0369a1;
+        font-weight: 600;
+    }
+</style>
+
+<div style="width:100%">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <a href="{% url 'manage_home_sections' %}" style="width:36px;height:36px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:0.2s" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+        <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Create Course Collection</h2>
+    </div>
+
+    {% if form.errors %}
+    <div class="alert-styled alert-error"><strong>Error:</strong> Please correct the errors highlighted below before saving.</div>
+    {% endif %}
+
+    <div style="background:var(--card);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.05);width:100%">
+        <form method="post">
+            {% csrf_token %}
+            
+            <h3 style="font-size:18px;margin-bottom:24px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Core Settings</h3>
+            
+            <div class="form-row">
+                <div class="form-col" style="flex:2">
+                    <div class="form-group">
+                        <label class="form-label">React Unique Identifier <span style="color:#ef4444">*</span></label>
+                        {{ form.identifier }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">The exact string your React frontend is expecting. (e.g. <code>related_courses</code> or <code>featured_courses</code>)</div>
+                        {% if form.identifier.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.identifier.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Sub-Title Badge</label>
+                        {{ form.badge }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">The tiny floating text above the main header. e.g. "Popular Searches"</div>
+                        {% if form.badge.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.badge.errors }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col" style="flex:2">
+                    <div class="form-group">
+                        <label class="form-label">Main Header Title <span style="color:#ef4444">*</span></label>
+                        {{ form.title }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">The massive text appearing on the website header. Example: <code>Explore our Popular Courses</code></div>
+                        {% if form.title.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.title.errors }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Highlight Text Words</label>
+                        {{ form.highlight_text }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">Type the exact word from the title to turn red. Example: <code>Popular Courses</code></div>
+                        {% if form.highlight_text.errors %}<div style="color:#ef4444;font-size:13px;margin-top:4px">{{ form.highlight_text.errors }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Description Paragraph</label>
+                {{ form.description }}
+                <div style="font-size:13px;color:var(--muted);margin-top:6px">The paragraph block explaining the purpose of this section on the frontend.</div>
+            </div>
+
+            <h3 style="font-size:18px;margin-top:32px;margin-bottom:24px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Navigation Links</h3>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Route Link (View All Button)</label>
+                        {{ form.view_all_link }}
+                        <div style="font-size:13px;color:var(--muted);margin-top:6px">e.g., <code>/all-courses</code></div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Label for 'View All'</label>
+                        {{ form.view_all_text }}
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">Course Explore Button</label>
+                        {{ form.button_text }}
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size:18px;margin-top:32px;margin-bottom:24px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:12px">Data Binding</h3>
+
+            <div class="form-group" style="background:var(--bg);padding:24px;border:1px solid var(--border);border-radius:8px">
+                <label class="form-label" style="font-size:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" style="margin-bottom:-3px;margin-right:6px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Curated Course Assortment</label>
+                <div style="font-size:14px;color:var(--muted);margin-bottom:16px">Hold down <code>Ctrl</code> (Windows) or <code>Command</code> (Mac) to select multiple courses. <br><strong>IF LEFT EMPTY:</strong> The frontend will automatically pull <em>every active course in the database</em> to display.</div>
+                {{ form.curated_courses }}
+            </div>
+
+            <div class="form-group form-check" style="margin-top:24px;padding:16px;background:#f0fdf4;border-radius:8px;border:1px solid #bbf7d0;display:inline-flex">
+                {{ form.is_active }}
+                <label class="form-check-label" for="{{ form.is_active.id_for_label }}" style="font-weight:600;color:#166534">This Section is Active and exposed to React API</label>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:24px;margin-top:32px;border-top:1px solid #e2e8f0">
+                <a href="{% url 'manage_home_sections' %}" style="padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;color:var(--muted);background:var(--bg);border:1px solid var(--border);transition:0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">Cancel</a>
+                <button type="submit" style="padding:12px 24px;border-radius:8px;font-weight:600;color:white;background:#3b82f6;border:none;cursor:pointer;box-shadow:0 1px 2px rgba(59, 130, 246, 0.4);transition:0.2s" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Save Section Layout</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

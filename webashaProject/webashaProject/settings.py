@@ -62,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'webashaApp.context_processors.course_categories',
+                'webashaApp.context_processors.notifications',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -143,7 +144,7 @@ LOGOUT_REDIRECT_URL = '/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SUMMERNOTE_CONFIG = {
-    'css': (
-        '/static/css/summernote_dark.css',
-    ),
+    # 'css': (
+    #     '/static/css/summernote_dark.css',
+    # ),
 }

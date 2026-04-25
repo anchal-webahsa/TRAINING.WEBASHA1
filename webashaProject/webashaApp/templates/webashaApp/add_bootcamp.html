@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="add-bootcamp-container" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+<div class="add-bootcamp-container" style="padding: 24px; background:var(--bg); min-height: calc(100vh - 70px);">
     <div class="page-header" style="display: flex; align-items: center; margin-bottom: 24px; gap: 12px;">
-        <i class="fas fa-rocket" style="font-size: 20px; color: #475569;"></i>
+        <i class="fas fa-rocket" style="font-size: 20px; color:var(--muted);"></i>
         <h2 style="font-size: 18px; font-weight: 600; color: #1e293b; margin: 0;">Add New Bootcamp</h2>
     </div>
 
     <div class="card"
-        style="background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        style="background: white; border-radius: 12px; border:1px solid var(--border); padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
         <form method="POST" enctype="multipart/form-data" id="bootcamp-form">
             {% csrf_token %}
 
@@ -34,7 +34,7 @@
                     <div class="form-group" style="margin-bottom: 24px;">
                         <label class="form-label">Description</label>
                         <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
-                            <div style="background: #f8fafc; border-bottom: 1px solid #cbd5e1; padding: 12px; display: flex; gap: 8px; flex-wrap: wrap;"
+                            <div style="background:var(--bg); border-bottom: 1px solid #cbd5e1; padding: 12px; display: flex; gap: 8px; flex-wrap: wrap;"
                                 id="editor-toolbar">
                                 <button type="button" class="toolbar-btn" onclick="execCmd('bold')"><i
                                         class="fas fa-bold"></i></button>
@@ -99,7 +99,7 @@
                         <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px;">
                             <input type="checkbox" id="has_discount" name="has_discount"
                                 style="width: 16px; height: 16px; accent-color: #3b82f6;">
-                            <label for="has_discount" style="font-size: 14px; color: #475569; cursor: pointer;">Check if
+                            <label for="has_discount" style="font-size: 14px; color:var(--muted); cursor: pointer;">Check if
                                 this bootcamp has discount</label>
                         </div>
                     </div>
@@ -119,9 +119,9 @@
                             onmouseout="this.style.borderColor='#cbd5e1';"
                             onclick="document.getElementById('bootcamp_thumbnail').click();">
                             <button type="button"
-                                style="padding: 6px 12px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-weight: 500; color: #475569; cursor: pointer;">Choose
+                                style="padding: 6px 12px; background:var(--bg); border:1px solid var(--border); border-radius: 4px; font-size: 13px; font-weight: 500; color:var(--muted); cursor: pointer;">Choose
                                 File</button>
-                            <span id="file-filename" style="font-size: 13px; color: #94a3b8;">No file chosen</span>
+                            <span id="file-filename" style="font-size: 13px; color:var(--muted);">No file chosen</span>
                             <input type="file" id="bootcamp_thumbnail" name="thumbnail" style="display: none;"
                                 onchange="document.getElementById('file-filename').innerText = this.files[0].name; document.getElementById('file-filename').style.color='#1e293b';">
                         </div>
@@ -151,7 +151,7 @@
         display: block;
         font-size: 14px;
         font-weight: 500;
-        color: #475569;
+        color:var(--muted);
         margin-bottom: 10px;
     }
 
@@ -164,7 +164,7 @@
         color: #1e293b;
         outline: none;
         transition: all 0.2s;
-        background: #fff;
+        background:var(--card);
     }
 
     .form-control:focus {
@@ -174,17 +174,17 @@
 
     .toolbar-btn {
         background: white;
-        border: 1px solid #e2e8f0;
+        border:1px solid var(--border);
         border-radius: 6px;
         padding: 6px 12px;
         font-size: 13px;
-        color: #475569;
+        color:var(--muted);
         cursor: pointer;
         transition: all 0.2s;
     }
 
     .toolbar-btn:hover {
-        background: #f1f5f9;
+        background:var(--bg);
         border-color: #cbd5e1;
         color: #1e293b;
     }

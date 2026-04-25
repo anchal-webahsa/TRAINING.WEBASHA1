@@ -57,15 +57,7 @@ const RedhatTrack = () => {
           </table>
         </div>
 
-        {!expanded && <div className="gradient-overlay" />}
       </div>
-
-      <button
-        className="toggle-button"
-        onClick={() => setExpanded(!expanded)}
-      >
-        {expanded ? "View Less" : "View More"}
-      </button>
     </section>
   );
 };

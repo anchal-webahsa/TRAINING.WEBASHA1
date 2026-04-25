@@ -6,15 +6,15 @@
 {% block topbar_title %}Create Admin{% endblock %}
 
 {% block content %}
-<div class="add-admin-container" style="padding: 24px; background: #f8fafc; min-height: calc(100vh - 70px);">
+<div class="add-admin-container" style="padding: 24px; background:var(--bg); min-height: calc(100vh - 70px);">
     <!-- Header with Back Button -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
         <h2 style="font-size: 20px; font-weight: 600; color: #1e293b; display: flex; align-items: center; gap: 8px;">
-            <i class="fas fa-plus-circle" style="color: #64748b;"></i>
+            <i class="fas fa-plus-circle" style="color:var(--muted);"></i>
             Create Admin
         </h2>
         <a href="{% url 'manage_admins' %}"
-            style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; color: #1e293b; text-decoration: none; font-size: 14px; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.2s;"
+            style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border:1px solid var(--border); border-radius: 8px; color: #1e293b; text-decoration: none; font-size: 14px; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.2s;"
             onmouseover="this.style.borderColor='#cbd5e1'" onmouseout="this.style.borderColor='#e2e8f0'">
             <i class="fas fa-arrow-left" style="font-size: 12px;"></i> Back
         </a>
@@ -23,14 +23,14 @@
     <form method="POST" enctype="multipart/form-data" id="admin-form">
         {% csrf_token %}
         <div
-            style="background: white; border-radius: 12px; border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
-            <div style="padding: 20px 24px; border-bottom: 1px solid #f1f5f9; background: #fff;">
+            style="background: white; border-radius: 12px; border:1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow: hidden;">
+            <div style="padding: 20px 24px; border-bottom:1px solid var(--border); background:var(--card);">
                 <h3 style="font-size: 16px; font-weight: 600; color: #1e293b; margin: 0;">Admin Info</h3>
             </div>
 
             <div style="display: flex; min-height: 500px;">
                 <!-- Vertical Tabs (Sidebar) -->
-                <div style="width: 260px; border-right: 1px solid #f1f5f9; background: #fff; padding: 16px 0;">
+                <div style="width: 260px; border-right: 1px solid #f1f5f9; background:var(--card); padding: 16px 0;">
                     <div class="tab-item active" onclick="switchTab(this, 'basic-tab')">
                         <i class="fas fa-user-circle"></i> Basic
                     </div>
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Tab Content -->
-                <div style="flex: 1; padding: 40px; background: #fff;">
+                <div style="flex: 1; padding: 40px; background:var(--card);">
                     <!-- Basic Info Tab -->
                     <div id="basic-tab" class="tab-pane active">
                         <div class="form-group">
@@ -93,7 +93,7 @@
 
                     <!-- Payment Info Tab -->
                     <div id="payment-tab" class="tab-pane">
-                        <p style="color: #64748b; font-size: 14px;">Setup payment information for this administrator.
+                        <p style="color:var(--muted); font-size: 14px;">Setup payment information for this administrator.
                         </p>
                         <!-- Placeholders for payment fields -->
                         <div class="form-group">
@@ -108,7 +108,7 @@
 
                     <!-- Social Links Tab -->
                     <div id="social-tab" class="tab-pane">
-                        <p style="color: #64748b; font-size: 14px;">Manage social media profiles.</p>
+                        <p style="color:var(--muted); font-size: 14px;">Manage social media profiles.</p>
                         <div class="form-group">
                             <label class="form-label"><i class="fab fa-facebook"
                                     style="color: #1877f2; margin-right: 8px;"></i> Facebook Link</label>
@@ -144,7 +144,7 @@
         padding: 12px 24px;
         font-size: 14px;
         font-weight: 500;
-        color: #64748b;
+        color:var(--muted);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -154,12 +154,12 @@
     }
 
     .tab-item:hover {
-        background: #f8fafc;
+        background:var(--bg);
         color: #1e293b;
     }
 
     .tab-item.active {
-        background: #eff6ff;
+        background:rgba(59, 130, 246, 0.1);
         color: #3b82f6;
         border-left-color: #3b82f6;
     }
@@ -193,7 +193,7 @@
 
     .form-group {
         margin-bottom: 24px;
-        max-width: 800px;
+        width: 100%;
     }
 
     .form-label {
@@ -207,13 +207,13 @@
     .form-control {
         width: 100%;
         padding: 10px 14px;
-        border: 1px solid #e2e8f0;
+        border:1px solid var(--border);
         border-radius: 8px;
         font-size: 14px;
         color: #1e293b;
         outline: none;
         transition: all 0.2s;
-        background: #fff;
+        background:var(--card);
     }
 
     .form-control:focus {
@@ -230,18 +230,18 @@
 
     .file-btn {
         padding: 8px 16px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background:var(--bg);
+        border:1px solid var(--border);
         border-radius: 6px;
         font-size: 13px;
         font-weight: 500;
-        color: #475569;
+        color:var(--muted);
         cursor: pointer;
     }
 
     .file-name {
         font-size: 13px;
-        color: #94a3b8;
+        color:var(--muted);
     }
 
     .file-hidden {
