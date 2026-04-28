@@ -184,7 +184,7 @@ export default function Footer() {
                                 <ul className="services-list list-unstyled">
                                     <li><a href="/gallery">Gallery</a></li>
                                     <li><a href="/about-us">About Us</a></li>
-                                    <li><a href="https://www.webasha.com/blog/">Blog</a></li>
+                                    <li><a href="#">Blog</a></li>
                                     <li><a href="/job-oriented-course">Job Oriented Course</a></li>
                                     <li><a href="/contact-us">Contact Us</a></li>
                                     <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -206,7 +206,7 @@ export default function Footer() {
                                 <ul className="services-list list-unstyled">
                                     <li><a href="/courses-info">Courses info</a></li>
                                     <li><a href="/tutorials">Tutorials</a></li>
-                                    <li><a href="https://www.webasha.com/blog/">Blog</a></li>
+                                    <li><a href="#">Blog</a></li>
                                     <li><a href="/interview-tips">Interview</a></li>
                                 </ul>
                             </div>
@@ -215,7 +215,7 @@ export default function Footer() {
                                 <ul className="services-list list-unstyled">
                                     <li><a href="/gallery">Gallery</a></li>
                                     <li><a href="/about-us">About Us</a></li>
-                                    <li><a href="https://www.webasha.com/blog/">Blog</a></li>
+                                    <li><a href="#">Blog</a></li>
                                     <li><a href="/job-oriented-course">Job Oriented Course</a></li>
                                     <li><a href="/contact-us">Contact Us</a></li>
                                     <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -272,7 +272,7 @@ export default function Footer() {
                             <ul className="list-unstyled">
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about-us">About Us</a></li>
-                                <li><a href="https://www.webasha.com/blog/">Blog</a></li>
+                                <li><a href="#">Blog</a></li>
                                 <li><a href="/results">Results</a></li>
                                 <li><a href="/career">Career</a></li>
                                 <li><a href="/contact-us">Contact Us</a></li>
@@ -378,7 +378,7 @@ export default function Footer() {
                             <ul className="list-unstyled">
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about-us">About Us</a></li>
-                                <li><a href="https://www.webasha.com/blog/">Blog</a></li>
+                                <li><a href="#">Blog</a></li>
                                 <li><a href="/results">Results</a></li>
                                 <li><a href="/career">Career</a></li>
                                 <li><a href="/contact-us">Contact Us</a></li>
@@ -407,12 +407,12 @@ export default function Footer() {
                 aria-hidden="true"
                 style={{ backdropFilter: "blur(8px)" }}
             >
-                <div className="modal-dialog modal-fullscreen">
-                    <div className="modal-content bg-black">
-                        <div className="modal-header border-0 position-absolute w-100" style={{ top: 0, left: 0, zIndex: 1060, padding: '15px' }}>
+                <div className="modal-dialog modal-dialog-centered modal-lg">
+                    <div className="modal-content bg-transparent border-0">
+                        <div className="modal-header border-0 p-0 text-end justify-content-end mb-2">
                             <button 
                                 type="button"
-                                className="btn-close" 
+                                className="btn-close btn-close-white" 
                                 data-bs-dismiss="modal" 
                                 aria-label="Close"
                                 style={{
@@ -420,23 +420,17 @@ export default function Footer() {
                                     opacity: 1, 
                                     borderRadius: '50%', 
                                     padding: '10px',
-                                    marginRight: 'auto',
-                                    marginLeft: 'auto',
-                                    position: 'absolute',
-                                    right: '20px',
-                                    top: '20px',
-                                    width: '1em',
-                                    height: '1em'
                                 }} 
                             />
                         </div>
-                        <div className="modal-body p-0">
-                            <iframe
-                                id="videoFrame"
-                                width="100%"
-                                height="100%"
-                                allow="autoplay; fullscreen"
-                            />
+                        <div className="modal-body p-0 shadow-lg rounded overflow-hidden">
+                            <div className="ratio ratio-16x9">
+                                <iframe
+                                    id="videoFrame"
+                                    allow="autoplay; fullscreen"
+                                    title="Video Player"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

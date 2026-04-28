@@ -574,7 +574,7 @@ export default function Header() {
                       <li>
                         <a
                           className="dropdown-item"
-                          href="https://www.webasha.com/blog/"
+                          href="#"
                         >
                           Blog
                         </a>
@@ -985,7 +985,7 @@ export default function Header() {
                         <li>
                           <a
                             className="dropdown-item"
-                            href="https://www.webasha.com/blog/"
+                            href="#"
                           >
                             Blogs
                           </a>
