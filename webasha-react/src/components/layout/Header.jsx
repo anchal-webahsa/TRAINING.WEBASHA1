@@ -100,7 +100,7 @@ export default function Header() {
                                   aria-selected="false"
                                 >
                                   {category.icon ? (
-                                    <img src={category.icon} alt={category.name} width="16" height="16" style={{marginRight: '8px', objectFit: 'contain'}} />
+                                    <img src={category.icon} alt={category.name} width="16" height="16" style={{ marginRight: '8px', objectFit: 'contain' }} />
                                   ) : (
                                     <i className={category.icon_class || "fa-solid fa-folder"} />
                                   )}
@@ -340,7 +340,7 @@ export default function Header() {
                                                   alt={category.name}
                                                 />
                                               ) : (
-                                                <i className={`${category.icon_class || "fa-solid fa-folder"} fa-3x`} style={{color: '#e73827'}} />
+                                                <i className={`${category.icon_class || "fa-solid fa-folder"} fa-3x`} style={{ color: '#e73827' }} />
                                               )}
                                             </div>
                                             <div className="info-width">
@@ -632,7 +632,7 @@ export default function Header() {
                               className="dropdown-item"
                               href="/winter-training"
                             >
-                              Winter Training
+                              Winter Trainig
                             </a>
                           </li>
                           <li>
@@ -698,6 +698,7 @@ export default function Header() {
                     aria-controls="enquiryModal"
                     aria-label="Enroll Now in Our Course"
                   >
+
                     Enroll Now{" "}
                     <i className="fa fa-arrow-right ms-2" aria-hidden="true" />
                   </button>
@@ -1205,7 +1206,7 @@ export default function Header() {
                                 onClick={showContent}
                               >
                                 {category.icon ? (
-                                  <img src={category.icon} alt={category.name} width="16" height="16" style={{marginRight: '8px', objectFit: 'contain'}} />
+                                  <img src={category.icon} alt={category.name} width="16" height="16" style={{ marginRight: '8px', objectFit: 'contain' }} />
                                 ) : (
                                   <i className={category.icon_class || "fa-solid fa-folder"} />
                                 )}
@@ -1265,7 +1266,7 @@ export default function Header() {
                                         </div>
                                       </div>
                                     </div>
-                                      <DynamicCourseColumns tabId="01" megaMenuData={megaMenuData} />
+                                    <DynamicCourseColumns tabId="01" megaMenuData={megaMenuData} />
                                     <div className="course-learn-more-bar">
                                       <div className="course-learn-more-row">
                                         <div className="course-learn-more-column">
@@ -1300,76 +1301,76 @@ export default function Header() {
                                 </div>
                               </div>
                               {/* end tab of Get Job */}
-{megaMenuData && megaMenuData.map((category) => (
-                              <div
-                                className="tab-pane fade"
-                                id={`pills-cat-m-${category.id}`}
-                                role="tabpanel"
-                                aria-labelledby={`pills-cat-m-${category.id}-tab`}
-                                tabIndex={0}
-                                key={`pane-cat-m-${category.id}`}
-                              >
-                                <div className="course-tabs-wraper">
-                                  <div className="course-tabs-row">
-                                    <div className="column w-100">
-                                      <div className="nav-card">
-                                        <div className="icon-img">
-                                          {category.icon ? (
-                                            <img
-                                              src={category.icon}
-                                              alt={category.name}
-                                            />
-                                          ) : (
-                                            <i className={`${category.icon_class || "fa-solid fa-folder"} fa-3x`} style={{color: '#e73827'}} />
-                                          )}
-                                        </div>
-                                        <div className="info-width">
-                                          <div className="info">
-                                            <h4>
-                                              {category.name} Training &amp; Certifications
-                                            </h4>
-                                            <p>
-                                              Explore our comprehensive training and certification programs for {category.name}.
-                                            </p>
+                              {megaMenuData && megaMenuData.map((category) => (
+                                <div
+                                  className="tab-pane fade"
+                                  id={`pills-cat-m-${category.id}`}
+                                  role="tabpanel"
+                                  aria-labelledby={`pills-cat-m-${category.id}-tab`}
+                                  tabIndex={0}
+                                  key={`pane-cat-m-${category.id}`}
+                                >
+                                  <div className="course-tabs-wraper">
+                                    <div className="course-tabs-row">
+                                      <div className="column w-100">
+                                        <div className="nav-card">
+                                          <div className="icon-img">
+                                            {category.icon ? (
+                                              <img
+                                                src={category.icon}
+                                                alt={category.name}
+                                              />
+                                            ) : (
+                                              <i className={`${category.icon_class || "fa-solid fa-folder"} fa-3x`} style={{ color: '#e73827' }} />
+                                            )}
+                                          </div>
+                                          <div className="info-width">
+                                            <div className="info">
+                                              <h4>
+                                                {category.name} Training &amp; Certifications
+                                              </h4>
+                                              <p>
+                                                Explore our comprehensive training and certification programs for {category.name}.
+                                              </p>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
+                                      <DynamicCourseColumns category={category} tabId={null} megaMenuData={megaMenuData} />
                                     </div>
-                                    <DynamicCourseColumns category={category} tabId={null} megaMenuData={megaMenuData} />
-                                  </div>
-                                  <div className="course-learn-more-bar">
-                                    <div className="course-learn-more-row">
-                                      <div className="course-learn-more-column">
-                                        <h5 className="course-learn-more-title">
-                                          Interview Preparation
-                                        </h5>
-                                        <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
-                                          <li>
-                                            <a
-                                              href="/#"
-                                              className="text-decoration-none more-text"
-                                            >
-                                              Python Tutorial
-                                              <i className="fa-solid fa-arrow-up arrow-right" />
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="/#"
-                                              className="text-decoration-none more-text"
-                                            >
-                                              What is Cloud Computing? A Beginner's
-                                              Guide
-                                              <i className="fa-solid fa-arrow-up arrow-right" />
-                                            </a>
-                                          </li>
-                                        </ul>
+                                    <div className="course-learn-more-bar">
+                                      <div className="course-learn-more-row">
+                                        <div className="course-learn-more-column">
+                                          <h5 className="course-learn-more-title">
+                                            Interview Preparation
+                                          </h5>
+                                          <ul className="more-domains-list learn-more-gap list-unstyled flex-column">
+                                            <li>
+                                              <a
+                                                href="/#"
+                                                className="text-decoration-none more-text"
+                                              >
+                                                Python Tutorial
+                                                <i className="fa-solid fa-arrow-up arrow-right" />
+                                              </a>
+                                            </li>
+                                            <li>
+                                              <a
+                                                href="/#"
+                                                className="text-decoration-none more-text"
+                                              >
+                                                What is Cloud Computing? A Beginner's
+                                                Guide
+                                                <i className="fa-solid fa-arrow-up arrow-right" />
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
                             </div>
                           </div>
                         </div>

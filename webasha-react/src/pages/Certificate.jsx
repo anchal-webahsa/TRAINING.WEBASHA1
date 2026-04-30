@@ -14,7 +14,7 @@ export default function Certificate() {
   // Inject Google Fonts exactly for the certificate design
   useEffect(() => {
     const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700&family=Lora:ital@0;1&display=swap';
+    link.href = 'https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@700&family=Lora:ital@0;1&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
     return () => {
@@ -72,6 +72,25 @@ export default function Certificate() {
     link.href = canvas.toDataURL('image/png');
     link.download = `WebAsha_Certificate_${certificateData.student_name.replace(/\s+/g, '_')}.png`;
     link.click();
+  };
+
+  const handleShareLinkedIn = () => {
+    if (!certificateData) return;
+    const date = new Date(certificateData.issue_date);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    // Format required by LinkedIn
+    const certUrl = `${window.location.origin}/certificate`;
+    const linkedInUrl = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(certificateData.course_name)}&organizationName=WebAsha%20Technologies&issueYear=${year}&issueMonth=${month}&certId=${certificateData.certificate_id}&certUrl=${encodeURIComponent(certUrl)}`;
+    window.open(linkedInUrl, '_blank');
+  };
+
+  const handlePostLinkedIn = () => {
+    if (!certificateData) return;
+    const certUrl = `${window.location.origin}/certificate`;
+    const text = `I am happy to share that I have successfully completed the ${certificateData.course_name} certification at WebAsha Technologies!`;
+    const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(text + '\n\n' + certUrl)}`;
+    window.open(linkedInUrl, '_blank');
   };
 
   return (
@@ -153,17 +172,9 @@ export default function Certificate() {
         </div>
 
         {certificateData && (
-          <div className="row">
-            <div className="col-12 text-center mb-4">
-              <button onClick={handleDownloadPDF} className="btn btn-danger me-3 px-4">
-                <i className="fa-solid fa-file-pdf me-2"></i> Download as PDF
-              </button>
-              <button onClick={handleDownloadImage} className="btn btn-outline-danger px-4">
-                <i className="fa-solid fa-image me-2"></i> Download as PNG
-              </button>
-            </div>
+          <div className="row justify-content-center align-items-start mt-4">
             
-            <div className="col-12 d-flex justify-content-center overflow-auto" style={{ padding: '20px' }}>
+            <div className="col-xl-8 col-lg-8 col-md-12 d-flex justify-content-center overflow-auto mb-4" style={{ padding: '0 20px' }}>
               {/* NEW CERTIFICATE TEMPLATE - WITHOUT WATERMARKS */}
               <div 
                 ref={certificateRef}
@@ -306,12 +317,13 @@ export default function Certificate() {
 
                   {/* Student Name */}
                   <h2 style={{
-                    fontFamily: '"Great Vibes", cursive',
+                    fontFamily: '"Alex Brush", cursive',
                     fontSize: '64px',
                     color: '#333',
                     margin: '10px 0',
                     fontWeight: 400,
-                    lineHeight: '1.2'
+                    lineHeight: '1.2',
+                    textTransform: 'capitalize'
                   }}>
                     {certificateData.student_name}
                   </h2>
@@ -378,6 +390,48 @@ export default function Certificate() {
               </div>
             </div>
             
+            <div className="col-xl-3 col-lg-4 col-md-12 px-2 mt-2">
+              <div className="card border-0 shadow-sm" style={{ borderRadius: '10px', backgroundColor: '#fff' }}>
+                <div className="card-body p-4">
+                  <h5 className="mb-4 text-center" style={{ fontWeight: '500', color: '#16233b' }}>
+                    Here is Your Certificate
+                  </h5>
+                  
+                  <button 
+                    onClick={handleDownloadPDF} 
+                    className="btn w-100 mb-3 py-2 d-flex align-items-center justify-content-center" 
+                    style={{ border: '1px solid #b3d4fc', color: '#0d6efd', backgroundColor: '#fff', borderRadius: '6px', fontWeight: '500' }}
+                  >
+                    <i className="fa-solid fa-download me-2"></i> Download Certificate
+                  </button>
+                  
+                  <button 
+                    onClick={handleDownloadImage} 
+                    className="btn w-100 mb-3 py-2 d-flex align-items-center justify-content-center" 
+                    style={{ border: '1px solid #b3d4fc', color: '#0d6efd', backgroundColor: '#fff', borderRadius: '6px', fontWeight: '500' }}
+                  >
+                    <i className="fa-solid fa-share-nodes me-2"></i> Share Certificate
+                  </button>
+                  
+                  <button 
+                    onClick={handleShareLinkedIn}
+                    className="btn w-100 mb-3 py-2 d-flex align-items-center justify-content-center" 
+                    style={{ border: '1px solid #b3d4fc', color: '#0d6efd', backgroundColor: '#fff', borderRadius: '6px', fontWeight: '500' }}
+                  >
+                    <i className="fa-brands fa-linkedin me-2" style={{ color: '#0077b5', fontSize: '1.2rem' }}></i> Share on LinkedIn
+                  </button>
+                  
+                  <button 
+                    onClick={handlePostLinkedIn}
+                    className="btn w-100 py-2 d-flex align-items-center justify-content-center" 
+                    style={{ border: '1px solid #b3d4fc', color: '#0d6efd', backgroundColor: '#fff', borderRadius: '6px', fontWeight: '500' }}
+                  >
+                    <i className="fa-regular fa-clipboard me-2"></i> Post on LinkedIn
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         )}
       </div>
