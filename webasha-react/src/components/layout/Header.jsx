@@ -5,7 +5,7 @@ import DynamicCourseColumns from "./DynamicCourseColumns";
 export default function Header() {
   const [megaMenuData, setMegaMenuData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:8000/api/mega-menu/')
+    fetch(`${import.meta.env.VITE_API_URL}/api/mega-menu/`)
       .then(res => res.json())
       .then(data => setMegaMenuData(data || []))
       .catch(err => console.error(err));

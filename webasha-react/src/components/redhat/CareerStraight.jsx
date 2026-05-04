@@ -24,7 +24,7 @@ const CareerStraight = () => {
 
   // Fetch dynamic screenshots from backend
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/student-screenshots/")
+    fetch(`${import.meta.env.VITE_API_URL}/api/student-screenshots/`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();

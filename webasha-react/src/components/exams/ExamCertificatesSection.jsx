@@ -12,7 +12,7 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
     { name: 'Deepika Padukone', exam: 'RHCSA', img: 'https://training.webasha.com/wp-content/uploads/2024/04/Red-Hat-Certified-System-Administrator-RHCSA-Certification-scaled.webp' },
   ];
 
-  const MEDIA_BASE_URL = 'http://127.0.0.1:8000';
+  const MEDIA_BASE_URL = `${import.meta.env.VITE_API_URL}`;
   
   const displayCertificates = certificates && certificates.length > 0 
     ? certificates.map(cert => ({

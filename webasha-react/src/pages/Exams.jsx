@@ -15,7 +15,7 @@ const Exams = () => {
 
   const fetchExams = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/exams/");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/exams/`);
       const data = await response.json();
       setExams(data);
       setLoading(false);

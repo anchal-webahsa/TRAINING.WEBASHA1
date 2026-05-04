@@ -34,7 +34,7 @@ function ExamTemplate() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`http://127.0.0.1:8000/api/exams/${exam_code}/`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/exams/${exam_code}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();

@@ -14,7 +14,7 @@ const CourseSidebar2 = ({
             return;
         }
         
-        fetch("http://127.0.0.1:8000/api/exam-voucher-offer/")
+        fetch(`${import.meta.env.VITE_API_URL}/api/exam-voucher-offer/`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {

@@ -32,7 +32,7 @@ export default function Certificate() {
     // Convert ID to match potential cases
     const formattedId = certId.trim();
     
-    fetch(`http://localhost:8000/api/student-certificates/${formattedId}/`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/student-certificates/${formattedId}/`)
       .then(res => {
         if (!res.ok) throw new Error("Certificate not found. Please check your Certificate ID.");
         return res.json();

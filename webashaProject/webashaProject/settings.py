@@ -22,8 +22,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-&z$abr4%2!s#%)^fh80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*'] # Default for now, update with your domain in production
-
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',') # Update with your domain in production
 
 # Application definition
 

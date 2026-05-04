@@ -138,8 +138,8 @@ const BatchSchedule = ({ slug }) => {
 
   useEffect(() => {
     const url = slug 
-      ? `http://127.0.0.1:8000/api/upcoming-batches/?course=${slug}`
-      : "http://127.0.0.1:8000/api/upcoming-batches/";
+      ? `${import.meta.env.VITE_API_URL}/api/upcoming-batches/?course=${slug}`
+      : `${import.meta.env.VITE_API_URL}/api/upcoming-batches/`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

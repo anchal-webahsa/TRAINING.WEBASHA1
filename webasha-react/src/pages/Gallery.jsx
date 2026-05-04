@@ -7,7 +7,7 @@ export default function Gallery() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/gallery-images/")
+    fetch(`${import.meta.env.VITE_API_URL}/api/gallery-images/`)
       .then((res) => res.json())
       .then((data) => {
         if (data.results) {

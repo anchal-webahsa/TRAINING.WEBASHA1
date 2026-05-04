@@ -4,7 +4,7 @@ import axios from 'axios';
 const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 // Base URLs
-const BASE_URL = isDevelopment ? "http://localhost:8000" : "";
+const BASE_URL = isDevelopment ? `${import.meta.env.VITE_API_URL}` : "";
 
 export const API_BASE_URL = `${BASE_URL}/api`;
 export const MEDIA_BASE_URL = `${BASE_URL}/media`;

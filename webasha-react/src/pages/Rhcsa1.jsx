@@ -33,7 +33,7 @@ function Rhcsa() {
   const [bannerData, setBannerData] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/course-banners/rhcsa1/")
+    fetch(`${import.meta.env.VITE_API_URL}/api/course-banners/rhcsa1/`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();

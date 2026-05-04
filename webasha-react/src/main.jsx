@@ -1,12 +1,21 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
-createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+const app = (
   <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
 );
+
+// If HTML is pre-rendered by Vite prerender plugin, hydrate it.
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(rootElement, app);
+} else {
+  // Fallback for development and non-prerendered pages
+  createRoot(rootElement).render(app);
+}
