@@ -44,7 +44,7 @@ router.register(r'custom-pages', CustomPageViewSet, basename='custompage')
 from django.conf import settings
 from django.conf.urls.static import static
 
-from webashaApp.api import submit_contact, submit_enquiry, submit_enrollment
+from webashaApp.api import submit_contact, submit_enquiry, submit_enrollment, submit_live_chat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -53,9 +53,10 @@ urlpatterns = [
     path('api/submit-contact/', submit_contact, name='submit_contact'),
     path('api/submit-enquiry/', submit_enquiry, name='submit_enquiry'),
     path('api/submit-enrollment/', submit_enrollment, name='submit_enrollment'),
+    path('api/submit-live-chat/', submit_live_chat, name='submit_live_chat'),
     path('api/', include(router.urls)),
     path('summernote/', include('django_summernote.urls')),
-    path("",include("webashaApp.urls")),
+    path("dashboard/",include("webashaApp.urls")),
 ]
 
 if settings.DEBUG:

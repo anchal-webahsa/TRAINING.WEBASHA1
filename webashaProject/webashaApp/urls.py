@@ -173,6 +173,11 @@ urlpatterns += [
     path('manage/pages/add/', views.add_page, name='add_page'),
     path('manage/pages/<int:pk>/edit/', views.edit_page, name='edit_page'),
     path('manage/pages/<int:pk>/delete/', views.delete_page, name='delete_page'),
+
+    # Live Chat Management
+    path('manage/live-chat/', views.manage_live_chat, name='manage_live_chat'),
+    path('manage/live-chat/<int:pk>/delete/', views.delete_live_chat, name='delete_live_chat'),
+    path('manage/live-chat/<int:pk>/mark-read/', views.mark_live_chat_read, name='mark_live_chat_read'),
     
     # Frontend Custom Pages
     path('p/<slug:slug>/', views.serve_page, name='serve_page'),

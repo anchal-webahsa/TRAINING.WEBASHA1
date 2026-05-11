@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry, StandaloneRelatedCourse, CustomPage
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry, StandaloneRelatedCourse, CustomPage, LiveChatInquiry
 
 
 from .serializers import (
@@ -160,5 +160,23 @@ def submit_enrollment(request):
             city=data.get('city', '')
         )
         return Response({"message": "Enrollment submitted successfully!"}, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def submit_live_chat(request):
+    data = request.data
+    try:
+        LiveChatInquiry.objects.create(
+            name=data.get('name', ''),
+            subject=data.get('subject', ''),
+            email=data.get('email', ''),
+            phone=data.get('phone', ''),
+            location=data.get('location', ''),
+            question=data.get('question', ''),
+            is_read=False
+        )
+        return Response({"message": "Live chat inquiry submitted successfully!"}, status=status.HTTP_201_CREATED)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

@@ -2275,3 +2275,44 @@ def delete_enquiry(request, pk):
     enquiry.delete()
     messages.success(request, f'Enquiry from {name} deleted successfully.')
     return redirect('manage_enquiries')
+
+@login_required
+def manage_live_chat(request):
+    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    qs = LiveChatInquiry.objects.order_by('-created_at')
+    
+    q = request.GET.get('q', '').strip()
+    if q:
+        from django.db.models import Q
+        qs = qs.filter(Q(name__icontains=q) | Q(email__icontains=q) | Q(phone__icontains=q) | Q(subject__icontains=q))
+        
+    page = request.GET.get('page', 1)
+    paginator = Paginator(qs, 15)
+    try:
+        inquiries = paginator.page(page)
+    except PageNotAnInteger:
+        inquiries = paginator.page(1)
+    except EmptyPage:
+        inquiries = paginator.page(paginator.num_pages)
+        
+    return render(request, 'webashaApp/manage_live_chat.html', {
+        'inquiries': inquiries,
+        'q': q,
+        'paginator': paginator
+    })
+
+@login_required
+def delete_live_chat(request, pk):
+    inquiry = get_object_or_404(LiveChatInquiry, pk=pk)
+    name = inquiry.name
+    inquiry.delete()
+    messages.success(request, f'Live Chat Inquiry from {name} deleted successfully.')
+    return redirect('manage_live_chat')
+
+@login_required
+def mark_live_chat_read(request, pk):
+    inquiry = get_object_or_404(LiveChatInquiry, pk=pk)
+    inquiry.is_read = True
+    inquiry.save()
+    messages.success(request, f'Live Chat Inquiry from {inquiry.name} marked as read.')
+    return redirect('manage_live_chat')

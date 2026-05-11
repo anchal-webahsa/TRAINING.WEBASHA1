@@ -984,3 +984,21 @@ class CustomPage(models.Model):
 
     def __str__(self):
         return self.title
+
+class LiveChatInquiry(models.Model):
+    name = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    location = models.CharField(max_length=255)
+    question = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Live Chat Inquiry'
+        verbose_name_plural = 'Live Chat Inquiries'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"Live Chat: {self.subject} from {self.name}"
