@@ -626,7 +626,7 @@ class CourseBanner(models.Model):
     )
     why_choose_heading = models.CharField(
         max_length=255,
-        default="Why Choose WebAsha Technologies",
+        default='Why Choose <span class="red-color">WebAsha Technologies</span>',
         help_text="Heading for the comparison table section"
     )
     why_choose_description = models.TextField(
@@ -709,8 +709,8 @@ class CourseComparisonRow(models.Model):
 
     class Meta:
         ordering = ['order', 'id']
-        verbose_name = "Training Comparison Row"
-        verbose_name_plural = "Training Comparison Rows"
+        verbose_name = "Why Choose WebAsha"
+        verbose_name_plural = "Why Choose WebAsha"
 
     def __str__(self):
         return f"{self.course_banner.page_identifier} - {self.feature}"

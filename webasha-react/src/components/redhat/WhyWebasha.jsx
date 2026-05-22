@@ -50,6 +50,15 @@ const WhyWebasha = ({
 }) => {
   const displayRows = comparisonRows && comparisonRows.length > 0 ? comparisonRows : defaultRows;
 
+  let formattedHeading = heading;
+  if (formattedHeading && typeof formattedHeading === 'string' && !formattedHeading.includes('red-color')) {
+    if (formattedHeading.includes("WebAsha Technologies")) {
+      formattedHeading = formattedHeading.replace("WebAsha Technologies", '<span class="red-color">WebAsha Technologies</span>');
+    } else if (formattedHeading.includes("WebAsha")) {
+      formattedHeading = formattedHeading.replace("WebAsha", '<span class="red-color">WebAsha</span>');
+    }
+  }
+
   return (
     <section className="py-5 course-comparison-section lazy-section">
       <div className="container">
@@ -58,7 +67,7 @@ const WhyWebasha = ({
         <div className="section-header text-center mb-4">
           <h3 
             className="heading-main-1 text-center"
-            dangerouslySetInnerHTML={{ __html: heading }}
+            dangerouslySetInnerHTML={{ __html: formattedHeading }}
           />
           <p 
             className="fs-6 text-muted mx-auto" 
