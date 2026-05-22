@@ -460,7 +460,7 @@ class AlumniProfile(models.Model):
     name = models.CharField(max_length=255)
     experience = models.CharField(max_length=255, help_text="e.g. 8+ Years of Experience")
     growth_badge = models.CharField(max_length=100, help_text="e.g. 150% Growth")
-    description = models.TextField(help_text="Supports HTML formatting like <strong>")
+    description = models.TextField(help_text="Supports HTML formatting. Maximum 300 characters to keep cards aligned.")
     before_role = models.CharField(max_length=255)
     before_company_name = models.CharField(max_length=255)
     before_company_logo = models.ImageField(upload_to="alumni_companies/")
@@ -470,6 +470,12 @@ class AlumniProfile(models.Model):
     image = models.ImageField(upload_to="alumni_profiles/", help_text="Profile picture of the alumni", null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        super().clean()
+        if self.description and len(self.description) > 300:
+            raise ValidationError({'description': 'Description cannot exceed 300 characters to keep cards aligned.'})
 
     def __str__(self):
         return self.name
@@ -493,21 +499,7 @@ class ExamVoucherOffer(models.Model):
         return self.title
 
 
-class Exam(models.Model):
-    title = models.CharField(max_length=255, help_text="Exam Name (e.g. Red Hat Certified System Administrator)")
-    exam_code = models.CharField(max_length=100, help_text="Exam Code (e.g. EX200)")
-    image = models.ImageField(upload_to="exams/", null=True, blank=True)
-    description = models.TextField(blank=True, help_text="Detailed description of the exam")
-    price = models.CharField(max_length=100, blank=True, null=True, help_text="e.g. 15,000 + GST / $200")
-    order = models.IntegerField(default=0)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.exam_code} - {self.title}"
-
-    class Meta:
-        ordering = ['order', '-created_at']
 
 class UpcomingBatch(models.Model):
     course_banner = models.ForeignKey('CourseBanner', on_delete=models.CASCADE, related_name="upcoming_batches", null=True, blank=True, help_text="Select the course page this batch belongs to. If empty, it may appear globally.")
@@ -544,6 +536,14 @@ class UpcomingBatch(models.Model):
 
 
 class CourseBanner(models.Model):
+    subcategory = models.ForeignKey(
+        'CourseSubCategory', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name="course_banners",
+        help_text="Select the subcategory this banner belongs to"
+    )
     page_identifier = models.CharField(max_length=100, unique=True, help_text="e.g. rhcsa1")
     breadcrumb_active = models.CharField(max_length=255, default="RH124 v10 Certification Training")
     heading = models.CharField(max_length=255, default="RH124 v10 Certification Training: Essential Linux System Administration Skills")
@@ -554,15 +554,49 @@ class CourseBanner(models.Model):
     description = models.TextField(help_text="Supports HTML formatting for styling.")
     
     # Table Details
-    detail_duration = models.CharField(max_length=255, default="50 Hours (Weekday/Weekend Batches)")
-    detail_mode = models.CharField(max_length=255, default="Online & Classroom Training")
-    detail_certification = models.CharField(max_length=255, default="Red Hat Certified System Administrator (EX200)")
-    detail_institute = models.CharField(max_length=255, default="WebAsha Technologies, Pune")
-    detail_includes = models.CharField(max_length=255, default="Hands-on Labs, Official Red Hat Curriculum, Exam Simulations")
+    detail_duration = models.CharField(max_length=255, blank=True, null=True, default="50 Hours (Weekday/Weekend Batches)")
+    detail_mode = models.CharField(max_length=255, blank=True, null=True, default="Online & Classroom Training")
+    detail_certification = models.CharField(max_length=255, blank=True, null=True, default="Red Hat Certified System Administrator (EX200)")
+    detail_institute = models.CharField(max_length=255, blank=True, null=True, default="WebAsha Technologies, Pune")
+    detail_includes = models.CharField(max_length=255, blank=True, null=True, default="Hands-on Labs, Official Red Hat Curriculum, Exam Simulations")
+    
+    # Syllabus Headings
+    syllabus_heading_top = models.CharField(max_length=255, blank=True, default="RH124 v10 Certification Training", help_text="e.g. RH124 v10 Certification Training")
+    syllabus_heading_bottom = models.CharField(max_length=255, blank=True, default="RH124 v10 Certification Training: Essential Linux System Administration Skills Curriculum")
+    
+    # Exam Details Table
+    exam_detail_heading_prefix = models.CharField(max_length=255, blank=True, default="RHCSA Exam", help_text="e.g. RHCSA Exam")
+    exam_detail_name = models.CharField(max_length=255, blank=True, default="Red Hat Certified System Administrator (RHCSA)")
+    exam_detail_duration = models.CharField(max_length=255, blank=True, default="180 Minutes")
+    exam_detail_questions = models.CharField(max_length=255, blank=True, default="Performance-based tasks")
+    exam_detail_fee = models.CharField(max_length=255, blank=True, default="Varies (approx ₹20,000 in India)")
+    exam_detail_validity = models.CharField(max_length=255, blank=True, default="3 Years")
+    exam_detail_code = models.CharField(max_length=255, blank=True, default="EX200")
+    exam_detail_format = models.CharField(max_length=255, blank=True, default="Hands-On Lab")
+    exam_detail_passing_score = models.CharField(max_length=255, blank=True, default="210 out of 300")
+    exam_detail_eligibility = models.CharField(max_length=255, blank=True, default="None, RH124/RH134 recommended")
+    exam_detail_languages = models.CharField(max_length=255, blank=True, default="English")
+    exam_detail_mode = models.CharField(max_length=255, blank=True, default="In-Person/Remote Proctor")
+    
+    # Passing Criteria
+    passing_criteria_heading = models.CharField(max_length=255, blank=True, default="Passing Criteria for RHCSA Exam")
+    passing_criteria_text = models.TextField(blank=True, default="To achieve RHCSA certification, score 210/300 on the EX200 hands-on exam (180 min).")
+    whatsapp_link = models.URLField(max_length=500, blank=True, default="https://wa.me/918485847920")
+    call_number = models.CharField(max_length=50, blank=True, default="+91 848584 7920")
+    
+    # Instructor/Trainer Details
+    instructor_heading_top = models.CharField(max_length=255, blank=True, default="Meet Our Expert Trainers")
+    instructor_description = models.TextField(blank=True, null=True, help_text="Subheading description text under trainer heading")
+    instructor_html = models.TextField(blank=True, null=True, help_text="List of bullet points or custom description of trainers")
     
     # Media
     voucher_offer = models.ForeignKey('ExamVoucherOffer', on_delete=models.SET_NULL, null=True, blank=True, related_name="course_banners", help_text="Select a specific Exam Voucher Offer for this page. If empty, uses default active offer.")
     video_thumbnail = models.ImageField(upload_to="course_banners/", help_text="Image previewing the video")
+    partner_image = models.ImageField(upload_to="course_banners/partners/", blank=True, null=True, help_text="Upload partner logo (e.g. Red Hat, Cisco)")
+    show_partner_logo = models.BooleanField(default=True, help_text="Toggle visibility of the 'Accredited By' partner logo section")
+    slider_image_1 = models.ImageField(upload_to="course_banners/sliders/", blank=True, null=True, help_text="Upload first slider image")
+    slider_image_2 = models.ImageField(upload_to="course_banners/sliders/", blank=True, null=True, help_text="Upload second slider image")
+    training_track_image = models.ImageField(upload_to="course_banners/tracks/", blank=True, null=True, help_text="Upload course training track image (e.g. certification path diagram)")
     youtube_video_url = models.URLField(max_length=500, blank=True, null=True, help_text="Paste full YouTube video URL (e.g. https://www.youtube.com/watch?v=...)")
     youtube_video_id = models.CharField(max_length=100, default="ERtp4zua0-s", help_text="Or enter YouTube Video ID directly")
     pdf_syllabus_link = models.CharField(max_length=500, blank=True, null=True, help_text="Direct link if any, else opens modal")
@@ -580,6 +614,47 @@ class CourseBanner(models.Model):
     career_benefits_html = models.TextField(blank=True, help_text="HTML content for Career Benefits")
     why_choose_us_html = models.TextField(blank=True, help_text="HTML content for Why Choose Us")
     
+    # Dynamic Section Titles & Descriptions
+    key_features_heading = models.CharField(
+        max_length=255, 
+        default="RH124 v10 Certification Training: Essential Linux System Administration Skills Key Features",
+        help_text="Heading for the Key Features section"
+    )
+    key_features_description = models.TextField(
+        default="Explore the unique benefits of our courses designed for foundational success in Pune's booming IT sector.",
+        help_text="Description for the Key Features section"
+    )
+    why_choose_heading = models.CharField(
+        max_length=255,
+        default="Why Choose WebAsha Technologies",
+        help_text="Heading for the comparison table section"
+    )
+    why_choose_description = models.TextField(
+        default="At WebAsha Technologies, we deliver career-focused IT training that combines expert mentorship, practical learning, and globally recognized certifications to give you a competitive edge.",
+        help_text="Description for the comparison table section"
+    )
+    
+    # Cloud Lab details
+    cloud_lab_title = models.CharField(
+        max_length=255,
+        default="Our <span class=\"red-color\">Cloud Lab</span>",
+        blank=True,
+        help_text="Title for the Cloud Lab section"
+    )
+    cloud_lab_image = models.ImageField(
+        upload_to="course_banners/labs/",
+        blank=True,
+        null=True,
+        help_text="Upload custom Cloud Lab image (GIF/PNG/JPG)"
+    )
+    cloud_lab_image_url = models.CharField(
+        max_length=500,
+        blank=True,
+        null=True,
+        default="https://i.ibb.co/5X09hRg/lab.gif",
+        help_text="Direct URL of Cloud Lab image/GIF if not uploading a file"
+    )
+    
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -589,6 +664,93 @@ class CourseBanner(models.Model):
     class Meta:
         verbose_name = "Course Banner"
         verbose_name_plural = "Course Banners"
+
+
+class CourseKeyFeature(models.Model):
+    course_banner = models.ForeignKey(
+        CourseBanner,
+        on_delete=models.CASCADE,
+        related_name="key_features"
+    )
+    icon = models.ImageField(
+        upload_to="course_banners/features/",
+        blank=True,
+        null=True,
+        help_text="Upload key feature icon (e.g. PNG/SVG)"
+    )
+    icon_url = models.CharField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="Or enter a direct icon URL / CSS class"
+    )
+    label = models.CharField(max_length=255)
+    order = models.IntegerField(default=0, help_text="Display order")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Training Key Feature"
+        verbose_name_plural = "Training Key Features"
+
+    def __str__(self):
+        return f"{self.course_banner.page_identifier} - {self.label}"
+
+
+class CourseComparisonRow(models.Model):
+    course_banner = models.ForeignKey(
+        CourseBanner, 
+        on_delete=models.CASCADE, 
+        related_name="comparison_rows"
+    )
+    feature = models.CharField(max_length=255)
+    webasha = models.TextField()
+    others = models.TextField()
+    order = models.IntegerField(default=0, help_text="Order in which features are displayed")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Training Comparison Row"
+        verbose_name_plural = "Training Comparison Rows"
+
+    def __str__(self):
+        return f"{self.course_banner.page_identifier} - {self.feature}"
+
+
+class CourseTrackTool(models.Model):
+    course_banner = models.ForeignKey(
+        CourseBanner,
+        on_delete=models.CASCADE,
+        related_name="track_tools"
+    )
+    category = models.CharField(max_length=255)
+    tools_covered = models.TextField(help_text="Tools list (comma separated or plain text)")
+    order = models.IntegerField(default=0, help_text="Order in which categories are displayed")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "Training Track Tool"
+        verbose_name_plural = "Training Track Tools"
+
+    def __str__(self):
+        return f"{self.course_banner.page_identifier} - {self.category}"
+
+
+
+
+class CourseBannerCertificate(models.Model):
+    course_banner = models.ForeignKey(CourseBanner, related_name='certificates', on_delete=models.CASCADE)
+    student_name = models.CharField(max_length=255, blank=True, help_text="Candidate Name")
+    image = models.ImageField(upload_to="course_banners/certificates/", help_text="Upload certificate image")
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', 'created_at']
+        verbose_name = "Training Banner Certificate"
+        verbose_name_plural = "Training Banner Certificates"
+
+    def __str__(self):
+        return f"{self.student_name} Certificate"
 
 
 class StudentScreenshot(models.Model):
@@ -616,8 +778,8 @@ class CourseSyllabus(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Course Syllabus Module"
-        verbose_name_plural = "Course Syllabus Modules"
+        verbose_name = "Training Syllabus Module"
+        verbose_name_plural = "Training Syllabus Modules"
         ordering = ['order', 'created_at']
 
     def __str__(self):
@@ -632,8 +794,8 @@ class CourseFAQ(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Course FAQ"
-        verbose_name_plural = "Course FAQs"
+        verbose_name = "Training FAQ"
+        verbose_name_plural = "Training FAQs"
         ordering = ['order', 'created_at']
 
     def __str__(self):

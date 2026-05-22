@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { fetchData, MEDIA_BASE_URL } from "../../api/config";
 
@@ -17,6 +17,7 @@ const VideoReviews = ({
   highlight = "Recent Reviews",
 }) => {
   const [videos, setVideos] = useState([]);
+  const sliderRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const VideoReviews = ({
         const data = await fetchData("video-reviews/");
         const videoData = data
           .map(rev => ({
-            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "/assets/img/testimonials/feedback.webp",
+            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') || rev.image.startsWith('/assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "/assets/img/testimonials/feedback.webp",
             videoId: rev.video_id
           }));
         
@@ -49,9 +50,9 @@ const VideoReviews = ({
 
     const timer = setTimeout(() => {
       const $ = window.$;
-      if (!$ || !$.fn || !$.fn.slick) return;
+      if (!$ || !$.fn || !$.fn.slick || !sliderRef.current) return;
 
-      const $el = $(".course-recent-reviews-slider");
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
 
       $el.slick({
@@ -73,8 +74,8 @@ const VideoReviews = ({
     return () => {
       clearTimeout(timer);
       const $ = window.$;
-      if (!$) return;
-      const $el = $(".course-recent-reviews-slider");
+      if (!$ || !sliderRef.current) return;
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
     };
   }, [loading, videos]);
@@ -90,7 +91,7 @@ const VideoReviews = ({
         </h2>
 
         {/* Video Slider */}
-        <div className="course-recent-reviews-slider">
+        <div className="course-recent-reviews-slider" ref={sliderRef}>
           {videos.map((v, i) => (
             <div className="recent-reviews-items" key={i}>
               <div className="items-video shadow overflow-hidden rounded-4">

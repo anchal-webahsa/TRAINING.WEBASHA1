@@ -85,9 +85,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DJANGO_DB_NAME', 'webasha_db'),
-        'USER': os.getenv('DJANGO_DB_USER', 'root'),
+        'USER': os.getenv('DJANGO_DB_USER', 'webasha_db'),
         'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', '123456789'),
-        'HOST': os.getenv('DJANGO_DB_HOST', 'localhost'),
+        'HOST': os.getenv('DJANGO_DB_HOST', '127.0.0.1'),
         'PORT': os.getenv('DJANGO_DB_PORT', '3306'),
     }
 }
@@ -127,7 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -143,7 +143,17 @@ LOGOUT_REDIRECT_URL = '/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SUMMERNOTE_CONFIG = {
+    'iframe': False,
     # 'css': (
     #     '/static/css/summernote_dark.css',
     # ),
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://144.24.150.39',
+    'http://127.0.0.1',
+    'https://support.webasha.com',
+    'http://support.webasha.com',
+    'https://suppt.webasha.com',
+    'http://suppt.webasha.com'
+]

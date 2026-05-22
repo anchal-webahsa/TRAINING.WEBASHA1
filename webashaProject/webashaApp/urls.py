@@ -94,6 +94,7 @@ urlpatterns = [
     # Custom Course Banners
     path('webashaApp/coursebanner/', views.manage_course_banners, name='manage_course_banners'),
     path('webashaApp/coursebanner/add/', views.add_course_banner, name='add_course_banner'),
+    path('webashaApp/coursebanner/<int:pk>/edit/', views.edit_course_banner, name='edit_course_banner'),
     
     # Custom Course Subcategories
     path('webashaApp/coursesubcategory/', views.manage_course_subcategories, name='manage_course_subcategories'),

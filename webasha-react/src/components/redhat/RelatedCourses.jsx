@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchData, MEDIA_BASE_URL } from "../../api/config";
 
 // SVG icons extracted once
@@ -87,7 +87,7 @@ const defaultHomeCourses = [
 
 const CourseCard = ({ img, alt, title, desc, students, rating, href }) => {
     // Determine the final image source - handle asset vs server paths
-    const finalImg = img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/course/default.webp";
+    const finalImg = img ? (img.startsWith('http') || img.startsWith('assets') || img.startsWith('/assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/course/default.webp";
     
     return (
         <div className="items">
@@ -129,6 +129,7 @@ const CourseCard = ({ img, alt, title, desc, students, rating, href }) => {
 
 const RelatedCourses = ({ identifier = "rh124_related" }) => {
     const [coursesList, setCoursesList] = useState([]);
+    const sliderRef = useRef(null);
     
     // Set appropriate defaults based on the identifier
     const isHome = identifier === "related_courses";
@@ -186,9 +187,9 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
 
         const timer = setTimeout(() => {
             const $ = window.$;
-            if (!$ || !$.fn || !$.fn.slick) return;
+            if (!$ || !$.fn || !$.fn.slick || !sliderRef.current) return;
 
-            const $el = $(".related-courses-slider");
+            const $el = $(sliderRef.current);
             if ($el.hasClass("slick-initialized")) $el.slick("unslick");
 
             $el.slick({
@@ -207,8 +208,8 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
         return () => {
             clearTimeout(timer);
             const $ = window.$;
-            if (!$) return;
-            const $el = $(".related-courses-slider");
+            if (!$ || !sliderRef.current) return;
+            const $el = $(sliderRef.current);
             if ($el.hasClass("slick-initialized")) $el.slick("unslick");
         };
     }, [loading, coursesList]);
@@ -226,7 +227,7 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
             </div>
 
             <div className="container">
-                <div className="course-discover-profile-slider related-courses-slider slider-arrows-cs">
+                <div className="course-discover-profile-slider related-courses-slider slider-arrows-cs" ref={sliderRef}>
                     {coursesList.map((c, i) => (
                         <CourseCard 
                             key={i} 

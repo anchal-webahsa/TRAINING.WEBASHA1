@@ -6,6 +6,7 @@ import EnquiryModal from "./components/common/EnquiryModal";
 import EnrollModal from "./components/common/EnrollModal";
 import ImageModal from "./components/common/ImageModal";
 import LiveChatWidget from "./components/common/LiveChatWidget";
+import MobileBottomNav from "./components/layout/MobileBottomNav";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <EnquiryModal />
       <EnrollModal />
       <LiveChatWidget />
+      <MobileBottomNav />
     </>
   );
 }

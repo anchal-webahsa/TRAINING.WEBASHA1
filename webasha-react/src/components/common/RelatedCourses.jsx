@@ -118,7 +118,7 @@ const RelatedCourses = ({ identifier = "related_courses" }) => {
                   {/* Image — */}
                   <div className="image-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                     <img
-                      src={course.thumbnail ? (course.thumbnail.startsWith('http') || course.thumbnail.startsWith('assets') ? course.thumbnail : `${MEDIA_BASE_URL}${course.thumbnail}`) : "/assets/img/course/default.webp"}
+                      src={course.thumbnail ? (course.thumbnail.startsWith('http') || course.thumbnail.startsWith('assets') || course.thumbnail.startsWith('/assets') ? course.thumbnail : `${MEDIA_BASE_URL}${course.thumbnail}`) : "/assets/img/course/default.webp"}
                       className="card-img-top w-100 h-100"
                       style={{ objectFit: 'cover' }}
                       alt={course.title}

@@ -18,13 +18,17 @@ import RelatedResources from "../components/redhat/RelatedResources";
 
 import Rh124Banner from "../components/redhat/rh124/Rh124Banner";
 import Rh124StickyHeader from "../components/redhat/rh124/Rh124StickyHeader";
-import Rh124Instructor from "../components/redhat/rh124/Rh124Instructor";
+import DynamicInstructor from "../components/course/DynamicInstructor";
 import Rh124Bootcamp from "../components/redhat/rh124/Rh124Bootcamp";
 
 import DynamicOverview from "../components/course/DynamicOverview";
 import DynamicSyllabus from "../components/course/DynamicSyllabus";
 import DynamicSection from "../components/course/DynamicSection";
-import DynamicFaq from "../components/course/DynamicFaq";
+import CourseExamTable from "../components/course/CourseExamTable";
+import CoursePassingCriteria from "../components/course/CoursePassingCriteria";
+import ExamCertificatesSection from "../components/exams/ExamCertificatesSection";
+import SyllabusModal from "../components/common/SyllabusModal";
+import Rh124Faq from "../components/redhat/rh124/Rh124Faq";
 import { useParams } from "react-router-dom";
 
 function CourseTemplate(props) {
@@ -90,11 +94,18 @@ function CourseTemplate(props) {
 
       <KeyFeatures
         badge="Training Key Features"
-        title={bannerData.heading}
-        highlight="Key Features"
-        description="Explore the unique benefits of our courses designed for foundational success in Pune's booming IT sector."
+        title={bannerData.key_features_heading}
+        description={bannerData.key_features_description}
+        features={bannerData.key_features}
+        cloudLabTitle={bannerData.cloud_lab_title}
+        cloudLabImage={bannerData.cloud_lab_image}
+        cloudLabImageUrl={bannerData.cloud_lab_image_url}
       />
-      <WhyWebasha />
+      <WhyWebasha 
+        heading={bannerData.why_choose_heading}
+        description={bannerData.why_choose_description}
+        comparisonRows={bannerData.comparison_rows}
+      />
       <BatchSchedule slug={slug} />
 
       <main>
@@ -103,18 +114,32 @@ function CourseTemplate(props) {
             {/* Left */}
             <div className="col-lg-8 col-12" id="sticky-start-section1">
               <section className="course-training-overview lazy-section" id="overview">
-                <Rh124Slider />
+                <Rh124Slider image1={bannerData.slider_image_1} image2={bannerData.slider_image_2} />
               </section>
               
               {/* Dynamic Overview */}
               <DynamicOverview content={bannerData.overview_html} defaultHeading={bannerData.heading} />
 
-              <RedhatTrack />
+              <RedhatTrack 
+                trackImage={bannerData.training_track_image} 
+                courseName={bannerData.breadcrumb_active} 
+                trackTools={bannerData.track_tools} 
+              />
               
               {/* Dynamic Syllabus */}
-              <DynamicSyllabus syllabusModules={bannerData.syllabus_modules} courseTitle={bannerData.heading} />
+              <DynamicSyllabus 
+                syllabusModules={bannerData.syllabus_modules} 
+                courseTitle={bannerData.heading} 
+                shortTitle={bannerData.breadcrumb_active}
+                headingTop={bannerData.syllabus_heading_top}
+                headingBottom={bannerData.syllabus_heading_bottom}
+              />
               
-              <Rh124Instructor />
+              <DynamicInstructor 
+                heading={bannerData.instructor_heading_top} 
+                description={bannerData.instructor_description} 
+                contentHtml={bannerData.instructor_html} 
+              />
             </div>
             {/* Sidebar 1 */}
             <CourseSidebar1 />
@@ -130,24 +155,20 @@ function CourseTemplate(props) {
             {/* Main Content */}
             <div className="col-lg-8 col-sm-12" id="sticky-start-section2">
               <Rh124Bootcamp />
+              
+              {/* Dynamic Certificates Slider */}
+              <ExamCertificatesSection 
+                examName={bannerData.heading} 
+                certificates={bannerData.certificates} 
+              />
+              
               <div id="exam-certification" />
               
-              {/* Dynamic Exam Info */}
-              <DynamicSection 
-                id="exam-info" 
-                content={bannerData.exam_info_html} 
-                title={`${bannerData.heading} <span class="red-color">Details and Format</span>`}
-                isCard={false}
-              />
+              {/* Dynamic Exam Details Table */}
+              <CourseExamTable bannerData={bannerData} />
               
               {/* Dynamic Passing Criteria */}
-              <DynamicSection 
-                id="passing-criteria" 
-                content={bannerData.passing_criteria_html} 
-                title="Passing Criteria"
-                isCard={false}
-                customClass="mt-5"
-              />
+              <CoursePassingCriteria bannerData={bannerData} />
               
               <div id="placement-reviews" />
               
@@ -175,12 +196,10 @@ function CourseTemplate(props) {
                 isCard={true}
               />
               
-              {/* Dynamic FAQ */}
-              <DynamicFaq faqs={bannerData.faqs} />
               
             </div>
             {/* Sidebar-2 */}
-            <div className="col-lg-4 col-sm-12 col-12 sticky-sidebar1 lazy-section" id="sticky-sidebar2">
+            <div className="col-lg-4 col-sm-12 col-12 sticky-sidebar1" id="sticky-sidebar2">
               <div className="course-subsciption sticky-sidebar-container">
                 <CourseSidebar2 voucherOffer={bannerData.voucher_offer} />
               </div>
@@ -198,6 +217,8 @@ function CourseTemplate(props) {
       {/* We pass the slug to RelatedCourses if needed, or stick to identifier */}
       <RelatedCourses identifier={`${slug}_related`} />
 
+      <Rh124Faq bannerData={bannerData} />
+
       <section className="other-course-kubernetes lazy-section">
         <div className="container">
           <div className="course-kubernetes-wraper">
@@ -210,6 +231,8 @@ function CourseTemplate(props) {
           </div>
         </div>
       </section>
+
+      <SyllabusModal defaultCourseName={bannerData.heading} />
     </>
   );
 }

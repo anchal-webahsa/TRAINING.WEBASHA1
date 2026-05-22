@@ -1147,6 +1147,9 @@
     padding: 10px 0;
     overflow-x: auto;
   }
+  .sticky-main-header1.sticky {
+    display: block !important;
+  }
   .sticky-header-list {
     gap: 50px;
   }
@@ -1726,6 +1729,10 @@
     box-shadow: 0px 3px 10px 0px #959DA533;
     margin-bottom: 20px;
     border-radius: 0px 30px 0px 0px;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1000;
   }
   .mobile-header .menu {
     width: 90%;

@@ -56,7 +56,7 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
         .certificate-ticker-track {
           display: flex;
           width: max-content;
-          animation: scroll 40s linear infinite;
+          animation: scroll 15s linear infinite;
         }
 
         .certificate-ticker-track:hover {

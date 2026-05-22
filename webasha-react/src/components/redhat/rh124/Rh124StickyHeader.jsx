@@ -8,17 +8,40 @@ const Rh124StickyHeader = () => {
       const headerElm = document.querySelector('header.header');
       const bannerElm = document.querySelector('.banner-course');
       
-      if (headerElm && bannerElm) {
-        const offset = headerElm.offsetHeight + bannerElm.offsetHeight;
-        setIsSticky(window.scrollY >= offset);
-      }
+      const headerHeight = headerElm ? headerElm.offsetHeight : 0;
+      const bannerHeight = bannerElm ? bannerElm.offsetHeight : 0;
+      
+      // Use fallback height if elements are not fully sized yet
+      const offset = (headerHeight + bannerHeight) || 600;
+      setIsSticky(window.scrollY >= offset);
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check once on mount
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Check again after short delay to catch late layout shifts / image loads
+    const timer = setTimeout(handleScroll, 500);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
+
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerOffset = 100; // Offset for the sticky header
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <section className={`sticky-main-header1 ${isSticky ? 'sticky' : ''}`} id="stickyheader">
@@ -29,6 +52,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#overview"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#overview')}
               >
                 Overview
               </a>
@@ -37,6 +61,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#training-options"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#training-options')}
               >
                 Training Options
               </a>
@@ -45,6 +70,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#syllabus"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#syllabus')}
               >
                 Syllabus
               </a>
@@ -53,6 +79,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#our-instructor"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#our-instructor')}
               >
                 Our Instructor
               </a>
@@ -61,6 +88,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#exam-certification"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#exam-certification')}
               >
                 Exam &amp; Certification
               </a>
@@ -69,6 +97,7 @@ const Rh124StickyHeader = () => {
               <a
                 href="#placement-reviews"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#placement-reviews')}
               >
                 Placement &amp; Reviews
               </a>
@@ -77,12 +106,13 @@ const Rh124StickyHeader = () => {
               <a
                 href="#faqs"
                 className="btn btn-outline-primary text-decoration-none"
+                onClick={(e) => handleNavClick(e, '#faqs')}
               >
                 FAQs
               </a>
             </li>
           </ul>
-          <div className="button-group">
+          <div className="button-group d-flex gap-2">
             <button
               type="button"
               className="btn btn-enroll"

@@ -107,9 +107,12 @@ function Rhcsa() {
 
           <KeyFeatures
             badge="Training Key Features"
-            title="RH124 v10 Course"
-            highlight="Training Key Features"
-            description="Explore the unique benefits of our RH124 v10 courses designed for foundational success in Pune's booming IT sector."
+            title={bannerData?.key_features_heading || "RH124 v10 Course"}
+            description={bannerData?.key_features_description || "Explore the unique benefits of our RH124 v10 courses designed for foundational success in Pune's booming IT sector."}
+            features={bannerData?.key_features}
+            cloudLabTitle={bannerData?.cloud_lab_title}
+            cloudLabImage={bannerData?.cloud_lab_image}
+            cloudLabImageUrl={bannerData?.cloud_lab_image_url}
           />
           <WhyWebasha />
           <BatchSchedule />
@@ -124,7 +127,11 @@ function Rhcsa() {
                   </section>
                   <Rh124Overview />
 
-                  <RedhatTrack />
+                  <RedhatTrack 
+                    trackImage={bannerData?.training_track_image} 
+                    courseName={bannerData?.breadcrumb_active} 
+                    trackTools={bannerData?.track_tools} 
+                  />
                   <Rh124Syllabus />
                   <Rh124Instructor />
                 </div>
@@ -149,10 +156,9 @@ function Rhcsa() {
                   <Rh124Salary />
                   <Rh124CareerBenefits />
                   <Rh124WhyChoose />
-                  <Rh124Faq />
                 </div>
                 {/* Sidebar-2 */}
-                <div className="col-lg-4 col-sm-12 col-12 sticky-sidebar1 lazy-section" id="sticky-sidebar2">
+                <div className="col-lg-4 col-sm-12 col-12 sticky-sidebar1" id="sticky-sidebar2">
                   <div className="course-subsciption sticky-sidebar-container">
                     <CourseSidebar2 />
                   </div>
@@ -167,6 +173,8 @@ function Rhcsa() {
 
           <Alumni />
           <RelatedCourses identifier="rh124_related" />
+          
+          <Rh124Faq bannerData={bannerData} />
 
       <section className="other-course-kubernetes lazy-section">
         <div className="container">

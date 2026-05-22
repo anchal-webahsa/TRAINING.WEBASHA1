@@ -60,7 +60,8 @@ const LiveChatWidget = () => {
 
     try {
       // POST to Django API
-      const response = await axios.post('/api/submit-live-chat/', formData);
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const response = await axios.post(`${apiUrl}/api/submit-live-chat/`, formData);
       setStatus({ type: 'success', message: 'Thank you! We have received your inquiry and will contact you shortly.' });
       setFormData({ name: '', subject: '', email: '', phone: '', location: '', question: '' });
       
@@ -181,12 +182,12 @@ const LiveChatWidget = () => {
 
       {/* Live Chat Button */}
       <button 
-        className="live-chat-btn"
+        className="live-chat-girl-btn"
         onClick={toggleChat}
         title="Live Chat"
         aria-label="Open Live Chat"
       >
-        <i className="fa-regular fa-comment-dots"></i>
+        <img src="/assets/imgs/livechat-girl.png" alt="Live Chat" className="live-chat-girl-img" />
       </button>
     </div>
   );

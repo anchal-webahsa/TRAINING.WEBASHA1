@@ -1,19 +1,26 @@
 import React from "react";
 
-const DynamicSyllabus = ({ syllabusModules, courseTitle }) => {
+const DynamicSyllabus = ({ syllabusModules, courseTitle, shortTitle, headingTop, headingBottom }) => {
   if (!syllabusModules || syllabusModules.length === 0) return null;
+
+  const displayTitle = headingTop || shortTitle || courseTitle || "Course";
+  const displayBottom = headingBottom || `${courseTitle} Curriculum`;
 
   return (
     <section className="course-top-curriculum lazy-section" id="syllabus">
       <div className="contentcard">
         <h2 className="heading-main text-center mb-2">
-          Curriculum <span className="red-color">{courseTitle}</span>
+          {headingTop ? (
+            <span dangerouslySetInnerHTML={{ __html: headingTop }} />
+          ) : (
+            <>Curriculum <span className="red-color">{displayTitle}</span></>
+          )}
         </h2>
         <div className="content-container" id="contentContainer3">
           <div className="accordion-curriculum mb-5">
             <div className="top-curriculum-header">
-              <p className="desc">
-                {courseTitle} Curriculum
+              <p className="desc mb-0">
+                {displayBottom}
               </p>
               <a
                 href="#"

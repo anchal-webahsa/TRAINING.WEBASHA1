@@ -12,10 +12,6 @@ const app = (
   </StrictMode>
 );
 
-// If HTML is pre-rendered by Vite prerender plugin, hydrate it.
-if (rootElement.hasChildNodes()) {
-  hydrateRoot(rootElement, app);
-} else {
-  // Fallback for development and non-prerendered pages
-  createRoot(rootElement).render(app);
-}
+// Always use createRoot to prevent hydration mismatch crashes from pre-rendered API data.
+// SEO bots will still see the pre-rendered HTML, but real users will get a fresh React SPA render.
+createRoot(rootElement).render(app);

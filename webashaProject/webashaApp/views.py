@@ -1419,6 +1419,37 @@ def add_course_banner(request):
     })
 
 @login_required
+def edit_course_banner(request, pk):
+    banner = get_object_or_404(CourseBanner, pk=pk)
+    if request.method == 'POST':
+        form = CourseBannerForm(request.POST, request.FILES, instance=banner)
+        syllabus_formset = SyllabusFormSet(request.POST, prefix='syllabus', instance=banner)
+        faq_formset = FAQFormSet(request.POST, prefix='faq', instance=banner)
+        batch_formset = BatchFormSet(request.POST, prefix='batch', instance=banner)
+        
+        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid():
+            banner = form.save()
+            syllabus_formset.save()
+            faq_formset.save()
+            batch_formset.save()
+            messages.success(request, 'Course Banner updated successfully.')
+            return redirect('manage_course_banners')
+        else:
+            messages.error(request, 'Please correct the highlighted errors.')
+    else:
+        form = CourseBannerForm(instance=banner)
+        syllabus_formset = SyllabusFormSet(prefix='syllabus', instance=banner)
+        faq_formset = FAQFormSet(prefix='faq', instance=banner)
+        batch_formset = BatchFormSet(prefix='batch', instance=banner)
+        
+    return render(request, 'webashaApp/add_course_banner.html', {
+        'form': form,
+        'syllabus_formset': syllabus_formset,
+        'faq_formset': faq_formset,
+        'batch_formset': batch_formset
+    })
+
+@login_required
 def manage_course_subcategories(request):
     from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
     qs = CourseSubCategory.objects.select_related('category').order_by('-created_at')

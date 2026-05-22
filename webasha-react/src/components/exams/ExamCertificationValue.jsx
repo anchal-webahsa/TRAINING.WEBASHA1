@@ -4,7 +4,7 @@ const ExamCertificationValue = ({ cleanTitle, certificationValueHtml }) => {
   if (!certificationValueHtml) return null;
   
   return (
-    <div className="content-section bg-white border rounded-4 p-4 p-md-5 shadow-sm mb-5">
+    <div className="mt-5 pt-3 border-top">
       <h2 className="fw-bold mb-4 text-center" style={{ color: '#0f172a' }}>
         What is <span className="text-danger">{cleanTitle}</span> Certification?
       </h2>

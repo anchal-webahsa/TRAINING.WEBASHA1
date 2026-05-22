@@ -1,8 +1,6 @@
 // src/components/redhat/RedhatTrack.jsx
 
-import { useState } from "react";
-
-const tools = [
+const defaultTools = [
   ["Command Line Tools",     "bash, ls, cd, pwd, cp, mv, rm, mkdir, rmdir, touch"],
   ["File Editing Tools",     "vi, vim, nano"],
   ["User Management Tools",  "useradd, usermod, userdel, groupadd, groupmod, passwd"],
@@ -17,20 +15,24 @@ const tools = [
   ["Virtualization Tools",   "virt-manager, virsh"],
 ];
 
-const RedhatTrack = () => {
-  const [expanded, setExpanded] = useState(false);
+const RedhatTrack = ({ trackImage, courseName, trackTools }) => {
+  const displayName = courseName ? courseName.replace(/Certification|Training/gi, "").trim() : "Red Hat";
+
+  const renderTools = trackTools && trackTools.length > 0
+    ? trackTools.map(t => ({ category: t.category, tools_covered: t.tools_covered }))
+    : defaultTools.map(([category, tools_covered]) => ({ category, tools_covered }));
 
   return (
     <section className="contentcard lazy-section">
-      <div className={`content-container${expanded ? " expanded" : ""}`} id="contentContainer2">
+      <div className="content-container" id="contentContainer2" style={{ maxHeight: 'none', overflow: 'visible' }}>
 
         <div className="summary-details">
           <h2 className="heading-main text-center">
-            Red Hat Course Training <span className="red-color">Track</span>
+            {displayName} Course Training <span className="red-color">Track</span>
           </h2>
           <img
-            src="/assets/img/slider/redhat/redhat-track.webp"
-            alt="RH124 v10 Course Training Tools Overview"
+            src={trackImage || "/assets/img/slider/redhat/redhat-track.webp"}
+            alt={`${displayName} Course Training Track`}
             width="900"
             height="400"
             className="img-fluid mb-3"
@@ -47,10 +49,10 @@ const RedhatTrack = () => {
               </tr>
             </thead>
             <tbody>
-              {tools.map(([category, covered], i) => (
+              {renderTools.map((tool, i) => (
                 <tr key={i}>
-                  <td><strong>{category}</strong></td>
-                  <td>{covered}</td>
+                  <td><strong>{tool.category}</strong></td>
+                  <td>{tool.tools_covered}</td>
                 </tr>
               ))}
             </tbody>

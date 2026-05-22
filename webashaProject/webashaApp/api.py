@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, GalleryImage, StudentCertificate, Contact, Enquiry, StandaloneRelatedCourse, CustomPage, LiveChatInquiry
@@ -114,6 +114,7 @@ class CustomPageViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'slug'
 
 @api_view(['POST'])
+@authentication_classes([])
 @permission_classes([AllowAny])
 def submit_contact(request):
     data = request.data
@@ -130,6 +131,7 @@ def submit_contact(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@authentication_classes([])
 @permission_classes([AllowAny])
 def submit_enquiry(request):
     data = request.data
@@ -147,6 +149,7 @@ def submit_enquiry(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@authentication_classes([])
 @permission_classes([AllowAny])
 def submit_enrollment(request):
     data = request.data
@@ -164,6 +167,7 @@ def submit_enrollment(request):
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@authentication_classes([])
 @permission_classes([AllowAny])
 def submit_live_chat(request):
     data = request.data

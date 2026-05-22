@@ -38,7 +38,11 @@ from .models import (
     ExamRelatedCourse,
     ExamWhyChooseUs,
     ExamAdBanner,
-    ExamSidebarCarousel
+    ExamSidebarCarousel,
+    CourseBannerCertificate,
+    CourseComparisonRow,
+    CourseTrackTool,
+    CourseKeyFeature
 )
 
 
@@ -151,17 +155,33 @@ class UpcomingBatchInline(admin.StackedInline):
     model = UpcomingBatch
     extra = 1
 
+class CourseBannerCertificateInline(admin.TabularInline):
+    model = CourseBannerCertificate
+    extra = 1
+
+class CourseComparisonRowInline(admin.TabularInline):
+    model = CourseComparisonRow
+    extra = 1
+
+class CourseTrackToolInline(admin.TabularInline):
+    model = CourseTrackTool
+    extra = 1
+
+class CourseKeyFeatureInline(admin.TabularInline):
+    model = CourseKeyFeature
+    extra = 1
+
 class CourseBannerAdmin(BaseAdmin):
     list_display = ('page_identifier', 'heading', 'is_active')
     search_fields = ('page_identifier', 'heading')
     list_filter = ('is_active',)
-    inlines = [CourseSyllabusInline, CourseFAQInline, UpcomingBatchInline]
+    inlines = [CourseSyllabusInline, CourseFAQInline, UpcomingBatchInline, CourseBannerCertificateInline, CourseComparisonRowInline, CourseTrackToolInline, CourseKeyFeatureInline]
     
     fieldsets = (
         ('Basic Information', {
             'fields': (
-                'page_identifier', 'breadcrumb_active', 'heading', 
-                'description', 'is_active'
+                'subcategory', 'page_identifier', 'breadcrumb_active', 'heading', 
+                'description', 'is_active', 'syllabus_heading_top', 'syllabus_heading_bottom'
             ),
             'classes': ('tab-section',)
         }),
@@ -178,16 +198,46 @@ class CourseBannerAdmin(BaseAdmin):
             ),
             'classes': ('tab-section',)
         }),
+        ('Key Features & Comparison Details', {
+            'fields': (
+                'key_features_heading', 'key_features_description',
+                'cloud_lab_title', 'cloud_lab_image', 'cloud_lab_image_url',
+                'why_choose_heading', 'why_choose_description'
+            ),
+            'classes': ('tab-section',)
+        }),
         ('Media Section', {
             'fields': (
-                'voucher_offer', 'video_thumbnail', 'youtube_video_url', 
-                'youtube_video_id', 'pdf_syllabus_link'
+                'voucher_offer', 'video_thumbnail', 'partner_image', 'show_partner_logo',
+                'slider_image_1', 'slider_image_2', 'training_track_image',
+                'youtube_video_url', 'youtube_video_id', 'pdf_syllabus_link'
             ),
             'classes': ('tab-section',)
         }),
         ('Statistics', {
             'fields': (
                 'stat_professionals', 'stat_batches', 'stat_countries', 'stat_clients'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Exam Details Table', {
+            'fields': (
+                'exam_detail_heading_prefix', 'exam_detail_name', 'exam_detail_duration',
+                'exam_detail_questions', 'exam_detail_fee', 'exam_detail_validity',
+                'exam_detail_code', 'exam_detail_format', 'exam_detail_passing_score',
+                'exam_detail_eligibility', 'exam_detail_languages', 'exam_detail_mode'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Passing Criteria', {
+            'fields': (
+                'passing_criteria_heading', 'passing_criteria_text', 'whatsapp_link', 'call_number'
+            ),
+            'classes': ('tab-section',)
+        }),
+        ('Instructor/Trainer Details', {
+            'fields': (
+                'instructor_heading_top', 'instructor_description', 'instructor_html'
             ),
             'classes': ('tab-section',)
         }),

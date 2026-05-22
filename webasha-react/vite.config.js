@@ -25,11 +25,7 @@ export default defineConfig({
       renderer: new PuppeteerRenderer({
         maxConcurrentRoutes: 2,
         timeout: 120000
-      }),
-      server: {
-        host: 'localhost',
-        port: 5173
-      }
+      })
     })
   ],
 });

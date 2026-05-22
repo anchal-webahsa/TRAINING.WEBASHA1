@@ -213,50 +213,68 @@ const Rh124Banner = ({ bannerData }) => {
                   </p>
                 )}
                 {/* Facts Table */}
-                <table className="table table-dark table-bordered facts-table mt-3 mb-0" style={{ tableLayout: 'fixed', wordBreak: 'break-word', width: '100%' }}>
-                  <tbody>
-                    <tr>
-                      <th scope="row" className="fw-semibold text-warning" style={{ width: '120px' }}>
-                        Duration:
-                      </th>
-                      <td className="text-light">
-                        {bannerData ? bannerData.detail_duration : "50 Hours (Weekday/Weekend Batches)"}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="fw-semibold text-warning">
-                        Mode:
-                      </th>
-                      <td className="text-light">
-                        {bannerData ? bannerData.detail_mode : "Online & Classroom Training"}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="fw-semibold text-warning">
-                        Certification:
-                      </th>
-                      <td className="text-light">
-                        {bannerData ? bannerData.detail_certification : "Red Hat Certified System Administrator (EX200)"}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="fw-semibold text-warning">
-                        Institute:
-                      </th>
-                      <td className="text-light">
-                        {bannerData ? bannerData.detail_institute : "WebAsha Technologies, Pune"}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="fw-semibold text-warning">
-                        Includes:
-                      </th>
-                      <td className="text-light">
-                        {bannerData ? bannerData.detail_includes : "Hands-on Labs, Official Red Hat Curriculum, Exam Simulations"}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                {bannerData && (
+                  (bannerData.detail_duration && bannerData.detail_duration.trim() !== "") ||
+                  (bannerData.detail_mode && bannerData.detail_mode.trim() !== "") ||
+                  (bannerData.detail_certification && bannerData.detail_certification.trim() !== "") ||
+                  (bannerData.detail_institute && bannerData.detail_institute.trim() !== "") ||
+                  (bannerData.detail_includes && bannerData.detail_includes.trim() !== "")
+                ) && (
+                  <table className="table table-dark table-bordered facts-table mt-3 mb-0" style={{ tableLayout: 'fixed', wordBreak: 'break-word', width: '100%' }}>
+                    <tbody>
+                      {bannerData.detail_duration && bannerData.detail_duration.trim() !== "" && (
+                        <tr>
+                          <th scope="row" className="fw-semibold text-warning" style={{ width: '120px' }}>
+                            Duration:
+                          </th>
+                          <td className="text-light">
+                            {bannerData.detail_duration}
+                          </td>
+                        </tr>
+                      )}
+                      {bannerData.detail_mode && bannerData.detail_mode.trim() !== "" && (
+                        <tr>
+                          <th scope="row" className="fw-semibold text-warning">
+                            Mode:
+                          </th>
+                          <td className="text-light">
+                            {bannerData.detail_mode}
+                          </td>
+                        </tr>
+                      )}
+                      {bannerData.detail_certification && bannerData.detail_certification.trim() !== "" && (
+                        <tr>
+                          <th scope="row" className="fw-semibold text-warning">
+                            Certification:
+                          </th>
+                          <td className="text-light">
+                            {bannerData.detail_certification}
+                          </td>
+                        </tr>
+                      )}
+                      {bannerData.detail_institute && bannerData.detail_institute.trim() !== "" && (
+                        <tr>
+                          <th scope="row" className="fw-semibold text-warning">
+                            Institute:
+                          </th>
+                          <td className="text-light">
+                            {bannerData.detail_institute}
+                          </td>
+                        </tr>
+                      )}
+                      {bannerData.detail_includes && bannerData.detail_includes.trim() !== "" && (
+                        <tr>
+                          <th scope="row" className="fw-semibold text-warning">
+                            Includes:
+                          </th>
+                          <td className="text-light">
+                            {bannerData.detail_includes}
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                )}
               </section>
               {/* Buttons */}
               <div className="button-group mt-4 mb-4 d-flex flex-wrap gap-3">
@@ -304,7 +322,7 @@ const Rh124Banner = ({ bannerData }) => {
                     loading="lazy"
                     decoding="async"
                     className="img-fluid rounded shadow-sm w-100"
-                    style={{ height: '220px', objectFit: 'cover' }}
+                    style={{ height: 'auto', objectFit: 'cover' }}
                   />
                 ) : (
                   <picture>
@@ -319,7 +337,8 @@ const Rh124Banner = ({ bannerData }) => {
                       height={220}
                       loading="lazy"
                       decoding="async"
-                      className="img-fluid rounded shadow-sm"
+                      className="img-fluid rounded shadow-sm w-100"
+                      style={{ height: 'auto', objectFit: 'cover' }}
                     />
                   </picture>
                 )}
@@ -365,25 +384,28 @@ const Rh124Banner = ({ bannerData }) => {
                 </a>
               </div>
               {/* ✅ Accreditation */}
-              <div className="text-white mt-4 mb-4">
-                <h5>Accredited By</h5>
-                <a
-                  href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target="#enrollModal"
-                  aria-label="Enroll in Course"
-                >
-                  <picture>
-                    <img
-                      src="/assets/img/icons/partner/redhat.webp"
-                      alt="Authorised Training Partner"
-                      height={146}
-                      width={180}
-                      loading="lazy"
-                    />
-                  </picture>
-                </a>
-              </div>
+              {(!bannerData || bannerData.show_partner_logo !== false) && (
+                <div className="text-white mt-4 mb-4">
+                  <h5>Accredited By</h5>
+                  <a
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#enrollModal"
+                    aria-label="Enroll in Course"
+                  >
+                    <picture>
+                      <img
+                        src={bannerData && bannerData.partner_image ? bannerData.partner_image : "/assets/img/icons/partner/redhat.webp"}
+                        alt="Authorised Training Partner"
+                        height={146}
+                        width={180}
+                        loading="lazy"
+                        style={{ objectFit: "contain", maxHeight: "146px" }}
+                      />
+                    </picture>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           {/* ✅ Stats Section */}

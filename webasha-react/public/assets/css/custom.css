@@ -486,6 +486,8 @@ body.has-mobile-footer{
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-break: break-word;
+    overflow-wrap: break-word;
     flex-grow: 1; /* Pushes the 'before'/'after' sections to the bottom uniformly */
     margin-bottom: 20px;
 }
@@ -521,4 +523,32 @@ body.has-mobile-footer{
 .course-recent-reviews-slider .slick-list {
   padding: 50px 0 !important;
 }
+
+/* Explicit styles for the course sticky header navigation buttons */
+.sticky-header-list .btn-outline-primary {
+  color: #E50914 !important;
+  border-color: #E50914 !important;
+  background-color: transparent !important;
+}
+
+.sticky-header-list .btn-outline-primary:hover,
+.sticky-header-list .btn-outline-primary:active,
+.sticky-header-list .btn-outline-primary:focus {
+  color: #FFFFFF !important;
+  background-color: #E50914 !important;
+  border-color: #E50914 !important;
+}
+
+.sticky-header-list .btn-enroll {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #FFFFFF !important;
+}
+
+.sticky-header-list .btn-enroll:hover {
+  background-color: #157347 !important;
+  border-color: #146c43 !important;
+  color: #FFFFFF !important;
+}
+
 

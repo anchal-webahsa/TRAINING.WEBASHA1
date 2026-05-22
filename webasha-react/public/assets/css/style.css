@@ -4975,33 +4975,38 @@ img#imagePreview {
 
 
 .sticky-main-header1 {
-     padding: 5px 0;
-    position: sticky;
+    display: none;
+    padding: 5px 0;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     background-color: #FFFFFF;
-	    z-index: 1024;
-		opacity: 0;
+    z-index: 1024;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .sticky-main-header1.sticky {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1024;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: #FFFFFF;
-  opacity: 1;
+  display: block !important;
 }
 
 .sticky-header-list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .sticky-header-list ul {
   display: flex;
   gap: 10px;
+  margin-bottom: 0;
+  padding-left: 0;
+  flex-wrap: nowrap;
+}
+
+.sticky-header-list ul li {
+  flex-shrink: 0;
 }
 
 .sticky-header-list .btn {
@@ -5009,11 +5014,13 @@ img#imagePreview {
   font-weight: 500;
   font-size: 16px;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
-.sticky-header-list .buuton-group {
+.sticky-header-list .button-group {
   display: flex;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .sticky-header-list .btn-enroll {
@@ -7256,3 +7263,30 @@ img#imagePreview {
     .slider-container { width: 100%; height: auto; aspect-ratio: 16/9; }
     .slider-container .photo { height: 100%; }
   }
+
+/* Unify all WhatsApp button colors to match the darker green (#198754) */
+.btn-whatsapp, 
+.whatsapp-btn,
+.whatsapp-circle,
+a[href*='whatsapp'].btn-success,
+a[href*='wa.me'].btn-success,
+a[href*='whatsapp'].btn-whatsapp {
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    color: #fff !important;
+}
+
+.btn-whatsapp:hover, 
+.whatsapp-btn:hover,
+.whatsapp-circle:hover,
+a[href*='whatsapp'].btn-success:hover,
+a[href*='wa.me'].btn-success:hover,
+a[href*='whatsapp'].btn-whatsapp:hover {
+    background-color: #157347 !important;
+    border-color: #146c43 !important;
+}
+
+html, body {
+  overflow-x: visible !important;
+}
+

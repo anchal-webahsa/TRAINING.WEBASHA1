@@ -10,13 +10,13 @@
     --sidebar-bg: #ffffff; /* Light sidebar in light mode */
     --sidebar-text: #64748b;
     --sidebar-active-bg: #f1f5f9;
-    --sidebar-active-text: #3b82f6;
+    --sidebar-active-text: #0F5EA8;
     --header-bg: rgba(255, 255, 255, 0.85);
     --text: #0f172a;
     --muted: #475569;
     --border: #e2e8f0;
-    --accent: #3b82f6;
-    --accent-soft: rgba(59, 130, 246, 0.1);
+    --accent: #0F5EA8;
+    --accent-soft: rgba(15, 94, 168, 0.1);
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -29,8 +29,8 @@ body.dark-theme {
     --text: #ffffff;
     --muted: #cbd5e1;
     --border: #334155;
-    --accent: #3b82f6;
-    --accent-soft: rgba(59, 130, 246, 0.25);
+    --accent: #0F5EA8;
+    --accent-soft: rgba(15, 94, 168, 0.25);
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
@@ -840,7 +840,7 @@ input[type="password"] {
 }
 
 /* --- Summernote Dark Theme Overrides --- */
-.note-editor.note-lite {
+.note-editor, .note-editor.note-lite {
     border: 1px solid var(--border) !important;
     border-radius: 12px !important;
     background: var(--card) !important;

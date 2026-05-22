@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, CourseSyllabus, CourseFAQ, GalleryImage, StudentCertificate, PlacedStudent, PlacementStat, HiringPartner, StandaloneRelatedCourse, ExamCertificate
+from .models import Course, Testimonial, VideoReview, Instructor, CourseCategory, CourseSubCategory, HomeSection, AlumniProfile, ExamVoucherOffer, Exam, UpcomingBatch, CourseBanner, StudentScreenshot, CourseSyllabus, CourseFAQ, GalleryImage, StudentCertificate, PlacedStudent, PlacementStat, HiringPartner, StandaloneRelatedCourse, ExamCertificate, CourseBannerCertificate, CourseComparisonRow, CourseTrackTool, CourseKeyFeature
 
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -141,10 +141,34 @@ class CourseFAQSerializer(serializers.ModelSerializer):
         model = CourseFAQ
         fields = '__all__'
 
+class CourseBannerCertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseBannerCertificate
+        fields = '__all__'
+
+class CourseComparisonRowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseComparisonRow
+        fields = '__all__'
+
+class CourseTrackToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseTrackTool
+        fields = '__all__'
+
+class CourseKeyFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseKeyFeature
+        fields = '__all__'
+
 class CourseBannerSerializer(serializers.ModelSerializer):
     syllabus_modules = CourseSyllabusSerializer(many=True, read_only=True)
     faqs = CourseFAQSerializer(many=True, read_only=True)
     voucher_offer = ExamVoucherOfferSerializer(read_only=True)
+    certificates = CourseBannerCertificateSerializer(many=True, read_only=True)
+    comparison_rows = CourseComparisonRowSerializer(many=True, read_only=True)
+    track_tools = CourseTrackToolSerializer(many=True, read_only=True)
+    key_features = CourseKeyFeatureSerializer(many=True, read_only=True)
 
     class Meta:
         model = CourseBanner

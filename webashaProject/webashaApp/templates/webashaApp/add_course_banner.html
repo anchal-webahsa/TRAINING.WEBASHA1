@@ -40,7 +40,7 @@
                         {{ form.is_active }} 
                         <span>Banner is Active</span> 
                     </label> 
-                    <button type="submit" class="action-icon-btn" style="width: 100%; margin-top: 20px; background: var(--accent); color: white; border: none; font-weight: 700; height: 48px;"> 
+                    <button type="submit" style="width: 100%; margin-top: 20px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 700; height: 48px; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'"> 
                         SAVE BANNER 
                     </button> 
                 </div> 
@@ -202,6 +202,64 @@
     </form> 
 </div> 
 
+    <!-- Hidden Empty Form Templates for Dynamic Add -->
+    <div style="display: none;">
+        <!-- Syllabus Empty Form -->
+        <div id="empty-syllabus-form">
+            <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px; position: relative;">
+                {% for hidden in syllabus_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+                <div class="form-group"><label class="form-label">Module Title</label>{{ syllabus_formset.empty_form.module_title }}</div>
+                <div class="form-group">
+                    <label class="form-label">Description (HTML)</label>
+                    <textarea name="syllabus-__prefix__-description" id="id_syllabus-__prefix__-description" class="form-control"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ syllabus_formset.empty_form.order }}</div></div>
+                    <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;">
+                        <label style="color: #ef4444; font-weight: 600; cursor: pointer;">{{ syllabus_formset.empty_form.DELETE }} Remove Module</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Empty Form -->
+        <div id="empty-faq-form">
+            <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                {% for hidden in faq_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+                <div class="form-group"><label class="form-label">Question</label>{{ faq_formset.empty_form.question }}</div>
+                <div class="form-group">
+                    <label class="form-label">Answer (HTML)</label>
+                    <textarea name="faq-__prefix__-answer" id="id_faq-__prefix__-answer" class="form-control"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ faq_formset.empty_form.order }}</div></div>
+                    <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;">
+                        <label style="color: #ef4444; font-weight: 600;">{{ faq_formset.empty_form.DELETE }} Remove FAQ</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Empty Form -->
+        <div id="empty-batch-form">
+            <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                {% for hidden in batch_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+                <div class="form-row">
+                    <div class="form-col"><div class="form-group"><label class="form-label">Date</label>{{ batch_formset.empty_form.date }}</div></div>
+                    <div class="form-col"><div class="form-group"><label class="form-label">Mode of Class</label>{{ batch_formset.empty_form.mode_of_class }}</div></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col"><div class="form-group"><label class="form-label">Batch Form</label>{{ batch_formset.empty_form.batch_form }}</div></div>
+                    <div class="form-col"><div class="form-group"><label class="form-label">Time</label>{{ batch_formset.empty_form.time }}</div></div>
+                </div>
+                <div class="form-group"><label class="form-label">Status Text</label>{{ batch_formset.empty_form.status_text }}</div>
+                <div style="display: flex; justify-content: flex-end;">
+                    <label style="color: #ef4444; font-weight: 600;">{{ batch_formset.empty_form.DELETE }} Remove Batch</label>
+                </div>
+            </div>
+        </div>
+    </div> 
+
 <style> 
     .tab-btn { 
         text-align: left; padding: 14px 20px; border: 1px solid transparent; background: transparent; 
@@ -209,7 +267,7 @@
         transition: all 0.3s; 
     } 
     .tab-btn:hover { background: var(--bg); color: var(--text); } 
-    .tab-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); } 
+    .tab-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(15, 94, 168, 0.2); } 
     
     .tab-pane { display: none; } 
     .tab-pane.active { display: block; animation: slideUp 0.4s ease-out; } 
@@ -231,8 +289,34 @@
         const emptyFormHtml = document.getElementById(`empty-${prefix}-form`).innerHTML; 
         const newFormHtml = emptyFormHtml.replace(/__prefix__/g, formCount); 
         const targetDiv = document.getElementById(`${prefix}-forms`); 
-        targetDiv.insertAdjacentHTML('beforeend', newFormHtml); 
+        
+        // Parse the HTML string into a DOM element to allow jQuery/script initialization
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(newFormHtml, 'text/html');
+        const newNode = doc.body.firstElementChild;
+        targetDiv.appendChild(newNode); 
+        
         totalFormsInput.value = formCount + 1; 
+
+        // Initialize Summernote on description/answer textarea field
+        if (prefix === 'syllabus' || prefix === 'faq') {
+            const jQueryInstance = window.jQuery || window.$ || (typeof jQuery !== 'undefined' ? jQuery : null);
+            if (jQueryInstance) {
+                jQueryInstance(newNode).find('textarea').summernote({
+                    tabsize: 2,
+                    height: 200,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ]
+                });
+            }
+        }
     } 
 </script> 
 {% endblock %} 

@@ -49,7 +49,7 @@ const Stars = ({ count = 5 }) => (
 const ReviewCard = ({ img, name, role, text, linkedinUrl }) => (
   <div className="success-speaks-reviwe-items">
     <div className="card">
-      <img src={img ? (img.startsWith('http') || img.startsWith('assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/profile/default.webp"} className="img-top" alt={`${name} review`} loading="lazy" decoding="async" />
+      <img src={img ? (img.startsWith('http') || img.startsWith('assets') || img.startsWith('/assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/profile/default.webp"} className="img-top" alt={`${name} review`} loading="lazy" decoding="async" />
       <Stars />
       <div className="card-body">
         <p className="card-text line-clamp-1">{text}</p>

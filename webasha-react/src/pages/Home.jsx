@@ -78,7 +78,7 @@ export default function Home() {
         name="keywords"
         content="RHCSA Training Pune, RHCE Certification, AWS Course Pune, Python Training, DevOps Institute Pune, CCNA Classes, Red Hat Exam Center, IT Training Pune, Graphic Design Course"
       />
-      <link rel="canonical" href="/" />
+      <link rel="canonical" href="https://www.webasha.com/" />
       <meta
         property="og:title"
         content="WebAsha Technologies | RHCSA, RHCE, AWS, Python, DevOps & CCNA Training in Pune"

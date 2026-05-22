@@ -56,9 +56,11 @@ export default function DynamicCourseColumns({ tabId, megaMenuData, category }) 
                     </>
                   )}
                 </h6>
-                <h6 className="desc2" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-all' }}>
-                  {course.short_description}
-                </h6>
+                <h6 
+                  className="desc2" 
+                  style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-all' }}
+                  dangerouslySetInnerHTML={{ __html: course.short_description || '' }}
+                />
                 {course.menu_label !== 'none' && (
                   <div className={`seller ${course.menu_label === 'new' ? 'new' : course.menu_label === 'trending' ? 'trending' : ''}`}>
                     {course.menu_label === 'best_seller' ? 'Best Seller' 

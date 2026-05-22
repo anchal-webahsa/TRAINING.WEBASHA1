@@ -4,7 +4,7 @@
 <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
         <h2 style="margin:0;font-size:24px;color:var(--text);font-weight:600">Manage Course Banners</h2>
-        <a href="{% url 'add_course_banner' %}" style="background:#3b82f6;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:500;display:flex;align-items:center;gap:8px;transition:background 0.2s">
+        <a href="{% url 'add_course_banner' %}" style="background:var(--accent);color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:500;display:flex;align-items:center;gap:8px;transition:background 0.2s">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Add Course Banner
         </a>
@@ -44,7 +44,9 @@
                 {% for banner in banners %}
                 <tr style="border-bottom:1px solid var(--border);transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
                     <td style="padding:16px">
-                        <strong style="color:var(--text);font-size:14px">{{ banner.page_identifier }}</strong>
+                        <a href="{% url 'edit_course_banner' banner.id %}" style="text-decoration:none;">
+                            <strong style="color:var(--accent);font-size:14px">{{ banner.page_identifier }}</strong>
+                        </a>
                     </td>
                     <td style="padding:16px;color:var(--muted);font-size:13px;max-width:400px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
                         {{ banner.heading }}

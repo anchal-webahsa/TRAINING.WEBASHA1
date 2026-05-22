@@ -2,7 +2,7 @@ import React from "react";
 
 const Rh124Bootcamp = () => {
   return (
-    <section className="lazy-section">
+    <section className="lazy-section" id="training-options">
       <h2 className="heading-main text-center mb-0">
         Red Hat Certified System Administrator{" "}
         <span className="red-color">Certification Bootcamp</span>

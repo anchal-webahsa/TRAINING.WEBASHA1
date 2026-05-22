@@ -21,7 +21,7 @@ const StudentFeedback = () => {
         const data = await fetchData("video-reviews/");
         const videoData = data
           .map(rev => ({
-            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "/assets/img/testimonials/feedback.webp",
+            img: rev.image ? (rev.image.startsWith('http') || rev.image.startsWith('assets') || rev.image.startsWith('/assets') ? rev.image : `${MEDIA_BASE_URL}${rev.image}`) : "/assets/img/testimonials/feedback.webp",
             videoId: rev.video_id
           }));
         

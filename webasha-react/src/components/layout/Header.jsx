@@ -4,6 +4,8 @@ import DynamicCourseColumns from "./DynamicCourseColumns";
 
 export default function Header() {
   const [megaMenuData, setMegaMenuData] = useState([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileCourseOpen, setIsMobileCourseOpen] = useState(false);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/mega-menu/`)
       .then(res => res.json())
@@ -22,10 +24,19 @@ export default function Header() {
     if (el) el.classList.remove("active");
   };
 
+  const showMobileContent = () => {
+    const el = document.getElementById("myDIV-mobile");
+    if (el) el.classList.add("active");
+  };
+
+  const hideMobileContent = () => {
+    const el = document.getElementById("myDIV-mobile");
+    if (el) el.classList.remove("active");
+  };
+
   return (
-    <header className="header">
-      <>
-        {/* Defining the desktop header section */}
+    <>
+      {/* Defining the desktop header section */}
         <header className="header">
           {/* Creating a responsive navigation bar using Bootstrap */}
           <nav className="navbar navbar-expand-lg">
@@ -713,7 +724,7 @@ export default function Header() {
           <div className="navbar">
             <div className="container">
               <div className="d-flex align-items-center gap-2">
-                <button id="toggle-btn-1" className="open-btn">
+                <button id="toggle-btn-1" className="open-btn" onClick={() => setIsMobileMenuOpen(true)}>
                   <i className="fa-solid fa-bars" />
                 </button>
                 <a className="navbar-brand" href="/">
@@ -731,6 +742,7 @@ export default function Header() {
                     className="btn dropdown-toggle"
                     id="toggle-btn-2"
                     type="button"
+                    onClick={() => setIsMobileCourseOpen(true)}
                   >
                     Courses
                   </button>
@@ -746,7 +758,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div id="menu-1" className="menu">
+            <div id="menu-1" className={`menu ${isMobileMenuOpen ? 'menu-open' : ''}`}>
               <div className="header-menu">
                 <a className="navbar-brand" href="/">
                   <img
@@ -756,12 +768,12 @@ export default function Header() {
                     alt="logo"
                   />
                 </a>
-                <span id="close-btn-1" className="close-btn">
+                <span id="close-btn-1" className="close-btn" onClick={() => setIsMobileMenuOpen(false)}>
                   <i className="fa-solid fa-xmark" />
                 </span>
               </div>
               <div className="accordion-wraper">
-                <div className="accordion-main-menu">
+                <div className="accordion-main-menu" style={{ overflowY: 'auto' }}>
                   <ul className="accordion list-unstyled mb-0" id="parentAccordion">
                     <li className="accordion-item accordion-drop">
                       <a
@@ -1147,7 +1159,7 @@ export default function Header() {
             </div>
             {/* Left Menu #1-End */}
             {/* Right Menu #2: Course Goals and Categories */}
-            <div id="menu-2" className="menu menu-2">
+            <div id="menu-2" className={`menu menu-2 ${isMobileCourseOpen ? 'menu-open' : ''}`}>
               <div className="header-menu">
                 <a className="navbar-brand" href="/">
                   <img
@@ -1157,7 +1169,7 @@ export default function Header() {
                     alt="logo"
                   />
                 </a>
-                <span id="close-btn-2" className="close-btn">
+                <span id="close-btn-2" className="close-btn" onClick={() => setIsMobileCourseOpen(false)}>
                   <i className="fa-solid fa-xmark" />
                 </span>
               </div>
@@ -1184,7 +1196,7 @@ export default function Header() {
                               role="tab"
                               aria-controls="pills-01"
                               aria-selected="true"
-                              onClick={showContent}
+                              onClick={showMobileContent}
                             >
                               <i className="fa-solid fa-certificate" /> Get a Job
                             </button>
@@ -1203,7 +1215,7 @@ export default function Header() {
                                 role="tab"
                                 aria-controls={`pills-cat-m-${category.id}`}
                                 aria-selected="false"
-                                onClick={showContent}
+                                onClick={showMobileContent}
                               >
                                 {category.icon ? (
                                   <img src={category.icon} alt={category.name} width="16" height="16" style={{ marginRight: '8px', objectFit: 'contain' }} />
@@ -1221,12 +1233,12 @@ export default function Header() {
                         </button>
                       </div>
                       {/* Tab Content Start */}
-                      <div className="course-tabs-content" id="myDIV">
+                      <div className="course-tabs-content" id="myDIV-mobile">
                         <div className="course-tabs-card">
                           <div className="course-tabs-scrollbar">
                             <button
                               className="btn btn-primary back-menu-btn mt-2 ms-2"
-                              onClick={hideContent}
+                              onClick={hideMobileContent}
                             >
                               <i className="fa-solid fa-arrow-left me-2" /> Back to
                               Menu
@@ -1333,6 +1345,16 @@ export default function Header() {
                                                 Explore our comprehensive training and certification programs for {category.name}.
                                               </p>
                                             </div>
+                                            <a
+                                              href={`/${category.slug}`}
+                                              className="btn-view text-decoration-none"
+                                              onClick={() => {
+                                                setIsMobileCourseOpen(false);
+                                                document.body.click();
+                                              }}
+                                            >
+                                              View All {category.name} Courses
+                                            </a>
                                           </div>
                                         </div>
                                       </div>
@@ -1411,8 +1433,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        {/* Mobile-Header-Start */}
+        {/* Mobile-Header-End */}
       </>
-    </header>
   );
 }

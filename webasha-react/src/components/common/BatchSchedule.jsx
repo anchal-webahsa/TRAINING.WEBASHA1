@@ -186,7 +186,7 @@ const BatchSchedule = ({ slug }) => {
   return (
     <>
       {/* ── Section 1: Mode of Training ── */}
-      <section className="training-calender py-5 lazy-section" id="training-options">
+      <section className="training-calender py-5 lazy-section" id="batch-schedule">
         <div className="container">
           <div className="wraper">
             <h2 className="heading-main-1 text-center mb-5">

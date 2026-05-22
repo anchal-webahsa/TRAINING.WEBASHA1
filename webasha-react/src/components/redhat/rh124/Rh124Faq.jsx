@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rh124Faq = () => {
+const Rh124Faq = ({ bannerData }) => {
   return (
     <section className="course-webasha-faq lazy-section" id="faqs">
       <div className="container mt-4 mb-4">
@@ -13,6 +13,34 @@ const Rh124Faq = () => {
         </div>
         <div className="all-theme-accordion" id="content">
           <div className="accordion accordion-flush" id="coursefaqAccordionFlush">
+            {bannerData && bannerData.faqs && bannerData.faqs.length > 0 ? (
+              bannerData.faqs.map((faq, index) => (
+                <div className="accordion-item" key={faq.id || index}>
+                  <h2 className="accordion-header">
+                    <button
+                      className={`accordion-button ${index === 0 ? '' : 'collapsed'}`}
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#flush-coursefaq-dynamic${index}`}
+                      aria-expanded={index === 0 ? "true" : "false"}
+                      aria-controls={`flush-coursefaq-dynamic${index}`}
+                    >
+                      {faq.question}
+                    </button>
+                  </h2>
+                  <div
+                    id={`flush-coursefaq-dynamic${index}`}
+                    className={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
+                    data-bs-parent="#coursefaqAccordionFlush"
+                  >
+                    <div className="accordion-body pt-0">
+                      <div className="description mb-0 text-break" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <>
             {/* FAQ 1 */}
             <div className="accordion-item">
               <h2 className="accordion-header">
@@ -535,6 +563,8 @@ const Rh124Faq = () => {
                 </div>
               </div>
             </div>
+            </>
+            )}
           </div>
         </div>
       </div>

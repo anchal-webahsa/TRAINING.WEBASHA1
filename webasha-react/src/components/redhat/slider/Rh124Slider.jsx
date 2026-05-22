@@ -1,19 +1,20 @@
 // src/components/redhat/slider/Rh124Slider.jsx
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-const slides = [
-  { src: "/assets/img/slider/redhat/1.webp", alt: "Red Hat Insight 1" },
-  { src: "/assets/img/slider/redhat/2.webp", alt: "Red Hat Insight 2" },
-];
+const Rh124Slider = ({ image1, image2 }) => {
+  const sliderRef = useRef(null);
+  const slides = [
+    { src: image1 || "/assets/img/slider/redhat/1.webp", alt: "Course Insight 1" },
+    { src: image2 || "/assets/img/slider/redhat/2.webp", alt: "Course Insight 2" },
+  ];
 
-const Rh124Slider = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const $ = window.$;
-      if (!$ || !$.fn || !$.fn.slick) return;
+      if (!$ || !$.fn || !$.fn.slick || !sliderRef.current) return;
 
-      const $el = $(".slider-ceh.rh124");
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
 
       $el.slick({
@@ -30,14 +31,14 @@ const Rh124Slider = () => {
     return () => {
       clearTimeout(timer);
       const $ = window.$;
-      if (!$) return;
-      const $el = $(".slider-ceh.rh124");
+      if (!$ || !sliderRef.current) return;
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
     };
-  }, []);
+  }, [image1, image2]);
 
   return (
-    <div className="slider-ceh sld-dots rh124">
+    <div className="slider-ceh sld-dots rh124" ref={sliderRef}>
       {slides.map((s, i) => (
         <div className="ceh-items" key={i}>
           <img src={s.src} alt={s.alt} loading="lazy" />

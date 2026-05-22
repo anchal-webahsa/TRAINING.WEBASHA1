@@ -67,7 +67,7 @@ const InstructorList = () => {
                 <div className="learn-experts-items">
                   <div className="thumbnail-cover">
                     <img
-                      src={instructor.image ? (instructor.image.startsWith('http') || instructor.image.startsWith('assets') ? instructor.image : `${MEDIA_BASE_URL}${instructor.image}`) : "/assets/img/trainer/default.png"}
+                      src={instructor.image ? (instructor.image.startsWith('http') || instructor.image.startsWith('assets') || instructor.image.startsWith('/assets') ? instructor.image : `${MEDIA_BASE_URL}${instructor.image}`) : "/assets/img/trainer/default.png"}
                       loading="lazy"
                       alt={`${instructor.full_name} - WebAsha Technologies`}
                     />

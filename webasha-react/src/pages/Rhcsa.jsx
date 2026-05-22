@@ -69,27 +69,28 @@ const Rhcsa = () => {
 
             <ExpandableContent title={<><span className="red-color">RHCSA (EX200)</span> Certification in Jersey City, USA</>}>
               <p className="text-muted mb-3">
-                The <strong>Red Hat Certified System Administrator (RHCSA – EX200)</strong> certification is one of the most recognized credentials for Linux professionals in Jersey City, USA. In today’s competitive IT landscape, where organizations increasingly rely on <strong>open-source and cloud-based solutions</strong>, RHCSA validates your ability to manage, configure, and troubleshoot <strong>Red Hat Enterprise Linux (RHEL)</strong> environments.
+                The <strong>Red Hat Certified System Administrator (RHCSA – EX200)</strong> certification is one of the most recognized credentials for Linux professionals in Jersey City, USA. In today's competitive IT landscape, where organizations increasingly rely on <strong>open-source and cloud-based solutions</strong>, RHCSA validates your ability to manage, configure, and troubleshoot <strong>Red Hat Enterprise Linux (RHEL)</strong> environments.
               </p>
               <h5 className="bold-text mb-2">What Makes RHCSA a Must-Have Linux Certification</h5>
               <p className="text-muted mb-3">
                 The <strong>RHCSA (EX200)</strong> certification is entirely <strong>performance-based</strong>, meaning candidates must perform hands-on administrative tasks in a live lab environment rather than answering theoretical questions. This ensures that every certified professional possesses real-world, practical skills.
               </p>
               <h5 className="bold-text mb-2">Overview of the Red Hat Certification Program</h5>
-              <p className="text-muted mb-0">
+              <p className="text-muted mb-4">
                 The <strong>Red Hat Certification Program</strong> follows a structured and progressive learning path designed to develop your Linux expertise step-by-step. From basic system administration to advanced automation with Ansible, the program prepares you for diverse IT roles.
               </p>
-            </ExpandableContent>
-
-            <ExpandableContent title={<>What is <span className="red-color">RHCSA (EX200)</span> Certification?</>}>
-               <h5 className="bold-text mb-2">What is RHCSA?</h5>
-               <p className="text-muted mb-3">
-                 The <strong>Red Hat Certified System Administrator (RHCSA – EX200)</strong> certification is a globally recognized credential that validates your expertise in performing essential system administration tasks on <strong>Red Hat Enterprise Linux (RHEL)</strong>. It is the core foundation for anyone looking to build a career in Linux engineering or DevOps.
-               </p>
-               <h5 className="bold-text mb-2">Evolution and History of the RHCSA Exam</h5>
-               <p className="text-muted mb-0">
-                 Introduced in <strong>2010</strong> by <strong>Red Hat</strong>, the <strong>RHCSA (EX200)</strong> certification was created to replace the older RHCT program. It has since evolved through multiple RHEL versions (RHEL 7, 8, and now 9/10), consistently adapting to the latest enterprise technologies like containers and automation.
-               </p>
+              
+              <hr className="my-4" style={{ opacity: 0.15 }} />
+              
+              <h4 className="bold-text mb-4 text-center">What is <span className="red-color">RHCSA (EX200)</span> Certification?</h4>
+              <h5 className="bold-text mb-2">What is RHCSA?</h5>
+              <p className="text-muted mb-3">
+                The <strong>Red Hat Certified System Administrator (RHCSA – EX200)</strong> certification is a globally recognized credential that validates your expertise in performing essential system administration tasks on <strong>Red Hat Enterprise Linux (RHEL)</strong>. It is the core foundation for anyone looking to build a career in Linux engineering or DevOps.
+              </p>
+              <h5 className="bold-text mb-2">Evolution and History of the RHCSA Exam</h5>
+              <p className="text-muted mb-0">
+                Introduced in <strong>2010</strong> by <strong>Red Hat</strong>, the <strong>RHCSA (EX200)</strong> certification was created to replace the older RHCT program. It has since evolved through multiple RHEL versions (RHEL 7, 8, and now 9/10), consistently adapting to the latest enterprise technologies like containers and automation.
+              </p>
             </ExpandableContent>
 
             <ExamInfoTable data={examData} />

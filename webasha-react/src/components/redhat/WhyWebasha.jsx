@@ -1,6 +1,6 @@
 // src/components/common/WhyWebasha.jsx
 
-const rows = [
+const defaultRows = [
   {
     feature: "Expert Trainers",
     webasha: "10+ Years Experienced Industry Professionals",
@@ -43,60 +43,69 @@ const rows = [
   },
 ];
 
-const WhyWebasha = () => (
-  <section className="py-5 course-comparison-section lazy-section">
-    <div className="container">
+const WhyWebasha = ({
+  heading = 'Why Choose <span class="red-color">WebAsha Technologies</span>',
+  description = "At WebAsha Technologies, we deliver career-focused IT training that combines expert mentorship, practical learning, and globally recognized certifications to give you a competitive edge.",
+  comparisonRows = []
+}) => {
+  const displayRows = comparisonRows && comparisonRows.length > 0 ? comparisonRows : defaultRows;
 
-      {/* Section Header */}
-      <div className="section-header text-center mb-4">
-        <h3 className="heading-main-1 text-center">
-          Why Choose <span className="red-color">WebAsha Technologies</span>
-        </h3>
-        <p className="fs-6 text-muted mx-auto" style={{ maxWidth: "760px" }}>
-          At WebAsha Technologies, we deliver career-focused IT training that combines
-          expert mentorship, practical learning, and globally recognized certifications
-          to give you a competitive edge.
-        </p>
-      </div>
+  return (
+    <section className="py-5 course-comparison-section lazy-section">
+      <div className="container">
 
-      {/* Comparison Table */}
-      <div className="table-responsive custom-table mb-4">
-        <table className="table table-bordered align-middle text-muted fw-normal">
-          <thead className="bg-danger text-white">
-            <tr>
-              <th scope="col" className="subs-title text-white">Features</th>
-              <th scope="col" className="subs-title text-white">WebAsha Technologies</th>
-              <th scope="col" className="subs-title text-white">Other Institutes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                <td className="fw-medium text-dark">{row.feature}</td>
-                <td>{row.webasha}</td>
-                <td>{row.others}</td>
+        {/* Section Header */}
+        <div className="section-header text-center mb-4">
+          <h3 
+            className="heading-main-1 text-center"
+            dangerouslySetInnerHTML={{ __html: heading }}
+          />
+          <p 
+            className="fs-6 text-muted mx-auto" 
+            style={{ maxWidth: "760px" }}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        </div>
+
+        {/* Comparison Table */}
+        <div className="table-responsive custom-table mb-4">
+          <table className="table table-bordered align-middle text-muted fw-normal">
+            <thead className="bg-danger text-white">
+              <tr>
+                <th scope="col" className="subs-title text-white">Features</th>
+                <th scope="col" className="subs-title text-white">WebAsha Technologies</th>
+                <th scope="col" className="subs-title text-white">Other Institutes</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {displayRows.map((row, i) => (
+                <tr key={i}>
+                  <td className="fw-medium text-dark">{row.feature}</td>
+                  <td>{row.webasha}</td>
+                  <td>{row.others}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-      {/* Enroll CTA */}
-      <div className="text-center mt-4">
-        <button
-          type="button"
-          className="btn btn-primary btn-width mx-auto d-inline-flex align-items-center"
-          data-bs-toggle="modal"
-          data-bs-target="#enquiryModal"
-          aria-label="Enroll Now at WebAsha Technologies"
-        >
-          Enroll Now
-          <i className="fa fa-arrow-right ms-2" aria-hidden="true" />
-        </button>
-      </div>
+        {/* Enroll CTA */}
+        <div className="text-center mt-4">
+          <button
+            type="button"
+            className="btn btn-primary btn-width mx-auto d-inline-flex align-items-center"
+            data-bs-toggle="modal"
+            data-bs-target="#enquiryModal"
+            aria-label="Enroll Now at WebAsha Technologies"
+          >
+            Enroll Now
+            <i className="fa fa-arrow-right ms-2" aria-hidden="true" />
+          </button>
+        </div>
 
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 export default WhyWebasha;

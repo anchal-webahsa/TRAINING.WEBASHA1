@@ -115,18 +115,19 @@ function ExamTemplate() {
               {/* Black Banner Slider */}
               <ExamBannerSlider examCode={displayCode} />
 
-              {/* Section 1: Overview */}
-              <ExamOverviewSection 
-                cleanTitle={cleanTitle} 
-                location={examData.location} 
-                overviewHtml={examData.overview_html} 
-              />
+              {/* Merged Section 1 & 2: Overview & What is Certification */}
+              <div className="content-section bg-white border rounded-4 p-4 p-md-5 shadow-sm mb-5">
+                <ExamOverviewSection 
+                  cleanTitle={cleanTitle} 
+                  location={examData.location} 
+                  overviewHtml={examData.overview_html} 
+                />
 
-              {/* Section 2: What is Certification */}
-              <ExamCertificationValue 
-                cleanTitle={cleanTitle} 
-                certificationValueHtml={examData.certification_value_html} 
-              />
+                <ExamCertificationValue 
+                  cleanTitle={cleanTitle} 
+                  certificationValueHtml={examData.certification_value_html} 
+                />
+              </div>
 
               {/* Section 3: Cost Section */}
               <ExamCostSection 

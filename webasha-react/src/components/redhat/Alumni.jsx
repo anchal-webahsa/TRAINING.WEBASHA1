@@ -1,6 +1,6 @@
 // src/components/common/Alumni.jsx
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const ArrowDown = () => (
   <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,22 +121,30 @@ const AlumniCard = ({ img, name, exp, badge, desc, beforeRole, beforeCo, afterRo
 
 const Alumni = () => {
   const [alumniData, setAlumniData] = useState([]);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/alumni-profiles/`)
       .then((res) => res.json())
       .then((data) => {
         if (data && data.length > 0) {
+          const MEDIA_BASE_URL = `${import.meta.env.VITE_API_URL}`;
+          const formatImg = (url) => {
+            if (!url) return "";
+            if (url.startsWith('http')) return url;
+            return url.startsWith('/') ? `${MEDIA_BASE_URL}${url}` : `${MEDIA_BASE_URL}/${url}`;
+          };
+
           const apiAlumni = data.map((item) => ({
-            img: item.image,
+            img: formatImg(item.image),
             name: item.name,
             exp: item.experience,
             badge: item.growth_badge,
             desc: item.description,
             beforeRole: item.before_role,
-            beforeCo: { img: item.before_company_logo, alt: item.before_company_name },
+            beforeCo: { img: formatImg(item.before_company_logo), alt: item.before_company_name },
             afterRole: item.after_role,
-            afterCo: { img: item.after_company_logo, alt: item.after_company_name },
+            afterCo: { img: formatImg(item.after_company_logo), alt: item.after_company_name },
           }));
           setAlumniData(apiAlumni);
         } else {
@@ -154,9 +162,9 @@ const Alumni = () => {
 
     const timer = setTimeout(() => {
       const $ = window.$;
-      if (!$ || !$.fn || !$.fn.slick) return;
+      if (!$ || !$.fn || !$.fn.slick || !sliderRef.current) return;
 
-      const $el = $(".course-discover-profile-slider");
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
 
       $el.slick({
@@ -177,8 +185,8 @@ const Alumni = () => {
     return () => {
       clearTimeout(timer);
       const $ = window.$;
-      if (!$) return;
-      const $el = $(".course-discover-profile-slider");
+      if (!$ || !sliderRef.current) return;
+      const $el = $(sliderRef.current);
       if ($el.hasClass("slick-initialized")) $el.slick("unslick");
     };
   }, [alumniData]);
@@ -196,9 +204,11 @@ const Alumni = () => {
       </p>
 
       <div className="container">
-        <div className="course-discover-profile-slider slider-arrows-cs">
-          {alumniData.map((a, i) => <AlumniCard key={i} {...a} />)}
-        </div>
+        {alumniData.length > 0 && (
+          <div className="course-discover-profile-slider slider-arrows-cs" ref={sliderRef}>
+            {alumniData.map((a, i) => <AlumniCard key={i} {...a} />)}
+          </div>
+        )}
 
         <div className="text-center mt-4">
           <a href="#" className="btn btn-outline-primary mx-auto btn-width text-decoration-none">
@@ -206,6 +216,34 @@ const Alumni = () => {
           </a>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .course-discover-profile-slider:not(.slick-initialized) {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 24px;
+          justify-content: center;
+        }
+        .course-discover-profile-slider:not(.slick-initialized) > .items {
+          flex: 0 0 calc(25% - 24px);
+          min-width: 280px;
+        }
+        @media (max-width: 1200px) {
+          .course-discover-profile-slider:not(.slick-initialized) > .items {
+            flex: 0 0 calc(33.333% - 24px);
+          }
+        }
+        @media (max-width: 992px) {
+          .course-discover-profile-slider:not(.slick-initialized) > .items {
+            flex: 0 0 calc(50% - 24px);
+          }
+        }
+        @media (max-width: 576px) {
+          .course-discover-profile-slider:not(.slick-initialized) > .items {
+            flex: 0 0 100%;
+          }
+        }
+      ` }} />
     </section>
   );
 };
