@@ -322,7 +322,7 @@ export default function Home() {
       <section className="why-choose lazy-section" aria-label="Why Choose WebAsha Technologies">
         <div className="container">
           <h2 className="heading-main-1 text-center mb-5">
-            <span className="red-color">Why Choose</span> WebAsha Technologies?
+            Why Choose <span className="red-color">WebAsha Technologies</span>?
           </h2>
           <div className="row">
             <div className="col-lg-3 col-sm-6 col-12">

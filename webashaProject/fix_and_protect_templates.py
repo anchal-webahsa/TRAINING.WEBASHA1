@@ -10,7 +10,7 @@ files_to_fix = [
     r'd:\1.webashaProject\webashaProject\webashaApp\templates\webashaApp\base.html'
 ]
 
-def fix_file(path):
+def fix_file(path):              
     if not os.path.exists(path):
         print(f"Skipping: {path} (not found)")
         return

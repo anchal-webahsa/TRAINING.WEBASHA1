@@ -5,7 +5,7 @@ with open(r"d:\1.webashaProject\webashaProject\webashaApp\views.py", "r", encodi
 
 # Locate the dashboard function block
 start_sig = "def dashboard(request):"
-end_sig = "return render(request, \"webashaApp/dashboard.html\", context)"
+end_sig = "return render(request, \"webashaApp/d ashboard.html\", context)"
 
 if start_sig in content and end_sig in content:
     start_idx = content.find(start_sig)
@@ -101,3 +101,5 @@ if start_sig in content and end_sig in content:
     print("Successfully replaced dashboard view!")
 else:
     print("Could not find start or end block")
+
+
