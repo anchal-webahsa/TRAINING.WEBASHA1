@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ExamCertificatesSection = ({ examName, certificates }) => {
+  const [activeCertIndex, setActiveCertIndex] = useState(null);
+
   const fallbackCertificates = [
     { name: 'Naveen Pillai', exam: 'RHCSA', img: 'https://training.webasha.com/wp-content/uploads/2024/04/Red-Hat-Certified-System-Administrator-RHCSA-Certification-scaled.webp' },
     { name: 'Harshad Kapoor', exam: 'RHCSA', img: 'https://training.webasha.com/wp-content/uploads/2024/04/Red-Hat-Certified-System-Administrator-RHCSA-Certification-scaled.webp' },
@@ -21,6 +23,20 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
       }))
     : fallbackCertificates;
 
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setActiveCertIndex((prev) => 
+      prev === 0 ? displayCertificates.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setActiveCertIndex((prev) => 
+      prev === displayCertificates.length - 1 ? 0 : prev + 1
+    );
+  };
+
   return (
     <section className="my-5 overflow-hidden">
       <h2 className="fw-bold mb-4 text-center" style={{ color: '#0f172a' }}>
@@ -31,7 +47,12 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
         <div className="certificate-ticker-track">
           {/* Duplicate the list to ensure seamless looping */}
           {[...displayCertificates, ...displayCertificates].map((cert, idx) => (
-            <div key={idx} className="certificate-ticker-item">
+            <div 
+              key={idx} 
+              className="certificate-ticker-item"
+              onClick={() => setActiveCertIndex(idx % displayCertificates.length)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="certificate-card">
                 <img 
                   src={cert.img} 
@@ -45,6 +66,52 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
         </div>
       </div>
 
+      {/* Lightbox / Slider Modal */}
+      {activeCertIndex !== null && (
+        <div 
+          className="certificate-modal-overlay" 
+          onClick={() => setActiveCertIndex(null)}
+        >
+          <div 
+            className="certificate-modal-content" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button 
+              className="certificate-modal-close" 
+              onClick={() => setActiveCertIndex(null)}
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+            
+            {/* Left Prev Button */}
+            <button 
+              className="certificate-modal-btn prev-btn" 
+              onClick={handlePrev}
+            >
+              Prev
+            </button>
+
+            {/* Certificate Image */}
+            <img 
+              src={displayCertificates[activeCertIndex].img} 
+              alt={`${displayCertificates[activeCertIndex].name || 'Candidate'} Certificate`} 
+              className="certificate-modal-img"
+              onError={(e) => { e.target.src = "https://training.webasha.com/wp-content/uploads/2024/04/Red-Hat-Certified-System-Administrator-RHCSA-Certification-scaled.webp"; }}
+            />
+
+            {/* Right Next Button */}
+            <button 
+              className="certificate-modal-btn next-btn" 
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+
       <style dangerouslySetInnerHTML={{ __html: `
         .certificate-ticker-wrapper {
           width: 100%;
@@ -56,7 +123,7 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
         .certificate-ticker-track {
           display: flex;
           width: max-content;
-          animation: scroll 15s linear infinite;
+          animation: scroll 65s linear infinite;
         }
 
         .certificate-ticker-track:hover {
@@ -95,13 +162,118 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
           100% { transform: translateX(-50%); }
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
+        /* Modal / Lightbox Styles */
+        .certificate-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.45);
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 11000;
+        }
+
+        .certificate-modal-content {
+          position: relative;
+          max-width: 90%;
+          max-height: 80%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .certificate-modal-img {
+          max-width: 100%;
+          max-height: 70vh;
+          object-fit: contain;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+          border-radius: 4px;
+          background: white;
+          border: 1px solid #e2e8f0;
+        }
+
+        .certificate-modal-close {
+          position: absolute;
+          top: -45px;
+          right: 0px;
+          background: none;
+          border: none;
+          color: #333333;
+          font-size: 44px;
+          font-weight: 300;
+          cursor: pointer;
+          line-height: 1;
+          padding: 5px;
+          transition: color 0.2s;
+        }
+
+        .certificate-modal-close:hover {
+          color: #000;
+        }
+
+        .certificate-modal-btn {
+          position: absolute;
+          bottom: 20px;
+          background: #4b5563;
+          color: #fff;
+          border: 1.5px solid #fff;
+          padding: 6px 18px;
+          border-radius: 4px;
+          font-weight: 500;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .certificate-modal-btn:hover {
+          background: #374151;
+        }
+
+        .prev-btn {
+          left: -85px;
+        }
+
+        .next-btn {
+          right: -85px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
           .certificate-ticker-item {
             width: 160px;
           }
           .ticker-img {
             height: 110px;
+          }
+          .certificate-modal-img {
+            max-height: 60vh;
+          }
+          .certificate-modal-btn {
+            bottom: 15px;
+            padding: 6px 14px;
+            font-size: 12px;
+          }
+          .prev-btn {
+            left: 15px;
+            z-index: 10;
+          }
+          .next-btn {
+            right: 15px;
+            z-index: 10;
+          }
+          .certificate-modal-close {
+            top: 10px;
+            right: 15px;
+            font-size: 32px;
+            color: #333333;
+            text-shadow: 0 0 3px #fff;
+            z-index: 10;
           }
         }
       ` }} />
