@@ -150,12 +150,17 @@ const RelatedCourses = ({ identifier = "rh124_related" }) => {
     useEffect(() => {
         const getCourses = async () => {
             try {
-                // Always fetch the standalone related courses table
-                const courseData = await fetchData("standalone-related-courses/").catch(() => null);
-                
-                if (courseData && courseData.length > 0) {
-                    setCoursesList(courseData);
+                if (isHome) {
+                    // Fetch the standalone related courses table for the Home page
+                    const courseData = await fetchData("standalone-related-courses/").catch(() => null);
+                    
+                    if (courseData && courseData.length > 0) {
+                        setCoursesList(courseData);
+                    } else {
+                        setCoursesList(currentDefaults);
+                    }
                 } else {
+                    // On course template pages, show the specific Red Hat related courses defaults
                     setCoursesList(currentDefaults);
                 }
                 
