@@ -12,7 +12,7 @@
         </div> 
     </div> 
 
-    {% if form.errors or syllabus_formset.errors or faq_formset.errors or batch_formset.errors %} 
+    {% if form.errors or syllabus_formset.errors or faq_formset.errors or batch_formset.errors or tracktool_formset.errors %} 
     <div class="alert-styled alert-error"> 
         <strong>Error:</strong> Please correct the issues highlighted in the tabs below. 
     </div> 
@@ -33,6 +33,7 @@
                 <button type="button" class="tab-btn" onclick="switchTab('tab_html', this)">Dynamic HTML Content</button> 
                 <button type="button" class="tab-btn" onclick="switchTab('tab_syllabus', this)">Course Syllabus Modules</button> 
                 <button type="button" class="tab-btn" onclick="switchTab('tab_faq', this)">Course FAQs</button> 
+                <button type="button" class="tab-btn" onclick="switchTab('tab_track_tools', this)">Training Track Tools</button> 
                 <button type="button" class="tab-btn" onclick="switchTab('tab_batches', this)">Upcoming Batches</button> 
                 
                 <div style="margin: 24px 0; padding: 24px; background: var(--bg); border-radius: 12px; border: 1px solid var(--border);"> 
@@ -169,6 +170,30 @@
                         <i class="fa-solid fa-plus"></i> Add another FAQ 
                     </button> 
                 </div> 
+ 
+                <!-- Track Tools Formset --> 
+                <div id="tab_track_tools" class="tab-pane"> 
+                    <h3 class="section-title" style="font-size: 20px; margin-top: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border);">Training Track Tools (Tools Covered)</h3> 
+                    {{ tracktool_formset.management_form }} 
+                    <div id="tracktool-forms"> 
+                        {% for tool_form in tracktool_formset %} 
+                        <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;"> 
+                            {% for hidden in tool_form.hidden_fields %}{{ hidden }}{% endfor %} 
+                            <div class="form-group"><label class="form-label">Category</label>{{ tool_form.category }}</div> 
+                            <div class="form-group"><label class="form-label">Tools Covered (comma separated)</label>{{ tool_form.tools_covered }}</div> 
+                            <div class="form-row"> 
+                                <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ tool_form.order }}</div></div> 
+                                <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;"> 
+                                    <label style="color: #ef4444; font-weight: 600; cursor: pointer;">{{ tool_form.DELETE }} Remove Tool</label> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        {% endfor %} 
+                    </div> 
+                    <button type="button" class="action-icon-btn" style="width: 100%; border: 2px dashed var(--border); background: transparent; color: var(--muted); height: 56px;" onclick="addInlineForm('tracktool')"> 
+                        <i class="fa-solid fa-plus"></i> Add another Tool 
+                    </button> 
+                </div> 
 
                 <!-- Batches Formset --> 
                 <div id="tab_batches" class="tab-pane"> 
@@ -235,6 +260,24 @@
                     <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ faq_formset.empty_form.order }}</div></div>
                     <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;">
                         <label style="color: #ef4444; font-weight: 600;">{{ faq_formset.empty_form.DELETE }} Remove FAQ</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Track Tool Empty Form -->
+        <div id="empty-tracktool-form">
+            <div class="inline-item" style="background: var(--bg); border: 1px solid var(--border); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                {% for hidden in tracktool_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+                <div class="form-group"><label class="form-label">Category</label>{{ tracktool_formset.empty_form.category }}</div>
+                <div class="form-group">
+                    <label class="form-label">Tools Covered (comma separated)</label>
+                    <textarea name="tracktool-__prefix__-tools_covered" id="id_tracktool-__prefix__-tools_covered" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-col"><div class="form-group"><label class="form-label">Order</label>{{ tracktool_formset.empty_form.order }}</div></div>
+                    <div class="form-col" style="display: flex; align-items: flex-end; padding-bottom: 20px;">
+                        <label style="color: #ef4444; font-weight: 600; cursor: pointer;">{{ tracktool_formset.empty_form.DELETE }} Remove Tool</label>
                     </div>
                 </div>
             </div>

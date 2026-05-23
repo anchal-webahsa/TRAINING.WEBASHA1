@@ -1,5 +1,5 @@
 from django import forms
-from .models import Course, Coupon, AlumniProfile, CourseBanner, CourseSyllabus, CourseFAQ, UpcomingBatch, CourseSubCategory, CourseCategory, Enquiry, ExamVoucherOffer, GalleryImage, HiringPartner, HomeSection, StandaloneRelatedCourse, Instructor, PlacedStudent, PlacementStat, Profile, StudentCertificate, StudentScreenshot, Testimonial, VideoReview, Exam, ExamFAQ, ExamReview, ExamPartnerLogo, ExamRelatedCourse, ExamWhyChooseUs, ExamAdBanner, ExamSidebarCarousel, ExamCertificate
+from .models import Course, Coupon, AlumniProfile, CourseBanner, CourseSyllabus, CourseFAQ, UpcomingBatch, CourseSubCategory, CourseCategory, Enquiry, ExamVoucherOffer, GalleryImage, HiringPartner, HomeSection, StandaloneRelatedCourse, Instructor, PlacedStudent, PlacementStat, Profile, StudentCertificate, StudentScreenshot, Testimonial, VideoReview, Exam, ExamFAQ, ExamReview, ExamPartnerLogo, ExamRelatedCourse, ExamWhyChooseUs, ExamAdBanner, ExamSidebarCarousel, ExamCertificate, CourseTrackTool
 from django.forms import inlineformset_factory
 from django_summernote.widgets import SummernoteWidget
 
@@ -144,6 +144,21 @@ FAQFormSet = inlineformset_factory(
 
 BatchFormSet = inlineformset_factory(
     CourseBanner, UpcomingBatch, form=UpcomingBatchForm,
+    extra=1, can_delete=True
+)
+
+class CourseTrackToolForm(forms.ModelForm):
+    class Meta:
+        model = CourseTrackTool
+        fields = ['category', 'tools_covered', 'order']
+        widgets = {
+            'category': forms.TextInput(attrs={'class': 'form-control'}),
+            'tools_covered': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+TrackToolFormSet = inlineformset_factory(
+    CourseBanner, CourseTrackTool, form=CourseTrackToolForm,
     extra=1, can_delete=True
 )
 

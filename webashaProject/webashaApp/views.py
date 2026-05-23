@@ -19,7 +19,7 @@ from .models import (
 )
 from .forms import (
     CouponForm, AlumniProfileForm, CourseBannerForm,
-    SyllabusFormSet, FAQFormSet, BatchFormSet, CourseSubCategoryForm,
+    SyllabusFormSet, FAQFormSet, BatchFormSet, TrackToolFormSet, CourseSubCategoryForm,
     CourseCategoryForm, CourseForm, EnquiryForm, ExamVoucherOfferForm,
     GalleryImageForm, HiringPartnerForm, HomeSectionForm,
     StandaloneRelatedCourseForm, InstructorForm, PlacedStudentForm,
@@ -1388,8 +1388,9 @@ def add_course_banner(request):
         syllabus_formset = SyllabusFormSet(request.POST, prefix='syllabus')
         faq_formset = FAQFormSet(request.POST, prefix='faq')
         batch_formset = BatchFormSet(request.POST, prefix='batch')
+        tracktool_formset = TrackToolFormSet(request.POST, prefix='tracktool')
         
-        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid():
+        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid() and tracktool_formset.is_valid():
             banner = form.save()
             
             syllabus_formset.instance = banner
@@ -1401,6 +1402,9 @@ def add_course_banner(request):
             batch_formset.instance = banner
             batch_formset.save()
             
+            tracktool_formset.instance = banner
+            tracktool_formset.save()
+            
             messages.success(request, 'Course Banner created successfully with all related modules.')
             return redirect('manage_course_banners')
         else:
@@ -1410,12 +1414,14 @@ def add_course_banner(request):
         syllabus_formset = SyllabusFormSet(prefix='syllabus')
         faq_formset = FAQFormSet(prefix='faq')
         batch_formset = BatchFormSet(prefix='batch')
+        tracktool_formset = TrackToolFormSet(prefix='tracktool')
         
     return render(request, 'webashaApp/add_course_banner.html', {
         'form': form,
         'syllabus_formset': syllabus_formset,
         'faq_formset': faq_formset,
-        'batch_formset': batch_formset
+        'batch_formset': batch_formset,
+        'tracktool_formset': tracktool_formset
     })
 
 @login_required
@@ -1426,12 +1432,14 @@ def edit_course_banner(request, pk):
         syllabus_formset = SyllabusFormSet(request.POST, prefix='syllabus', instance=banner)
         faq_formset = FAQFormSet(request.POST, prefix='faq', instance=banner)
         batch_formset = BatchFormSet(request.POST, prefix='batch', instance=banner)
+        tracktool_formset = TrackToolFormSet(request.POST, prefix='tracktool', instance=banner)
         
-        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid():
+        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid() and tracktool_formset.is_valid():
             banner = form.save()
             syllabus_formset.save()
             faq_formset.save()
             batch_formset.save()
+            tracktool_formset.save()
             messages.success(request, 'Course Banner updated successfully.')
             return redirect('manage_course_banners')
         else:
@@ -1441,12 +1449,14 @@ def edit_course_banner(request, pk):
         syllabus_formset = SyllabusFormSet(prefix='syllabus', instance=banner)
         faq_formset = FAQFormSet(prefix='faq', instance=banner)
         batch_formset = BatchFormSet(prefix='batch', instance=banner)
+        tracktool_formset = TrackToolFormSet(prefix='tracktool', instance=banner)
         
     return render(request, 'webashaApp/add_course_banner.html', {
         'form': form,
         'syllabus_formset': syllabus_formset,
         'faq_formset': faq_formset,
-        'batch_formset': batch_formset
+        'batch_formset': batch_formset,
+        'tracktool_formset': tracktool_formset
     })
 
 @login_required
