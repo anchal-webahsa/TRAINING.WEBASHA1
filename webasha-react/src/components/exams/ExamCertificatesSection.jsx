@@ -180,21 +180,24 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
 
         .certificate-modal-content {
           position: relative;
-          max-width: 90%;
-          max-height: 80%;
+          width: 90%;
+          max-width: 850px;
+          max-height: 85vh;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
 
         .certificate-modal-img {
-          max-width: 100%;
-          max-height: 70vh;
+          width: 100%;
+          height: auto;
+          max-height: 75vh;
           object-fit: contain;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.4);
           border-radius: 4px;
           background: white;
           border: 1px solid #e2e8f0;
+          display: block;
         }
 
         .certificate-modal-close {
@@ -213,26 +216,28 @@ const ExamCertificatesSection = ({ examName, certificates }) => {
         }
 
         .certificate-modal-close:hover {
-          color: #000;
+          color: #000000;
         }
 
         .certificate-modal-btn {
           position: absolute;
           bottom: 20px;
-          background: #4b5563;
-          color: #fff;
-          border: 1.5px solid #fff;
-          padding: 6px 18px;
+          background: rgba(0, 0, 0, 0.5);
+          color: #ffffff;
+          border: 1.5px solid #ffffff;
+          padding: 7px 18px;
           border-radius: 4px;
           font-weight: 500;
           cursor: pointer;
           font-size: 14px;
+          font-family: inherit;
           transition: all 0.2s ease;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.25);
         }
 
         .certificate-modal-btn:hover {
-          background: #374151;
+          background: rgba(0, 0, 0, 0.75);
+          border-color: #ffffff;
         }
 
         .prev-btn {
