@@ -20,6 +20,7 @@ from .models import (
 from .forms import (
     CouponForm, AlumniProfileForm, CourseBannerForm,
     SyllabusFormSet, FAQFormSet, BatchFormSet, TrackToolFormSet, CourseSubCategoryForm,
+    CertificateFormSet, ComparisonFormSet, KeyFeatureFormSet,
     CourseCategoryForm, CourseForm, EnquiryForm, ExamVoucherOfferForm,
     GalleryImageForm, HiringPartnerForm, HomeSectionForm,
     StandaloneRelatedCourseForm, InstructorForm, PlacedStudentForm,
@@ -1389,8 +1390,14 @@ def add_course_banner(request):
         faq_formset = FAQFormSet(request.POST, prefix='faq')
         batch_formset = BatchFormSet(request.POST, prefix='batch')
         tracktool_formset = TrackToolFormSet(request.POST, prefix='tracktool')
+        certificate_formset = CertificateFormSet(request.POST, request.FILES, prefix='certificate')
+        comparison_formset = ComparisonFormSet(request.POST, prefix='comparison')
+        keyfeature_formset = KeyFeatureFormSet(request.POST, request.FILES, prefix='keyfeature')
         
-        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid() and tracktool_formset.is_valid():
+        if (form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and 
+            batch_formset.is_valid() and tracktool_formset.is_valid() and 
+            certificate_formset.is_valid() and comparison_formset.is_valid() and 
+            keyfeature_formset.is_valid()):
             banner = form.save()
             
             syllabus_formset.instance = banner
@@ -1405,6 +1412,15 @@ def add_course_banner(request):
             tracktool_formset.instance = banner
             tracktool_formset.save()
             
+            certificate_formset.instance = banner
+            certificate_formset.save()
+            
+            comparison_formset.instance = banner
+            comparison_formset.save()
+            
+            keyfeature_formset.instance = banner
+            keyfeature_formset.save()
+            
             messages.success(request, 'Course Banner created successfully with all related modules.')
             return redirect('manage_course_banners')
         else:
@@ -1415,13 +1431,19 @@ def add_course_banner(request):
         faq_formset = FAQFormSet(prefix='faq')
         batch_formset = BatchFormSet(prefix='batch')
         tracktool_formset = TrackToolFormSet(prefix='tracktool')
+        certificate_formset = CertificateFormSet(prefix='certificate')
+        comparison_formset = ComparisonFormSet(prefix='comparison')
+        keyfeature_formset = KeyFeatureFormSet(prefix='keyfeature')
         
     return render(request, 'webashaApp/add_course_banner.html', {
         'form': form,
         'syllabus_formset': syllabus_formset,
         'faq_formset': faq_formset,
         'batch_formset': batch_formset,
-        'tracktool_formset': tracktool_formset
+        'tracktool_formset': tracktool_formset,
+        'certificate_formset': certificate_formset,
+        'comparison_formset': comparison_formset,
+        'keyfeature_formset': keyfeature_formset,
     })
 
 @login_required
@@ -1433,13 +1455,22 @@ def edit_course_banner(request, pk):
         faq_formset = FAQFormSet(request.POST, prefix='faq', instance=banner)
         batch_formset = BatchFormSet(request.POST, prefix='batch', instance=banner)
         tracktool_formset = TrackToolFormSet(request.POST, prefix='tracktool', instance=banner)
+        certificate_formset = CertificateFormSet(request.POST, request.FILES, prefix='certificate', instance=banner)
+        comparison_formset = ComparisonFormSet(request.POST, prefix='comparison', instance=banner)
+        keyfeature_formset = KeyFeatureFormSet(request.POST, request.FILES, prefix='keyfeature', instance=banner)
         
-        if form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and batch_formset.is_valid() and tracktool_formset.is_valid():
+        if (form.is_valid() and syllabus_formset.is_valid() and faq_formset.is_valid() and 
+            batch_formset.is_valid() and tracktool_formset.is_valid() and 
+            certificate_formset.is_valid() and comparison_formset.is_valid() and 
+            keyfeature_formset.is_valid()):
             banner = form.save()
             syllabus_formset.save()
             faq_formset.save()
             batch_formset.save()
             tracktool_formset.save()
+            certificate_formset.save()
+            comparison_formset.save()
+            keyfeature_formset.save()
             messages.success(request, 'Course Banner updated successfully.')
             return redirect('manage_course_banners')
         else:
@@ -1450,13 +1481,19 @@ def edit_course_banner(request, pk):
         faq_formset = FAQFormSet(prefix='faq', instance=banner)
         batch_formset = BatchFormSet(prefix='batch', instance=banner)
         tracktool_formset = TrackToolFormSet(prefix='tracktool', instance=banner)
+        certificate_formset = CertificateFormSet(prefix='certificate', instance=banner)
+        comparison_formset = ComparisonFormSet(prefix='comparison', instance=banner)
+        keyfeature_formset = KeyFeatureFormSet(prefix='keyfeature', instance=banner)
         
     return render(request, 'webashaApp/add_course_banner.html', {
         'form': form,
         'syllabus_formset': syllabus_formset,
         'faq_formset': faq_formset,
         'batch_formset': batch_formset,
-        'tracktool_formset': tracktool_formset
+        'tracktool_formset': tracktool_formset,
+        'certificate_formset': certificate_formset,
+        'comparison_formset': comparison_formset,
+        'keyfeature_formset': keyfeature_formset,
     })
 
 @login_required

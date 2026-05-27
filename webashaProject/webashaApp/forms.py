@@ -1,5 +1,6 @@
 from django import forms
 from .models import Course, Coupon, AlumniProfile, CourseBanner, CourseSyllabus, CourseFAQ, UpcomingBatch, CourseSubCategory, CourseCategory, Enquiry, ExamVoucherOffer, GalleryImage, HiringPartner, HomeSection, StandaloneRelatedCourse, Instructor, PlacedStudent, PlacementStat, Profile, StudentCertificate, StudentScreenshot, Testimonial, VideoReview, Exam, ExamFAQ, ExamReview, ExamPartnerLogo, ExamRelatedCourse, ExamWhyChooseUs, ExamAdBanner, ExamSidebarCarousel, ExamCertificate, CourseTrackTool
+from .models import CourseComparisonRow, CourseKeyFeature, CourseBannerCertificate
 from django.forms import inlineformset_factory
 from django_summernote.widgets import SummernoteWidget
 
@@ -70,6 +71,7 @@ class CourseBannerForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['created_at']
         widgets = {
+            'subcategory': forms.Select(attrs={'class': 'form-select'}),
             'page_identifier': forms.TextInput(attrs={'class': 'form-control'}),
             'breadcrumb_active': forms.TextInput(attrs={'class': 'form-control'}),
             'heading': forms.TextInput(attrs={'class': 'form-control'}),
@@ -83,8 +85,34 @@ class CourseBannerForm(forms.ModelForm):
             'detail_certification': forms.TextInput(attrs={'class': 'form-control'}),
             'detail_institute': forms.TextInput(attrs={'class': 'form-control'}),
             'detail_includes': forms.TextInput(attrs={'class': 'form-control'}),
+            'syllabus_heading_top': forms.TextInput(attrs={'class': 'form-control'}),
+            'syllabus_heading_bottom': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_heading_prefix': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_duration': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_questions': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_fee': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_validity': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_code': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_format': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_passing_score': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_eligibility': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_languages': forms.TextInput(attrs={'class': 'form-control'}),
+            'exam_detail_mode': forms.TextInput(attrs={'class': 'form-control'}),
+            'passing_criteria_heading': forms.TextInput(attrs={'class': 'form-control'}),
+            'passing_criteria_text': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'whatsapp_link': forms.URLInput(attrs={'class': 'form-control'}),
+            'call_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'instructor_heading_top': forms.TextInput(attrs={'class': 'form-control'}),
+            'instructor_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'instructor_html': SummernoteWidget(attrs={'class': 'form-control'}),
             'voucher_offer': forms.Select(attrs={'class': 'form-select'}),
             'video_thumbnail': forms.FileInput(attrs={'class': 'form-control'}),
+            'partner_image': forms.FileInput(attrs={'class': 'form-control'}),
+            'show_partner_logo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'slider_image_1': forms.FileInput(attrs={'class': 'form-control'}),
+            'slider_image_2': forms.FileInput(attrs={'class': 'form-control'}),
+            'training_track_image': forms.FileInput(attrs={'class': 'form-control'}),
             'youtube_video_url': forms.URLInput(attrs={'class': 'form-control'}),
             'youtube_video_id': forms.TextInput(attrs={'class': 'form-control'}),
             'pdf_syllabus_link': forms.TextInput(attrs={'class': 'form-control'}),
@@ -97,6 +125,13 @@ class CourseBannerForm(forms.ModelForm):
             'salary_html': SummernoteWidget(attrs={'class': 'form-control'}),
             'career_benefits_html': SummernoteWidget(attrs={'class': 'form-control'}),
             'why_choose_us_html': SummernoteWidget(attrs={'class': 'form-control'}),
+            'key_features_heading': forms.TextInput(attrs={'class': 'form-control'}),
+            'key_features_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'why_choose_heading': forms.TextInput(attrs={'class': 'form-control'}),
+            'why_choose_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'cloud_lab_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'cloud_lab_image': forms.FileInput(attrs={'class': 'form-control'}),
+            'cloud_lab_image_url': forms.TextInput(attrs={'class': 'form-control'}),
             'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }
 
@@ -159,6 +194,53 @@ class CourseTrackToolForm(forms.ModelForm):
 
 TrackToolFormSet = inlineformset_factory(
     CourseBanner, CourseTrackTool, form=CourseTrackToolForm,
+    extra=1, can_delete=True
+)
+
+class CourseBannerCertificateForm(forms.ModelForm):
+    class Meta:
+        model = CourseBannerCertificate
+        fields = ['student_name', 'image', 'order']
+        widgets = {
+            'student_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+CertificateFormSet = inlineformset_factory(
+    CourseBanner, CourseBannerCertificate, form=CourseBannerCertificateForm,
+    extra=1, can_delete=True
+)
+
+class CourseComparisonRowForm(forms.ModelForm):
+    class Meta:
+        model = CourseComparisonRow
+        fields = ['feature', 'webasha', 'others', 'order']
+        widgets = {
+            'feature': forms.TextInput(attrs={'class': 'form-control'}),
+            'webasha': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'others': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+ComparisonFormSet = inlineformset_factory(
+    CourseBanner, CourseComparisonRow, form=CourseComparisonRowForm,
+    extra=1, can_delete=True
+)
+
+class CourseKeyFeatureForm(forms.ModelForm):
+    class Meta:
+        model = CourseKeyFeature
+        fields = ['icon', 'icon_url', 'label', 'order']
+        widgets = {
+            'icon': forms.FileInput(attrs={'class': 'form-control'}),
+            'icon_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'label': forms.TextInput(attrs={'class': 'form-control'}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+KeyFeatureFormSet = inlineformset_factory(
+    CourseBanner, CourseKeyFeature, form=CourseKeyFeatureForm,
     extra=1, can_delete=True
 )
 
