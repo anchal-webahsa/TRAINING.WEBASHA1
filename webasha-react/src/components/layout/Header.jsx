@@ -6,6 +6,7 @@ export default function Header() {
   const [megaMenuData, setMegaMenuData] = useState([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileCourseOpen, setIsMobileCourseOpen] = useState(false);
+  const [isMobileContentActive, setIsMobileContentActive] = useState(false);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/mega-menu/`)
       .then(res => res.json())
@@ -25,13 +26,16 @@ export default function Header() {
   };
 
   const showMobileContent = () => {
-    const el = document.getElementById("myDIV-mobile");
-    if (el) el.classList.add("active");
+    setIsMobileContentActive(true);
   };
 
   const hideMobileContent = () => {
-    const el = document.getElementById("myDIV-mobile");
-    if (el) el.classList.remove("active");
+    setIsMobileContentActive(false);
+  };
+
+  const openMobileCourse = () => {
+    setIsMobileCourseOpen(true);
+    setIsMobileContentActive(false);
   };
 
   return (
@@ -742,7 +746,7 @@ export default function Header() {
                     className="btn dropdown-toggle"
                     id="toggle-btn-2"
                     type="button"
-                    onClick={() => setIsMobileCourseOpen(true)}
+                    onClick={openMobileCourse}
                   >
                     Courses
                   </button>
@@ -1233,7 +1237,7 @@ export default function Header() {
                         </button>
                       </div>
                       {/* Tab Content Start */}
-                      <div className="course-tabs-content" id="myDIV-mobile">
+                      <div className={`course-tabs-content ${isMobileContentActive ? 'active' : ''}`} id="myDIV-mobile">
                         <div className="course-tabs-card">
                           <div className="course-tabs-scrollbar">
                             <button

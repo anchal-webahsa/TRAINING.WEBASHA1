@@ -494,7 +494,7 @@
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button {
     font-size: 14px;
-    padding: 8px 10px;
+    padding: 8px 45px 8px 10px;
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button svg {
     margin-right: 4px;
@@ -1873,13 +1873,21 @@
     width: 100%;
     padding: 10px 20px 10px 10px;
   }
-  .header .navbar .course-dropdown .course-tabs-content {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0;
-    display: none;
+  #myDIV-mobile {
+    width: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 0 !important;
+    display: none !important;
+    background-color: #fff !important;
+    z-index: 9999 !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    overflow-y: auto !important;
+  }
+  #myDIV-mobile.active {
+    display: block !important;
   }
   .header .navbar .course-dropdown .course-tabs-scrollbar {
     width: 100%;
@@ -3104,7 +3112,7 @@
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button {
     font-size: 11px;
-    padding: 6px 10px;
+    padding: 6px 32px 6px 10px;
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button svg {
     width: 14px;

@@ -2151,7 +2151,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #717171;
   border: none;
   text-align: left;
-  padding: 12px;
+  padding: 12px 45px 12px 12px;
   position: relative;
 }
 .header .navbar .course-dropdown .dropdown-menu ul > li > button.active {
@@ -2168,7 +2168,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 12px;
 }
 
