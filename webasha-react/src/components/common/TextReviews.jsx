@@ -52,7 +52,7 @@ const ReviewCard = ({ img, name, role, text, linkedinUrl }) => (
       <img src={img ? (img.startsWith('http') || img.startsWith('assets') || img.startsWith('/assets') ? img : `${MEDIA_BASE_URL}${img}`) : "/assets/img/profile/default.webp"} className="img-top" alt={`${name} review`} loading="lazy" decoding="async" />
       <Stars />
       <div className="card-body">
-        <p className="card-text line-clamp-1">{text}</p>
+        <p className="card-text line-clamp-1" dangerouslySetInnerHTML={{ __html: text }} />
         <div className="card-wraper d-flex align-items-center justify-content-between">
           <div className="card-content">
             <h4>{name}</h4>

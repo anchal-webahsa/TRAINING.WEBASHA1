@@ -52,9 +52,7 @@ const ExamReviewsSection = ({ examName, examCode, reviews: backendReviews }) => 
                   ))}
                 </div>
                 <h5 className="fw-bold mb-2" style={{ color: '#0f172a', fontSize: '1.2rem' }}>"{review.title}"</h5>
-                <p className="text-muted mb-4" style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-                  {review.text}
-                </p>
+                <p className="text-muted mb-4" style={{ lineHeight: '1.6', fontSize: '1rem' }} dangerouslySetInnerHTML={{ __html: review.text }} />
               </div>
               <div className="d-flex align-items-center justify-content-start">
                 <img 
