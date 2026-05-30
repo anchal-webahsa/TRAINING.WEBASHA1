@@ -61,7 +61,7 @@
                     </td> 
                     <td style="text-align: right;"> 
                         <div style="display: flex; gap: 8px; justify-content: flex-end;"> 
-                            <a href="#" class="action-icon-btn" title="Edit"> 
+                            <a href="{% url 'edit_testimonial' item.pk %}" class="action-icon-btn" title="Edit"> 
                                 <i class="fa-solid fa-pen-to-square"></i> 
                             </a> 
                             <a href="{% url 'delete_testimonial' item.pk %}" class="action-icon-btn" style="color: #ef4444;" title="Delete" onclick="return confirm('Are you sure you want to delete this testimonial?')"> 

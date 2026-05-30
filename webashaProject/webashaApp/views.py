@@ -2052,6 +2052,20 @@ def add_testimonial(request):
     return render(request, 'webashaApp/add_testimonial.html', {'form': form})
 
 @login_required
+def edit_testimonial(request, pk):
+    testimonial = get_object_or_404(Testimonial, pk=pk)
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST, request.FILES, instance=testimonial)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Testimonial updated successfully.')
+            return redirect('manage_testimonials')
+    else:
+        form = TestimonialForm(instance=testimonial)
+    return render(request, 'webashaApp/add_testimonial.html', {'form': form, 'is_edit': True})
+
+
+@login_required
 def manage_upcoming_batches(request):
     query = request.GET.get('q', '')
     if query:

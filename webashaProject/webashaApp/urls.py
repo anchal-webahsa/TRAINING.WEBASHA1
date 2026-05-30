@@ -163,6 +163,7 @@ urlpatterns += [
     path('manage/student_screenshots/add/', views.add_student_screenshot, name='add_student_screenshot'),
     path('manage/testimonials/', views.manage_testimonials, name='manage_testimonials'),
     path('manage/testimonials/add/', views.add_testimonial, name='add_testimonial'),
+    path('manage/testimonials/<int:pk>/edit/', views.edit_testimonial, name='edit_testimonial'),
     path('manage/testimonials/<int:pk>/delete/', views.delete_testimonial, name='delete_testimonial'),
     path('manage/upcoming_batches/', views.manage_upcoming_batches, name='manage_upcoming_batches'),
     path('manage/upcoming_batches/add/', views.add_upcoming_batch, name='add_upcoming_batch'),
