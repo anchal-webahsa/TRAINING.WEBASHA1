@@ -2893,6 +2893,9 @@ noscript .lazy-section {
     padding: 0;
     display: none;
   }
+  .header .navbar .course-dropdown .course-tabs-content.active {
+    display: block;
+  }
   .header .navbar .course-dropdown .course-tabs-scrollbar {
     width: 100%;
   }
@@ -4104,7 +4107,7 @@ noscript .lazy-section {
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button {
     font-size: 11px;
-    padding: 6px 10px;
+    padding: 6px 32px 6px 10px;
   }
   .header .navbar .course-dropdown .dropdown-menu ul > li > button svg {
     width: 14px;
@@ -8399,7 +8402,7 @@ noscript .lazy-section {
   color: #717171;
   border: none;
   text-align: left;
-  padding: 12px;
+  padding: 12px 40px 12px 12px;
   position: relative;
 }
 .header .navbar .course-dropdown .dropdown-menu ul > li > button.active {
